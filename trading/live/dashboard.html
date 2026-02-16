@@ -89,7 +89,44 @@ tr:hover td{background:rgba(88,166,255,.04)}
 .feature-title{font-size:.8rem;font-weight:600;margin-bottom:4px}
 .feature-desc{font-size:.7rem;color:var(--text2);line-height:1.4}
 @media(max-width:900px){.charts-row{grid-template-columns:1fr}.trades-grid{grid-template-columns:1fr}.adaptive-viz{grid-template-columns:1fr}}
-@media(max-width:500px){body{padding:8px}.card{padding:10px}.card-value{font-size:1.15rem}.section{padding:12px}th,td{padding:5px 3px;font-size:.7rem}}
+@media(max-width:600px){
+body{padding:8px}
+.header{flex-direction:column;align-items:flex-start;gap:8px;padding:8px 0 12px}
+.header h1{font-size:1.1rem;gap:8px}
+.logo-wrap{width:36px;height:36px}
+.logo-wrap svg{width:36px;height:36px}
+.header-right{width:100%;justify-content:flex-start;flex-wrap:wrap;gap:8px}
+.cards{grid-template-columns:repeat(2,1fr);gap:8px}
+.card{padding:10px}
+.card-value{font-size:1.15rem}
+.card-sub{font-size:.68rem}
+.section{padding:12px}
+.charts-row{grid-template-columns:1fr;gap:8px}
+.chart-wrap{height:200px}
+.trade-chart-wrap{height:140px}
+.trades-grid{grid-template-columns:1fr}
+.trade-panel{padding:12px}
+.deal-stats{grid-template-columns:repeat(2,1fr);gap:8px}
+.deal-stat-value{font-size:.85rem}
+.features-grid{grid-template-columns:1fr 1fr;gap:8px}
+.feature-card{padding:12px}
+.feature-card:hover{transform:none;box-shadow:none;border-color:var(--border)}
+.bottom-bar{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:10px;padding:10px 12px}
+.bottom-stat span:last-child{font-size:.78rem}
+th,td{padding:5px 3px;font-size:.68rem}
+.section h2{font-size:.9rem}
+.adaptive-viz{grid-template-columns:1fr}
+.coin-selector{grid-template-columns:1fr}
+.regime-strip{gap:6px}
+.regime-item{font-size:.68rem}
+.alloc-badge{font-size:.65rem}
+table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+}
+@media(max-width:380px){
+.cards{grid-template-columns:1fr}
+.features-grid{grid-template-columns:1fr}
+.card-value{font-size:1rem}
+}
 /* Portfolio mode styles */
 .coin-selector{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:16px}
 .coin-mini-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;cursor:default;transition:border-color .2s}
@@ -116,6 +153,7 @@ tr:hover td{background:rgba(88,166,255,.04)}
 <body>
 <div class="header">
   <h1>
+    <a href="./" style="display:flex;align-items:center;text-decoration:none;color:inherit;">
     <div class="logo-wrap">
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
         <!-- Grid background -->
@@ -154,6 +192,7 @@ tr:hover td{background:rgba(88,166,255,.04)}
       </svg>
     </div>
     Adaptive Intelligence Trading
+    </a>
   </h1>
   <div class="header-right">
     <span id="allocBadge" class="alloc-badge"></span>
@@ -234,6 +273,55 @@ tr:hover td{background:rgba(88,166,255,.04)}
   </div>
 </div>
 
+<!-- Coin Scanner Section -->
+<div class="section" id="scannerSection">
+  <h2>🔍 Coin Scanner <span id="scannerStatus" style="font-size:.8rem;color:var(--text2);font-weight:400"></span></h2>
+  <div id="scannerContent">
+    <!-- Filter Funnel -->
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:6px">
+        <span class="badge badge-blue" id="scanFunnelTotal">--</span>
+        <span style="font-size:.7rem;color:var(--text3)">scanned →</span>
+        <span class="badge badge-purple" id="scanFunnelMature">--</span>
+        <span style="font-size:.7rem;color:var(--text3)">mature →</span>
+        <span class="badge badge-green" id="scanFunnelTech">--</span>
+        <span style="font-size:.7rem;color:var(--text3)">backtested</span>
+      </div>
+      <div style="margin-left:auto;display:flex;gap:12px;font-size:.72rem;color:var(--text2)">
+        <span>Last scan: <span id="scanLastRun">--</span></span>
+      </div>
+    </div>
+    <!-- Recommendation Banner -->
+    <div id="scanRecommendation" style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--bg);border:1px solid var(--border);border-radius:8px;margin-bottom:16px">
+      <span id="scanAction" class="badge" style="font-size:.8rem;padding:4px 12px">--</span>
+      <span id="scanActionText" style="font-size:.85rem;color:var(--text2)">Loading scanner data...</span>
+    </div>
+    <!-- Maturity Filter Breakdown -->
+    <div style="margin-bottom:16px">
+      <div style="font-size:.75rem;color:var(--text2);margin-bottom:8px"><span style="font-weight:600;color:var(--text)">Filtered Out</span> — coins rejected by maturity checks</div>
+      <div id="scanFilterBreakdown" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px"></div>
+    </div>
+    <!-- Rankings Table -->
+    <div style="overflow-x:auto">
+      <table id="scannerTable">
+        <thead><tr>
+          <th style="width:36px">#</th>
+          <th>Coin</th>
+          <th>Score</th>
+          <th>Daily ROI</th>
+          <th title="Average completed deal cycles per day (open → fill SOs → hit TP → close) during 14-day backtest">Cycles/Day</th>
+          <th>Win Rate</th>
+          <th>Max DD</th>
+          <th>Profit (14d)</th>
+          <th>Avg SOs</th>
+          <th>Friendly Regimes</th>
+        </tr></thead>
+        <tbody id="scannerTableBody"><tr><td colspan="10" style="text-align:center;color:var(--text3)">Loading...</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
 <div class="section" id="dealSection">
   <h2 id="dealTitle">Active Trades</h2>
   <div id="dealContent"><div class="no-deal">Loading...</div></div>
@@ -264,8 +352,8 @@ tr:hover td{background:rgba(88,166,255,.04)}
     <div style="display:flex;align-items:center;gap:8px">
       <span style="font-size:.75rem;color:var(--text2)">Show:</span>
       <select id="tradePageSize" style="background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:4px;padding:3px 8px;font-size:.75rem;cursor:pointer">
-        <option value="10">10</option>
-        <option value="25" selected>25</option>
+        <option value="10" selected>10</option>
+        <option value="25">25</option>
         <option value="50">50</option>
         <option value="100">100</option>
       </select>
@@ -1138,13 +1226,106 @@ function renderBottom() {
   ddBar.style.background = dd > maxDD*0.7 ? 'var(--red)' : dd > maxDD*0.4 ? 'var(--amber)' : 'var(--green)';
 }
 
+async function fetchScanner() {
+  try {
+    const [recRes, t1Res, t2Res] = await Promise.all([
+      fetch(DATA_PREFIX+'scanner_recommendation.json?t='+Date.now()),
+      fetch(DATA_PREFIX+'scanner_t1.json?t='+Date.now()),
+      fetch(DATA_PREFIX+'scanner_t2.json?t='+Date.now())
+    ]);
+    // Parse with Infinity handling (Python may emit Infinity which isn't valid JSON)
+    const safeParse = async (r) => { if(!r.ok) return null; const t = await r.text(); return JSON.parse(t.replace(/\bInfinity\b/g, '9999')); };
+    const rec = await safeParse(recRes);
+    const t1 = await safeParse(t1Res);
+    const t2 = await safeParse(t2Res);
+    renderScanner(rec, t1, t2);
+  } catch(e) { console.warn('scanner fetch failed', e); }
+}
+
+function renderScanner(rec, t1, t2) {
+  const section = $('scannerSection');
+  if (!rec && !t1 && !t2) { section.style.display = 'none'; return; }
+  section.style.display = '';
+
+  // Filter funnel from T1
+  if (t1) {
+    $('scanFunnelTotal').textContent = t1.total_pairs_scanned + ' pairs';
+    $('scanFunnelMature').textContent = t1.passed_maturity + ' passed';
+    $('scanFunnelTech').textContent = (t1.passed_technical || t1.shortlist_size || 0) + ' qualified';
+
+    // Filter breakdown
+    const fc = t1.maturity_filter_counts || {};
+    const filters = [
+      {label:'Too New (<60d)', val:fc.too_new||0, color:'var(--amber)'},
+      {label:'Price Swing (>120%)', val:fc.price_swing||0, color:'var(--red)'},
+      {label:'Low Volume (<$1M)', val:fc.low_volume||0, color:'var(--purple)'},
+      {label:'Volume Spike (>4×)', val:fc.volume_spike||0, color:'var(--blue)'},
+      {label:'Insufficient Data', val:fc.insufficient_30d_data||0, color:'var(--text3)'}
+    ];
+    $('scanFilterBreakdown').innerHTML = filters.map(f =>
+      `<div style="text-align:center;padding:8px;background:var(--bg);border-radius:6px;border:1px solid var(--border)">
+        <div style="font-size:1.3rem;font-weight:700;color:${f.color}">${f.val}</div>
+        <div style="font-size:.65rem;color:var(--text2);margin-top:2px">${f.label}</div>
+      </div>`
+    ).join('');
+  }
+
+  // Recommendation banner
+  if (rec) {
+    const actionEl = $('scanAction');
+    const textEl = $('scanActionText');
+    if (rec.action === 'HOLD') {
+      actionEl.className = 'badge badge-green';
+      actionEl.textContent = '✓ HOLD';
+      textEl.textContent = `${rec.current_coin.replace('/USDT','')} remains the best pick (score: ${rec.best_score.toFixed(1)})`;
+    } else {
+      actionEl.className = 'badge badge-amber';
+      actionEl.textContent = '↻ ROTATE';
+      textEl.textContent = `Switch from ${rec.current_coin.replace('/USDT','')} to ${rec.best_coin.replace('/USDT','')} (${rec.best_score.toFixed(1)} vs ${rec.current_score.toFixed(1)})`;
+    }
+    // Last scan time
+    if (rec.timestamp) {
+      const d = new Date(rec.timestamp);
+      const ago = Math.round((Date.now() - d.getTime()) / 60000);
+      const agoStr = ago < 60 ? ago+'m ago' : Math.round(ago/60)+'h ago';
+      $('scanLastRun').textContent = d.toLocaleTimeString() + ' (' + agoStr + ')';
+    }
+    $('scannerStatus').textContent = rec.action === 'HOLD' ? '— Holding current' : '— Rotation suggested';
+  }
+
+  // Rankings table from T2
+  if (t2 && t2.rankings && t2.rankings.length) {
+    const tbody = $('scannerTableBody');
+    tbody.innerHTML = t2.rankings.map((r, i) => {
+      const isCurrent = rec && r.symbol === rec.current_coin;
+      const rowStyle = isCurrent ? 'background:rgba(88,166,255,.06)' : '';
+      const nameExtra = isCurrent ? ' <span style="font-size:.6rem;color:var(--blue)">● ACTIVE</span>' : '';
+      const ddColor = r.max_drawdown_pct < -5 ? 'var(--red)' : r.max_drawdown_pct < -3 ? 'var(--amber)' : 'var(--green)';
+      return `<tr style="${rowStyle}">
+        <td style="color:var(--text3);font-weight:600">${i+1}</td>
+        <td style="font-weight:600">${r.symbol.replace('/USDT','')}${nameExtra}</td>
+        <td><span style="font-size:1.1rem;font-weight:700;color:var(--blue)">${r.composite_score.toFixed(1)}</span></td>
+        <td style="color:var(--green)">${r.daily_roi_pct.toFixed(3)}%</td>
+        <td>${r.deals_per_day.toFixed(1)}</td>
+        <td>${r.win_rate.toFixed(0)}%</td>
+        <td style="color:${ddColor}">${r.max_drawdown_pct.toFixed(2)}%</td>
+        <td style="color:var(--green)">$${r.total_profit.toFixed(2)}</td>
+        <td>${r.avg_so_per_deal.toFixed(1)}</td>
+        <td>${r.friendly_regime_pct.toFixed(0)}%</td>
+      </tr>`;
+    }).join('');
+  }
+}
+
 async function init() {
-  await Promise.all([fetchStatus(), fetchHistory(), fetchTrades()]);
+  await Promise.all([fetchStatus(), fetchHistory(), fetchTrades(), fetchScanner()]);
   renderCharts();
 }
 init();
 
 setInterval(async () => { await fetchStatus(); await fetchTrades(); countdownVal = 15; }, 15000);
+// Refresh scanner every 5 minutes (runs every 4h so no need for frequent polling)
+setInterval(fetchScanner, 300000);
 setInterval(() => { historyCountdown--; if(historyCountdown <= 0) { fetchHistory().then(renderCharts); historyCountdown = 300; } }, 1000);
 setInterval(() => { countdownVal = Math.max(0, countdownVal - 1); $('countdown').textContent = countdownVal; }, 1000);
 setInterval(() => { if(status?.start_time) $('bUptime').textContent = durStr(Date.now() - new Date(status.start_time).getTime()); }, 1000);

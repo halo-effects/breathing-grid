@@ -113,7 +113,7 @@ def deep_scan_coin(ccxt_symbol: str, df_5m: pd.DataFrame) -> dict | None:
         "friendly_regime_pct": round(friendly_pct, 1),
         "regime_distribution": regime_dist,
         "risk_adjusted_score": round(risk_adj, 4),
-        "profit_factor": round(result.profit_factor, 2),
+        "profit_factor": round(result.profit_factor, 2) if result.profit_factor != float('inf') else 9999,
         "composite_score": round(score, 1),
         "duration_days": round(duration_days, 1),
         "avg_so_per_deal": round(np.mean([d.so_count for d in result.closed_deals]), 1) if result.closed_deals else 0,
