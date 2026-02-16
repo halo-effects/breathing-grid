@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-16T22:57:09.609032+00:00",
+  "timestamp": "2026-02-16T22:59:04.462420+00:00",
   "symbol": "HYPEUSDT",
   "timeframe": "5m",
   "running": true,
@@ -16,9 +16,9 @@
   "drawdown_pct": 1.31,
   "max_drawdown_threshold": 25.0,
   "leverage": 1,
-  "capital": 332.32,
-  "available_balance": 113.49,
-  "cycle_count": 7559,
+  "capital": 332.3,
+  "available_balance": 113.52,
+  "cycle_count": 7562,
   "start_time": "2026-02-13T03:50:51.737221+00:00",
   "hedge_mode": false,
   "long_deal": {
