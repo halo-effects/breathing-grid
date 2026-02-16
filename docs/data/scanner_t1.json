@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-16T16:07:16.264688+00:00",
+  "timestamp": "2026-02-16T20:06:48.682401+00:00",
   "total_pairs_scanned": 279,
   "passed_maturity": 10,
   "passed_technical": 9,
@@ -15,17 +15,17 @@
     {
       "symbol": "ADA/USDT",
       "aster_symbol": "ADAUSDT",
-      "filter_reason": "low_volume ($165,988 < $1,000,000)"
+      "filter_reason": "low_volume ($204,736 < $1,000,000)"
     },
     {
       "symbol": "DOT/USDT",
       "aster_symbol": "DOTUSDT",
-      "filter_reason": "low_volume ($25,225 < $1,000,000)"
+      "filter_reason": "low_volume ($45,888 < $1,000,000)"
     },
     {
       "symbol": "1000SHIB/USDT",
       "aster_symbol": "1000SHIBUSDT",
-      "filter_reason": "low_volume ($17,369 < $1,000,000)"
+      "filter_reason": "low_volume ($41,033 < $1,000,000)"
     },
     {
       "symbol": "AXS/USDT",
@@ -35,12 +35,12 @@
     {
       "symbol": "AVAX/USDT",
       "aster_symbol": "AVAXUSDT",
-      "filter_reason": "low_volume ($185,658 < $1,000,000)"
+      "filter_reason": "low_volume ($192,742 < $1,000,000)"
     },
     {
       "symbol": "LTC/USDT",
       "aster_symbol": "LTCUSDT",
-      "filter_reason": "low_volume ($136,133 < $1,000,000)"
+      "filter_reason": "low_volume ($200,509 < $1,000,000)"
     },
     {
       "symbol": "GALA/USDT",
@@ -50,27 +50,27 @@
     {
       "symbol": "NEAR/USDT",
       "aster_symbol": "NEARUSDT",
-      "filter_reason": "low_volume ($14,493 < $1,000,000)"
+      "filter_reason": "low_volume ($15,223 < $1,000,000)"
     },
     {
       "symbol": "TRX/USDT",
       "aster_symbol": "TRXUSDT",
-      "filter_reason": "low_volume ($33,015 < $1,000,000)"
+      "filter_reason": "low_volume ($37,265 < $1,000,000)"
     },
     {
       "symbol": "ATOM/USDT",
       "aster_symbol": "ATOMUSDT",
-      "filter_reason": "low_volume ($1,745 < $1,000,000)"
+      "filter_reason": "low_volume ($3,013 < $1,000,000)"
     },
     {
       "symbol": "CAKE/USDT",
       "aster_symbol": "CAKEUSDT",
-      "filter_reason": "low_volume ($10,924 < $1,000,000)"
+      "filter_reason": "low_volume ($78,880 < $1,000,000)"
     },
     {
       "symbol": "APE/USDT",
       "aster_symbol": "APEUSDT",
-      "filter_reason": "low_volume ($201 < $1,000,000)"
+      "filter_reason": "low_volume ($210 < $1,000,000)"
     },
     {
       "symbol": "ETC/USDT",
@@ -85,7 +85,7 @@
     {
       "symbol": "AAVE/USDT",
       "aster_symbol": "AAVEUSDT",
-      "filter_reason": "low_volume ($90,761 < $1,000,000)"
+      "filter_reason": "low_volume ($97,925 < $1,000,000)"
     },
     {
       "symbol": "ZIL/USDT",
@@ -95,27 +95,27 @@
     {
       "symbol": "DYDX/USDT",
       "aster_symbol": "DYDXUSDT",
-      "filter_reason": "low_volume ($17,478 < $1,000,000)"
+      "filter_reason": "low_volume ($17,881 < $1,000,000)"
     },
     {
       "symbol": "CRV/USDT",
       "aster_symbol": "CRVUSDT",
-      "filter_reason": "low_volume ($11,106 < $1,000,000)"
+      "filter_reason": "low_volume ($11,374 < $1,000,000)"
     },
     {
       "symbol": "FIL/USDT",
       "aster_symbol": "FILUSDT",
-      "filter_reason": "low_volume ($5,883 < $1,000,000)"
+      "filter_reason": "low_volume ($6,024 < $1,000,000)"
     },
     {
       "symbol": "LINK/USDT",
       "aster_symbol": "LINKUSDT",
-      "filter_reason": "low_volume ($631,313 < $1,000,000)"
+      "filter_reason": "low_volume ($640,434 < $1,000,000)"
     },
     {
       "symbol": "BCH/USDT",
       "aster_symbol": "BCHUSDT",
-      "filter_reason": "low_volume ($42,541 < $1,000,000)"
+      "filter_reason": "low_volume ($53,818 < $1,000,000)"
     },
     {
       "symbol": "SNX/USDT",
@@ -125,7 +125,7 @@
     {
       "symbol": "UNI/USDT",
       "aster_symbol": "UNIUSDT",
-      "filter_reason": "low_volume ($43,679 < $1,000,000)"
+      "filter_reason": "low_volume ($47,427 < $1,000,000)"
     },
     {
       "symbol": "XMR/USDT",
@@ -140,7 +140,7 @@
     {
       "symbol": "LUNA2/USDT",
       "aster_symbol": "LUNA2USDT",
-      "filter_reason": "low_volume ($100,944 < $1,000,000)"
+      "filter_reason": "low_volume ($106,928 < $1,000,000)"
     },
     {
       "symbol": "OP/USDT",
@@ -150,7 +150,7 @@
     {
       "symbol": "APT/USDT",
       "aster_symbol": "APTUSDT",
-      "filter_reason": "low_volume ($5,608 < $1,000,000)"
+      "filter_reason": "low_volume ($7,794 < $1,000,000)"
     },
     {
       "symbol": "ARB/USDT",
@@ -160,7 +160,7 @@
     {
       "symbol": "INJ/USDT",
       "aster_symbol": "INJUSDT",
-      "filter_reason": "low_volume ($10,551 < $1,000,000)"
+      "filter_reason": "low_volume ($12,698 < $1,000,000)"
     },
     {
       "symbol": "SUI/USDT",
@@ -170,7 +170,7 @@
     {
       "symbol": "1000PEPE/USDT",
       "aster_symbol": "1000PEPEUSDT",
-      "filter_reason": "low_volume ($383,665 < $1,000,000)"
+      "filter_reason": "low_volume ($501,473 < $1,000,000)"
     },
     {
       "symbol": "LDO/USDT",
@@ -185,12 +185,12 @@
     {
       "symbol": "WLD/USDT",
       "aster_symbol": "WLDUSDT",
-      "filter_reason": "low_volume ($21,927 < $1,000,000)"
+      "filter_reason": "low_volume ($23,341 < $1,000,000)"
     },
     {
       "symbol": "XLM/USDT",
       "aster_symbol": "XLMUSDT",
-      "filter_reason": "low_volume ($32,010 < $1,000,000)"
+      "filter_reason": "low_volume ($37,071 < $1,000,000)"
     },
     {
       "symbol": "FET/USDT",
@@ -205,7 +205,7 @@
     {
       "symbol": "SEI/USDT",
       "aster_symbol": "SEIUSDT",
-      "filter_reason": "low_volume ($1,695 < $1,000,000)"
+      "filter_reason": "low_volume ($1,903 < $1,000,000)"
     },
     {
       "symbol": "STX/USDT",
@@ -215,7 +215,7 @@
     {
       "symbol": "1000FLOKI/USDT",
       "aster_symbol": "1000FLOKIUSDT",
-      "filter_reason": "low_volume ($10,274 < $1,000,000)"
+      "filter_reason": "low_volume ($11,838 < $1,000,000)"
     },
     {
       "symbol": "TIA/USDT",
@@ -225,12 +225,12 @@
     {
       "symbol": "ONDO/USDT",
       "aster_symbol": "ONDOUSDT",
-      "filter_reason": "low_volume ($87,894 < $1,000,000)"
+      "filter_reason": "low_volume ($92,818 < $1,000,000)"
     },
     {
       "symbol": "PYTH/USDT",
       "aster_symbol": "PYTHUSDT",
-      "filter_reason": "low_volume ($3,075 < $1,000,000)"
+      "filter_reason": "low_volume ($3,138 < $1,000,000)"
     },
     {
       "symbol": "STRK/USDT",
@@ -240,22 +240,22 @@
     {
       "symbol": "TON/USDT",
       "aster_symbol": "TONUSDT",
-      "filter_reason": "low_volume ($14,216 < $1,000,000)"
+      "filter_reason": "low_volume ($39,366 < $1,000,000)"
     },
     {
       "symbol": "1000BONK/USDT",
       "aster_symbol": "1000BONKUSDT",
-      "filter_reason": "low_volume ($104,933 < $1,000,000)"
+      "filter_reason": "low_volume ($104,765 < $1,000,000)"
     },
     {
       "symbol": "LISTA/USDT",
       "aster_symbol": "LISTAUSDT",
-      "filter_reason": "low_volume ($9,352 < $1,000,000)"
+      "filter_reason": "low_volume ($10,157 < $1,000,000)"
     },
     {
       "symbol": "ZK/USDT",
       "aster_symbol": "ZKUSDT",
-      "filter_reason": "low_volume ($6,790 < $1,000,000)"
+      "filter_reason": "low_volume ($7,247 < $1,000,000)"
     },
     {
       "symbol": "EIGEN/USDT",
@@ -265,7 +265,7 @@
     {
       "symbol": "TRUMP/USDT",
       "aster_symbol": "TRUMPUSDT",
-      "filter_reason": "low_volume ($150,242 < $1,000,000)"
+      "filter_reason": "low_volume ($158,377 < $1,000,000)"
     },
     {
       "symbol": "FARTCOIN/USDT",
@@ -280,7 +280,7 @@
     {
       "symbol": "MOODENG/USDT",
       "aster_symbol": "MOODENGUSDT",
-      "filter_reason": "low_volume ($66,360 < $1,000,000)"
+      "filter_reason": "low_volume ($74,966 < $1,000,000)"
     },
     {
       "symbol": "NEIRO/USDT",
@@ -290,12 +290,12 @@
     {
       "symbol": "B/USDT",
       "aster_symbol": "BUSDT",
-      "filter_reason": "low_volume ($5,807 < $1,000,000)"
+      "filter_reason": "low_volume ($8,015 < $1,000,000)"
     },
     {
       "symbol": "USD1/USDT",
       "aster_symbol": "USD1USDT",
-      "filter_reason": "low_volume ($172 < $1,000,000)"
+      "filter_reason": "low_volume ($212 < $1,000,000)"
     },
     {
       "symbol": "SAHARA/USDT",
@@ -305,42 +305,42 @@
     {
       "symbol": "PUMP/USDT",
       "aster_symbol": "PUMPUSDT",
-      "filter_reason": "low_volume ($58,209 < $1,000,000)"
+      "filter_reason": "low_volume ($106,391 < $1,000,000)"
     },
     {
       "symbol": "AAPL/USDT",
       "aster_symbol": "AAPLUSDT",
-      "filter_reason": "low_volume ($23 < $1,000,000)"
+      "filter_reason": "low_volume ($86,172 < $1,000,000)"
     },
     {
       "symbol": "TSLA/USDT",
       "aster_symbol": "TSLAUSDT",
-      "filter_reason": "low_volume ($7,997 < $1,000,000)"
+      "filter_reason": "low_volume ($9,871 < $1,000,000)"
     },
     {
       "symbol": "NVDA/USDT",
       "aster_symbol": "NVDAUSDT",
-      "filter_reason": "low_volume ($2,247 < $1,000,000)"
+      "filter_reason": "low_volume ($236,939 < $1,000,000)"
     },
     {
       "symbol": "AMZN/USDT",
       "aster_symbol": "AMZNUSDT",
-      "filter_reason": "low_volume ($12,967 < $1,000,000)"
+      "filter_reason": "low_volume ($13,542 < $1,000,000)"
     },
     {
       "symbol": "META/USDT",
       "aster_symbol": "METAUSDT",
-      "filter_reason": "low_volume ($109 < $1,000,000)"
+      "filter_reason": "low_volume ($153,234 < $1,000,000)"
     },
     {
       "symbol": "GOOG/USDT",
       "aster_symbol": "GOOGUSDT",
-      "filter_reason": "low_volume ($713 < $1,000,000)"
+      "filter_reason": "low_volume ($1,376 < $1,000,000)"
     },
     {
       "symbol": "MSFT/USDT",
       "aster_symbol": "MSFTUSDT",
-      "filter_reason": "low_volume ($469 < $1,000,000)"
+      "filter_reason": "low_volume ($742 < $1,000,000)"
     },
     {
       "symbol": "PENGU/USDT",
@@ -350,27 +350,27 @@
     {
       "symbol": "SPK/USDT",
       "aster_symbol": "SPKUSDT",
-      "filter_reason": "low_volume ($824 < $1,000,000)"
+      "filter_reason": "low_volume ($845 < $1,000,000)"
     },
     {
       "symbol": "TREE/USDT",
       "aster_symbol": "TREEUSDT",
-      "filter_reason": "low_volume ($41,016 < $1,000,000)"
+      "filter_reason": "low_volume ($45,323 < $1,000,000)"
     },
     {
       "symbol": "ESPORTS/USDT",
       "aster_symbol": "ESPORTSUSDT",
-      "filter_reason": "low_volume ($663 < $1,000,000)"
+      "filter_reason": "low_volume ($705 < $1,000,000)"
     },
     {
       "symbol": "ZORA/USDT",
       "aster_symbol": "ZORAUSDT",
-      "filter_reason": "low_volume ($5,861 < $1,000,000)"
+      "filter_reason": "low_volume ($6,592 < $1,000,000)"
     },
     {
       "symbol": "TAG/USDT",
       "aster_symbol": "TAGUSDT",
-      "filter_reason": "low_volume ($35,478 < $1,000,000)"
+      "filter_reason": "low_volume ($36,737 < $1,000,000)"
     },
     {
       "symbol": "C/USDT",
@@ -385,12 +385,12 @@
     {
       "symbol": "TOWNS/USDT",
       "aster_symbol": "TOWNSUSDT",
-      "filter_reason": "low_volume ($352 < $1,000,000)"
+      "filter_reason": "low_volume ($468 < $1,000,000)"
     },
     {
       "symbol": "PROVE/USDT",
       "aster_symbol": "PROVEUSDT",
-      "filter_reason": "low_volume ($213 < $1,000,000)"
+      "filter_reason": "low_volume ($253 < $1,000,000)"
     },
     {
       "symbol": "XNY/USDT",
@@ -410,17 +410,17 @@
     {
       "symbol": "SAPIEN/USDT",
       "aster_symbol": "SAPIENUSDT",
-      "filter_reason": "low_volume ($3,253 < $1,000,000)"
+      "filter_reason": "low_volume ($3,264 < $1,000,000)"
     },
     {
       "symbol": "WLFI/USDT",
       "aster_symbol": "WLFIUSDT",
-      "filter_reason": "low_volume ($246,650 < $1,000,000)"
+      "filter_reason": "low_volume ($278,351 < $1,000,000)"
     },
     {
       "symbol": "XPL/USDT",
       "aster_symbol": "XPLUSDT",
-      "filter_reason": "low_volume ($61,140 < $1,000,000)"
+      "filter_reason": "low_volume ($78,366 < $1,000,000)"
     },
     {
       "symbol": "BAS/USDT",
@@ -435,12 +435,12 @@
     {
       "symbol": "MITO/USDT",
       "aster_symbol": "MITOUSDT",
-      "filter_reason": "low_volume ($130 < $1,000,000)"
+      "filter_reason": "low_volume ($171 < $1,000,000)"
     },
     {
       "symbol": "HEMI/USDT",
       "aster_symbol": "HEMIUSDT",
-      "filter_reason": "low_volume ($218,031 < $1,000,000)"
+      "filter_reason": "low_volume ($286,069 < $1,000,000)"
     },
     {
       "symbol": "LINEA/USDT",
@@ -460,7 +460,7 @@
     {
       "symbol": "ARIA/USDT",
       "aster_symbol": "ARIAUSDT",
-      "filter_reason": "low_volume ($6,240 < $1,000,000)"
+      "filter_reason": "low_volume ($6,667 < $1,000,000)"
     },
     {
       "symbol": "TAKE/USDT",
@@ -470,42 +470,42 @@
     {
       "symbol": "AVNT/USDT",
       "aster_symbol": "AVNTUSDT",
-      "filter_reason": "low_volume ($3,740 < $1,000,000)"
+      "filter_reason": "low_volume ($4,655 < $1,000,000)"
     },
     {
       "symbol": "OPEN/USDT",
       "aster_symbol": "OPENUSDT",
-      "filter_reason": "low_volume ($6,191 < $1,000,000)"
+      "filter_reason": "low_volume ($16,884 < $1,000,000)"
     },
     {
       "symbol": "FLOCK/USDT",
       "aster_symbol": "FLOCKUSDT",
-      "filter_reason": "low_volume ($2,858 < $1,000,000)"
+      "filter_reason": "low_volume ($2,906 < $1,000,000)"
     },
     {
       "symbol": "SKY/USDT",
       "aster_symbol": "SKYUSDT",
-      "filter_reason": "low_volume ($39,017 < $1,000,000)"
+      "filter_reason": "low_volume ($41,566 < $1,000,000)"
     },
     {
       "symbol": "QQQ/USDT",
       "aster_symbol": "QQQUSDT",
-      "filter_reason": "low_volume ($25,964 < $1,000,000)"
+      "filter_reason": "low_volume ($56,487 < $1,000,000)"
     },
     {
       "symbol": "HOLO/USDT",
       "aster_symbol": "HOLOUSDT",
-      "filter_reason": "low_volume ($199 < $1,000,000)"
+      "filter_reason": "low_volume ($210 < $1,000,000)"
     },
     {
       "symbol": "UB/USDT",
       "aster_symbol": "UBUSDT",
-      "filter_reason": "low_volume ($2,020 < $1,000,000)"
+      "filter_reason": "low_volume ($2,527 < $1,000,000)"
     },
     {
       "symbol": "XPIN/USDT",
       "aster_symbol": "XPINUSDT",
-      "filter_reason": "low_volume ($8,588 < $1,000,000)"
+      "filter_reason": "low_volume ($14,607 < $1,000,000)"
     },
     {
       "symbol": "ZKC/USDT",
@@ -525,7 +525,7 @@
     {
       "symbol": "STBL/USDT",
       "aster_symbol": "STBLUSDT",
-      "filter_reason": "low_volume ($3,134 < $1,000,000)"
+      "filter_reason": "low_volume ($7,146 < $1,000,000)"
     },
     {
       "symbol": "0G/USDT",
@@ -535,7 +535,7 @@
     {
       "symbol": "BARD/USDT",
       "aster_symbol": "BARDUSDT",
-      "filter_reason": "low_volume ($307 < $1,000,000)"
+      "filter_reason": "low_volume ($375 < $1,000,000)"
     },
     {
       "symbol": "TRADOOR/USDT",
@@ -550,7 +550,7 @@
     {
       "symbol": "SQD/USDT",
       "aster_symbol": "SQDUSDT",
-      "filter_reason": "low_volume ($530 < $1,000,000)"
+      "filter_reason": "low_volume ($685 < $1,000,000)"
     },
     {
       "symbol": "FF/USDT",
@@ -565,7 +565,7 @@
     {
       "symbol": "2Z/USDT",
       "aster_symbol": "2ZUSDT",
-      "filter_reason": "low_volume ($682 < $1,000,000)"
+      "filter_reason": "low_volume ($1,332 < $1,000,000)"
     },
     {
       "symbol": "EVAA/USDT",
@@ -575,12 +575,12 @@
     {
       "symbol": "LYN/USDT",
       "aster_symbol": "LYNUSDT",
-      "filter_reason": "price_swing (234%, max=120%)"
+      "filter_reason": "price_swing (243%, max=120%)"
     },
     {
       "symbol": "COAI/USDT",
       "aster_symbol": "COAIUSDT",
-      "filter_reason": "low_volume ($30,283 < $1,000,000)"
+      "filter_reason": "low_volume ($31,882 < $1,000,000)"
     },
     {
       "symbol": "KGEN/USDT",
@@ -600,7 +600,7 @@
     {
       "symbol": "BANK/USDT",
       "aster_symbol": "BANKUSDT",
-      "filter_reason": "low_volume ($958 < $1,000,000)"
+      "filter_reason": "low_volume ($1,010 < $1,000,000)"
     },
     {
       "symbol": "FORM/USDT",
@@ -610,7 +610,7 @@
     {
       "symbol": "MON/USDT",
       "aster_symbol": "MONUSDT",
-      "filter_reason": "low_volume ($234,146 < $1,000,000)"
+      "filter_reason": "low_volume ($267,738 < $1,000,000)"
     },
     {
       "symbol": "YB/USDT",
@@ -620,12 +620,12 @@
     {
       "symbol": "MET/USDT",
       "aster_symbol": "METUSDT",
-      "filter_reason": "low_volume ($951 < $1,000,000)"
+      "filter_reason": "low_volume ($1,006 < $1,000,000)"
     },
     {
       "symbol": "1000CHEEMS/USDT",
       "aster_symbol": "1000CHEEMSUSDT",
-      "filter_reason": "low_volume ($7,031 < $1,000,000)"
+      "filter_reason": "low_volume ($8,364 < $1,000,000)"
     },
     {
       "symbol": "EUL/USDT",
@@ -655,7 +655,7 @@
     {
       "symbol": "LAB/USDT",
       "aster_symbol": "LABUSDT",
-      "filter_reason": "low_volume ($804 < $1,000,000)"
+      "filter_reason": "low_volume ($3,364 < $1,000,000)"
     },
     {
       "symbol": "RIVER/USDT",
@@ -670,7 +670,7 @@
     {
       "symbol": "TURTLE/USDT",
       "aster_symbol": "TURTLEUSDT",
-      "filter_reason": "low_volume ($438 < $1,000,000)"
+      "filter_reason": "low_volume ($828 < $1,000,000)"
     },
     {
       "symbol": "APR/USDT",
@@ -680,12 +680,12 @@
     {
       "symbol": "ON/USDT",
       "aster_symbol": "ONUSDT",
-      "filter_reason": "low_volume ($5,377 < $1,000,000)"
+      "filter_reason": "low_volume ($5,605 < $1,000,000)"
     },
     {
       "symbol": "AT/USDT",
       "aster_symbol": "ATUSDT",
-      "filter_reason": "low_volume ($2,990 < $1,000,000)"
+      "filter_reason": "low_volume ($3,941 < $1,000,000)"
     },
     {
       "symbol": "KITE/USDT",
@@ -695,7 +695,7 @@
     {
       "symbol": "CC/USDT",
       "aster_symbol": "CCUSDT",
-      "filter_reason": "low_volume ($12,435 < $1,000,000)"
+      "filter_reason": "low_volume ($20,110 < $1,000,000)"
     },
     {
       "symbol": "ZEN/USDT",
@@ -710,12 +710,12 @@
     {
       "symbol": "JELLYJELLY/USDT",
       "aster_symbol": "JELLYJELLYUSDT",
-      "filter_reason": "low_volume ($14,170 < $1,000,000)"
+      "filter_reason": "low_volume ($18,386 < $1,000,000)"
     },
     {
       "symbol": "B2/USDT",
       "aster_symbol": "B2USDT",
-      "filter_reason": "low_volume ($86,174 < $1,000,000)"
+      "filter_reason": "low_volume ($88,502 < $1,000,000)"
     },
     {
       "symbol": "MMT/USDT",
@@ -725,12 +725,12 @@
     {
       "symbol": "TRUST/USDT",
       "aster_symbol": "TRUSTUSDT",
-      "filter_reason": "low_volume ($239 < $1,000,000)"
+      "filter_reason": "low_volume ($247 < $1,000,000)"
     },
     {
       "symbol": "UAI/USDT",
       "aster_symbol": "UAIUSDT",
-      "filter_reason": "low_volume ($5,845 < $1,000,000)"
+      "filter_reason": "low_volume ($6,416 < $1,000,000)"
     },
     {
       "symbol": "FOLKS/USDT",
@@ -740,12 +740,12 @@
     {
       "symbol": "STABLE/USDT",
       "aster_symbol": "STABLEUSDT",
-      "filter_reason": "low_volume ($91,663 < $1,000,000)"
+      "filter_reason": "low_volume ($158,982 < $1,000,000)"
     },
     {
       "symbol": "ICP/USDT",
       "aster_symbol": "ICPUSDT",
-      "filter_reason": "low_volume ($15,408 < $1,000,000)"
+      "filter_reason": "low_volume ($24,681 < $1,000,000)"
     },
     {
       "symbol": "AR/USDT",
@@ -755,17 +755,17 @@
     {
       "symbol": "FLUX/USDT",
       "aster_symbol": "FLUXUSDT",
-      "filter_reason": "low_volume ($1,510 < $1,000,000)"
+      "filter_reason": "low_volume ($1,526 < $1,000,000)"
     },
     {
       "symbol": "TRUTH/USDT",
       "aster_symbol": "TRUTHUSDT",
-      "filter_reason": "low_volume ($45,352 < $1,000,000)"
+      "filter_reason": "low_volume ($53,516 < $1,000,000)"
     },
     {
       "symbol": "JCT/USDT",
       "aster_symbol": "JCTUSDT",
-      "filter_reason": "low_volume ($24,264 < $1,000,000)"
+      "filter_reason": "low_volume ($26,867 < $1,000,000)"
     },
     {
       "symbol": "ALLO/USDT",
@@ -790,7 +790,7 @@
     {
       "symbol": "PIEVERSE/USDT",
       "aster_symbol": "PIEVERSEUSDT",
-      "filter_reason": "low_volume ($13,994 < $1,000,000)"
+      "filter_reason": "low_volume ($16,249 < $1,000,000)"
     },
     {
       "symbol": "SENT/USDT",
@@ -800,37 +800,37 @@
     {
       "symbol": "TNSR/USDT",
       "aster_symbol": "TNSRUSDT",
-      "filter_reason": "low_volume ($139,142 < $1,000,000)"
+      "filter_reason": "low_volume ($161,239 < $1,000,000)"
     },
     {
       "symbol": "GRASS/USDT",
       "aster_symbol": "GRASSUSDT",
-      "filter_reason": "low_volume ($1,315 < $1,000,000)"
+      "filter_reason": "low_volume ($1,666 < $1,000,000)"
     },
     {
       "symbol": "DYM/USDT",
       "aster_symbol": "DYMUSDT",
-      "filter_reason": "low_volume ($26,208 < $1,000,000)"
+      "filter_reason": "low_volume ($25,625 < $1,000,000)"
     },
     {
       "symbol": "BOB/USDT",
       "aster_symbol": "BOBUSDT",
-      "filter_reason": "low_volume ($185 < $1,000,000)"
+      "filter_reason": "low_volume ($1,100 < $1,000,000)"
     },
     {
       "symbol": "BANANAS31/USDT",
       "aster_symbol": "BANANAS31USDT",
-      "filter_reason": "low_volume ($19,419 < $1,000,000)"
+      "filter_reason": "low_volume ($19,603 < $1,000,000)"
     },
     {
       "symbol": "PARTI/USDT",
       "aster_symbol": "PARTIUSDT",
-      "filter_reason": "low_volume ($6,292 < $1,000,000)"
+      "filter_reason": "low_volume ($6,385 < $1,000,000)"
     },
     {
       "symbol": "IRYS/USDT",
       "aster_symbol": "IRYSUSDT",
-      "filter_reason": "low_volume ($67,074 < $1,000,000)"
+      "filter_reason": "low_volume ($70,355 < $1,000,000)"
     },
     {
       "symbol": "BIO/USDT",
@@ -850,17 +850,17 @@
     {
       "symbol": "RLS/USDT",
       "aster_symbol": "RLSUSDT",
-      "filter_reason": "low_volume ($8,116 < $1,000,000)"
+      "filter_reason": "low_volume ($9,439 < $1,000,000)"
     },
     {
       "symbol": "GUA/USDT",
       "aster_symbol": "GUAUSDT",
-      "filter_reason": "low_volume ($1,189 < $1,000,000)"
+      "filter_reason": "low_volume ($1,374 < $1,000,000)"
     },
     {
       "symbol": "SKYAI/USDT",
       "aster_symbol": "SKYAIUSDT",
-      "filter_reason": "low_volume ($20,929 < $1,000,000)"
+      "filter_reason": "low_volume ($20,884 < $1,000,000)"
     },
     {
       "symbol": "POWER/USDT",
@@ -870,7 +870,7 @@
     {
       "symbol": "1000LUNC/USDT",
       "aster_symbol": "1000LUNCUSDT",
-      "filter_reason": "low_volume ($522 < $1,000,000)"
+      "filter_reason": "low_volume ($528 < $1,000,000)"
     },
     {
       "symbol": "WET/USDT",
@@ -880,12 +880,12 @@
     {
       "symbol": "NIGHT/USDT",
       "aster_symbol": "NIGHTUSDT",
-      "filter_reason": "low_volume ($18,166 < $1,000,000)"
+      "filter_reason": "low_volume ($20,476 < $1,000,000)"
     },
     {
       "symbol": "US/USDT",
       "aster_symbol": "USUSDT",
-      "filter_reason": "low_volume ($5,739 < $1,000,000)"
+      "filter_reason": "low_volume ($6,321 < $1,000,000)"
     },
     {
       "symbol": "CYS/USDT",
@@ -895,7 +895,7 @@
     {
       "symbol": "RAVE/USDT",
       "aster_symbol": "RAVEUSDT",
-      "filter_reason": "low_volume ($72,493 < $1,000,000)"
+      "filter_reason": "low_volume ($75,762 < $1,000,000)"
     },
     {
       "symbol": "LIGHT/USDT",
@@ -1360,137 +1360,137 @@
   ],
   "candidates": [
     {
-      "adx": 26.03,
-      "atr_pct": 1.647,
-      "hurst": 0.434,
-      "sma_crosses": 27,
-      "cross_rate": 0.1607,
-      "volume_24h": 4228169.0,
-      "adx_score": 15.0,
+      "adx": 24.66,
+      "atr_pct": 1.777,
+      "hurst": 0.461,
+      "sma_crosses": 28,
+      "cross_rate": 0.1667,
+      "volume_24h": 4554405.0,
+      "adx_score": 25.0,
       "atr_score": 25.0,
       "hurst_score": 20.0,
       "cross_score": 20.0,
-      "total_score": 80.0,
+      "total_score": 90.0,
       "symbol": "ASTER/USDT",
       "aster_symbol": "ASTERUSDT"
     },
     {
-      "adx": 42.34,
-      "atr_pct": 1.311,
-      "hurst": 0.499,
-      "sma_crosses": 23,
-      "cross_rate": 0.1369,
-      "volume_24h": 8271040.0,
-      "adx_score": 0,
-      "atr_score": 25.0,
-      "hurst_score": 20.0,
-      "cross_score": 20.0,
-      "total_score": 65.0,
-      "symbol": "HYPE/USDT",
-      "aster_symbol": "HYPEUSDT"
-    },
-    {
-      "adx": 37.0,
-      "atr_pct": 2.095,
-      "hurst": 0.673,
+      "adx": 27.84,
+      "atr_pct": 2.152,
+      "hurst": 0.681,
       "sma_crosses": 13,
       "cross_rate": 0.0774,
-      "volume_24h": 11658080.0,
-      "adx_score": 3.0,
+      "volume_24h": 9310637.0,
+      "adx_score": 15.0,
       "atr_score": 25.0,
-      "hurst_score": 2.5,
+      "hurst_score": 2.4,
       "cross_score": 20.0,
-      "total_score": 50.5,
+      "total_score": 62.4,
       "symbol": "ZEC/USDT",
       "aster_symbol": "ZECUSDT"
     },
     {
-      "adx": 42.28,
-      "atr_pct": 0.727,
-      "hurst": 0.566,
-      "sma_crosses": 17,
-      "cross_rate": 0.1012,
-      "volume_24h": 379323418.0,
+      "adx": 41.29,
+      "atr_pct": 1.304,
+      "hurst": 0.51,
+      "sma_crosses": 23,
+      "cross_rate": 0.1369,
+      "volume_24h": 8247283.0,
       "adx_score": 0,
       "atr_score": 25.0,
-      "hurst_score": 4.7,
+      "hurst_score": 10.0,
       "cross_score": 20.0,
-      "total_score": 49.7,
+      "total_score": 55.0,
+      "symbol": "HYPE/USDT",
+      "aster_symbol": "HYPEUSDT"
+    },
+    {
+      "adx": 36.21,
+      "atr_pct": 0.755,
+      "hurst": 0.586,
+      "sma_crosses": 17,
+      "cross_rate": 0.1012,
+      "volume_24h": 338886131.0,
+      "adx_score": 3.8,
+      "atr_score": 25.0,
+      "hurst_score": 4.3,
+      "cross_score": 20.0,
+      "total_score": 53.1,
       "symbol": "BTC/USDT",
       "aster_symbol": "BTCUSDT"
     },
     {
-      "adx": 41.4,
-      "atr_pct": 1.557,
+      "adx": 47.2,
+      "atr_pct": 1.114,
+      "hurst": 0.625,
+      "sma_crosses": 18,
+      "cross_rate": 0.1071,
+      "volume_24h": 237737937.0,
+      "adx_score": 0,
+      "atr_score": 25.0,
+      "hurst_score": 3.5,
+      "cross_score": 20.0,
+      "total_score": 48.5,
+      "symbol": "ETH/USDT",
+      "aster_symbol": "ETHUSDT"
+    },
+    {
+      "adx": 39.69,
+      "atr_pct": 1.49,
+      "hurst": 0.641,
+      "sma_crosses": 13,
+      "cross_rate": 0.0774,
+      "volume_24h": 47503029.0,
+      "adx_score": 0.3,
+      "atr_score": 25.0,
+      "hurst_score": 3.2,
+      "cross_score": 20.0,
+      "total_score": 48.5,
+      "symbol": "XRP/USDT",
+      "aster_symbol": "XRPUSDT"
+    },
+    {
+      "adx": 39.72,
+      "atr_pct": 0.847,
+      "hurst": 0.646,
+      "sma_crosses": 18,
+      "cross_rate": 0.1071,
+      "volume_24h": 6858333.0,
+      "adx_score": 0.3,
+      "atr_score": 25.0,
+      "hurst_score": 3.1,
+      "cross_score": 20.0,
+      "total_score": 48.4,
+      "symbol": "BNB/USDT",
+      "aster_symbol": "BNBUSDT"
+    },
+    {
+      "adx": 47.78,
+      "atr_pct": 1.213,
       "hurst": 0.632,
-      "sma_crosses": 12,
-      "cross_rate": 0.0714,
-      "volume_24h": 53979082.0,
+      "sma_crosses": 9,
+      "cross_rate": 0.0536,
+      "volume_24h": 83029300.0,
       "adx_score": 0,
       "atr_score": 25.0,
       "hurst_score": 3.4,
       "cross_score": 20.0,
       "total_score": 48.4,
-      "symbol": "XRP/USDT",
-      "aster_symbol": "XRPUSDT"
-    },
-    {
-      "adx": 48.5,
-      "atr_pct": 1.215,
-      "hurst": 0.64,
-      "sma_crosses": 9,
-      "cross_rate": 0.0536,
-      "volume_24h": 90101628.0,
-      "adx_score": 0,
-      "atr_score": 25.0,
-      "hurst_score": 3.2,
-      "cross_score": 20.0,
-      "total_score": 48.2,
       "symbol": "SOL/USDT",
       "aster_symbol": "SOLUSDT"
     },
     {
-      "adx": 54.47,
-      "atr_pct": 1.123,
-      "hurst": 0.649,
-      "sma_crosses": 16,
-      "cross_rate": 0.0952,
-      "volume_24h": 339619425.0,
-      "adx_score": 0,
-      "atr_score": 25.0,
-      "hurst_score": 3.0,
-      "cross_score": 20.0,
-      "total_score": 48.0,
-      "symbol": "ETH/USDT",
-      "aster_symbol": "ETHUSDT"
-    },
-    {
-      "adx": 46.83,
-      "atr_pct": 0.818,
-      "hurst": 0.673,
-      "sma_crosses": 15,
-      "cross_rate": 0.0893,
-      "volume_24h": 7890189.0,
-      "adx_score": 0,
-      "atr_score": 25.0,
-      "hurst_score": 2.5,
-      "cross_score": 20.0,
-      "total_score": 47.5,
-      "symbol": "BNB/USDT",
-      "aster_symbol": "BNBUSDT"
-    },
-    {
-      "adx": 66.17,
-      "atr_pct": 1.563,
-      "hurst": 0.757,
+      "adx": 63.21,
+      "atr_pct": 1.462,
+      "hurst": 0.776,
       "sma_crosses": 9,
       "cross_rate": 0.0536,
-      "volume_24h": 77567644.0,
+      "volume_24h": 67142643.0,
       "adx_score": 0,
       "atr_score": 25.0,
-      "hurst_score": 0.9,
+      "hurst_score": 0.5,
       "cross_score": 20.0,
-      "total_score": 45.9,
+      "total_score": 45.5,
       "symbol": "DOGE/USDT",
       "aster_symbol": "DOGEUSDT"
     }
