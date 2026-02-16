@@ -364,7 +364,7 @@ table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
       <button id="tradeNext" style="background:var(--bg);color:var(--text2);border:1px solid var(--border);border-radius:4px;padding:4px 10px;font-size:.75rem;cursor:pointer">Next →</button>
     </div>
   </div>
-  <div style="overflow-x:auto"><table><thead><tr><th>Time</th><th>Action</th><th>Dir</th><th>Price</th><th>TP Target</th><th>Qty</th><th>Duration</th><th>Orders</th><th>PnL</th><th>Regime</th></tr></thead><tbody id="tradesBody"></tbody></table></div>
+  <div style="overflow-x:auto"><table><thead><tr><th>Time</th><th>Symbol</th><th>Action</th><th>Dir</th><th>Price</th><th>TP Target</th><th>Qty</th><th>Duration</th><th>Orders</th><th>PnL</th><th>Regime</th></tr></thead><tbody id="tradesBody"></tbody></table></div>
 </div>
 
 <!-- Portfolio: Rotation History (hidden in single-coin mode) -->
@@ -385,7 +385,7 @@ table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
 
 <div class="section">
   <h2>Open Orders <span id="openOrderCount" style="font-size:.8rem;color:var(--text2);font-weight:400"></span></h2>
-  <div style="overflow-x:auto"><table><thead><tr><th>Side</th><th>Trade</th><th>Type</th><th>Price</th><th>Proj. TP</th><th>Qty</th><th>Size (USD)</th><th>Distance</th></tr></thead><tbody id="openOrdersBody"><tr><td colspan="8" style="text-align:center;color:var(--text2);padding:20px">Loading...</td></tr></tbody></table></div>
+  <div style="overflow-x:auto"><table><thead><tr><th>Side</th><th>Symbol</th><th>Trade</th><th>Type</th><th>Price</th><th>Proj. TP</th><th>Qty</th><th>Size (USD)</th><th>Distance</th></tr></thead><tbody id="openOrdersBody"><tr><td colspan="9" style="text-align:center;color:var(--text2);padding:20px">Loading...</td></tr></tbody></table></div>
 </div>
 
 <!-- System Differentiators -->
@@ -935,7 +935,7 @@ function renderTradesPage() {
   $('tradeNext').style.opacity = tradePage >= totalPages - 1 ? '.4' : '1';
 
   const body = $('tradesBody');
-  if(!pageTrades.length) { body.innerHTML = '<tr><td colspan="10" style="text-align:center;color:var(--text2);padding:20px">No trades yet</td></tr>'; return; }
+  if(!pageTrades.length) { body.innerHTML = '<tr><td colspan="11" style="text-align:center;color:var(--text2);padding:20px">No trades yet</td></tr>'; return; }
 
   const dealOpens = {}, closedDeals = new Set();
   trades.forEach(t => { if(t.action==='OPEN') dealOpens[t.deal_id] = new Date(t.timestamp); });
@@ -953,8 +953,10 @@ function renderTradesPage() {
     const showTp = (t.action === 'OPEN' || t.action === 'TP_HIT') ? `<span style="color:var(--green)">${fmtUsd(tpTarget,3)}</span>` : '--';
     const displayAction = t.action === 'OPEN' && closedDeals.has(t.deal_id) ? 'CLOSED' : t.action;
     const actionBadge = displayAction==='TP_HIT'?'badge-green':displayAction==='CLOSED'?'badge-gray':displayAction==='OPEN'?'badge-blue':displayAction==='SO_FILL'?'badge-amber':'badge-gray';
+    const symbol = (t.symbol || (status?.symbol) || 'UNKNOWN').replace('USDT', '');
     return `<tr>
       <td>${timeStr}</td>
+      <td><span class="badge badge-blue" style="font-size:.7rem">${symbol}</span></td>
       <td><span class="badge ${actionBadge}">${displayAction}</span></td>
       <td>${dirBadge(t.direction)}</td>
       <td>${fmtUsd(entryPrice,3)}</td>
