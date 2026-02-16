@@ -1,24 +1,24 @@
 {
-  "timestamp": "2026-02-16T20:59:19.655046+00:00",
+  "timestamp": "2026-02-16T21:01:15.118879+00:00",
   "symbol": "HYPEUSDT",
   "timeframe": "5m",
   "running": true,
   "dry_run": false,
   "halted": false,
   "halt_reason": "",
-  "regime": "EXTREME",
-  "price": 30.282,
-  "equity": 329.59,
+  "regime": "MILD_TREND",
+  "price": 30.193,
+  "equity": 329.13,
   "start_equity": 291.97,
   "peak_equity": 336.7,
-  "pnl": 37.62,
-  "pnl_pct": 12.89,
-  "drawdown_pct": 2.11,
+  "pnl": 37.16,
+  "pnl_pct": 12.73,
+  "drawdown_pct": 2.25,
   "max_drawdown_threshold": 25.0,
   "leverage": 1,
-  "capital": 329.59,
+  "capital": 329.09,
   "available_balance": 60.43,
-  "cycle_count": 7374,
+  "cycle_count": 7377,
   "start_time": "2026-02-13T03:50:51.737221+00:00",
   "hedge_mode": false,
   "long_deal": {
@@ -49,9 +49,7 @@
     "entry_time": "2026-02-16T15:31:38.185816+00:00",
     "direction": "SHORT",
     "safety_orders_filled": 1,
-    "safety_order_ids": [
-      1420359673
-    ],
+    "safety_order_ids": [],
     "tp_order_id": 1420359639,
     "total_qty": 1.31,
     "total_cost": 39.45125,
@@ -63,28 +61,28 @@
   },
   "trend_direction": "bullish",
   "regime_alloc": {
-    "long": 0.0,
-    "short": 0.0
+    "long": 0.6,
+    "short": 0.4
   },
   "deal_counter": 72,
   "adaptive_tp": {
-    "current_tp_pct": 0.6,
+    "current_tp_pct": 0.662,
     "baseline_tp_pct": 1.5,
-    "current_dev_pct": 1.547,
+    "current_dev_pct": 1.2,
     "baseline_dev_pct": 2.5,
-    "atr_pct": 0.33,
+    "atr_pct": 0.3362,
     "atr_baseline_pct": 0.8,
     "tp_min": 0.6,
     "tp_max": 2.5,
     "dev_min": 1.2,
     "dev_max": 4.0,
-    "regime_tp_mult": 0.7,
-    "regime_dev_mult": 1.5
+    "regime_tp_mult": 1.05,
+    "regime_dev_mult": 1.1
   },
   "config": {
-    "tp_pct": 0.6,
+    "tp_pct": 0.662,
     "max_sos": 8,
-    "deviation_pct": 1.547,
+    "deviation_pct": 1.2,
     "so_vol_mult": 2.0,
     "base_order_pct": 0.04
   }
