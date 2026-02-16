@@ -273,6 +273,52 @@ table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
   </div>
 </div>
 
+<!-- Coin Scanner Section -->
+<div class="section" id="scannerSection">
+  <h2>🔍 Coin Scanner <span id="scannerStatus" style="font-size:.8rem;color:var(--text2);font-weight:400"></span></h2>
+  <div id="scannerContent">
+    <!-- Filter Funnel -->
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:6px">
+        <span class="badge badge-blue" id="scanFunnelTotal">--</span>
+        <span style="font-size:.7rem;color:var(--text3)">scanned →</span>
+        <span class="badge badge-purple" id="scanFunnelMature">--</span>
+        <span style="font-size:.7rem;color:var(--text3)">mature →</span>
+        <span class="badge badge-green" id="scanFunnelTech">--</span>
+        <span style="font-size:.7rem;color:var(--text3)">backtested</span>
+      </div>
+      <div style="margin-left:auto;display:flex;gap:12px;font-size:.72rem;color:var(--text2)">
+        <span>Last scan: <span id="scanLastRun">--</span></span>
+      </div>
+    </div>
+    <!-- Recommendation Banner -->
+    <div id="scanRecommendation" style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--bg);border:1px solid var(--border);border-radius:8px;margin-bottom:16px">
+      <span id="scanAction" class="badge" style="font-size:.8rem;padding:4px 12px">--</span>
+      <span id="scanActionText" style="font-size:.85rem;color:var(--text2)">Loading scanner data...</span>
+    </div>
+    <!-- Maturity Filter Breakdown -->
+    <div id="scanFilterBreakdown" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:16px"></div>
+    <!-- Rankings Table -->
+    <div style="overflow-x:auto">
+      <table id="scannerTable">
+        <thead><tr>
+          <th style="width:36px">#</th>
+          <th>Coin</th>
+          <th>Score</th>
+          <th>Daily ROI</th>
+          <th>Deals/Day</th>
+          <th>Win Rate</th>
+          <th>Max DD</th>
+          <th>Profit (14d)</th>
+          <th>Avg SOs</th>
+          <th>Friendly Regimes</th>
+        </tr></thead>
+        <tbody id="scannerTableBody"><tr><td colspan="10" style="text-align:center;color:var(--text3)">Loading...</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
 <div class="section" id="dealSection">
   <h2 id="dealTitle">Active Trades</h2>
   <div id="dealContent"><div class="no-deal">Loading...</div></div>
@@ -1177,13 +1223,104 @@ function renderBottom() {
   ddBar.style.background = dd > maxDD*0.7 ? 'var(--red)' : dd > maxDD*0.4 ? 'var(--amber)' : 'var(--green)';
 }
 
+async function fetchScanner() {
+  try {
+    const [recRes, t1Res, t2Res] = await Promise.all([
+      fetch(DATA_PREFIX+'scanner_recommendation.json?t='+Date.now()),
+      fetch(DATA_PREFIX+'scanner_t1.json?t='+Date.now()),
+      fetch(DATA_PREFIX+'scanner_t2.json?t='+Date.now())
+    ]);
+    const rec = recRes.ok ? await recRes.json() : null;
+    const t1 = t1Res.ok ? await t1Res.json() : null;
+    const t2 = t2Res.ok ? await t2Res.json() : null;
+    renderScanner(rec, t1, t2);
+  } catch(e) { console.warn('scanner fetch failed', e); }
+}
+
+function renderScanner(rec, t1, t2) {
+  const section = $('scannerSection');
+  if (!rec && !t1 && !t2) { section.style.display = 'none'; return; }
+  section.style.display = '';
+
+  // Filter funnel from T1
+  if (t1) {
+    $('scanFunnelTotal').textContent = t1.total_pairs_scanned + ' pairs';
+    $('scanFunnelMature').textContent = t1.passed_maturity + ' passed';
+    $('scanFunnelTech').textContent = (t1.passed_technical || t1.shortlist_size || 0) + ' qualified';
+
+    // Filter breakdown
+    const fc = t1.maturity_filter_counts || {};
+    const filters = [
+      {label:'Too New', val:fc.too_new||0, color:'var(--amber)'},
+      {label:'Price Swing', val:fc.price_swing||0, color:'var(--red)'},
+      {label:'Low Volume', val:fc.low_volume||0, color:'var(--purple)'},
+      {label:'Vol Spike', val:fc.volume_spike||0, color:'var(--blue)'},
+      {label:'No 30d Data', val:fc.insufficient_30d_data||0, color:'var(--text3)'}
+    ];
+    $('scanFilterBreakdown').innerHTML = filters.map(f =>
+      `<div style="text-align:center;padding:8px;background:var(--bg);border-radius:6px;border:1px solid var(--border)">
+        <div style="font-size:1.3rem;font-weight:700;color:${f.color}">${f.val}</div>
+        <div style="font-size:.65rem;color:var(--text2);margin-top:2px">${f.label}</div>
+      </div>`
+    ).join('');
+  }
+
+  // Recommendation banner
+  if (rec) {
+    const actionEl = $('scanAction');
+    const textEl = $('scanActionText');
+    if (rec.action === 'HOLD') {
+      actionEl.className = 'badge badge-green';
+      actionEl.textContent = '✓ HOLD';
+      textEl.textContent = `${rec.current_coin.replace('/USDT','')} remains the best pick (score: ${rec.best_score.toFixed(1)})`;
+    } else {
+      actionEl.className = 'badge badge-amber';
+      actionEl.textContent = '↻ ROTATE';
+      textEl.textContent = `Switch from ${rec.current_coin.replace('/USDT','')} to ${rec.best_coin.replace('/USDT','')} (${rec.best_score.toFixed(1)} vs ${rec.current_score.toFixed(1)})`;
+    }
+    // Last scan time
+    if (rec.timestamp) {
+      const d = new Date(rec.timestamp);
+      const ago = Math.round((Date.now() - d.getTime()) / 60000);
+      const agoStr = ago < 60 ? ago+'m ago' : Math.round(ago/60)+'h ago';
+      $('scanLastRun').textContent = d.toLocaleTimeString() + ' (' + agoStr + ')';
+    }
+    $('scannerStatus').textContent = rec.action === 'HOLD' ? '— Holding current' : '— Rotation suggested';
+  }
+
+  // Rankings table from T2
+  if (t2 && t2.rankings && t2.rankings.length) {
+    const tbody = $('scannerTableBody');
+    tbody.innerHTML = t2.rankings.map((r, i) => {
+      const isCurrent = rec && r.symbol === rec.current_coin;
+      const rowStyle = isCurrent ? 'background:rgba(88,166,255,.06)' : '';
+      const nameExtra = isCurrent ? ' <span style="font-size:.6rem;color:var(--blue)">● ACTIVE</span>' : '';
+      const ddColor = r.max_drawdown_pct < -5 ? 'var(--red)' : r.max_drawdown_pct < -3 ? 'var(--amber)' : 'var(--green)';
+      return `<tr style="${rowStyle}">
+        <td style="color:var(--text3);font-weight:600">${i+1}</td>
+        <td style="font-weight:600">${r.symbol.replace('/USDT','')}${nameExtra}</td>
+        <td><span style="font-size:1.1rem;font-weight:700;color:var(--blue)">${r.composite_score.toFixed(1)}</span></td>
+        <td style="color:var(--green)">${r.daily_roi_pct.toFixed(3)}%</td>
+        <td>${r.deals_per_day.toFixed(1)}</td>
+        <td>${r.win_rate.toFixed(0)}%</td>
+        <td style="color:${ddColor}">${r.max_drawdown_pct.toFixed(2)}%</td>
+        <td style="color:var(--green)">$${r.total_profit.toFixed(2)}</td>
+        <td>${r.avg_so_per_deal.toFixed(1)}</td>
+        <td>${r.friendly_regime_pct.toFixed(0)}%</td>
+      </tr>`;
+    }).join('');
+  }
+}
+
 async function init() {
-  await Promise.all([fetchStatus(), fetchHistory(), fetchTrades()]);
+  await Promise.all([fetchStatus(), fetchHistory(), fetchTrades(), fetchScanner()]);
   renderCharts();
 }
 init();
 
 setInterval(async () => { await fetchStatus(); await fetchTrades(); countdownVal = 15; }, 15000);
+// Refresh scanner every 5 minutes (runs every 4h so no need for frequent polling)
+setInterval(fetchScanner, 300000);
 setInterval(() => { historyCountdown--; if(historyCountdown <= 0) { fetchHistory().then(renderCharts); historyCountdown = 300; } }, 1000);
 setInterval(() => { countdownVal = Math.max(0, countdownVal - 1); $('countdown').textContent = countdownVal; }, 1000);
 setInterval(() => { if(status?.start_time) $('bUptime').textContent = durStr(Date.now() - new Date(status.start_time).getTime()); }, 1000);

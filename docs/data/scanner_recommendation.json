@@ -1,0 +1,22 @@
+{
+  "timestamp": "2026-02-16T00:07:11.867784+00:00",
+  "current_coin": "HYPE/USDT",
+  "best_coin": "HYPE/USDT",
+  "best_score": 50.2,
+  "current_score": 50.2,
+  "action": "HOLD",
+  "top_5": [
+    {
+      "symbol": "HYPE/USDT",
+      "score": 50.2,
+      "daily_roi": 0.3482,
+      "deals_per_day": 2.71
+    },
+    {
+      "symbol": "ASTER/USDT",
+      "score": 43.6,
+      "daily_roi": 0.3169,
+      "deals_per_day": 3.57
+    }
+  ]
+}

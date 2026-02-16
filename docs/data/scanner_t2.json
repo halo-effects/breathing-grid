@@ -1,0 +1,60 @@
+{
+  "timestamp": "2026-02-16T00:07:11.867784+00:00",
+  "candidates_tested": 2,
+  "passed": 2,
+  "rankings": [
+    {
+      "symbol": "HYPE/USDT",
+      "total_deals": 38,
+      "win_rate": 100.0,
+      "total_profit": 16.32,
+      "total_profit_pct": 4.87,
+      "max_drawdown_pct": -1.74,
+      "daily_roi_pct": 0.3482,
+      "deals_per_day": 2.71,
+      "friendly_regime_pct": 62.0,
+      "regime_distribution": {
+        "ACCUMULATION": 37.3,
+        "RANGING": 24.7,
+        "MILD_TREND": 17.3,
+        "TRENDING": 12.5,
+        "EXTREME": 3.9,
+        "DISTRIBUTION": 3.8,
+        "BREAKOUT_WARNING": 0.6
+      },
+      "risk_adjusted_score": 0.1997,
+      "profit_factor": Infinity,
+      "composite_score": 50.2,
+      "duration_days": 14.0,
+      "avg_so_per_deal": 0.8,
+      "t1_score": 90.0
+    },
+    {
+      "symbol": "ASTER/USDT",
+      "total_deals": 50,
+      "win_rate": 100.0,
+      "total_profit": 14.86,
+      "total_profit_pct": 4.43,
+      "max_drawdown_pct": -5.56,
+      "daily_roi_pct": 0.3169,
+      "deals_per_day": 3.57,
+      "friendly_regime_pct": 57.8,
+      "regime_distribution": {
+        "ACCUMULATION": 32.7,
+        "RANGING": 24.9,
+        "MILD_TREND": 17.6,
+        "TRENDING": 13.2,
+        "EXTREME": 5.2,
+        "DISTRIBUTION": 4.1,
+        "BREAKOUT_WARNING": 2.1,
+        "CHOPPY": 0.3
+      },
+      "risk_adjusted_score": 0.057,
+      "profit_factor": Infinity,
+      "composite_score": 43.6,
+      "duration_days": 14.0,
+      "avg_so_per_deal": 0.4,
+      "t1_score": 70.0
+    }
+  ]
+}
