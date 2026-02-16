@@ -364,7 +364,7 @@ table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
       <button id="tradeNext" style="background:var(--bg);color:var(--text2);border:1px solid var(--border);border-radius:4px;padding:4px 10px;font-size:.75rem;cursor:pointer">Next →</button>
     </div>
   </div>
-  <div style="overflow-x:auto"><table><thead><tr><th>Time</th><th>Action</th><th>Dir</th><th>Price</th><th>TP Target</th><th>Qty</th><th>Duration</th><th>Orders</th><th>PnL</th><th>Regime</th></tr></thead><tbody id="tradesBody"></tbody></table></div>
+  <div style="overflow-x:auto"><table><thead><tr><th>Time</th><th>Symbol</th><th>Action</th><th>Dir</th><th>Price</th><th>TP Target</th><th>Qty</th><th>Duration</th><th>Orders</th><th>PnL</th><th>Regime</th></tr></thead><tbody id="tradesBody"></tbody></table></div>
 </div>
 
 <!-- Portfolio: Rotation History (hidden in single-coin mode) -->
@@ -374,6 +374,7 @@ table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
 </div>
 
 <div class="bottom-bar" id="bottomBar">
+  <div class="bottom-stat"><span>Trading</span><span id="bTrading">--</span></div>
   <div class="bottom-stat"><span>Avg Profit</span><span id="bAvgProfit">--</span></div>
   <div class="bottom-stat"><span>Avg Duration</span><span id="bAvgDur">--</span></div>
   <div class="bottom-stat"><span>Avg Orders</span><span id="bAvgSO">--</span></div>
@@ -385,7 +386,7 @@ table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
 
 <div class="section">
   <h2>Open Orders <span id="openOrderCount" style="font-size:.8rem;color:var(--text2);font-weight:400"></span></h2>
-  <div style="overflow-x:auto"><table><thead><tr><th>Side</th><th>Trade</th><th>Type</th><th>Price</th><th>Proj. TP</th><th>Qty</th><th>Size (USD)</th><th>Distance</th></tr></thead><tbody id="openOrdersBody"><tr><td colspan="8" style="text-align:center;color:var(--text2);padding:20px">Loading...</td></tr></tbody></table></div>
+  <div style="overflow-x:auto"><table><thead><tr><th>Side</th><th>Symbol</th><th>Trade</th><th>Type</th><th>Price</th><th>Proj. TP</th><th>Qty</th><th>Size (USD)</th><th>Distance</th></tr></thead><tbody id="openOrdersBody"><tr><td colspan="9" style="text-align:center;color:var(--text2);padding:20px">Loading...</td></tr></tbody></table></div>
 </div>
 
 <!-- System Differentiators -->
@@ -674,6 +675,7 @@ function renderStatus() {
 
   // Bottom bar extras
   $('bLeverage').textContent = (s.leverage || 1) + '×';
+  $('bTrading').innerHTML = `<span class="badge badge-blue" style="font-size:.7rem">${(s.symbol || 'UNKNOWN').replace('USDT', '')}</span>`;
 
   renderDeal();
   renderOpenOrders();
@@ -809,14 +811,16 @@ function renderOpenOrders() {
   orders.sort((a, b) => Math.abs(a.dist) - Math.abs(b.dist));
   $('openOrderCount').textContent = `(${orders.length})`;
   const body = $('openOrdersBody');
-  if (!orders.length) { body.innerHTML = '<tr><td colspan="8" style="text-align:center;color:var(--text2);padding:20px">No open orders</td></tr>'; return; }
+  if (!orders.length) { body.innerHTML = '<tr><td colspan="9" style="text-align:center;color:var(--text2);padding:20px">No open orders</td></tr>'; return; }
   body.innerHTML = orders.map(o => {
     const sideClass = o.side === 'BUY' ? 'badge-green' : 'badge-red';
     const dirClass = o.dir === 'LONG' ? 'badge-green' : 'badge-red';
     const distColor = Math.abs(o.dist) < 2 ? 'var(--amber)' : 'var(--text2)';
     const projTpCell = o.projTp ? `<span style="color:var(--green)">${fmtUsd(o.projTp, 3)}</span>` : '--';
+    const symbol = (status?.symbol || 'UNKNOWN').replace('USDT', '');
     return `<tr>
       <td><span class="badge ${sideClass}">${o.side}</span></td>
+      <td><span class="badge badge-blue" style="font-size:.7rem">${symbol}</span></td>
       <td><span class="badge ${dirClass}">${o.dir}</span> #${o.dealId}</td>
       <td>${o.type}</td>
       <td>${fmtUsd(o.price, 3)}</td>
@@ -843,8 +847,9 @@ function renderDeal() {
   activeDeals.forEach(d => {
     const label = d.direction === 'LONG' ? 'LONG' : 'SHORT';
     const badgeClass = d.direction === 'LONG' ? 'badge-green' : 'badge-red';
+    const symbol = (s.symbol || 'UNKNOWN').replace('USDT', '');
     html += `<div class="trade-panel">
-      <div class="trade-panel-header"><span class="badge ${badgeClass}">${label}</span> Trade #${d.deal_id}</div>
+      <div class="trade-panel-header"><span class="badge ${badgeClass}">${label}</span> ${symbol} #${d.deal_id}</div>
       ${renderSingleTrade(d, s.price, cfg)}
     </div>`;
   });
@@ -935,7 +940,7 @@ function renderTradesPage() {
   $('tradeNext').style.opacity = tradePage >= totalPages - 1 ? '.4' : '1';
 
   const body = $('tradesBody');
-  if(!pageTrades.length) { body.innerHTML = '<tr><td colspan="10" style="text-align:center;color:var(--text2);padding:20px">No trades yet</td></tr>'; return; }
+  if(!pageTrades.length) { body.innerHTML = '<tr><td colspan="11" style="text-align:center;color:var(--text2);padding:20px">No trades yet</td></tr>'; return; }
 
   const dealOpens = {}, closedDeals = new Set();
   trades.forEach(t => { if(t.action==='OPEN') dealOpens[t.deal_id] = new Date(t.timestamp); });
@@ -953,8 +958,10 @@ function renderTradesPage() {
     const showTp = (t.action === 'OPEN' || t.action === 'TP_HIT') ? `<span style="color:var(--green)">${fmtUsd(tpTarget,3)}</span>` : '--';
     const displayAction = t.action === 'OPEN' && closedDeals.has(t.deal_id) ? 'CLOSED' : t.action;
     const actionBadge = displayAction==='TP_HIT'?'badge-green':displayAction==='CLOSED'?'badge-gray':displayAction==='OPEN'?'badge-blue':displayAction==='SO_FILL'?'badge-amber':'badge-gray';
+    const symbol = (t.symbol || (status?.symbol) || 'UNKNOWN').replace('USDT', '');
     return `<tr>
       <td>${timeStr}</td>
+      <td><span class="badge badge-blue" style="font-size:.7rem">${symbol}</span></td>
       <td><span class="badge ${actionBadge}">${displayAction}</span></td>
       <td>${dirBadge(t.direction)}</td>
       <td>${fmtUsd(entryPrice,3)}</td>
@@ -1141,7 +1148,7 @@ function renderPortfolioDeals(p) {
 
     // Long deal
     html += `<div class="trade-panel">
-      <div class="trade-panel-header"><span class="badge badge-green">LONG</span> ${sym.replace('USDT','')}</div>`;
+      <div class="trade-panel-header"><span class="badge badge-green">LONG</span> ${sym.replace('USDT','')} #${c.long_deal?.deal_id || '--'}</div>`;
     if(c.long_deal && !c.long_deal.closed) {
       const cfg = {tp_pct: c.adaptive_tp?.current_tp_pct||1.5, deviation_pct: c.adaptive_tp?.current_dev_pct||2.5, max_sos:8};
       // We need a price — use avg_entry as approximation if no price available
@@ -1154,7 +1161,7 @@ function renderPortfolioDeals(p) {
 
     // Short deal
     html += `<div class="trade-panel">
-      <div class="trade-panel-header"><span class="badge badge-red">SHORT</span> ${sym.replace('USDT','')}</div>`;
+      <div class="trade-panel-header"><span class="badge badge-red">SHORT</span> ${sym.replace('USDT','')} #${c.short_deal?.deal_id || '--'}</div>`;
     if(c.short_deal && !c.short_deal.closed) {
       const cfg = {tp_pct: c.adaptive_tp?.current_tp_pct||1.5, deviation_pct: c.adaptive_tp?.current_dev_pct||2.5, max_sos:8};
       const dealPrice = c.short_deal.avg_entry || c.short_deal.entry_price || 0;
@@ -1192,6 +1199,9 @@ function renderRotationHistory(p) {
 
 function renderPortfolioBottom(p) {
   const totalDeals = Object.values(p.coins).reduce((a,c) => a + (c.deals_completed||0), 0);
+  const activeCoins = Object.keys(p.coins).filter(s => p.coins[s].status === 'active');
+  const symbolBadges = activeCoins.map(s => `<span class="badge badge-blue" style="font-size:.65rem;margin:1px">${s.replace('USDT','')}</span>`).join(' ');
+  $('bTrading').innerHTML = symbolBadges || '<span style="color:var(--text2)">--</span>';
   $('bAvgProfit').textContent = totalDeals + ' deals';
   $('bAvgProfit').previousElementSibling.textContent = 'Total Deals';
   $('bAvgDur').textContent = Object.keys(p.coins).length + ' coins';
