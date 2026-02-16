@@ -1,24 +1,24 @@
 {
-  "timestamp": "2026-02-16T05:01:05.252989+00:00",
+  "timestamp": "2026-02-16T05:03:04.148893+00:00",
   "symbol": "HYPEUSDT",
   "timeframe": "5m",
   "running": true,
   "dry_run": false,
   "halted": false,
   "halt_reason": "",
-  "regime": "ACCUMULATION",
-  "price": 30.036,
-  "equity": 326.61,
+  "regime": "EXTREME",
+  "price": 29.895,
+  "equity": 325.23,
   "start_equity": 291.97,
   "peak_equity": 336.7,
-  "pnl": 34.64,
-  "pnl_pct": 11.86,
-  "drawdown_pct": 3.0,
+  "pnl": 33.26,
+  "pnl_pct": 11.39,
+  "drawdown_pct": 3.41,
   "max_drawdown_threshold": 25.0,
   "leverage": 1,
-  "capital": 326.67,
-  "available_balance": 59.39,
-  "cycle_count": 6062,
+  "capital": 325.25,
+  "available_balance": 59.37,
+  "cycle_count": 6065,
   "start_time": "2026-02-13T03:50:51.737221+00:00",
   "hedge_mode": false,
   "long_deal": {
@@ -40,31 +40,11 @@
     "close_time": null,
     "realized_pnl": 0.0
   },
-  "short_deal": {
-    "deal_id": 68,
-    "symbol": "HYPEUSDT",
-    "entry_price": 30.033,
-    "entry_qty": 0.43,
-    "entry_cost": 12.91419,
-    "entry_time": "2026-02-16T02:55:58.426297+00:00",
-    "direction": "SHORT",
-    "safety_orders_filled": 0,
-    "safety_order_ids": [
-      1412976027
-    ],
-    "tp_order_id": 1412976460,
-    "total_qty": 0.43,
-    "total_cost": 12.91419,
-    "avg_entry": 30.033,
-    "closed": false,
-    "close_price": null,
-    "close_time": null,
-    "realized_pnl": 0.0
-  },
+  "short_deal": null,
   "trend_direction": "bearish",
   "regime_alloc": {
-    "long": 0.7,
-    "short": 0.3
+    "long": 0.0,
+    "short": 0.0
   },
   "deal_counter": 68,
   "adaptive_tp": {
@@ -72,14 +52,14 @@
     "baseline_tp_pct": 1.5,
     "current_dev_pct": 1.2,
     "baseline_dev_pct": 2.5,
-    "atr_pct": 0.209,
+    "atr_pct": 0.2487,
     "atr_baseline_pct": 0.8,
     "tp_min": 0.6,
     "tp_max": 2.5,
     "dev_min": 1.2,
     "dev_max": 4.0,
-    "regime_tp_mult": 0.85,
-    "regime_dev_mult": 0.85
+    "regime_tp_mult": 0.7,
+    "regime_dev_mult": 1.5
   },
   "config": {
     "tp_pct": 0.6,
