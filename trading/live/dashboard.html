@@ -206,6 +206,7 @@ table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
   <div class="card"><div class="card-label">Equity</div><div class="card-value" id="cEquity">--</div><div class="card-sub" id="cEquitySub"></div></div>
   <div class="card"><div class="card-label">Realized PnL</div><div class="card-value" id="cRealPnl">--</div><div class="card-sub" id="cRealPnlSub"></div></div>
   <div class="card"><div class="card-label">Unrealized PnL</div><div class="card-value" id="cUnrealPnl">--</div><div class="card-sub" id="cUnrealPnlSub"></div></div>
+  <div class="card"><div class="card-label">Funding Fees</div><div class="card-value" id="cFunding">--</div><div class="card-sub" id="cFundingSub"></div></div>
   <div class="card"><div class="card-label">Win / Loss</div><div class="card-value" id="cWinLoss">--</div><div class="card-sub" id="cWinLossSub"></div></div>
   <div class="card"><div class="card-label">Win Rate</div><div class="card-value" id="cWinRate">--</div><div class="card-sub" id="cWinRateSub"></div></div>
   <div class="card"><div class="card-label">Avg Daily ROI</div><div class="card-value" id="cAvgROI">--</div><div class="card-sub" id="cAvgROISub"></div></div>
@@ -573,7 +574,6 @@ function renderStatus() {
   const tradingBase = s.start_equity + deposits;
   const tradingPnl = s.equity - tradingBase;
   const tradingPct = tradingBase ? (tradingPnl / tradingBase * 100) : 0;
-  $('cEquitySub').innerHTML = `<span style="color:${pctColor(tradingPct)}">${tradingPnl>=0?'+':''}${fmtUsd(tradingPnl)} (${tradingPct>=0?'+':''}${fmt(tradingPct)}%)</span> trading PnL` + (deposits > 0 ? `<br><span style="color:var(--text3);font-size:.65rem">Start: ${fmtUsd(s.start_equity)} + ${fmtUsd(deposits)} deposited</span>` : '');
 
   const alloc = s.regime_alloc;
   if (alloc) {
@@ -596,6 +596,22 @@ function renderStatus() {
   $('cUnrealPnl').innerHTML = `<span style="color:${pctColor(totalUnreal)}">${fmtUsd(totalUnreal)}</span>`;
   const unrealPct = totalCost > 0 ? (totalUnreal / totalCost * 100) : 0;
   $('cUnrealPnlSub').innerHTML = `<span style="color:${pctColor(unrealPct)}">${unrealPct>=0?'+':''}${fmt(unrealPct)}%</span>`;
+
+  // Funding Fees
+  const fundingFees = s.total_funding_fees || 0;
+  const fundingColor = fundingFees > 0 ? 'var(--green)' : 'var(--red)';
+  $('cFunding').innerHTML = `<span style="color:${fundingColor}">${fmtUsd(fundingFees)}</span>`;
+  
+  // Current funding rate with direction indicator
+  const currentRate = s.current_funding_rate || 0;
+  const rateDirection = currentRate > 0 ? 'longs pay' : currentRate < 0 ? 'shorts pay' : 'neutral';
+  const ratePct = (currentRate * 100).toFixed(4);
+  $('cFundingSub').innerHTML = `Current: ${ratePct}% → ${rateDirection}`;
+  
+  // Update equity sub-line to include funding
+  const grossPnl = tradingPnl; // Original trading PnL
+  const netAfterFunding = grossPnl + fundingFees;
+  $('cEquitySub').innerHTML = `Trading: <span style="color:${pctColor(grossPnl)}">${grossPnl>=0?'+':''}${fmtUsd(grossPnl)}</span> | Funding: <span style="color:${fundingColor}">${fundingFees>=0?'+':''}${fmtUsd(fundingFees)}</span> | Net: <span style="color:${pctColor(netAfterFunding)}">${netAfterFunding>=0?'+':''}${fmtUsd(netAfterFunding)}</span>` + (deposits > 0 ? `<br><span style="color:var(--text3);font-size:.65rem">Start: ${fmtUsd(s.start_equity)} + ${fmtUsd(deposits)} deposited</span>` : '');
 
   // Win/Loss
   const wins = tpTrades.filter(t => parseFloat(t.pnl) > 0).length;

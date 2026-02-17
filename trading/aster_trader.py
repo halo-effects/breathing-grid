@@ -223,6 +223,14 @@ class AsterAPI:
                 return float(b.get("availableBalance", b.get("balance", 0)))
         return 0.0
 
+    def funding_rate_history(self, symbol: str, limit: int = 50) -> list:
+        """Get funding rate history (public endpoint)."""
+        return self._get("/fapi/v1/fundingRate", {"symbol": symbol, "limit": limit}, signed=False)
+
+    def premium_index(self, symbol: str) -> dict:
+        """Get current funding rate info (public endpoint)."""
+        return self._get("/fapi/v1/premiumIndex", {"symbol": symbol}, signed=False)
+
 
 @dataclass
 class LiveDeal:
@@ -341,6 +349,13 @@ class AsterTrader:
         self.cycle_count = 0
         self.last_daily_summary = ""
         self._last_klines_df: Optional[pd.DataFrame] = None
+
+        # Funding fee tracking
+        self.total_funding_fees = 0.0  # Negative = paid, positive = received
+        self.last_funding_time: Optional[str] = None
+        self.last_funding_rate: float = 0.0
+        self.last_funding_cost: float = 0.0
+        self.current_funding_rate: float = 0.0
 
         # Adaptive TP/deviation state
         self.current_tp_pct: float = self.TP_PCT
@@ -478,6 +493,12 @@ class AsterTrader:
             "current_tp_pct": self.current_tp_pct,
             "current_dev_pct": self.current_dev_pct,
             "current_atr_pct": self.current_atr_pct,
+            # Funding fee tracking
+            "total_funding_fees": self.total_funding_fees,
+            "last_funding_time": self.last_funding_time,
+            "last_funding_rate": self.last_funding_rate,
+            "last_funding_cost": self.last_funding_cost,
+            "current_funding_rate": self.current_funding_rate,
         }
         with open(LIVE_DIR / "state.json", "w") as f:
             json.dump(state, f, indent=2)
@@ -526,6 +547,13 @@ class AsterTrader:
             self.current_tp_pct = s.get("current_tp_pct", self.TP_PCT)
             self.current_dev_pct = s.get("current_dev_pct", self.DEVIATION_PCT)
             self.current_atr_pct = s.get("current_atr_pct", 0.0)
+            
+            # Load funding fee tracking
+            self.total_funding_fees = s.get("total_funding_fees", 0.0)
+            self.last_funding_time = s.get("last_funding_time")
+            self.last_funding_rate = s.get("last_funding_rate", 0.0)
+            self.last_funding_cost = s.get("last_funding_cost", 0.0)
+            self.current_funding_rate = s.get("current_funding_rate", 0.0)
 
             long_str = f"LONG(#{self.long_deal.deal_id})" if self.long_deal else "none"
             short_str = f"SHORT(#{self.short_deal.deal_id})" if self.short_deal else "none"
@@ -603,6 +631,12 @@ class AsterTrader:
                 "so_vol_mult": self.SO_VOL_MULT,
                 "base_order_pct": self.BASE_ORDER_PCT,
             },
+            # Funding fee information
+            "total_funding_fees": round(self.total_funding_fees, 2),
+            "last_funding_time": self.last_funding_time,
+            "last_funding_rate": self.last_funding_rate,
+            "last_funding_cost": round(self.last_funding_cost, 4),
+            "current_funding_rate": self.current_funding_rate,
         }
         with open(LIVE_DIR / "status.json", "w") as f:
             json.dump(status, f, indent=2)
@@ -1631,6 +1665,126 @@ class AsterTrader:
 
         return False
 
+    # ── Funding fee tracking ───────────────────────────────────────────
+
+    def _get_funding_times_utc(self) -> List[datetime]:
+        """Get funding settlement times (every 4h at 00:00, 04:00, 08:00, 12:00, 16:00, 20:00 UTC)."""
+        now = datetime.now(timezone.utc)
+        funding_hours = [0, 4, 8, 12, 16, 20]
+        times = []
+        for hour in funding_hours:
+            dt = now.replace(hour=hour, minute=0, second=0, microsecond=0)
+            times.append(dt)
+            # Also include previous day funding times
+            times.append(dt - timedelta(days=1))
+        return sorted(times)
+
+    def _get_last_funding_settlement_time(self) -> datetime:
+        """Find the most recent funding settlement time (past occurrence)."""
+        now = datetime.now(timezone.utc)
+        funding_hours = [0, 4, 8, 12, 16, 20]
+        
+        # Find the most recent funding hour today
+        current_hour = now.hour
+        last_funding_hour = None
+        for hour in reversed(funding_hours):
+            if current_hour >= hour:
+                last_funding_hour = hour
+                break
+        
+        if last_funding_hour is not None:
+            # Today's funding time
+            return now.replace(hour=last_funding_hour, minute=0, second=0, microsecond=0)
+        else:
+            # Use yesterday's last funding (20:00)
+            yesterday = now - timedelta(days=1)
+            return yesterday.replace(hour=20, minute=0, second=0, microsecond=0)
+
+    def _track_funding_fees(self):
+        """Check for new funding settlements and calculate costs."""
+        if self.dry_run:
+            return  # Skip funding tracking in dry run
+        
+        try:
+            # Get current funding rate info
+            premium_info = self.api.premium_index(self.symbol)
+            self.current_funding_rate = float(premium_info.get("lastFundingRate", 0))
+            
+            # Find the most recent funding settlement
+            last_settlement = self._get_last_funding_settlement_time()
+            last_settlement_str = last_settlement.isoformat()
+            
+            # Check if we've already processed this funding settlement
+            if self.last_funding_time and self.last_funding_time >= last_settlement_str:
+                return  # Already processed this funding period
+            
+            # Get funding rate history to find the rate for this settlement
+            try:
+                funding_history = self.api.funding_rate_history(self.symbol, limit=10)
+                if not funding_history:
+                    return
+                
+                # Find the funding rate for the settlement time
+                settlement_rate = None
+                for entry in funding_history:
+                    funding_time = datetime.fromtimestamp(entry["fundingTime"] / 1000, tz=timezone.utc)
+                    if abs((funding_time - last_settlement).total_seconds()) < 300:  # Within 5 minutes
+                        settlement_rate = float(entry["fundingRate"])
+                        break
+                
+                if settlement_rate is None:
+                    # Use the most recent rate as fallback
+                    settlement_rate = float(funding_history[0]["fundingRate"])
+                
+                # Calculate net position at settlement time
+                net_position_qty = 0.0
+                active_deals = self._active_deals()
+                
+                for deal in active_deals:
+                    # Only count deals that were opened before the settlement
+                    deal_open_time = datetime.fromisoformat(deal.entry_time.replace('Z', '+00:00'))
+                    if deal_open_time <= last_settlement:
+                        if deal.direction == "LONG":
+                            net_position_qty += deal.total_qty
+                        else:  # SHORT
+                            net_position_qty -= deal.total_qty
+                
+                if abs(net_position_qty) < 0.01:
+                    # No significant position, no funding cost
+                    self.last_funding_time = last_settlement_str
+                    return
+                
+                # Calculate funding cost: net_position_qty × mark_price × funding_rate
+                mark_price = self.current_price  # Use current price as approximation
+                funding_cost = net_position_qty * mark_price * settlement_rate
+                
+                # Update tracking
+                self.total_funding_fees += funding_cost
+                self.last_funding_time = last_settlement_str
+                self.last_funding_rate = settlement_rate
+                self.last_funding_cost = funding_cost
+                
+                # Log the funding event
+                direction_str = "LONG" if net_position_qty > 0 else "SHORT"
+                rate_pct = settlement_rate * 100
+                print(f"  💰 Funding: rate={rate_pct:+.4f}%, net={net_position_qty:+.2f} {direction_str}, cost=${funding_cost:+.4f}")
+                
+                # Detailed log for tracking
+                if abs(funding_cost) > 0.001:  # Only log significant costs
+                    send_telegram(
+                        f"💰 <b>Funding Settlement</b>\n"
+                        f"Rate: {rate_pct:+.4f}% {'(longs pay)' if settlement_rate > 0 else '(shorts pay)'}\n"
+                        f"Net position: {net_position_qty:+.2f} {direction_str}\n"
+                        f"Cost: ${funding_cost:+.4f}\n"
+                        f"Total funding: ${self.total_funding_fees:+.2f}"
+                    )
+                
+            except Exception as e:
+                print(f"  [WARN] Funding rate fetch failed: {e}")
+                
+        except Exception as e:
+            print(f"  [WARN] Funding tracking error: {e}")
+
     # ── Main loop ──────────────────────────────────────────────────────
 
     def start(self):
@@ -1716,6 +1870,9 @@ class AsterTrader:
 
                 # Adaptive TP + deviation adjustment
                 self._update_adaptive_tp()
+
+                # Track funding fees (once per cycle)
+                self._track_funding_fees()
 
                 trend_dir = "▲" if self._trend_bullish else "▼"
                 long_str = f"L#{self.long_deal.deal_id}({self.long_deal.safety_orders_filled}SO)" if self.long_deal else "—"
