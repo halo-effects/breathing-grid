@@ -267,9 +267,9 @@ table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
       <div style="font-size:.65rem;color:var(--text2);margin-top:2px">Regime-based</div>
     </div>
     <div style="text-align:center;padding:10px;background:var(--bg);border-radius:8px;border:1px solid var(--border)">
-      <div style="font-size:.65rem;color:var(--text2);text-transform:uppercase;margin-bottom:4px">Maker Fees</div>
-      <div style="font-size:1.1rem;font-weight:600;color:var(--green)">0%</div>
-      <div style="font-size:.65rem;color:var(--text2);margin-top:2px">TP + SO = Free</div>
+      <div style="font-size:.65rem;color:var(--text2);text-transform:uppercase;margin-bottom:4px">Funding Fees</div>
+      <div style="font-size:1.1rem;font-weight:600" id="cFundingTotal">--</div>
+      <div style="font-size:.65rem;color:var(--text2);margin-top:2px" id="cFundingRate">--</div>
     </div>
   </div>
 </div>
@@ -607,6 +607,13 @@ function renderStatus() {
   const rateDirection = currentRate > 0 ? 'longs pay' : currentRate < 0 ? 'shorts pay' : 'neutral';
   const ratePct = (currentRate * 100).toFixed(4);
   $('cFundingSub').innerHTML = `Current: ${ratePct}% → ${rateDirection}`;
+  
+  // Adaptive panel funding box
+  if ($('cFundingTotal')) {
+    $('cFundingTotal').innerHTML = `<span style="color:${fundingColor}">${fmtUsd(fundingFees)}</span>`;
+    $('cFundingRate').innerHTML = `${ratePct}% → ${rateDirection}`;
+    $('cFundingRate').style.color = currentRate > 0 ? 'var(--amber)' : currentRate < 0 ? 'var(--amber)' : 'var(--text2)';
+  }
   
   // Update equity sub-line to include funding
   const grossPnl = tradingPnl; // Original trading PnL
