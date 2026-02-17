@@ -159,10 +159,12 @@ section { padding: 100px 0; }
 .profiles-section { background: linear-gradient(180deg, var(--bg) 0%, #0d0d15 100%); }
 .profiles-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 32px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
   margin-top: 48px;
+  align-items: stretch;
 }
+@media (max-width: 960px) { .profiles-grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; } }
 .profile-card {
   background: var(--card);
   border: 2px solid var(--border);
@@ -207,17 +209,24 @@ section { padding: 100px 0; }
 .profile-icon.medium { background: linear-gradient(135deg, var(--amber), #d97706); }
 .profile-icon.high { background: linear-gradient(135deg, var(--red), #dc2626); }
 .profile-title {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-weight: 700;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   display: flex;
-  align-items: center;
-  gap: 12px;
+  flex-direction: column;
+  gap: 2px;
+}
+.profile-title .profile-tag {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text3);
+  letter-spacing: 0.5px;
 }
 .profile-subtitle {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: var(--text2);
   margin-bottom: 24px;
+  min-height: 48px;
   font-style: italic;
 }
 .profile-specs {
@@ -958,9 +967,9 @@ section { padding: 100px 0; }
         <div class="profile-icon low">🛡️</div>
         <h3 class="profile-title">
           <span style="color: var(--green);">🟢 Low Risk</span>
-          <span style="font-size: 1.2rem; color: var(--text3);">— The Foundation</span>
+          <span class="profile-tag">The Foundation</span>
         </h3>
-        <p class="profile-subtitle">"Steady, consistent returns with maximum capital protection"</p>
+        <p class="profile-subtitle">Steady, consistent returns with maximum capital protection</p>
         
         <div class="profile-specs">
           <div class="spec-item">
@@ -995,9 +1004,9 @@ section { padding: 100px 0; }
         <div class="profile-icon medium">🚀</div>
         <h3 class="profile-title">
           <span style="color: var(--amber);">🟡 Medium Risk</span>
-          <span style="font-size: 1.2rem; color: var(--text3);">— The Accelerator</span>
+          <span class="profile-tag">The Accelerator</span>
         </h3>
-        <p class="profile-subtitle">"Enhanced returns for experienced traders comfortable with volatility"</p>
+        <p class="profile-subtitle">Enhanced returns for experienced traders comfortable with volatility</p>
         
         <div class="profile-specs">
           <div class="spec-item">
@@ -1032,9 +1041,9 @@ section { padding: 100px 0; }
         <div class="profile-icon high">⚡</div>
         <h3 class="profile-title">
           <span style="color: var(--red);">🔴 High Risk</span>
-          <span style="font-size: 1.2rem; color: var(--text3);">— The Maximizer</span>
+          <span class="profile-tag">The Maximizer</span>
         </h3>
-        <p class="profile-subtitle">"Maximum capital deployment for traders who want aggressive growth"</p>
+        <p class="profile-subtitle">Maximum capital deployment for traders who want aggressive growth</p>
         
         <div class="profile-specs">
           <div class="spec-item">
