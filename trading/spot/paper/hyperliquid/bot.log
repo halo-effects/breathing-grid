@@ -1,0 +1,11 @@
+2026-02-17 11:18:18,048 [INFO] ============================================================
+2026-02-17 11:18:18,048 [INFO] Spot Paper Trader starting
+2026-02-17 11:18:18,048 [INFO] Exchange: hyperliquid | Profile: medium | Capital: $10000
+2026-02-17 11:18:18,048 [INFO] Symbols: ['HYPE/USDC'] | Timeframe: 15m | Max coins: 3
+2026-02-17 11:18:18,048 [INFO] ============================================================
+2026-02-17 11:18:18,054 [INFO] Connected to hyperliquid
+2026-02-17 11:18:19,745 [INFO] ── Cycle 1 at 2026-02-17T19:18:19+00:00 ──
+2026-02-17 11:18:33,308 [DEBUG] HYPE/USDC: $29.6450 | regime=ACCUMULATION | ATR%=0.86 | TP=1.37% | Dev=2.29%
+2026-02-17 11:18:33,308 [INFO] 📥 DEAL 1 OPENED: HYPE/USDC @ $29.6450 (regime=ACCUMULATION, TP=1.37%)
+2026-02-17 11:18:34,543 [INFO] Equity: $9999.72 (-0.00%) | Cash: $9600.00 | Deals: 1 active, 0 completed | DD: 0.0%
+2026-02-17 11:18:34,544 [DEBUG] Sleeping 900s until next cycle...

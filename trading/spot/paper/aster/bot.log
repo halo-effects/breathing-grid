@@ -1,0 +1,11 @@
+2026-02-17 11:18:18,038 [INFO] ============================================================
+2026-02-17 11:18:18,038 [INFO] Spot Paper Trader starting
+2026-02-17 11:18:18,038 [INFO] Exchange: aster | Profile: medium | Capital: $10000
+2026-02-17 11:18:18,039 [INFO] Symbols: ['ETH/USDT'] | Timeframe: 15m | Max coins: 3
+2026-02-17 11:18:18,039 [INFO] ============================================================
+2026-02-17 11:18:18,046 [INFO] Connected to aster
+2026-02-17 11:18:19,763 [INFO] ── Cycle 1 at 2026-02-17T19:18:19+00:00 ──
+2026-02-17 11:18:26,695 [DEBUG] ETH/USDT: $2011.9000 | regime=ACCUMULATION | ATR%=0.73 | TP=1.16% | Dev=2.00%
+2026-02-17 11:18:26,696 [INFO] 📥 DEAL 1 OPENED: ETH/USDT @ $2011.9000 (regime=ACCUMULATION, TP=1.16%)
+2026-02-17 11:18:27,927 [INFO] Equity: $9999.86 (-0.00%) | Cash: $9600.00 | Deals: 1 active, 0 completed | DD: 0.0%
+2026-02-17 11:18:27,929 [DEBUG] Sleeping 900s until next cycle...

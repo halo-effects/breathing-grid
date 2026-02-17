@@ -40,6 +40,10 @@
 - **Net position mode margin trap**: selling to close a long can flip net short, requiring margin for the flip — must check margin before TP placement
 - **TP > SOs priority**: always ensure TP can be placed, cancel deep SOs if needed to free margin
 - **Aster fees**: Maker = 0% (free), Taker = 0.04% — limit orders (TP, SO fills) are free
+- **Position drift bug (found 2026-02-17)**: old sync function only checked sign/zero, never compared qty. Orders can accumulate orphaned exposure silently. Fixed with qty drift detection + Telegram alerts.
+- **Funding fees are the hidden killer**: Aster charges every 4h. Positions held 24h+ with SOs can lose 50-66% of expected TP profit to funding. Must factor into strategy.
+- **Aster API quirks**: `/fapi/v1/income` and `/fapi/v1/userTrades` return 400. Use `/fapi/v1/fundingRate` (public) + `/fapi/v1/premiumIndex` (public) instead. `/fapi/v2/balance` works signed, `/fapi/v2/positionRisk` works signed.
+- **Force sync tool**: `trading/force_sync.py` — interactive tool to reconcile exchange vs tracked position
 
 ### Adaptive TP/Deviation System (Live since 2026-02-14)
 - Dynamic TP: 0.6–2.5% based on 14-period ATR + regime multipliers (baseline 1.5%, ATR_BASELINE=0.8%)
@@ -47,6 +51,31 @@
 - Regime multipliers: RANGING=0.85×TP/0.80×DEV, TRENDING=1.20×TP/1.30×DEV, EXTREME=0.70×TP/1.50×DEV
 - Margin-aware: 10% capital reserve, skips unaffordable SOs, cancels deep SOs to ensure TP placement
 - TP-hit analysis logged with duration, adaptive params, ATR, regime insight
+
+### Spot DCA Scale-Out Strategy — Designed 2026-02-17
+- Full spec: `projects/ait-product/spot-dca-strategy.md`
+- Core idea: spot buy DCA in layers, sell in reverse order (largest lots first) on recovery
+- Eliminates funding fees, simpler execution, ~5-8× more profit per cycle vs futures
+- Long only — pair with futures short-only for bidirectional hybrid
+- Coin selection: mature markets (BTC, ETH, SOL), screen out parabolic/meme coins
+- Exchange candidates: Aster spot (no HYPE), Hyperliquid (has HYPE), Bybit/MEXC (KYC required)
+
+### Spot Backtests — Completed 2026-02-17
+- 47 combinations: 4 coins × 3 profiles × 3 timeframes × 2 exchanges
+- Results: `trading/spot/backtest_results/SUMMARY.md`
+- **Winners**: HYPE/USDC on Hyperliquid dominates (Medium 15m: +8.8%, Sharpe 11.35), ETH/USDT on Aster solid (Medium 15m: +6.5%)
+- **Losers**: BTC and BNB negative across board (extended downtrend)
+- **Best timeframe**: 15m (best Sharpe), 5m too noisy, 1h similar returns worse DD
+- **100% win rate** on all profitable combos — scale-out exits work
+- Parameter optimization sweeps in `trading/spot/backtest_results/optimization/`
+
+### Spot Paper Bots — Live since 2026-02-17
+- `trading/spot/spot_trader.py` — SpotPaperTrader (CCXT, virtual positions, Telegram alerts)
+- `trading/spot/run_paper.py` — CLI entry (--exchange, --profile, --capital, --symbol, --timeframe)
+- Output: `trading/spot/paper/aster/` and `trading/spot/paper/hyperliquid/` (separate dirs)
+- **Aster instance**: ETH/USDT Medium 15m, $10K virtual, Scheduled Task `SpotPaperAster`
+- **Hyperliquid instance**: HYPE/USDC Medium 15m, $10K virtual, Scheduled Task `SpotPaperHyperliquid`
+- Both trigger at system startup, battery settings fixed
 
 ### WhiteHatFX History
 - Brett previously traded MT4 Martingale (WhiteHatFX v2) on FTMO 100k prop firms: BTC, currencies, gold, US30
@@ -79,6 +108,21 @@
 - Graceful wind-down: no new deals, 2h force-close, 4h minimum hold time
 - **Not yet live** — bot still running single-coin HYPE via `run_aster.py`
 - Capital concern: $335 split 3 ways risks hitting $5 minimum notional; recommend max-coins=2
+
+### Paper Trading Bot (aster_trader_v2.py) — Built 2026-02-16
+- `trading/aster_trader_v2.py` — paper bot with risk profile engine
+- `trading/run_paper.py` — entry point (--symbol, --timeframe, --capital, --profile, --max-coins)
+- Three risk profiles: Low (1×/8 SOs), Medium (2×/12 SOs), High (5×/16 SOs)
+- Tier-based coin scaling: Starter=1, Trader=2, Pro=3, Elite=5, Whale=8 max coins
+- $3K minimum per coin floor, reads scanner results, falls back to HYPEUSDT
+- Writes to `trading/paper/` (status.json, trades.csv, allocation.json)
+- **Not yet run live** — built and committed but not started as scheduled task
+
+### Tier-Based Coin Scaling — Spec'd 2026-02-16
+- Added to risk-profiles-spec.md, paper bot, pricing page, product page
+- Starter($5K)=1, Trader($10K)=2, Pro($25K)=3, Elite($50K)=5, Whale($100K)=8
+- $3K minimum per coin floor, 10% global reserve, 20% rotation threshold
+- Product page now shows Generation 5 as "Current"
 
 ### Directional Awareness — Added 2026-02-15
 - SMA50-based trend direction detection in `detect_regime()`

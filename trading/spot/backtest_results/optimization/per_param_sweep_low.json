@@ -1,0 +1,794 @@
+{
+  "baseline": {
+    "base_order_pct": 0.03,
+    "max_safety_orders": 5,
+    "tp_min": 1.5,
+    "deviation_baseline": 3.5
+  },
+  "sweeps": {
+    "aster_ETH_USDT_15m": {
+      "baseline": {
+        "total_return_pct": 2.45,
+        "max_drawdown_pct": 4.52,
+        "sharpe_ratio": 1.22,
+        "deals_completed": 11,
+        "win_rate": 100.0,
+        "avg_profit_per_deal_pct": 1.64,
+        "total_fees_paid": 10.61,
+        "capital_utilization_pct": 8.93
+      },
+      "base_order_pct": [
+        {
+          "total_return_pct": 2.11,
+          "max_drawdown_pct": 3.72,
+          "sharpe_ratio": 1.51,
+          "deals_completed": 11,
+          "win_rate": 100.0,
+          "avg_profit_per_deal_pct": 1.66,
+          "total_fees_paid": 8.58,
+          "capital_utilization_pct": 6.09,
+          "param_value": 0.02
+        },
+        {
+          "total_return_pct": 2.45,
+          "max_drawdown_pct": 4.52,
+          "sharpe_ratio": 1.22,
+          "deals_completed": 11,
+          "win_rate": 100.0,
+          "avg_profit_per_deal_pct": 1.64,
+          "total_fees_paid": 10.61,
+          "capital_utilization_pct": 8.93,
+          "param_value": 0.03
+        },
+        {
+          "total_return_pct": 2.78,
+          "max_drawdown_pct": 5.43,
+          "sharpe_ratio": 1.06,
+          "deals_completed": 11,
+          "win_rate": 100.0,
+          "avg_profit_per_deal_pct": 1.62,
+          "total_fees_paid": 12.64,
+          "capital_utilization_pct": 11.76,
+          "param_value": 0.04
+        },
+        {
+          "total_return_pct": 3.11,
+          "max_drawdown_pct": 7.1,
+          "sharpe_ratio": 0.97,
+          "deals_completed": 11,
+          "win_rate": 100.0,
+          "avg_profit_per_deal_pct": 1.6,
+          "total_fees_paid": 14.67,
+          "capital_utilization_pct": 14.59,
+          "param_value": 0.05
+        }
+      ],
+      "max_safety_orders": [
+        {
+          "total_return_pct": 1.09,
+          "max_drawdown_pct": 1.4,
+          "sharpe_ratio": 1.39,
+          "deals_completed": 11,
+          "win_rate": 90.9,
+          "avg_profit_per_deal_pct": 1.47,
+          "total_fees_paid": 6.4,
+          "capital_utilization_pct": 5.63,
+          "param_value": 3
+        },
+        {
+          "total_return_pct": 1.79,
+          "max_drawdown_pct": 4.39,
+          "sharpe_ratio": 0.91,
+          "deals_completed": 11,
+          "win_rate": 100.0,
+          "avg_profit_per_deal_pct": 1.6,
+          "total_fees_paid": 8.57,
+          "capital_utilization_pct": 8.73,
+          "param_value": 4
+        },
+        {
+          "total_return_pct": 2.45,
+          "max_drawdown_pct": 4.52,
+          "sharpe_ratio": 1.22,
+          "deals_completed": 11,
+          "win_rate": 100.0,
+          "avg_profit_per_deal_pct": 1.64,
+          "total_fees_paid": 10.61,
+          "capital_utilization_pct": 8.93,
+          "param_value": 5
+        },
+        {
+          "total_return_pct": -27.01,
+          "max_drawdown_pct": 36.73,
+          "sharpe_ratio": -2.11,
+          "deals_completed": 11,
+          "win_rate": 90.9,
+          "avg_profit_per_deal_pct": 0.49,
+          "total_fees_paid": 16.63,
+          "capital_utilization_pct": 29.57,
+          "param_value": 6
+        }
+      ],
+      "tp_min": [
+        {
+          "total_return_pct": 1.95,
+          "max_drawdown_pct": 2.43,
+          "sharpe_ratio": 2.27,
+          "deals_completed": 17,
+          "win_rate": 100.0,
+          "avg_profit_per_deal_pct": 1.12,
+          "total_fees_paid": 14.12,
+          "capital_utilization_pct": 6.49,
+          "param_value": 1.0
+        },
+        {
+          "total_return_pct": 2.29,
+          "max_drawdown_pct": 2.43,
+          "sharpe_ratio": 2.4,
+          "deals_completed": 13,
+          "win_rate": 100.0,
+          "avg_profit_per_deal_pct": 1.52,
+          "total_fees_paid": 12.5,
+          "capital_utilization_pct": 6.42,
+          "param_value": 1.25
+        },
+        {
+          "total_return_pct": 2.45,
+          "max_drawdown_pct": 4.52,
+          "sharpe_ratio": 1.22,
+          "deals_completed": 11,
+          "win_rate": 100.0,
+          "avg_profit_per_deal_pct": 1.64,
+          "total_fees_paid": 10.61,
+          "capital_utilization_pct": 8.93,
+          "param_value": 1.5
+        },
+        {
+          "total_return_pct": 4.07,
+          "max_drawdown_pct": 1.76,
+          "sharpe_ratio": 2.85,
+          "deals_completed": 9,
+          "win_rate": 100.0,
+          "avg_profit_per_deal_pct": 2.21,
+          "total_fees_paid": 12.03,
+          "capital_utilization_pct": 7.6,
+          "param_value": 2.0
+        }
+      ],
+      "deviation_baseline": [
+        {
+          "total_return_pct": 4.14,
+          "max_drawdown_pct": 7.89,
+          "sharpe_ratio": 1.18,
+          "deals_completed": 11,
+          "win_rate": 100.0,
+          "avg_profit_per_deal_pct": 1.69,
+          "total_fees_paid": 15.83,
+          "capital_utilization_pct": 12.75,
+          "param_value": 2.5
+        },
+        {
+          "total_return_pct": 2.11,
+          "max_drawdown_pct": 2.94,
+          "sharpe_ratio": 1.24,
+          "deals_completed": 11,
+          "win_rate": 100.0,
+          "avg_profit_per_deal_pct": 1.57,
+          "total_fees_paid": 10.05,
+          "capital_utilization_pct": 12.7,
+          "param_value": 3.0
+        },
+        {
+          "total_return_pct": 2.45,
+          "max_drawdown_pct": 4.52,
+          "sharpe_ratio": 1.22,
+          "deals_completed": 11,
+          "win_rate": 100.0,
+          "avg_profit_per_deal_pct": 1.64,
+          "total_fees_paid": 10.61,
+          "capital_utilization_pct": 8.93,
+          "param_value": 3.5
+        },
+        {
+          "total_return_pct": -27.68,
+          "max_drawdown_pct": 36.15,
+          "sharpe_ratio": -2.32,
+          "deals_completed": 11,
+          "win_rate": 90.9,
+          "avg_profit_per_deal_pct": 0.22,
+          "total_fees_paid": 12.65,
+          "capital_utilization_pct": 24.93,
+          "param_value": 4.0
+        }
+      ]
+    },
+    "aster_ETH_USDT_1h": {
+      "baseline": {
+        "total_return_pct": -23.81,
+        "max_drawdown_pct": 32.31,
+        "sharpe_ratio": -1.85,
+        "deals_completed": 9,
+        "win_rate": 88.9,
+        "avg_profit_per_deal_pct": 0.3,
+        "total_fees_paid": 11.7,
+        "capital_utilization_pct": 25.34
+      },
+      "base_order_pct": [
+        {
+          "total_return_pct": -15.87,
+          "max_drawdown_pct": 21.73,
+          "sharpe_ratio": -2.02,
+          "deals_completed": 9,
+          "win_rate": 88.9,
+          "avg_profit_per_deal_pct": 0.3,
+          "total_fees_paid": 7.8,
+          "capital_utilization_pct": 16.9,
+          "param_value": 0.02
+        },
+        {
+          "total_return_pct": -23.81,
+          "max_drawdown_pct": 32.31,
+          "sharpe_ratio": -1.85,
+          "deals_completed": 9,
+          "win_rate": 88.9,
+          "avg_profit_per_deal_pct": 0.3,
+          "total_fees_paid": 11.7,
+          "capital_utilization_pct": 25.34,
+          "param_value": 0.03
+        },
+        {
+          "total_return_pct": -24.27,
+          "max_drawdown_pct": 33.64,
+          "sharpe_ratio": -1.78,
+          "deals_completed": 9,
+          "win_rate": 88.9,
+          "avg_profit_per_deal_pct": 0.48,
+          "total_fees_paid": 13.87,
+          "capital_utilization_pct": 28.07,
+          "param_value": 0.04
+        },
+        {
+          "total_return_pct": -23.76,
+          "max_drawdown_pct": 33.77,
+          "sharpe_ratio": -1.72,
+          "deals_completed": 9,
+          "win_rate": 88.9,
+          "avg_profit_per_deal_pct": 0.65,
+          "total_fees_paid": 15.82,
+          "capital_utilization_pct": 30.06,
+          "param_value": 0.05
+        }
+      ],
+      "max_safety_orders": [
+        {
+          "total_return_pct": 0.29,
+          "max_drawdown_pct": 1.4,
+          "sharpe_ratio": 0.52,
+          "deals_completed": 9,
+          "win_rate": 88.9,
+          "avg_profit_per_deal_pct": 1.63,
+          "total_fees_paid": 3.69,
+          "capital_utilization_pct": 5.98,
+          "param_value": 3
+        },
+        {
+          "total_return_pct": 1.47,
+          "max_drawdown_pct": 1.38,
+          "sharpe_ratio": 1.52,
+          "deals_completed": 9,
+          "win_rate": 100.0,
+          "avg_profit_per_deal_pct": 1.83,
+          "total_fees_paid": 5.86,
+          "capital_utilization_pct": 6.0,
+          "param_value": 4
+        },
+        {
+          "total_return_pct": -23.81,
+          "max_drawdown_pct": 32.31,
+          "sharpe_ratio": -1.85,
+          "deals_completed": 9,
+          "win_rate": 88.9,
+          "avg_profit_per_deal_pct": 0.3,
+          "total_fees_paid": 11.7,
+          "capital_utilization_pct": 25.34,
+          "param_value": 5
+        },
+        {
+          "total_return_pct": -23.72,
+          "max_drawdown_pct": 32.22,
+          "sharpe_ratio": -1.85,
+          "deals_completed": 9,
+          "win_rate": 88.9,
+          "avg_profit_per_deal_pct": 0.33,
+          "total_fees_paid": 11.87,
+          "capital_utilization_pct": 25.34,
+          "param_value": 6
+        }
+      ],
+      "tp_min": [
+        {
+          "total_return_pct": -25.0,
+          "max_drawdown_pct": 32.91,
+          "sharpe_ratio": -1.94,
+          "deals_completed": 13,
+          "win_rate": 92.3,
+          "avg_profit_per_deal_pct": 0.17,
+          "total_fees_paid": 12.22,
+          "capital_utilization_pct": 25.27,
+          "param_value": 1.0
+        },
+        {
+          "total_return_pct": -24.56,
+          "max_drawdown_pct": 32.77,
+          "sharpe_ratio": -1.91,
+          "deals_completed": 12,
+          "win_rate": 91.7,
+          "avg_profit_per_deal_pct": 0.36,
+          "total_fees_paid": 12.09,
+          "capital_utilization_pct": 25.29,
+          "param_value": 1.25
+        },
+        {
+          "total_return_pct": -23.81,
+          "max_drawdown_pct": 32.31,
+          "sharpe_ratio": -1.85,
+          "deals_completed": 9,
+          "win_rate": 88.9,
+          "avg_profit_per_deal_pct": 0.3,
+          "total_fees_paid": 11.7,
+          "capital_utilization_pct": 25.34,
+          "param_value": 1.5
+        },
+        {
+          "total_return_pct": -16.5,
+          "max_drawdown_pct": 26.12,
+          "sharpe_ratio": -1.2,
+          "deals_completed": 7,
+          "win_rate": 85.7,
+          "avg_profit_per_deal_pct": 0.9,
+          "total_fees_paid": 11.67,
+          "capital_utilization_pct": 26.17,
+          "param_value": 2.0
+        }
+      ],
+      "deviation_baseline": [
+        {
+          "total_return_pct": 2.03,
+          "max_drawdown_pct": 3.46,
+          "sharpe_ratio": 1.07,
+          "deals_completed": 9,
+          "win_rate": 100.0,
+          "avg_profit_per_deal_pct": 1.84,
+          "total_fees_paid": 8.7,
+          "capital_utilization_pct": 6.5,
+          "param_value": 2.5
+        },
+        {
+          "total_return_pct": 2.53,
+          "max_drawdown_pct": 2.26,
+          "sharpe_ratio": 1.48,
+          "deals_completed": 9,
+          "win_rate": 100.0,
+          "avg_profit_per_deal_pct": 1.81,
+          "total_fees_paid": 10.07,
+          "capital_utilization_pct": 9.17,
+          "param_value": 3.0
+        },
+        {
+          "total_return_pct": -23.81,
+          "max_drawdown_pct": 32.31,
+          "sharpe_ratio": -1.85,
+          "deals_completed": 9,
+          "win_rate": 88.9,
+          "avg_profit_per_deal_pct": 0.3,
+          "total_fees_paid": 11.7,
+          "capital_utilization_pct": 25.34,
+          "param_value": 3.5
+        },
+        {
+          "total_return_pct": 3.6,
+          "max_drawdown_pct": 0.61,
+          "sharpe_ratio": 2.95,
+          "deals_completed": 9,
+          "win_rate": 100.0,
+          "avg_profit_per_deal_pct": 1.91,
+          "total_fees_paid": 10.2,
+          "capital_utilization_pct": 3.28,
+          "param_value": 4.0
+        }
+      ]
+    },
+    "aster_BTC_USDT_15m": {
+      "baseline": {
+        "total_return_pct": -19.24,
+        "max_drawdown_pct": 27.64,
+        "sharpe_ratio": -1.62,
+        "deals_completed": 10,
+        "win_rate": 90.0,
+        "avg_profit_per_deal_pct": -0.12,
+        "total_fees_paid": 11.67,
+        "capital_utilization_pct": 24.5
+      },
+      "base_order_pct": [
+        {
+          "total_return_pct": -18.96,
+          "max_drawdown_pct": 27.05,
+          "sharpe_ratio": -1.59,
+          "deals_completed": 10,
+          "win_rate": 90.0,
+          "avg_profit_per_deal_pct": -0.21,
+          "total_fees_paid": 9.9,
+          "capital_utilization_pct": 22.56,
+          "param_value": 0.02
+        },
+        {
+          "total_return_pct": -19.24,
+          "max_drawdown_pct": 27.64,
+          "sharpe_ratio": -1.62,
+          "deals_completed": 10,
+          "win_rate": 90.0,
+          "avg_profit_per_deal_pct": -0.12,
+          "total_fees_paid": 11.67,
+          "capital_utilization_pct": 24.5,
+          "param_value": 0.03
+        },
+        {
+          "total_return_pct": -19.52,
+          "max_drawdown_pct": 28.21,
+          "sharpe_ratio": -1.64,
+          "deals_completed": 10,
+          "win_rate": 90.0,
+          "avg_profit_per_deal_pct": -0.04,
+          "total_fees_paid": 13.44,
+          "capital_utilization_pct": 26.45,
+          "param_value": 0.04
+        },
+        {
+          "total_return_pct": -19.79,
+          "max_drawdown_pct": 28.78,
+          "sharpe_ratio": -1.65,
+          "deals_completed": 10,
+          "win_rate": 90.0,
+          "avg_profit_per_deal_pct": 0.03,
+          "total_fees_paid": 15.21,
+          "capital_utilization_pct": 28.39,
+          "param_value": 0.05
+        }
+      ],
+      "max_safety_orders": [
+        {
+          "total_return_pct": -0.83,
+          "max_drawdown_pct": 2.77,
+          "sharpe_ratio": -0.87,
+          "deals_completed": 10,
+          "win_rate": 90.0,
+          "avg_profit_per_deal_pct": 0.91,
+          "total_fees_paid": 5.82,
+          "capital_utilization_pct": 6.31,
+          "param_value": 3
+        },
+        {
+          "total_return_pct": -11.0,
+          "max_drawdown_pct": 16.22,
+          "sharpe_ratio": -1.85,
+          "deals_completed": 10,
+          "win_rate": 90.0,
+          "avg_profit_per_deal_pct": 0.05,
+          "total_fees_paid": 8.83,
+          "capital_utilization_pct": 16.15,
+          "param_value": 4
+        },
+        {
+          "total_return_pct": -19.24,
+          "max_drawdown_pct": 27.64,
+          "sharpe_ratio": -1.62,
+          "deals_completed": 10,
+          "win_rate": 90.0,
+          "avg_profit_per_deal_pct": -0.12,
+          "total_fees_paid": 11.67,
+          "capital_utilization_pct": 24.5,
+          "param_value": 5
+        },
+        {
+          "total_return_pct": -19.24,
+          "max_drawdown_pct": 27.64,
+          "sharpe_ratio": -1.62,
+          "deals_completed": 10,
+          "win_rate": 90.0,
+          "avg_profit_per_deal_pct": -0.12,
+          "total_fees_paid": 11.67,
+          "capital_utilization_pct": 24.5,
+          "param_value": 6
+        }
+      ],
+      "tp_min": [
+        {
+          "total_return_pct": 0.08,
+          "max_drawdown_pct": 2.18,
+          "sharpe_ratio": 0.09,
+          "deals_completed": 15,
+          "win_rate": 93.3,
+          "avg_profit_per_deal_pct": 0.92,
+          "total_fees_paid": 13.11,
+          "capital_utilization_pct": 6.5,
+          "param_value": 1.0
+        },
+        {
+          "total_return_pct": -19.51,
+          "max_drawdown_pct": 27.64,
+          "sharpe_ratio": -1.65,
+          "deals_completed": 11,
+          "win_rate": 90.9,
+          "avg_profit_per_deal_pct": -0.21,
+          "total_fees_paid": 11.51,
+          "capital_utilization_pct": 24.15,
+          "param_value": 1.25
+        },
+        {
+          "total_return_pct": -19.24,
+          "max_drawdown_pct": 27.64,
+          "sharpe_ratio": -1.62,
+          "deals_completed": 10,
+          "win_rate": 90.0,
+          "avg_profit_per_deal_pct": -0.12,
+          "total_fees_paid": 11.67,
+          "capital_utilization_pct": 24.5,
+          "param_value": 1.5
+        },
+        {
+          "total_return_pct": -9.41,
+          "max_drawdown_pct": 15.23,
+          "sharpe_ratio": -1.58,
+          "deals_completed": 7,
+          "win_rate": 85.7,
+          "avg_profit_per_deal_pct": 0.57,
+          "total_fees_paid": 11.29,
+          "capital_utilization_pct": 17.39,
+          "param_value": 2.0
+        }
+      ],
+      "deviation_baseline": [
+        {
+          "total_return_pct": -7.81,
+          "max_drawdown_pct": 13.27,
+          "sharpe_ratio": -1.7,
+          "deals_completed": 10,
+          "win_rate": 90.0,
+          "avg_profit_per_deal_pct": 0.7,
+          "total_fees_paid": 14.98,
+          "capital_utilization_pct": 18.64,
+          "param_value": 2.5
+        },
+        {
+          "total_return_pct": -9.66,
+          "max_drawdown_pct": 14.92,
+          "sharpe_ratio": -1.74,
+          "deals_completed": 10,
+          "win_rate": 90.0,
+          "avg_profit_per_deal_pct": 0.47,
+          "total_fees_paid": 11.33,
+          "capital_utilization_pct": 17.34,
+          "param_value": 3.0
+        },
+        {
+          "total_return_pct": -19.24,
+          "max_drawdown_pct": 27.64,
+          "sharpe_ratio": -1.62,
+          "deals_completed": 10,
+          "win_rate": 90.0,
+          "avg_profit_per_deal_pct": -0.12,
+          "total_fees_paid": 11.67,
+          "capital_utilization_pct": 24.5,
+          "param_value": 3.5
+        },
+        {
+          "total_return_pct": -18.74,
+          "max_drawdown_pct": 27.08,
+          "sharpe_ratio": -1.57,
+          "deals_completed": 10,
+          "win_rate": 90.0,
+          "avg_profit_per_deal_pct": -0.22,
+          "total_fees_paid": 11.14,
+          "capital_utilization_pct": 25.58,
+          "param_value": 4.0
+        }
+      ]
+    },
+    "aster_BTC_USDT_1h": {
+      "baseline": {
+        "total_return_pct": -13.18,
+        "max_drawdown_pct": 22.91,
+        "sharpe_ratio": -0.94,
+        "deals_completed": 9,
+        "win_rate": 88.9,
+        "avg_profit_per_deal_pct": 0.58,
+        "total_fees_paid": 12.84,
+        "capital_utilization_pct": 22.58
+      },
+      "base_order_pct": [
+        {
+          "total_return_pct": -9.05,
+          "max_drawdown_pct": 15.83,
+          "sharpe_ratio": -1.06,
+          "deals_completed": 9,
+          "win_rate": 88.9,
+          "avg_profit_per_deal_pct": 0.57,
+          "total_fees_paid": 8.69,
+          "capital_utilization_pct": 15.4,
+          "param_value": 0.02
+        },
+        {
+          "total_return_pct": -13.18,
+          "max_drawdown_pct": 22.91,
+          "sharpe_ratio": -0.94,
+          "deals_completed": 9,
+          "win_rate": 88.9,
+          "avg_profit_per_deal_pct": 0.58,
+          "total_fees_paid": 12.84,
+          "capital_utilization_pct": 22.58,
+          "param_value": 0.03
+        },
+        {
+          "total_return_pct": -13.04,
+          "max_drawdown_pct": 22.91,
+          "sharpe_ratio": -0.93,
+          "deals_completed": 9,
+          "win_rate": 88.9,
+          "avg_profit_per_deal_pct": 0.68,
+          "total_fees_paid": 14.95,
+          "capital_utilization_pct": 24.24,
+          "param_value": 0.04
+        },
+        {
+          "total_return_pct": -12.89,
+          "max_drawdown_pct": 22.91,
+          "sharpe_ratio": -0.91,
+          "deals_completed": 9,
+          "win_rate": 88.9,
+          "avg_profit_per_deal_pct": 0.76,
+          "total_fees_paid": 17.06,
+          "capital_utilization_pct": 25.89,
+          "param_value": 0.05
+        }
+      ],
+      "max_safety_orders": [
+        {
+          "total_return_pct": -1.22,
+          "max_drawdown_pct": 2.74,
+          "sharpe_ratio": -1.22,
+          "deals_completed": 9,
+          "win_rate": 88.9,
+          "avg_profit_per_deal_pct": 0.9,
+          "total_fees_paid": 4.6,
+          "capital_utilization_pct": 6.18,
+          "param_value": 3
+        },
+        {
+          "total_return_pct": -0.52,
+          "max_drawdown_pct": 2.05,
+          "sharpe_ratio": -0.48,
+          "deals_completed": 9,
+          "win_rate": 88.9,
+          "avg_profit_per_deal_pct": 1.25,
+          "total_fees_paid": 6.77,
+          "capital_utilization_pct": 6.18,
+          "param_value": 4
+        },
+        {
+          "total_return_pct": -13.18,
+          "max_drawdown_pct": 22.91,
+          "sharpe_ratio": -0.94,
+          "deals_completed": 9,
+          "win_rate": 88.9,
+          "avg_profit_per_deal_pct": 0.58,
+          "total_fees_paid": 12.84,
+          "capital_utilization_pct": 22.58,
+          "param_value": 5
+        },
+        {
+          "total_return_pct": -13.18,
+          "max_drawdown_pct": 22.91,
+          "sharpe_ratio": -0.94,
+          "deals_completed": 9,
+          "win_rate": 88.9,
+          "avg_profit_per_deal_pct": 0.58,
+          "total_fees_paid": 12.84,
+          "capital_utilization_pct": 22.58,
+          "param_value": 6
+        }
+      ],
+      "tp_min": [
+        {
+          "total_return_pct": 0.39,
+          "max_drawdown_pct": 1.71,
+          "sharpe_ratio": 0.4,
+          "deals_completed": 9,
+          "win_rate": 88.9,
+          "avg_profit_per_deal_pct": 1.0,
+          "total_fees_paid": 11.21,
+          "capital_utilization_pct": 5.69,
+          "param_value": 1.0
+        },
+        {
+          "total_return_pct": 0.93,
+          "max_drawdown_pct": 1.72,
+          "sharpe_ratio": 0.94,
+          "deals_completed": 9,
+          "win_rate": 100.0,
+          "avg_profit_per_deal_pct": 1.27,
+          "total_fees_paid": 11.23,
+          "capital_utilization_pct": 6.42,
+          "param_value": 1.25
+        },
+        {
+          "total_return_pct": -13.18,
+          "max_drawdown_pct": 22.91,
+          "sharpe_ratio": -0.94,
+          "deals_completed": 9,
+          "win_rate": 88.9,
+          "avg_profit_per_deal_pct": 0.58,
+          "total_fees_paid": 12.84,
+          "capital_utilization_pct": 22.58,
+          "param_value": 1.5
+        },
+        {
+          "total_return_pct": -14.95,
+          "max_drawdown_pct": 23.79,
+          "sharpe_ratio": -1.12,
+          "deals_completed": 7,
+          "win_rate": 85.7,
+          "avg_profit_per_deal_pct": 0.04,
+          "total_fees_paid": 10.61,
+          "capital_utilization_pct": 24.37,
+          "param_value": 2.0
+        }
+      ],
+      "deviation_baseline": [
+        {
+          "total_return_pct": -19.94,
+          "max_drawdown_pct": 28.36,
+          "sharpe_ratio": -1.58,
+          "deals_completed": 9,
+          "win_rate": 88.9,
+          "avg_profit_per_deal_pct": -0.02,
+          "total_fees_paid": 12.07,
+          "capital_utilization_pct": 29.26,
+          "param_value": 2.5
+        },
+        {
+          "total_return_pct": -18.63,
+          "max_drawdown_pct": 27.13,
+          "sharpe_ratio": -1.48,
+          "deals_completed": 9,
+          "win_rate": 88.9,
+          "avg_profit_per_deal_pct": -0.22,
+          "total_fees_paid": 11.02,
+          "capital_utilization_pct": 26.6,
+          "param_value": 3.0
+        },
+        {
+          "total_return_pct": -13.18,
+          "max_drawdown_pct": 22.91,
+          "sharpe_ratio": -0.94,
+          "deals_completed": 9,
+          "win_rate": 88.9,
+          "avg_profit_per_deal_pct": 0.58,
+          "total_fees_paid": 12.84,
+          "capital_utilization_pct": 22.58,
+          "param_value": 3.5
+        },
+        {
+          "total_return_pct": -16.66,
+          "max_drawdown_pct": 24.82,
+          "sharpe_ratio": -1.29,
+          "deals_completed": 9,
+          "win_rate": 88.9,
+          "avg_profit_per_deal_pct": -0.25,
+          "total_fees_paid": 8.89,
+          "capital_utilization_pct": 21.92,
+          "param_value": 4.0
+        }
+      ]
+    }
+  }
+}

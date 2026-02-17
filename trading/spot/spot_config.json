@@ -1,0 +1,28 @@
+{
+    "exchanges": {
+        "aster": {
+            "enabled": true,
+            "env_key": "ASTER_API_KEY",
+            "env_secret": "ASTER_API_SECRET",
+            "options": {
+                "defaultType": "spot"
+            },
+            "quote_currency": "USDT",
+            "target_pairs": ["BTC/USDT", "ETH/USDT", "BNB/USDT", "ASTER/USDT"]
+        },
+        "hyperliquid": {
+            "enabled": true,
+            "env_key": "HYPERLIQUID_API_KEY",
+            "env_secret": "HYPERLIQUID_API_SECRET",
+            "options": {
+                "defaultType": "spot"
+            },
+            "quote_currency": "USDC",
+            "target_pairs": ["HYPE/USDC", "PURR/USDC"]
+        }
+    },
+    "defaults": {
+        "timeframe": "5m",
+        "ohlcv_limit": 100
+    }
+}

@@ -1,0 +1,36 @@
+{
+  "running": true,
+  "profile": "medium",
+  "exchange": "hyperliquid",
+  "capital": 10000.0,
+  "equity": 9999.25,
+  "cash": 9600.0,
+  "pnl_pct": -0.01,
+  "coins": {
+    "HYPE/USDC": {
+      "state": "ACCUMULATING",
+      "side": "long",
+      "layers": 1,
+      "avg_entry": 29.645,
+      "current_price": 29.61,
+      "unrealized_pnl": -0.47,
+      "next_so_price": 28.7631,
+      "next_tp_price": 30.0138,
+      "invested": 400.0,
+      "realized_pnl": 0
+    }
+  },
+  "deals_completed": 0,
+  "win_rate": 0.0,
+  "total_realized_pnl": 0,
+  "max_drawdown_pct": 0.01,
+  "regime": "ACCUMULATION",
+  "trend_direction": "bearish",
+  "last_update": "2026-02-17T19:48:40+00:00",
+  "uptime_hours": 0.5,
+  "halted": false,
+  "symbols": [
+    "HYPE/USDC"
+  ],
+  "timeframe": "15m"
+}

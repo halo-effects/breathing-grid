@@ -1,0 +1,3613 @@
+{
+  "total_return_pct": -14.56,
+  "max_drawdown_pct": 27.35,
+  "sharpe_ratio": -0.94,
+  "deals_per_day": 0.17,
+  "avg_profit_per_deal_usd": -97.06,
+  "avg_profit_per_deal_pct": 0.93,
+  "avg_hold_time_hours": 136.73,
+  "capital_utilization_pct": 36.7,
+  "win_rate": 93.3,
+  "largest_single_loss": -1638.05,
+  "total_fees_paid": 44.5,
+  "total_deals_completed": 15,
+  "total_deals_open": 0,
+  "initial_capital": 10000.0,
+  "final_equity": 8544.17,
+  "per_lot_stats": {
+    "0": {
+      "count": 15,
+      "total_pnl": -133.2465,
+      "wins": 14,
+      "total_cost": 7500.0,
+      "avg_pnl": -8.8831,
+      "win_rate": 93.3333,
+      "avg_return_pct": -1.7766
+    },
+    "1": {
+      "count": 6,
+      "total_pnl": 65.8194,
+      "wins": 6,
+      "total_cost": 6000.0,
+      "avg_pnl": 10.9699,
+      "win_rate": 100.0,
+      "avg_return_pct": 1.097
+    },
+    "2": {
+      "count": 3,
+      "total_pnl": 76.0248,
+      "wins": 3,
+      "total_cost": 6000.0,
+      "avg_pnl": 25.3416,
+      "win_rate": 100.0,
+      "avg_return_pct": 1.2671
+    },
+    "3": {
+      "count": 1,
+      "total_pnl": 30.1857,
+      "wins": 1,
+      "total_cost": 4000.0,
+      "avg_pnl": 30.1857,
+      "win_rate": 100.0,
+      "avg_return_pct": 0.7546
+    },
+    "4": {
+      "count": 1,
+      "total_pnl": 51.1351,
+      "wins": 1,
+      "total_cost": 4710.7621,
+      "avg_pnl": 51.1351,
+      "win_rate": 100.0,
+      "avg_return_pct": 1.0855
+    },
+    "5": {
+      "count": 1,
+      "total_pnl": 82.3433,
+      "wins": 1,
+      "total_cost": 8792.0829,
+      "avg_pnl": 82.3433,
+      "win_rate": 100.0,
+      "avg_return_pct": 0.9366
+    },
+    "6": {
+      "count": 1,
+      "total_pnl": 66.9703,
+      "wins": 1,
+      "total_cost": 8874.4262,
+      "avg_pnl": 66.9703,
+      "win_rate": 100.0,
+      "avg_return_pct": 0.7546
+    },
+    "7": {
+      "count": 1,
+      "total_pnl": 71.0506,
+      "wins": 1,
+      "total_cost": 8941.3965,
+      "avg_pnl": 71.0506,
+      "win_rate": 100.0,
+      "avg_return_pct": 0.7946
+    },
+    "8": {
+      "count": 1,
+      "total_pnl": 68.0118,
+      "wins": 1,
+      "total_cost": 9012.4471,
+      "avg_pnl": 68.0118,
+      "win_rate": 100.0,
+      "avg_return_pct": 0.7546
+    },
+    "9": {
+      "count": 1,
+      "total_pnl": 102.7579,
+      "wins": 1,
+      "total_cost": 10088.895,
+      "avg_pnl": 102.7579,
+      "win_rate": 100.0,
+      "avg_return_pct": 1.0185
+    },
+    "10": {
+      "count": 1,
+      "total_pnl": 148.2201,
+      "wins": 1,
+      "total_cost": 10191.6529,
+      "avg_pnl": 148.2201,
+      "win_rate": 100.0,
+      "avg_return_pct": 1.4543
+    },
+    "11": {
+      "count": 1,
+      "total_pnl": -2085.1028,
+      "wins": 0,
+      "total_cost": 10339.873,
+      "avg_pnl": -2085.1028,
+      "win_rate": 0.0,
+      "avg_return_pct": -20.1657
+    }
+  },
+  "trade_log": [
+    {
+      "timestamp": "2025-11-23 21:30:00+00:00",
+      "action": "BUY",
+      "deal_id": 1,
+      "lot_id": 0,
+      "price": 2839.05,
+      "qty": 0.17605360948204504,
+      "cost_usd": 500.0,
+      "fee": 0.175,
+      "pnl": 0.0,
+      "regime": "ACCUMULATION"
+    },
+    {
+      "timestamp": "2025-11-24 04:30:00+00:00",
+      "action": "SELL",
+      "deal_id": 1,
+      "lot_id": 0,
+      "price": 2881.63575,
+      "qty": 0.17605360948204504,
+      "cost_usd": 507.32237499999997,
+      "fee": 0.0507322375,
+      "pnl": 7.271642762499994,
+      "regime": "RANGING"
+    },
+    {
+      "timestamp": "2025-11-24 04:30:00+00:00",
+      "action": "BUY",
+      "deal_id": 2,
+      "lot_id": 0,
+      "price": 2876.76,
+      "qty": 0.17374581125988958,
+      "cost_usd": 500.0,
+      "fee": 0.175,
+      "pnl": 0.0,
+      "regime": "RANGING"
+    },
+    {
+      "timestamp": "2025-11-24 09:30:00+00:00",
+      "action": "BUY",
+      "deal_id": 2,
+      "lot_id": 1,
+      "price": 2804.8410000000003,
+      "qty": 0.3564016641228504,
+      "cost_usd": 1000.0,
+      "fee": 0.35,
+      "pnl": 0.0,
+      "regime": "RANGING"
+    },
+    {
+      "timestamp": "2025-11-24 14:30:00+00:00",
+      "action": "SELL",
+      "deal_id": 2,
+      "lot_id": 1,
+      "price": 2840.9112552600004,
+      "qty": 0.3564016641228504,
+      "cost_usd": 1012.505499,
+      "fee": 0.1012505499,
+      "pnl": 12.404248450099999,
+      "regime": "EXTREME"
+    },
+    {
+      "timestamp": "2025-11-24 17:30:00+00:00",
+      "action": "SELL",
+      "deal_id": 2,
+      "lot_id": 0,
+      "price": 2919.9114,
+      "qty": 0.17374581125988958,
+      "cost_usd": 507.32237499999997,
+      "fee": 0.0507322375,
+      "pnl": 7.271642762499994,
+      "regime": "TRENDING"
+    },
+    {
+      "timestamp": "2025-11-24 17:30:00+00:00",
+      "action": "BUY",
+      "deal_id": 3,
+      "lot_id": 0,
+      "price": 2937.01,
+      "qty": 0.1701815792251303,
+      "cost_usd": 500.0,
+      "fee": 0.175,
+      "pnl": 0.0,
+      "regime": "TRENDING"
+    },
+    {
+      "timestamp": "2025-11-24 19:30:00+00:00",
+      "action": "SELL",
+      "deal_id": 3,
+      "lot_id": 0,
+      "price": 2981.06515,
+      "qty": 0.1701815792251303,
+      "cost_usd": 507.3223749999999,
+      "fee": 0.05073223749999999,
+      "pnl": 7.271642762499937,
+      "regime": "MILD_TREND"
+    },
+    {
+      "timestamp": "2025-11-24 19:30:00+00:00",
+      "action": "BUY",
+      "deal_id": 4,
+      "lot_id": 0,
+      "price": 2977.19,
+      "qty": 0.1678848175628697,
+      "cost_usd": 500.0,
+      "fee": 0.175,
+      "pnl": 0.0,
+      "regime": "MILD_TREND"
+    },
+    {
+      "timestamp": "2025-11-25 07:30:00+00:00",
+      "action": "BUY",
+      "deal_id": 4,
+      "lot_id": 1,
+      "price": 2913.5376778,
+      "qty": 0.34310522483266165,
+      "cost_usd": 1000.0,
+      "fee": 0.35,
+      "pnl": 0.0,
+      "regime": "DISTRIBUTION"
+    },
+    {
+      "timestamp": "2025-11-25 17:30:00+00:00",
+      "action": "SELL",
+      "deal_id": 4,
+      "lot_id": 1,
+      "price": 2953.4240086090817,
+      "qty": 0.34310522483266165,
+      "cost_usd": 1013.3352084999998,
+      "fee": 0.10133352084999998,
+      "pnl": 13.233874979149846,
+      "regime": "MILD_TREND"
+    },
+    {
+      "timestamp": "2025-11-26 17:30:00+00:00",
+      "action": "SELL",
+      "deal_id": 4,
+      "lot_id": 0,
+      "price": 3003.3595001000003,
+      "qty": 0.1678848175628697,
+      "cost_usd": 504.2184617500001,
+      "fee": 0.05042184617500001,
+      "pnl": 4.168039903825047,
+      "regime": "EXTREME"
+    },
+    {
+      "timestamp": "2025-11-26 18:30:00+00:00",
+      "action": "BUY",
+      "deal_id": 5,
+      "lot_id": 0,
+      "price": 3027.46,
+      "qty": 0.16509714414063273,
+      "cost_usd": 500.0,
+      "fee": 0.175,
+      "pnl": 0.0,
+      "regime": "MILD_TREND"
+    },
+    {
+      "timestamp": "2025-11-28 08:30:00+00:00",
+      "action": "SELL",
+      "deal_id": 5,
+      "lot_id": 0,
+      "price": 3051.67968,
+      "qty": 0.16509714414063273,
+      "cost_usd": 503.8236,
+      "fee": 0.05038236,
+      "pnl": 3.7732176399999844,
+      "regime": "EXTREME"
+    },
+    {
+      "timestamp": "2025-11-28 09:30:00+00:00",
+      "action": "BUY",
+      "deal_id": 6,
+      "lot_id": 0,
+      "price": 3049.26,
+      "qty": 0.16391681916268208,
+      "cost_usd": 500.0,
+      "fee": 0.175,
+      "pnl": 0.0,
+      "regime": "RANGING"
+    },
+    {
+      "timestamp": "2025-11-28 13:30:00+00:00",
+      "action": "SELL",
+      "deal_id": 6,
+      "lot_id": 0,
+      "price": 3073.6540800000002,
+      "qty": 0.16391681916268208,
+      "cost_usd": 503.8236,
+      "fee": 0.05038236,
+      "pnl": 3.7732176399999844,
+      "regime": "EXTREME"
+    },
+    {
+      "timestamp": "2025-11-28 15:30:00+00:00",
+      "action": "BUY",
+      "deal_id": 7,
+      "lot_id": 0,
+      "price": 3028.08,
+      "qty": 0.16506334046656626,
+      "cost_usd": 500.0,
+      "fee": 0.175,
+      "pnl": 0.0,
+      "regime": "TRENDING"
+    },
+    {
+      "timestamp": "2025-11-30 13:30:00+00:00",
+      "action": "SELL",
+      "deal_id": 7,
+      "lot_id": 0,
+      "price": 3052.30464,
+      "qty": 0.16506334046656626,
+      "cost_usd": 503.82359999999994,
+      "fee": 0.050382359999999994,
+      "pnl": 3.7732176399999275,
+      "regime": "MILD_TREND"
+    },
+    {
+      "timestamp": "2025-11-30 13:30:00+00:00",
+      "action": "BUY",
+      "deal_id": 8,
+      "lot_id": 0,
+      "price": 3037.63,
+      "qty": 0.1645443980998344,
+      "cost_usd": 500.0,
+      "fee": 0.175,
+      "pnl": 0.0,
+      "regime": "MILD_TREND"
+    },
+    {
+      "timestamp": "2025-12-01 01:30:00+00:00",
+      "action": "BUY",
+      "deal_id": 8,
+      "lot_id": 1,
+      "price": 2931.31295,
+      "qty": 0.3410246592742682,
+      "cost_usd": 1000.0,
+      "fee": 0.35,
+      "pnl": 0.0,
+      "regime": "TRENDING"
+    },
+    {
+      "timestamp": "2025-12-01 02:30:00+00:00",
+      "action": "BUY",
+      "deal_id": 8,
+      "lot_id": 2,
+      "price": 2824.9959,
+      "qty": 0.7077178412896103,
+      "cost_usd": 2000.0,
+      "fee": 0.7,
+      "pnl": 0.0,
+      "regime": "TRENDING"
+    },
+    {
+      "timestamp": "2025-12-02 13:30:00+00:00",
+      "action": "SELL",
+      "deal_id": 8,
+      "lot_id": 2,
+      "price": 2855.5906055969995,
+      "qty": 0.7077178412896103,
+      "cost_usd": 2020.9524189999995,
+      "fee": 0.20209524189999997,
+      "pnl": 20.750323758099512,
+      "regime": "MILD_TREND"
+    },
+    {
+      "timestamp": "2025-12-02 14:30:00+00:00",
+      "action": "SELL",
+      "deal_id": 8,
+      "lot_id": 1,
+      "price": 2957.5188877729997,
+      "qty": 0.3410246592742682,
+      "cost_usd": 1008.586871,
+      "fee": 0.1008586871,
+      "pnl": 8.486012312900016,
+      "regime": "EXTREME"
+    },
+    {
+      "timestamp": "2025-12-03 05:30:00+00:00",
+      "action": "SELL",
+      "deal_id": 8,
+      "lot_id": 0,
+      "price": 3070.1933936000005,
+      "qty": 0.1645443980998344,
+      "cost_usd": 505.183124,
+      "fee": 0.0505183124,
+      "pnl": 5.132605687600005,
+      "regime": "DISTRIBUTION"
+    },
+    {
+      "timestamp": "2025-12-03 05:30:00+00:00",
+      "action": "BUY",
+      "deal_id": 9,
+      "lot_id": 0,
+      "price": 3082.34,
+      "qty": 0.16215764646340117,
+      "cost_usd": 500.0,
+      "fee": 0.175,
+      "pnl": 0.0,
+      "regime": "DISTRIBUTION"
+    },
+    {
+      "timestamp": "2025-12-03 14:30:00+00:00",
+      "action": "SELL",
+      "deal_id": 9,
+      "lot_id": 0,
+      "price": 3111.6222300000004,
+      "qty": 0.16215764646340117,
+      "cost_usd": 504.57333750000004,
+      "fee": 0.05045733375000001,
+      "pnl": 4.522880166250047,
+      "regime": "EXTREME"
+    },
+    {
+      "timestamp": "2025-12-03 15:30:00+00:00",
+      "action": "BUY",
+      "deal_id": 10,
+      "lot_id": 0,
+      "price": 3084.65,
+      "qty": 0.16203621156371062,
+      "cost_usd": 500.0,
+      "fee": 0.175,
+      "pnl": 0.0,
+      "regime": "ACCUMULATION"
+    },
+    {
+      "timestamp": "2025-12-03 17:30:00+00:00",
+      "action": "SELL",
+      "deal_id": 10,
+      "lot_id": 0,
+      "price": 3130.9197499999996,
+      "qty": 0.16203621156371062,
+      "cost_usd": 507.3223749999999,
+      "fee": 0.05073223749999999,
+      "pnl": 7.271642762499937,
+      "regime": "TRENDING"
+    },
+    {
+      "timestamp": "2025-12-03 17:30:00+00:00",
+      "action": "BUY",
+      "deal_id": 11,
+      "lot_id": 0,
+      "price": 3133.72,
+      "qty": 0.15949893417408065,
+      "cost_usd": 500.0,
+      "fee": 0.175,
+      "pnl": 0.0,
+      "regime": "TRENDING"
+    },
+    {
+      "timestamp": "2025-12-03 22:30:00+00:00",
+      "action": "SELL",
+      "deal_id": 11,
+      "lot_id": 0,
+      "price": 3180.7257999999997,
+      "qty": 0.15949893417408065,
+      "cost_usd": 507.32237499999997,
+      "fee": 0.0507322375,
+      "pnl": 7.271642762499994,
+      "regime": "TRENDING"
+    },
+    {
+      "timestamp": "2025-12-03 22:30:00+00:00",
+      "action": "BUY",
+      "deal_id": 12,
+      "lot_id": 0,
+      "price": 3181.51,
+      "qty": 0.15710307369770957,
+      "cost_usd": 500.0,
+      "fee": 0.175,
+      "pnl": 0.0,
+      "regime": "TRENDING"
+    },
+    {
+      "timestamp": "2025-12-04 00:30:00+00:00",
+      "action": "SELL",
+      "deal_id": 12,
+      "lot_id": 0,
+      "price": 3229.23265,
+      "qty": 0.15710307369770957,
+      "cost_usd": 507.32237499999997,
+      "fee": 0.0507322375,
+      "pnl": 7.271642762499994,
+      "regime": "TRENDING"
+    },
+    {
+      "timestamp": "2025-12-04 00:30:00+00:00",
+      "action": "BUY",
+      "deal_id": 13,
+      "lot_id": 0,
+      "price": 3209.3,
+      "qty": 0.15574268532078644,
+      "cost_usd": 500.0,
+      "fee": 0.175,
+      "pnl": 0.0,
+      "regime": "TRENDING"
+    },
+    {
+      "timestamp": "2025-12-04 19:30:00+00:00",
+      "action": "BUY",
+      "deal_id": 13,
+      "lot_id": 1,
+      "price": 3129.0675,
+      "qty": 0.3194721750169979,
+      "cost_usd": 1000.0,
+      "fee": 0.35,
+      "pnl": 0.0,
+      "regime": "MILD_TREND"
+    },
+    {
+      "timestamp": "2025-12-05 01:30:00+00:00",
+      "action": "SELL",
+      "deal_id": 13,
+      "lot_id": 1,
+      "price": 3176.0035125,
+      "qty": 0.3194721750169979,
+      "cost_usd": 1014.6447499999999,
+      "fee": 0.101464475,
+      "pnl": 14.543285524999988,
+      "regime": "MILD_TREND"
+    },
+    {
+      "timestamp": "2025-12-06 05:30:00+00:00",
+      "action": "BUY",
+      "deal_id": 13,
+      "lot_id": 2,
+      "price": 3045.4844908000005,
+      "qty": 0.6564801121265325,
+      "cost_usd": 2000.0,
+      "fee": 0.7,
+      "pnl": 0.0,
+      "regime": "ACCUMULATION"
+    },
+    {
+      "timestamp": "2025-12-07 16:30:00+00:00",
+      "action": "SELL",
+      "deal_id": 13,
+      "lot_id": 2,
+      "price": 3087.5730864628563,
+      "qty": 0.6564801121265325,
+      "cost_usd": 2026.9303259999997,
+      "fee": 0.2026930326,
+      "pnl": 26.727632967399586,
+      "regime": "MILD_TREND"
+    },
+    {
+      "timestamp": "2025-12-09 15:30:00+00:00",
+      "action": "SELL",
+      "deal_id": 13,
+      "lot_id": 0,
+      "price": 3240.719047,
+      "qty": 0.15574268532078644,
+      "cost_usd": 504.71828674999995,
+      "fee": 0.050471828675,
+      "pnl": 4.667814921324975,
+      "regime": "EXTREME"
+    },
+    {
+      "timestamp": "2025-12-09 17:30:00+00:00",
+      "action": "BUY",
+      "deal_id": 14,
+      "lot_id": 0,
+      "price": 3382.38,
+      "qty": 0.14777316564076182,
+      "cost_usd": 500.0,
+      "fee": 0.175,
+      "pnl": 0.0,
+      "regime": "MILD_TREND"
+    },
+    {
+      "timestamp": "2025-12-09 21:30:00+00:00",
+      "action": "BUY",
+      "deal_id": 14,
+      "lot_id": 1,
+      "price": 3297.8205,
+      "qty": 0.3031244423400243,
+      "cost_usd": 1000.0,
+      "fee": 0.35,
+      "pnl": 0.0,
+      "regime": "MILD_TREND"
+    },
+    {
+      "timestamp": "2025-12-10 06:30:00+00:00",
+      "action": "SELL",
+      "deal_id": 14,
+      "lot_id": 1,
+      "price": 3328.0615139849997,
+      "qty": 0.3031244423400243,
+      "cost_usd": 1008.8167904999999,
+      "fee": 0.10088167904999999,
+      "pnl": 8.715908820949949,
+      "regime": "ACCUMULATION"
+    },
+    {
+      "timestamp": "2025-12-10 18:30:00+00:00",
+      "action": "SELL",
+      "deal_id": 14,
+      "lot_id": 0,
+      "price": 3410.3861064000002,
+      "qty": 0.14777316564076182,
+      "cost_usd": 503.963551,
+      "fee": 0.050396355100000005,
+      "pnl": 3.9131546448999757,
+      "regime": "EXTREME"
+    },
+    {
+      "timestamp": "2025-12-10 19:30:00+00:00",
+      "action": "BUY",
+      "deal_id": 15,
+      "lot_id": 0,
+      "price": 3401.2,
+      "qty": 0.1469554862989533,
+      "cost_usd": 500.0,
+      "fee": 0.175,
+      "pnl": 0.0,
+      "regime": "TRENDING"
+    },
+    {
+      "timestamp": "2025-12-10 23:30:00+00:00",
+      "action": "BUY",
+      "deal_id": 15,
+      "lot_id": 1,
+      "price": 3316.1699999999996,
+      "qty": 0.30144715138246836,
+      "cost_usd": 1000.0,
+      "fee": 0.35,
+      "pnl": 0.0,
+      "regime": "MILD_TREND"
+    },
+    {
+      "timestamp": "2025-12-11 11:30:00+00:00",
+      "action": "BUY",
+      "deal_id": 15,
+      "lot_id": 2,
+      "price": 3195.1144896,
+      "qty": 0.6257365757964731,
+      "cost_usd": 2000.0,
+      "fee": 0.7,
+      "pnl": 0.0,
+      "regime": "ACCUMULATION"
+    },
+    {
+      "timestamp": "2025-12-11 20:30:00+00:00",
+      "action": "SELL",
+      "deal_id": 15,
+      "lot_id": 2,
+      "price": 3242.178526031808,
+      "qty": 0.6257365757964731,
+      "cost_usd": 2028.749689,
+      "fee": 0.2028749689,
+      "pnl": 28.546814031099984,
+      "regime": "TRENDING"
+    },
+    {
+      "timestamp": "2025-12-13 03:30:00+00:00",
+      "action": "BUY",
+      "deal_id": 15,
+      "lot_id": 3,
+      "price": 3091.5003328,
+      "qty": 1.2934172956657688,
+      "cost_usd": 4000.0,
+      "fee": 1.4,
+      "pnl": 0.0,
+      "regime": "ACCUMULATION"
+    },
+    {
+      "timestamp": "2025-12-13 05:30:00+00:00",
+      "action": "BUY",
+      "deal_id": 15,
+      "lot_id": 4,
+      "price": 3115.4991999999997,
+      "qty": 1.5115116508220017,
+      "cost_usd": 4710.762105663607,
+      "fee": 1.6487667369822625,
+      "pnl": 0.0,
+      "regime": "ACCUMULATION"
+    },
+    {
+      "timestamp": "2025-12-13 07:30:00+00:00",
+      "action": "SELL",
+      "deal_id": 15,
+      "lot_id": 3,
+      "price": 3116.2323354624,
+      "qty": 1.2934172956657688,
+      "cost_usd": 4030.5888,
+      "fee": 0.40305888,
+      "pnl": 30.185741119999875,
+      "regime": "TRENDING"
+    },
+    {
+      "timestamp": "2025-12-15 09:30:00+00:00",
+      "action": "SELL",
+      "deal_id": 15,
+      "lot_id": 4,
+      "price": 3150.7354959519994,
+      "qty": 1.5115116508220017,
+      "cost_usd": 4762.3734107898845,
+      "fee": 0.47623734107898846,
+      "pnl": 51.13506778519877,
+      "regime": "MILD_TREND"
+    },
+    {
+      "timestamp": "2025-12-17 04:30:00+00:00",
+      "action": "BUY",
+      "deal_id": 15,
+      "lot_id": 5,
+      "price": 2933.126856,
+      "qty": 2.9964628592759057,
+      "cost_usd": 8792.082914568806,
+      "fee": 3.077229020099082,
+      "pnl": 0.0,
+      "regime": "ACCUMULATION"
+    },
+    {
+      "timestamp": "2025-12-17 14:30:00+00:00",
+      "action": "SELL",
+      "deal_id": 15,
+      "lot_id": 5,
+      "price": 2961.93016172592,
+      "qty": 2.9964628592759057,
+      "cost_usd": 8875.313721380795,
+      "fee": 0.8875313721380795,
+      "pnl": 82.34327543985091,
+      "regime": "BREAKOUT_WARNING"
+    },
+    {
+      "timestamp": "2025-12-18 05:30:00+00:00",
+      "action": "BUY",
+      "deal_id": 15,
+      "lot_id": 6,
+      "price": 2855.5114719999997,
+      "qty": 3.1067359482988466,
+      "cost_usd": 8874.426190008657,
+      "fee": 3.1060491665030296,
+      "pnl": 0.0,
+      "regime": "ACCUMULATION"
+    },
+    {
+      "timestamp": "2025-12-18 12:30:00+00:00",
+      "action": "SELL",
+      "deal_id": 15,
+      "lot_id": 6,
+      "price": 2878.3555637759996,
+      "qty": 3.1067359482988466,
+      "cost_usd": 8942.290701968892,
+      "fee": 0.8942290701968892,
+      "pnl": 66.97028289003902,
+      "regime": "BREAKOUT_WARNING"
+    },
+    {
+      "timestamp": "2025-12-20 04:30:00+00:00",
+      "action": "BUY",
+      "deal_id": 15,
+      "lot_id": 7,
+      "price": 3042.8835799999997,
+      "qty": 2.9374331120920445,
+      "cost_usd": 8941.396472898696,
+      "fee": 3.1294887655145436,
+      "pnl": 0.0,
+      "regime": "ACCUMULATION"
+    },
+    {
+      "timestamp": "2025-12-22 13:30:00+00:00",
+      "action": "SELL",
+      "deal_id": 15,
+      "lot_id": 7,
+      "price": 3068.4438020719995,
+      "qty": 2.9374331120920445,
+      "cost_usd": 9013.3484267999,
+      "fee": 0.90133484267999,
+      "pnl": 71.05061905852381,
+      "regime": "RANGING"
+    },
+    {
+      "timestamp": "2025-12-25 16:30:00+00:00",
+      "action": "BUY",
+      "deal_id": 15,
+      "lot_id": 8,
+      "price": 2993.056,
+      "qty": 3.0100648753230925,
+      "cost_usd": 9012.44709195722,
+      "fee": 3.154356482185027,
+      "pnl": 0.0,
+      "regime": "MILD_TREND"
+    },
+    {
+      "timestamp": "2025-12-29 01:30:00+00:00",
+      "action": "SELL",
+      "deal_id": 15,
+      "lot_id": 8,
+      "price": 3017.0004480000002,
+      "qty": 3.0100648753230925,
+      "cost_usd": 9081.367077358835,
+      "fee": 0.9081367077358835,
+      "pnl": 68.01184869387907,
+      "regime": "EXTREME"
+    },
+    {
+      "timestamp": "2026-01-13 21:30:00+00:00",
+      "action": "SELL",
+      "deal_id": 15,
+      "lot_id": 1,
+      "price": 3345.6507512999997,
+      "qty": 0.30144715138246836,
+      "cost_usd": 1008.5368885,
+      "fee": 0.10085368885000001,
+      "pnl": 8.43603481115008,
+      "regime": "EXTREME"
+    },
+    {
+      "timestamp": "2026-01-27 06:30:00+00:00",
+      "action": "BUY",
+      "deal_id": 15,
+      "lot_id": 9,
+      "price": 2925.2020599999996,
+      "qty": 3.4477494734913585,
+      "cost_usd": 10088.894975462248,
+      "fee": 3.531113241411787,
+      "pnl": 0.0,
+      "regime": "DISTRIBUTION"
+    },
+    {
+      "timestamp": "2026-01-27 15:30:00+00:00",
+      "action": "SELL",
+      "deal_id": 15,
+      "lot_id": 9,
+      "price": 2956.3262099183994,
+      "qty": 3.4477494734913585,
+      "cost_usd": 10192.672133714865,
+      "fee": 1.0192672133714866,
+      "pnl": 102.7578910392458,
+      "regime": "TRENDING"
+    },
+    {
+      "timestamp": "2026-02-02 02:30:00+00:00",
+      "action": "BUY",
+      "deal_id": 15,
+      "lot_id": 10,
+      "price": 2210.7799999999997,
+      "qty": 4.608367086728765,
+      "cost_usd": 10191.652866501494,
+      "fee": 3.567078503275523,
+      "pnl": 0.0,
+      "regime": "TRENDING"
+    },
+    {
+      "timestamp": "2026-02-02 02:30:00+00:00",
+      "action": "SELL",
+      "deal_id": 15,
+      "lot_id": 10,
+      "price": 2243.9416999999994,
+      "qty": 4.608367086728765,
+      "cost_usd": 10340.90707481819,
+      "fee": 1.034090707481819,
+      "pnl": 148.22011760921305,
+      "regime": "TRENDING"
+    },
+    {
+      "timestamp": "2026-02-02 14:30:00+00:00",
+      "action": "BUY",
+      "deal_id": 15,
+      "lot_id": 11,
+      "price": 2465.87,
+      "qty": 4.191727069377651,
+      "cost_usd": 10339.872984110707,
+      "fee": 3.6189555444387476,
+      "pnl": 0.0,
+      "regime": "TRENDING"
+    },
+    {
+      "timestamp": "2026-02-17 16:30:00+00:00",
+      "action": "SELL(FORCE)",
+      "deal_id": 15,
+      "lot_id": 0,
+      "price": 1969.99,
+      "qty": 0.1469554862989533,
+      "cost_usd": 289.500838454075,
+      "fee": 0.10132529345892624,
+      "pnl": -210.6004868393839,
+      "regime": ""
+    },
+    {
+      "timestamp": "2026-02-17 16:30:00+00:00",
+      "action": "SELL(FORCE)",
+      "deal_id": 15,
+      "lot_id": 11,
+      "price": 1969.99,
+      "qty": 4.191727069377651,
+      "cost_usd": 8257.66040940328,
+      "fee": 2.8901811432911475,
+      "pnl": -2085.1027558507194,
+      "regime": ""
+    }
+  ],
+  "deals": [
+    {
+      "deal_id": 1,
+      "symbol": "ETH/USDT",
+      "lots": [
+        {
+          "lot_id": 0,
+          "buy_price": 2839.05,
+          "qty": 0.17605360948204504,
+          "cost_usd": 500.0,
+          "buy_fee": 0.175,
+          "buy_time": "2025-11-23 21:30:00+00:00",
+          "sell_price": 2881.63575,
+          "sell_fee": 0.0507322375,
+          "sell_time": "2025-11-24 04:30:00+00:00",
+          "tp_target": 2881.63575,
+          "pnl": 7.271642762499994
+        }
+      ],
+      "open_time": "2025-11-23 21:30:00+00:00",
+      "close_time": "2025-11-24 04:30:00+00:00",
+      "regime_at_open": "ACCUMULATION",
+      "total_invested": 500.0,
+      "total_pnl": 7.271642762499994,
+      "total_fees": 0.2257322375,
+      "is_complete": true
+    },
+    {
+      "deal_id": 2,
+      "symbol": "ETH/USDT",
+      "lots": [
+        {
+          "lot_id": 0,
+          "buy_price": 2876.76,
+          "qty": 0.17374581125988958,
+          "cost_usd": 500.0,
+          "buy_fee": 0.175,
+          "buy_time": "2025-11-24 04:30:00+00:00",
+          "sell_price": 2919.9114,
+          "sell_fee": 0.0507322375,
+          "sell_time": "2025-11-24 17:30:00+00:00",
+          "tp_target": 2919.9114,
+          "pnl": 7.271642762499994
+        },
+        {
+          "lot_id": 1,
+          "buy_price": 2804.8410000000003,
+          "qty": 0.3564016641228504,
+          "cost_usd": 1000.0,
+          "buy_fee": 0.35,
+          "buy_time": "2025-11-24 09:30:00+00:00",
+          "sell_price": 2840.9112552600004,
+          "sell_fee": 0.1012505499,
+          "sell_time": "2025-11-24 14:30:00+00:00",
+          "tp_target": 2840.9112552600004,
+          "pnl": 12.404248450099999
+        }
+      ],
+      "open_time": "2025-11-24 04:30:00+00:00",
+      "close_time": "2025-11-24 17:30:00+00:00",
+      "regime_at_open": "RANGING",
+      "total_invested": 1500.0,
+      "total_pnl": 19.675891212599993,
+      "total_fees": 0.6769827874,
+      "is_complete": true
+    },
+    {
+      "deal_id": 3,
+      "symbol": "ETH/USDT",
+      "lots": [
+        {
+          "lot_id": 0,
+          "buy_price": 2937.01,
+          "qty": 0.1701815792251303,
+          "cost_usd": 500.0,
+          "buy_fee": 0.175,
+          "buy_time": "2025-11-24 17:30:00+00:00",
+          "sell_price": 2981.06515,
+          "sell_fee": 0.05073223749999999,
+          "sell_time": "2025-11-24 19:30:00+00:00",
+          "tp_target": 2981.06515,
+          "pnl": 7.271642762499937
+        }
+      ],
+      "open_time": "2025-11-24 17:30:00+00:00",
+      "close_time": "2025-11-24 19:30:00+00:00",
+      "regime_at_open": "TRENDING",
+      "total_invested": 500.0,
+      "total_pnl": 7.271642762499937,
+      "total_fees": 0.2257322375,
+      "is_complete": true
+    },
+    {
+      "deal_id": 4,
+      "symbol": "ETH/USDT",
+      "lots": [
+        {
+          "lot_id": 0,
+          "buy_price": 2977.19,
+          "qty": 0.1678848175628697,
+          "cost_usd": 500.0,
+          "buy_fee": 0.175,
+          "buy_time": "2025-11-24 19:30:00+00:00",
+          "sell_price": 3003.3595001000003,
+          "sell_fee": 0.05042184617500001,
+          "sell_time": "2025-11-26 17:30:00+00:00",
+          "tp_target": 3003.3595001000003,
+          "pnl": 4.168039903825047
+        },
+        {
+          "lot_id": 1,
+          "buy_price": 2913.5376778,
+          "qty": 0.34310522483266165,
+          "cost_usd": 1000.0,
+          "buy_fee": 0.35,
+          "buy_time": "2025-11-25 07:30:00+00:00",
+          "sell_price": 2953.4240086090817,
+          "sell_fee": 0.10133352084999998,
+          "sell_time": "2025-11-25 17:30:00+00:00",
+          "tp_target": 2953.4240086090817,
+          "pnl": 13.233874979149846
+        }
+      ],
+      "open_time": "2025-11-24 19:30:00+00:00",
+      "close_time": "2025-11-26 17:30:00+00:00",
+      "regime_at_open": "MILD_TREND",
+      "total_invested": 1500.0,
+      "total_pnl": 17.401914882974893,
+      "total_fees": 0.6767553670249999,
+      "is_complete": true
+    },
+    {
+      "deal_id": 5,
+      "symbol": "ETH/USDT",
+      "lots": [
+        {
+          "lot_id": 0,
+          "buy_price": 3027.46,
+          "qty": 0.16509714414063273,
+          "cost_usd": 500.0,
+          "buy_fee": 0.175,
+          "buy_time": "2025-11-26 18:30:00+00:00",
+          "sell_price": 3051.67968,
+          "sell_fee": 0.05038236,
+          "sell_time": "2025-11-28 08:30:00+00:00",
+          "tp_target": 3051.67968,
+          "pnl": 3.7732176399999844
+        }
+      ],
+      "open_time": "2025-11-26 18:30:00+00:00",
+      "close_time": "2025-11-28 08:30:00+00:00",
+      "regime_at_open": "MILD_TREND",
+      "total_invested": 500.0,
+      "total_pnl": 3.7732176399999844,
+      "total_fees": 0.22538236,
+      "is_complete": true
+    },
+    {
+      "deal_id": 6,
+      "symbol": "ETH/USDT",
+      "lots": [
+        {
+          "lot_id": 0,
+          "buy_price": 3049.26,
+          "qty": 0.16391681916268208,
+          "cost_usd": 500.0,
+          "buy_fee": 0.175,
+          "buy_time": "2025-11-28 09:30:00+00:00",
+          "sell_price": 3073.6540800000002,
+          "sell_fee": 0.05038236,
+          "sell_time": "2025-11-28 13:30:00+00:00",
+          "tp_target": 3073.6540800000002,
+          "pnl": 3.7732176399999844
+        }
+      ],
+      "open_time": "2025-11-28 09:30:00+00:00",
+      "close_time": "2025-11-28 13:30:00+00:00",
+      "regime_at_open": "RANGING",
+      "total_invested": 500.0,
+      "total_pnl": 3.7732176399999844,
+      "total_fees": 0.22538236,
+      "is_complete": true
+    },
+    {
+      "deal_id": 7,
+      "symbol": "ETH/USDT",
+      "lots": [
+        {
+          "lot_id": 0,
+          "buy_price": 3028.08,
+          "qty": 0.16506334046656626,
+          "cost_usd": 500.0,
+          "buy_fee": 0.175,
+          "buy_time": "2025-11-28 15:30:00+00:00",
+          "sell_price": 3052.30464,
+          "sell_fee": 0.050382359999999994,
+          "sell_time": "2025-11-30 13:30:00+00:00",
+          "tp_target": 3052.30464,
+          "pnl": 3.7732176399999275
+        }
+      ],
+      "open_time": "2025-11-28 15:30:00+00:00",
+      "close_time": "2025-11-30 13:30:00+00:00",
+      "regime_at_open": "TRENDING",
+      "total_invested": 500.0,
+      "total_pnl": 3.7732176399999275,
+      "total_fees": 0.22538235999999998,
+      "is_complete": true
+    },
+    {
+      "deal_id": 8,
+      "symbol": "ETH/USDT",
+      "lots": [
+        {
+          "lot_id": 0,
+          "buy_price": 3037.63,
+          "qty": 0.1645443980998344,
+          "cost_usd": 500.0,
+          "buy_fee": 0.175,
+          "buy_time": "2025-11-30 13:30:00+00:00",
+          "sell_price": 3070.1933936000005,
+          "sell_fee": 0.0505183124,
+          "sell_time": "2025-12-03 05:30:00+00:00",
+          "tp_target": 3070.1933936000005,
+          "pnl": 5.132605687600005
+        },
+        {
+          "lot_id": 1,
+          "buy_price": 2931.31295,
+          "qty": 0.3410246592742682,
+          "cost_usd": 1000.0,
+          "buy_fee": 0.35,
+          "buy_time": "2025-12-01 01:30:00+00:00",
+          "sell_price": 2957.5188877729997,
+          "sell_fee": 0.1008586871,
+          "sell_time": "2025-12-02 14:30:00+00:00",
+          "tp_target": 2957.5188877729997,
+          "pnl": 8.486012312900016
+        },
+        {
+          "lot_id": 2,
+          "buy_price": 2824.9959,
+          "qty": 0.7077178412896103,
+          "cost_usd": 2000.0,
+          "buy_fee": 0.7,
+          "buy_time": "2025-12-01 02:30:00+00:00",
+          "sell_price": 2855.5906055969995,
+          "sell_fee": 0.20209524189999997,
+          "sell_time": "2025-12-02 13:30:00+00:00",
+          "tp_target": 2855.5906055969995,
+          "pnl": 20.750323758099512
+        }
+      ],
+      "open_time": "2025-11-30 13:30:00+00:00",
+      "close_time": "2025-12-03 05:30:00+00:00",
+      "regime_at_open": "MILD_TREND",
+      "total_invested": 3500.0,
+      "total_pnl": 34.36894175859953,
+      "total_fees": 1.5784722413999999,
+      "is_complete": true
+    },
+    {
+      "deal_id": 9,
+      "symbol": "ETH/USDT",
+      "lots": [
+        {
+          "lot_id": 0,
+          "buy_price": 3082.34,
+          "qty": 0.16215764646340117,
+          "cost_usd": 500.0,
+          "buy_fee": 0.175,
+          "buy_time": "2025-12-03 05:30:00+00:00",
+          "sell_price": 3111.6222300000004,
+          "sell_fee": 0.05045733375000001,
+          "sell_time": "2025-12-03 14:30:00+00:00",
+          "tp_target": 3111.6222300000004,
+          "pnl": 4.522880166250047
+        }
+      ],
+      "open_time": "2025-12-03 05:30:00+00:00",
+      "close_time": "2025-12-03 14:30:00+00:00",
+      "regime_at_open": "DISTRIBUTION",
+      "total_invested": 500.0,
+      "total_pnl": 4.522880166250047,
+      "total_fees": 0.22545733375,
+      "is_complete": true
+    },
+    {
+      "deal_id": 10,
+      "symbol": "ETH/USDT",
+      "lots": [
+        {
+          "lot_id": 0,
+          "buy_price": 3084.65,
+          "qty": 0.16203621156371062,
+          "cost_usd": 500.0,
+          "buy_fee": 0.175,
+          "buy_time": "2025-12-03 15:30:00+00:00",
+          "sell_price": 3130.9197499999996,
+          "sell_fee": 0.05073223749999999,
+          "sell_time": "2025-12-03 17:30:00+00:00",
+          "tp_target": 3130.9197499999996,
+          "pnl": 7.271642762499937
+        }
+      ],
+      "open_time": "2025-12-03 15:30:00+00:00",
+      "close_time": "2025-12-03 17:30:00+00:00",
+      "regime_at_open": "ACCUMULATION",
+      "total_invested": 500.0,
+      "total_pnl": 7.271642762499937,
+      "total_fees": 0.2257322375,
+      "is_complete": true
+    },
+    {
+      "deal_id": 11,
+      "symbol": "ETH/USDT",
+      "lots": [
+        {
+          "lot_id": 0,
+          "buy_price": 3133.72,
+          "qty": 0.15949893417408065,
+          "cost_usd": 500.0,
+          "buy_fee": 0.175,
+          "buy_time": "2025-12-03 17:30:00+00:00",
+          "sell_price": 3180.7257999999997,
+          "sell_fee": 0.0507322375,
+          "sell_time": "2025-12-03 22:30:00+00:00",
+          "tp_target": 3180.7257999999997,
+          "pnl": 7.271642762499994
+        }
+      ],
+      "open_time": "2025-12-03 17:30:00+00:00",
+      "close_time": "2025-12-03 22:30:00+00:00",
+      "regime_at_open": "TRENDING",
+      "total_invested": 500.0,
+      "total_pnl": 7.271642762499994,
+      "total_fees": 0.2257322375,
+      "is_complete": true
+    },
+    {
+      "deal_id": 12,
+      "symbol": "ETH/USDT",
+      "lots": [
+        {
+          "lot_id": 0,
+          "buy_price": 3181.51,
+          "qty": 0.15710307369770957,
+          "cost_usd": 500.0,
+          "buy_fee": 0.175,
+          "buy_time": "2025-12-03 22:30:00+00:00",
+          "sell_price": 3229.23265,
+          "sell_fee": 0.0507322375,
+          "sell_time": "2025-12-04 00:30:00+00:00",
+          "tp_target": 3229.23265,
+          "pnl": 7.271642762499994
+        }
+      ],
+      "open_time": "2025-12-03 22:30:00+00:00",
+      "close_time": "2025-12-04 00:30:00+00:00",
+      "regime_at_open": "TRENDING",
+      "total_invested": 500.0,
+      "total_pnl": 7.271642762499994,
+      "total_fees": 0.2257322375,
+      "is_complete": true
+    },
+    {
+      "deal_id": 13,
+      "symbol": "ETH/USDT",
+      "lots": [
+        {
+          "lot_id": 0,
+          "buy_price": 3209.3,
+          "qty": 0.15574268532078644,
+          "cost_usd": 500.0,
+          "buy_fee": 0.175,
+          "buy_time": "2025-12-04 00:30:00+00:00",
+          "sell_price": 3240.719047,
+          "sell_fee": 0.050471828675,
+          "sell_time": "2025-12-09 15:30:00+00:00",
+          "tp_target": 3240.719047,
+          "pnl": 4.667814921324975
+        },
+        {
+          "lot_id": 1,
+          "buy_price": 3129.0675,
+          "qty": 0.3194721750169979,
+          "cost_usd": 1000.0,
+          "buy_fee": 0.35,
+          "buy_time": "2025-12-04 19:30:00+00:00",
+          "sell_price": 3176.0035125,
+          "sell_fee": 0.101464475,
+          "sell_time": "2025-12-05 01:30:00+00:00",
+          "tp_target": 3176.0035125,
+          "pnl": 14.543285524999988
+        },
+        {
+          "lot_id": 2,
+          "buy_price": 3045.4844908000005,
+          "qty": 0.6564801121265325,
+          "cost_usd": 2000.0,
+          "buy_fee": 0.7,
+          "buy_time": "2025-12-06 05:30:00+00:00",
+          "sell_price": 3087.5730864628563,
+          "sell_fee": 0.2026930326,
+          "sell_time": "2025-12-07 16:30:00+00:00",
+          "tp_target": 3087.5730864628563,
+          "pnl": 26.727632967399586
+        }
+      ],
+      "open_time": "2025-12-04 00:30:00+00:00",
+      "close_time": "2025-12-09 15:30:00+00:00",
+      "regime_at_open": "TRENDING",
+      "total_invested": 3500.0,
+      "total_pnl": 45.93873341372455,
+      "total_fees": 1.579629336275,
+      "is_complete": true
+    },
+    {
+      "deal_id": 14,
+      "symbol": "ETH/USDT",
+      "lots": [
+        {
+          "lot_id": 0,
+          "buy_price": 3382.38,
+          "qty": 0.14777316564076182,
+          "cost_usd": 500.0,
+          "buy_fee": 0.175,
+          "buy_time": "2025-12-09 17:30:00+00:00",
+          "sell_price": 3410.3861064000002,
+          "sell_fee": 0.050396355100000005,
+          "sell_time": "2025-12-10 18:30:00+00:00",
+          "tp_target": 3410.3861064000002,
+          "pnl": 3.9131546448999757
+        },
+        {
+          "lot_id": 1,
+          "buy_price": 3297.8205,
+          "qty": 0.3031244423400243,
+          "cost_usd": 1000.0,
+          "buy_fee": 0.35,
+          "buy_time": "2025-12-09 21:30:00+00:00",
+          "sell_price": 3328.0615139849997,
+          "sell_fee": 0.10088167904999999,
+          "sell_time": "2025-12-10 06:30:00+00:00",
+          "tp_target": 3328.0615139849997,
+          "pnl": 8.715908820949949
+        }
+      ],
+      "open_time": "2025-12-09 17:30:00+00:00",
+      "close_time": "2025-12-10 18:30:00+00:00",
+      "regime_at_open": "MILD_TREND",
+      "total_invested": 1500.0,
+      "total_pnl": 12.629063465849924,
+      "total_fees": 0.67627803415,
+      "is_complete": true
+    },
+    {
+      "deal_id": 15,
+      "symbol": "ETH/USDT",
+      "lots": [
+        {
+          "lot_id": 0,
+          "buy_price": 3401.2,
+          "qty": 0.1469554862989533,
+          "cost_usd": 500.0,
+          "buy_fee": 0.175,
+          "buy_time": "2025-12-10 19:30:00+00:00",
+          "sell_price": 1969.99,
+          "sell_fee": 0.10132529345892624,
+          "sell_time": "2026-02-17 16:30:00+00:00",
+          "tp_target": 3442.8987119999997,
+          "pnl": -210.6004868393839
+        },
+        {
+          "lot_id": 1,
+          "buy_price": 3316.1699999999996,
+          "qty": 0.30144715138246836,
+          "cost_usd": 1000.0,
+          "buy_fee": 0.35,
+          "buy_time": "2025-12-10 23:30:00+00:00",
+          "sell_price": 3345.6507512999997,
+          "sell_fee": 0.10085368885000001,
+          "sell_time": "2026-01-13 21:30:00+00:00",
+          "tp_target": 3345.6507512999997,
+          "pnl": 8.43603481115008
+        },
+        {
+          "lot_id": 2,
+          "buy_price": 3195.1144896,
+          "qty": 0.6257365757964731,
+          "cost_usd": 2000.0,
+          "buy_fee": 0.7,
+          "buy_time": "2025-12-11 11:30:00+00:00",
+          "sell_price": 3242.178526031808,
+          "sell_fee": 0.2028749689,
+          "sell_time": "2025-12-11 20:30:00+00:00",
+          "tp_target": 3242.178526031808,
+          "pnl": 28.546814031099984
+        },
+        {
+          "lot_id": 3,
+          "buy_price": 3091.5003328,
+          "qty": 1.2934172956657688,
+          "cost_usd": 4000.0,
+          "buy_fee": 1.4,
+          "buy_time": "2025-12-13 03:30:00+00:00",
+          "sell_price": 3116.2323354624,
+          "sell_fee": 0.40305888,
+          "sell_time": "2025-12-13 07:30:00+00:00",
+          "tp_target": 3116.2323354624,
+          "pnl": 30.185741119999875
+        },
+        {
+          "lot_id": 4,
+          "buy_price": 3115.4991999999997,
+          "qty": 1.5115116508220017,
+          "cost_usd": 4710.762105663607,
+          "buy_fee": 1.6487667369822625,
+          "buy_time": "2025-12-13 05:30:00+00:00",
+          "sell_price": 3150.7354959519994,
+          "sell_fee": 0.47623734107898846,
+          "sell_time": "2025-12-15 09:30:00+00:00",
+          "tp_target": 3150.7354959519994,
+          "pnl": 51.13506778519877
+        },
+        {
+          "lot_id": 5,
+          "buy_price": 2933.126856,
+          "qty": 2.9964628592759057,
+          "cost_usd": 8792.082914568806,
+          "buy_fee": 3.077229020099082,
+          "buy_time": "2025-12-17 04:30:00+00:00",
+          "sell_price": 2961.93016172592,
+          "sell_fee": 0.8875313721380795,
+          "sell_time": "2025-12-17 14:30:00+00:00",
+          "tp_target": 2961.93016172592,
+          "pnl": 82.34327543985091
+        },
+        {
+          "lot_id": 6,
+          "buy_price": 2855.5114719999997,
+          "qty": 3.1067359482988466,
+          "cost_usd": 8874.426190008657,
+          "buy_fee": 3.1060491665030296,
+          "buy_time": "2025-12-18 05:30:00+00:00",
+          "sell_price": 2878.3555637759996,
+          "sell_fee": 0.8942290701968892,
+          "sell_time": "2025-12-18 12:30:00+00:00",
+          "tp_target": 2878.3555637759996,
+          "pnl": 66.97028289003902
+        },
+        {
+          "lot_id": 7,
+          "buy_price": 3042.8835799999997,
+          "qty": 2.9374331120920445,
+          "cost_usd": 8941.396472898696,
+          "buy_fee": 3.1294887655145436,
+          "buy_time": "2025-12-20 04:30:00+00:00",
+          "sell_price": 3068.4438020719995,
+          "sell_fee": 0.90133484267999,
+          "sell_time": "2025-12-22 13:30:00+00:00",
+          "tp_target": 3068.4438020719995,
+          "pnl": 71.05061905852381
+        },
+        {
+          "lot_id": 8,
+          "buy_price": 2993.056,
+          "qty": 3.0100648753230925,
+          "cost_usd": 9012.44709195722,
+          "buy_fee": 3.154356482185027,
+          "buy_time": "2025-12-25 16:30:00+00:00",
+          "sell_price": 3017.0004480000002,
+          "sell_fee": 0.9081367077358835,
+          "sell_time": "2025-12-29 01:30:00+00:00",
+          "tp_target": 3017.0004480000002,
+          "pnl": 68.01184869387907
+        },
+        {
+          "lot_id": 9,
+          "buy_price": 2925.2020599999996,
+          "qty": 3.4477494734913585,
+          "cost_usd": 10088.894975462248,
+          "buy_fee": 3.531113241411787,
+          "buy_time": "2026-01-27 06:30:00+00:00",
+          "sell_price": 2956.3262099183994,
+          "sell_fee": 1.0192672133714866,
+          "sell_time": "2026-01-27 15:30:00+00:00",
+          "tp_target": 2956.3262099183994,
+          "pnl": 102.7578910392458
+        },
+        {
+          "lot_id": 10,
+          "buy_price": 2210.7799999999997,
+          "qty": 4.608367086728765,
+          "cost_usd": 10191.652866501494,
+          "buy_fee": 3.567078503275523,
+          "buy_time": "2026-02-02 02:30:00+00:00",
+          "sell_price": 2243.9416999999994,
+          "sell_fee": 1.034090707481819,
+          "sell_time": "2026-02-02 02:30:00+00:00",
+          "tp_target": 2243.9416999999994,
+          "pnl": 148.22011760921305
+        },
+        {
+          "lot_id": 11,
+          "buy_price": 2465.87,
+          "qty": 4.191727069377651,
+          "cost_usd": 10339.872984110707,
+          "buy_fee": 3.6189555444387476,
+          "buy_time": "2026-02-02 14:30:00+00:00",
+          "sell_price": 1969.99,
+          "sell_fee": 2.8901811432911475,
+          "sell_time": "2026-02-17 16:30:00+00:00",
+          "tp_target": 2496.1015661999995,
+          "pnl": -2085.1027558507194
+        }
+      ],
+      "open_time": "2025-12-10 19:30:00+00:00",
+      "close_time": "2026-02-17 16:30:00+00:00",
+      "regime_at_open": "TRENDING",
+      "total_invested": 78451.53560117143,
+      "total_pnl": -1638.045550211903,
+      "total_fees": 37.277158689593215,
+      "is_complete": true
+    }
+  ],
+  "equity_curve": [
+    {
+      "timestamp": "2025-11-23 21:30:00+00:00",
+      "equity": 9999.83
+    },
+    {
+      "timestamp": "2025-11-24 01:30:00+00:00",
+      "equity": 10002.61
+    },
+    {
+      "timestamp": "2025-11-24 05:30:00+00:00",
+      "equity": 10000.78
+    },
+    {
+      "timestamp": "2025-11-24 09:30:00+00:00",
+      "equity": 9991.89
+    },
+    {
+      "timestamp": "2025-11-24 13:30:00+00:00",
+      "equity": 9989.84
+    },
+    {
+      "timestamp": "2025-11-24 17:30:00+00:00",
+      "equity": 10026.77
+    },
+    {
+      "timestamp": "2025-11-24 21:30:00+00:00",
+      "equity": 10031.16
+    },
+    {
+      "timestamp": "2025-11-25 01:30:00+00:00",
+      "equity": 10023.74
+    },
+    {
+      "timestamp": "2025-11-25 05:30:00+00:00",
+      "equity": 10023.93
+    },
+    {
+      "timestamp": "2025-11-25 09:30:00+00:00",
+      "equity": 10011.08
+    },
+    {
+      "timestamp": "2025-11-25 13:30:00+00:00",
+      "equity": 10023.61
+    },
+    {
+      "timestamp": "2025-11-25 17:30:00+00:00",
+      "equity": 10042.8
+    },
+    {
+      "timestamp": "2025-11-25 21:30:00+00:00",
+      "equity": 10039.72
+    },
+    {
+      "timestamp": "2025-11-26 01:30:00+00:00",
+      "equity": 10045.24
+    },
+    {
+      "timestamp": "2025-11-26 05:30:00+00:00",
+      "equity": 10041.16
+    },
+    {
+      "timestamp": "2025-11-26 09:30:00+00:00",
+      "equity": 10037.11
+    },
+    {
+      "timestamp": "2025-11-26 13:30:00+00:00",
+      "equity": 10040.58
+    },
+    {
+      "timestamp": "2025-11-26 17:30:00+00:00",
+      "equity": 10051.62
+    },
+    {
+      "timestamp": "2025-11-26 21:30:00+00:00",
+      "equity": 10050.97
+    },
+    {
+      "timestamp": "2025-11-27 01:30:00+00:00",
+      "equity": 10057.82
+    },
+    {
+      "timestamp": "2025-11-27 05:30:00+00:00",
+      "equity": 10052.3
+    },
+    {
+      "timestamp": "2025-11-27 09:30:00+00:00",
+      "equity": 10052.03
+    },
+    {
+      "timestamp": "2025-11-27 13:30:00+00:00",
+      "equity": 10046.71
+    },
+    {
+      "timestamp": "2025-11-27 17:30:00+00:00",
+      "equity": 10050.51
+    },
+    {
+      "timestamp": "2025-11-27 21:30:00+00:00",
+      "equity": 10052.35
+    },
+    {
+      "timestamp": "2025-11-28 01:30:00+00:00",
+      "equity": 10047.03
+    },
+    {
+      "timestamp": "2025-11-28 05:30:00+00:00",
+      "equity": 10048.66
+    },
+    {
+      "timestamp": "2025-11-28 09:30:00+00:00",
+      "equity": 10055.22
+    },
+    {
+      "timestamp": "2025-11-28 13:30:00+00:00",
+      "equity": 10059.17
+    },
+    {
+      "timestamp": "2025-11-28 17:30:00+00:00",
+      "equity": 10060.27
+    },
+    {
+      "timestamp": "2025-11-28 21:30:00+00:00",
+      "equity": 10059.61
+    },
+    {
+      "timestamp": "2025-11-29 01:30:00+00:00",
+      "equity": 10060.12
+    },
+    {
+      "timestamp": "2025-11-29 05:30:00+00:00",
+      "equity": 10057.04
+    },
+    {
+      "timestamp": "2025-11-29 09:30:00+00:00",
+      "equity": 10055.16
+    },
+    {
+      "timestamp": "2025-11-29 13:30:00+00:00",
+      "equity": 10053.48
+    },
+    {
+      "timestamp": "2025-11-29 17:30:00+00:00",
+      "equity": 10049.88
+    },
+    {
+      "timestamp": "2025-11-29 21:30:00+00:00",
+      "equity": 10051.93
+    },
+    {
+      "timestamp": "2025-11-30 01:30:00+00:00",
+      "equity": 10054.92
+    },
+    {
+      "timestamp": "2025-11-30 05:30:00+00:00",
+      "equity": 10054.16
+    },
+    {
+      "timestamp": "2025-11-30 09:30:00+00:00",
+      "equity": 10055.99
+    },
+    {
+      "timestamp": "2025-11-30 13:30:00+00:00",
+      "equity": 10062.77
+    },
+    {
+      "timestamp": "2025-11-30 17:30:00+00:00",
+      "equity": 10062.55
+    },
+    {
+      "timestamp": "2025-11-30 21:30:00+00:00",
+      "equity": 10061.04
+    },
+    {
+      "timestamp": "2025-12-01 01:30:00+00:00",
+      "equity": 10006.5
+    },
+    {
+      "timestamp": "2025-12-01 05:30:00+00:00",
+      "equity": 9989.49
+    },
+    {
+      "timestamp": "2025-12-01 09:30:00+00:00",
+      "equity": 10008.24
+    },
+    {
+      "timestamp": "2025-12-01 13:30:00+00:00",
+      "equity": 9984.71
+    },
+    {
+      "timestamp": "2025-12-01 17:30:00+00:00",
+      "equity": 9900.01
+    },
+    {
+      "timestamp": "2025-12-01 21:30:00+00:00",
+      "equity": 9963.46
+    },
+    {
+      "timestamp": "2025-12-02 01:30:00+00:00",
+      "equity": 9969.68
+    },
+    {
+      "timestamp": "2025-12-02 05:30:00+00:00",
+      "equity": 9963.76
+    },
+    {
+      "timestamp": "2025-12-02 09:30:00+00:00",
+      "equity": 9969.4
+    },
+    {
+      "timestamp": "2025-12-02 13:30:00+00:00",
+      "equity": 10029.94
+    },
+    {
+      "timestamp": "2025-12-02 17:30:00+00:00",
+      "equity": 10089.01
+    },
+    {
+      "timestamp": "2025-12-02 21:30:00+00:00",
+      "equity": 10087.33
+    },
+    {
+      "timestamp": "2025-12-03 01:30:00+00:00",
+      "equity": 10092.8
+    },
+    {
+      "timestamp": "2025-12-03 05:30:00+00:00",
+      "equity": 10097.13
+    },
+    {
+      "timestamp": "2025-12-03 09:30:00+00:00",
+      "equity": 10095.11
+    },
+    {
+      "timestamp": "2025-12-03 13:30:00+00:00",
+      "equity": 10095.77
+    },
+    {
+      "timestamp": "2025-12-03 17:30:00+00:00",
+      "equity": 10108.93
+    },
+    {
+      "timestamp": "2025-12-03 21:30:00+00:00",
+      "equity": 10113.21
+    },
+    {
+      "timestamp": "2025-12-04 01:30:00+00:00",
+      "equity": 10123.83
+    },
+    {
+      "timestamp": "2025-12-04 05:30:00+00:00",
+      "equity": 10122.41
+    },
+    {
+      "timestamp": "2025-12-04 09:30:00+00:00",
+      "equity": 10121.54
+    },
+    {
+      "timestamp": "2025-12-04 13:30:00+00:00",
+      "equity": 10119.93
+    },
+    {
+      "timestamp": "2025-12-04 17:30:00+00:00",
+      "equity": 10115.57
+    },
+    {
+      "timestamp": "2025-12-04 21:30:00+00:00",
+      "equity": 10116.42
+    },
+    {
+      "timestamp": "2025-12-05 01:30:00+00:00",
+      "equity": 10133.19
+    },
+    {
+      "timestamp": "2025-12-05 05:30:00+00:00",
+      "equity": 10131.16
+    },
+    {
+      "timestamp": "2025-12-05 09:30:00+00:00",
+      "equity": 10127.23
+    },
+    {
+      "timestamp": "2025-12-05 13:30:00+00:00",
+      "equity": 10121.4
+    },
+    {
+      "timestamp": "2025-12-05 17:30:00+00:00",
+      "equity": 10109.54
+    },
+    {
+      "timestamp": "2025-12-05 21:30:00+00:00",
+      "equity": 10109.55
+    },
+    {
+      "timestamp": "2025-12-06 01:30:00+00:00",
+      "equity": 10108.79
+    },
+    {
+      "timestamp": "2025-12-06 05:30:00+00:00",
+      "equity": 10107.61
+    },
+    {
+      "timestamp": "2025-12-06 09:30:00+00:00",
+      "equity": 10099.32
+    },
+    {
+      "timestamp": "2025-12-06 13:30:00+00:00",
+      "equity": 10113.59
+    },
+    {
+      "timestamp": "2025-12-06 17:30:00+00:00",
+      "equity": 10114.66
+    },
+    {
+      "timestamp": "2025-12-06 21:30:00+00:00",
+      "equity": 10117.83
+    },
+    {
+      "timestamp": "2025-12-07 01:30:00+00:00",
+      "equity": 10112.94
+    },
+    {
+      "timestamp": "2025-12-07 05:30:00+00:00",
+      "equity": 10112.4
+    },
+    {
+      "timestamp": "2025-12-07 09:30:00+00:00",
+      "equity": 10103.32
+    },
+    {
+      "timestamp": "2025-12-07 13:30:00+00:00",
+      "equity": 10023.7
+    },
+    {
+      "timestamp": "2025-12-07 17:30:00+00:00",
+      "equity": 10154.65
+    },
+    {
+      "timestamp": "2025-12-07 21:30:00+00:00",
+      "equity": 10139.38
+    },
+    {
+      "timestamp": "2025-12-08 01:30:00+00:00",
+      "equity": 10147.49
+    },
+    {
+      "timestamp": "2025-12-08 05:30:00+00:00",
+      "equity": 10151.45
+    },
+    {
+      "timestamp": "2025-12-08 09:30:00+00:00",
+      "equity": 10156.39
+    },
+    {
+      "timestamp": "2025-12-08 13:30:00+00:00",
+      "equity": 10154.99
+    },
+    {
+      "timestamp": "2025-12-08 17:30:00+00:00",
+      "equity": 10150.03
+    },
+    {
+      "timestamp": "2025-12-08 21:30:00+00:00",
+      "equity": 10152.27
+    },
+    {
+      "timestamp": "2025-12-09 01:30:00+00:00",
+      "equity": 10149.55
+    },
+    {
+      "timestamp": "2025-12-09 05:30:00+00:00",
+      "equity": 10147.84
+    },
+    {
+      "timestamp": "2025-12-09 09:30:00+00:00",
+      "equity": 10149.57
+    },
+    {
+      "timestamp": "2025-12-09 13:30:00+00:00",
+      "equity": 10149.49
+    },
+    {
+      "timestamp": "2025-12-09 17:30:00+00:00",
+      "equity": 10169.41
+    },
+    {
+      "timestamp": "2025-12-09 21:30:00+00:00",
+      "equity": 10163.91
+    },
+    {
+      "timestamp": "2025-12-10 01:30:00+00:00",
+      "equity": 10160.78
+    },
+    {
+      "timestamp": "2025-12-10 05:30:00+00:00",
+      "equity": 10166.72
+    },
+    {
+      "timestamp": "2025-12-10 09:30:00+00:00",
+      "equity": 10170.13
+    },
+    {
+      "timestamp": "2025-12-10 13:30:00+00:00",
+      "equity": 10169.73
+    },
+    {
+      "timestamp": "2025-12-10 17:30:00+00:00",
+      "equity": 10176.74
+    },
+    {
+      "timestamp": "2025-12-10 21:30:00+00:00",
+      "equity": 10172.29
+    },
+    {
+      "timestamp": "2025-12-11 01:30:00+00:00",
+      "equity": 10125.73
+    },
+    {
+      "timestamp": "2025-12-11 05:30:00+00:00",
+      "equity": 10116.16
+    },
+    {
+      "timestamp": "2025-12-11 09:30:00+00:00",
+      "equity": 10114.57
+    },
+    {
+      "timestamp": "2025-12-11 13:30:00+00:00",
+      "equity": 10102.77
+    },
+    {
+      "timestamp": "2025-12-11 17:30:00+00:00",
+      "equity": 10120.41
+    },
+    {
+      "timestamp": "2025-12-11 21:30:00+00:00",
+      "equity": 10163.56
+    },
+    {
+      "timestamp": "2025-12-12 01:30:00+00:00",
+      "equity": 10167.69
+    },
+    {
+      "timestamp": "2025-12-12 05:30:00+00:00",
+      "equity": 10171.46
+    },
+    {
+      "timestamp": "2025-12-12 09:30:00+00:00",
+      "equity": 10167.8
+    },
+    {
+      "timestamp": "2025-12-12 13:30:00+00:00",
+      "equity": 10156.46
+    },
+    {
+      "timestamp": "2025-12-12 17:30:00+00:00",
+      "equity": 10094.77
+    },
+    {
+      "timestamp": "2025-12-12 21:30:00+00:00",
+      "equity": 10097.36
+    },
+    {
+      "timestamp": "2025-12-13 01:30:00+00:00",
+      "equity": 10095.92
+    },
+    {
+      "timestamp": "2025-12-13 05:30:00+00:00",
+      "equity": 10038.22
+    },
+    {
+      "timestamp": "2025-12-13 09:30:00+00:00",
+      "equity": 10159.9
+    },
+    {
+      "timestamp": "2025-12-13 13:30:00+00:00",
+      "equity": 10100.04
+    },
+    {
+      "timestamp": "2025-12-13 17:30:00+00:00",
+      "equity": 10120.25
+    },
+    {
+      "timestamp": "2025-12-13 21:30:00+00:00",
+      "equity": 10122.46
+    },
+    {
+      "timestamp": "2025-12-14 01:30:00+00:00",
+      "equity": 10149.63
+    },
+    {
+      "timestamp": "2025-12-14 05:30:00+00:00",
+      "equity": 10118.58
+    },
+    {
+      "timestamp": "2025-12-14 09:30:00+00:00",
+      "equity": 10123.11
+    },
+    {
+      "timestamp": "2025-12-14 13:30:00+00:00",
+      "equity": 10097.98
+    },
+    {
+      "timestamp": "2025-12-14 17:30:00+00:00",
+      "equity": 10079.6
+    },
+    {
+      "timestamp": "2025-12-14 21:30:00+00:00",
+      "equity": 10056.61
+    },
+    {
+      "timestamp": "2025-12-15 01:30:00+00:00",
+      "equity": 10173.18
+    },
+    {
+      "timestamp": "2025-12-15 05:30:00+00:00",
+      "equity": 10148.25
+    },
+    {
+      "timestamp": "2025-12-15 09:30:00+00:00",
+      "equity": 10212.29
+    },
+    {
+      "timestamp": "2025-12-15 13:30:00+00:00",
+      "equity": 10196.79
+    },
+    {
+      "timestamp": "2025-12-15 17:30:00+00:00",
+      "equity": 10105.27
+    },
+    {
+      "timestamp": "2025-12-15 21:30:00+00:00",
+      "equity": 10110.33
+    },
+    {
+      "timestamp": "2025-12-16 01:30:00+00:00",
+      "equity": 10121.33
+    },
+    {
+      "timestamp": "2025-12-16 05:30:00+00:00",
+      "equity": 10111.18
+    },
+    {
+      "timestamp": "2025-12-16 09:30:00+00:00",
+      "equity": 10105.55
+    },
+    {
+      "timestamp": "2025-12-16 13:30:00+00:00",
+      "equity": 10107.3
+    },
+    {
+      "timestamp": "2025-12-16 17:30:00+00:00",
+      "equity": 10106.06
+    },
+    {
+      "timestamp": "2025-12-16 21:30:00+00:00",
+      "equity": 10118.02
+    },
+    {
+      "timestamp": "2025-12-17 01:30:00+00:00",
+      "equity": 10113.53
+    },
+    {
+      "timestamp": "2025-12-17 05:30:00+00:00",
+      "equity": 10124.53
+    },
+    {
+      "timestamp": "2025-12-17 09:30:00+00:00",
+      "equity": 10056.22
+    },
+    {
+      "timestamp": "2025-12-17 13:30:00+00:00",
+      "equity": 10132.73
+    },
+    {
+      "timestamp": "2025-12-17 17:30:00+00:00",
+      "equity": 10152.5
+    },
+    {
+      "timestamp": "2025-12-17 21:30:00+00:00",
+      "equity": 10144.41
+    },
+    {
+      "timestamp": "2025-12-18 01:30:00+00:00",
+      "equity": 10145.54
+    },
+    {
+      "timestamp": "2025-12-18 05:30:00+00:00",
+      "equity": 10051.27
+    },
+    {
+      "timestamp": "2025-12-18 09:30:00+00:00",
+      "equity": 10164.78
+    },
+    {
+      "timestamp": "2025-12-18 13:30:00+00:00",
+      "equity": 10269.68
+    },
+    {
+      "timestamp": "2025-12-18 17:30:00+00:00",
+      "equity": 10215.85
+    },
+    {
+      "timestamp": "2025-12-18 21:30:00+00:00",
+      "equity": 10209.11
+    },
+    {
+      "timestamp": "2025-12-19 01:30:00+00:00",
+      "equity": 10210.02
+    },
+    {
+      "timestamp": "2025-12-19 05:30:00+00:00",
+      "equity": 10251.73
+    },
+    {
+      "timestamp": "2025-12-19 09:30:00+00:00",
+      "equity": 10265.69
+    },
+    {
+      "timestamp": "2025-12-19 13:30:00+00:00",
+      "equity": 10268.59
+    },
+    {
+      "timestamp": "2025-12-19 17:30:00+00:00",
+      "equity": 10272.24
+    },
+    {
+      "timestamp": "2025-12-19 21:30:00+00:00",
+      "equity": 10283.25
+    },
+    {
+      "timestamp": "2025-12-20 01:30:00+00:00",
+      "equity": 10276.71
+    },
+    {
+      "timestamp": "2025-12-20 05:30:00+00:00",
+      "equity": 10101.95
+    },
+    {
+      "timestamp": "2025-12-20 09:30:00+00:00",
+      "equity": 10084.44
+    },
+    {
+      "timestamp": "2025-12-20 13:30:00+00:00",
+      "equity": 10074.28
+    },
+    {
+      "timestamp": "2025-12-20 17:30:00+00:00",
+      "equity": 10076.89
+    },
+    {
+      "timestamp": "2025-12-20 21:30:00+00:00",
+      "equity": 10074.59
+    },
+    {
+      "timestamp": "2025-12-21 01:30:00+00:00",
+      "equity": 10052.17
+    },
+    {
+      "timestamp": "2025-12-21 05:30:00+00:00",
+      "equity": 10076.82
+    },
+    {
+      "timestamp": "2025-12-21 09:30:00+00:00",
+      "equity": 10162.65
+    },
+    {
+      "timestamp": "2025-12-21 13:30:00+00:00",
+      "equity": 10034.94
+    },
+    {
+      "timestamp": "2025-12-21 17:30:00+00:00",
+      "equity": 10084.1
+    },
+    {
+      "timestamp": "2025-12-21 21:30:00+00:00",
+      "equity": 10114.13
+    },
+    {
+      "timestamp": "2025-12-22 01:30:00+00:00",
+      "equity": 10155.14
+    },
+    {
+      "timestamp": "2025-12-22 05:30:00+00:00",
+      "equity": 10242.93
+    },
+    {
+      "timestamp": "2025-12-22 09:30:00+00:00",
+      "equity": 10282.55
+    },
+    {
+      "timestamp": "2025-12-22 13:30:00+00:00",
+      "equity": 10384.47
+    },
+    {
+      "timestamp": "2025-12-22 17:30:00+00:00",
+      "equity": 10372.47
+    },
+    {
+      "timestamp": "2025-12-22 21:30:00+00:00",
+      "equity": 10354.02
+    },
+    {
+      "timestamp": "2025-12-23 01:30:00+00:00",
+      "equity": 10363.77
+    },
+    {
+      "timestamp": "2025-12-23 05:30:00+00:00",
+      "equity": 10336.88
+    },
+    {
+      "timestamp": "2025-12-23 09:30:00+00:00",
+      "equity": 10343.59
+    },
+    {
+      "timestamp": "2025-12-23 13:30:00+00:00",
+      "equity": 10332.8
+    },
+    {
+      "timestamp": "2025-12-23 17:30:00+00:00",
+      "equity": 10330.67
+    },
+    {
+      "timestamp": "2025-12-23 21:30:00+00:00",
+      "equity": 10341.04
+    },
+    {
+      "timestamp": "2025-12-24 01:30:00+00:00",
+      "equity": 10333.72
+    },
+    {
+      "timestamp": "2025-12-24 05:30:00+00:00",
+      "equity": 10327.9
+    },
+    {
+      "timestamp": "2025-12-24 09:30:00+00:00",
+      "equity": 10325.88
+    },
+    {
+      "timestamp": "2025-12-24 13:30:00+00:00",
+      "equity": 10325.63
+    },
+    {
+      "timestamp": "2025-12-24 17:30:00+00:00",
+      "equity": 10330.02
+    },
+    {
+      "timestamp": "2025-12-24 21:30:00+00:00",
+      "equity": 10335.04
+    },
+    {
+      "timestamp": "2025-12-25 01:30:00+00:00",
+      "equity": 10333.9
+    },
+    {
+      "timestamp": "2025-12-25 05:30:00+00:00",
+      "equity": 10330.36
+    },
+    {
+      "timestamp": "2025-12-25 09:30:00+00:00",
+      "equity": 10322.26
+    },
+    {
+      "timestamp": "2025-12-25 13:30:00+00:00",
+      "equity": 10323.7
+    },
+    {
+      "timestamp": "2025-12-25 17:30:00+00:00",
+      "equity": 10216.14
+    },
+    {
+      "timestamp": "2025-12-25 21:30:00+00:00",
+      "equity": 10166.86
+    },
+    {
+      "timestamp": "2025-12-26 01:30:00+00:00",
+      "equity": 10308.31
+    },
+    {
+      "timestamp": "2025-12-26 05:30:00+00:00",
+      "equity": 10293.96
+    },
+    {
+      "timestamp": "2025-12-26 09:30:00+00:00",
+      "equity": 10280.4
+    },
+    {
+      "timestamp": "2025-12-26 13:30:00+00:00",
+      "equity": 10297.24
+    },
+    {
+      "timestamp": "2025-12-26 17:30:00+00:00",
+      "equity": 10101.22
+    },
+    {
+      "timestamp": "2025-12-26 21:30:00+00:00",
+      "equity": 10113.84
+    },
+    {
+      "timestamp": "2025-12-27 01:30:00+00:00",
+      "equity": 10122.69
+    },
+    {
+      "timestamp": "2025-12-27 05:30:00+00:00",
+      "equity": 10131.44
+    },
+    {
+      "timestamp": "2025-12-27 09:30:00+00:00",
+      "equity": 10134.9
+    },
+    {
+      "timestamp": "2025-12-27 13:30:00+00:00",
+      "equity": 10122.48
+    },
+    {
+      "timestamp": "2025-12-27 17:30:00+00:00",
+      "equity": 10127.64
+    },
+    {
+      "timestamp": "2025-12-27 21:30:00+00:00",
+      "equity": 10167.44
+    },
+    {
+      "timestamp": "2025-12-28 01:30:00+00:00",
+      "equity": 10194.39
+    },
+    {
+      "timestamp": "2025-12-28 05:30:00+00:00",
+      "equity": 10162.78
+    },
+    {
+      "timestamp": "2025-12-28 09:30:00+00:00",
+      "equity": 10175.43
+    },
+    {
+      "timestamp": "2025-12-28 13:30:00+00:00",
+      "equity": 10186.99
+    },
+    {
+      "timestamp": "2025-12-28 17:30:00+00:00",
+      "equity": 10155.03
+    },
+    {
+      "timestamp": "2025-12-28 21:30:00+00:00",
+      "equity": 10171.8
+    },
+    {
+      "timestamp": "2025-12-29 01:30:00+00:00",
+      "equity": 10428.16
+    },
+    {
+      "timestamp": "2025-12-29 05:30:00+00:00",
+      "equity": 10442.17
+    },
+    {
+      "timestamp": "2025-12-29 09:30:00+00:00",
+      "equity": 10413.77
+    },
+    {
+      "timestamp": "2025-12-29 13:30:00+00:00",
+      "equity": 10396.15
+    },
+    {
+      "timestamp": "2025-12-29 17:30:00+00:00",
+      "equity": 10396.76
+    },
+    {
+      "timestamp": "2025-12-29 21:30:00+00:00",
+      "equity": 10397.63
+    },
+    {
+      "timestamp": "2025-12-30 01:30:00+00:00",
+      "equity": 10395.77
+    },
+    {
+      "timestamp": "2025-12-30 05:30:00+00:00",
+      "equity": 10401.49
+    },
+    {
+      "timestamp": "2025-12-30 09:30:00+00:00",
+      "equity": 10416.87
+    },
+    {
+      "timestamp": "2025-12-30 13:30:00+00:00",
+      "equity": 10412.59
+    },
+    {
+      "timestamp": "2025-12-30 17:30:00+00:00",
+      "equity": 10414.73
+    },
+    {
+      "timestamp": "2025-12-30 21:30:00+00:00",
+      "equity": 10412.42
+    },
+    {
+      "timestamp": "2025-12-31 01:30:00+00:00",
+      "equity": 10416.35
+    },
+    {
+      "timestamp": "2025-12-31 05:30:00+00:00",
+      "equity": 10415.24
+    },
+    {
+      "timestamp": "2025-12-31 09:30:00+00:00",
+      "equity": 10415.73
+    },
+    {
+      "timestamp": "2025-12-31 13:30:00+00:00",
+      "equity": 10429.34
+    },
+    {
+      "timestamp": "2025-12-31 17:30:00+00:00",
+      "equity": 10418.12
+    },
+    {
+      "timestamp": "2025-12-31 21:30:00+00:00",
+      "equity": 10417.9
+    },
+    {
+      "timestamp": "2026-01-01 01:30:00+00:00",
+      "equity": 10418.57
+    },
+    {
+      "timestamp": "2026-01-01 05:30:00+00:00",
+      "equity": 10416.23
+    },
+    {
+      "timestamp": "2026-01-01 09:30:00+00:00",
+      "equity": 10417.74
+    },
+    {
+      "timestamp": "2026-01-01 13:30:00+00:00",
+      "equity": 10416.34
+    },
+    {
+      "timestamp": "2026-01-01 17:30:00+00:00",
+      "equity": 10419.22
+    },
+    {
+      "timestamp": "2026-01-01 21:30:00+00:00",
+      "equity": 10422.46
+    },
+    {
+      "timestamp": "2026-01-02 01:30:00+00:00",
+      "equity": 10422.67
+    },
+    {
+      "timestamp": "2026-01-02 05:30:00+00:00",
+      "equity": 10436.37
+    },
+    {
+      "timestamp": "2026-01-02 09:30:00+00:00",
+      "equity": 10450.02
+    },
+    {
+      "timestamp": "2026-01-02 13:30:00+00:00",
+      "equity": 10441.42
+    },
+    {
+      "timestamp": "2026-01-02 17:30:00+00:00",
+      "equity": 10480.64
+    },
+    {
+      "timestamp": "2026-01-02 21:30:00+00:00",
+      "equity": 10484.59
+    },
+    {
+      "timestamp": "2026-01-03 01:30:00+00:00",
+      "equity": 10482.81
+    },
+    {
+      "timestamp": "2026-01-03 05:30:00+00:00",
+      "equity": 10474.29
+    },
+    {
+      "timestamp": "2026-01-03 09:30:00+00:00",
+      "equity": 10471.18
+    },
+    {
+      "timestamp": "2026-01-03 13:30:00+00:00",
+      "equity": 10474.94
+    },
+    {
+      "timestamp": "2026-01-03 17:30:00+00:00",
+      "equity": 10477.38
+    },
+    {
+      "timestamp": "2026-01-03 21:30:00+00:00",
+      "equity": 10479.77
+    },
+    {
+      "timestamp": "2026-01-04 01:30:00+00:00",
+      "equity": 10491.01
+    },
+    {
+      "timestamp": "2026-01-04 05:30:00+00:00",
+      "equity": 10492.79
+    },
+    {
+      "timestamp": "2026-01-04 09:30:00+00:00",
+      "equity": 10490.17
+    },
+    {
+      "timestamp": "2026-01-04 13:30:00+00:00",
+      "equity": 10487.21
+    },
+    {
+      "timestamp": "2026-01-04 17:30:00+00:00",
+      "equity": 10484.02
+    },
+    {
+      "timestamp": "2026-01-04 21:30:00+00:00",
+      "equity": 10489.03
+    },
+    {
+      "timestamp": "2026-01-05 01:30:00+00:00",
+      "equity": 10508.67
+    },
+    {
+      "timestamp": "2026-01-05 05:30:00+00:00",
+      "equity": 10491.18
+    },
+    {
+      "timestamp": "2026-01-05 09:30:00+00:00",
+      "equity": 10504.25
+    },
+    {
+      "timestamp": "2026-01-05 13:30:00+00:00",
+      "equity": 10494.86
+    },
+    {
+      "timestamp": "2026-01-05 17:30:00+00:00",
+      "equity": 10515.72
+    },
+    {
+      "timestamp": "2026-01-05 21:30:00+00:00",
+      "equity": 10533.72
+    },
+    {
+      "timestamp": "2026-01-06 01:30:00+00:00",
+      "equity": 10523.9
+    },
+    {
+      "timestamp": "2026-01-06 05:30:00+00:00",
+      "equity": 10526.3
+    },
+    {
+      "timestamp": "2026-01-06 09:30:00+00:00",
+      "equity": 10528.35
+    },
+    {
+      "timestamp": "2026-01-06 13:30:00+00:00",
+      "equity": 10562.56
+    },
+    {
+      "timestamp": "2026-01-06 17:30:00+00:00",
+      "equity": 10524.94
+    },
+    {
+      "timestamp": "2026-01-06 21:30:00+00:00",
+      "equity": 10548.04
+    },
+    {
+      "timestamp": "2026-01-07 01:30:00+00:00",
+      "equity": 10538.35
+    },
+    {
+      "timestamp": "2026-01-07 05:30:00+00:00",
+      "equity": 10540.95
+    },
+    {
+      "timestamp": "2026-01-07 09:30:00+00:00",
+      "equity": 10520.43
+    },
+    {
+      "timestamp": "2026-01-07 13:30:00+00:00",
+      "equity": 10512.55
+    },
+    {
+      "timestamp": "2026-01-07 17:30:00+00:00",
+      "equity": 10493.37
+    },
+    {
+      "timestamp": "2026-01-07 21:30:00+00:00",
+      "equity": 10495.77
+    },
+    {
+      "timestamp": "2026-01-08 01:30:00+00:00",
+      "equity": 10501.32
+    },
+    {
+      "timestamp": "2026-01-08 05:30:00+00:00",
+      "equity": 10478.22
+    },
+    {
+      "timestamp": "2026-01-08 09:30:00+00:00",
+      "equity": 10477.97
+    },
+    {
+      "timestamp": "2026-01-08 13:30:00+00:00",
+      "equity": 10461.81
+    },
+    {
+      "timestamp": "2026-01-08 17:30:00+00:00",
+      "equity": 10481.95
+    },
+    {
+      "timestamp": "2026-01-08 21:30:00+00:00",
+      "equity": 10480.18
+    },
+    {
+      "timestamp": "2026-01-09 01:30:00+00:00",
+      "equity": 10478.37
+    },
+    {
+      "timestamp": "2026-01-09 05:30:00+00:00",
+      "equity": 10478.57
+    },
+    {
+      "timestamp": "2026-01-09 09:30:00+00:00",
+      "equity": 10467.7
+    },
+    {
+      "timestamp": "2026-01-09 13:30:00+00:00",
+      "equity": 10468.37
+    },
+    {
+      "timestamp": "2026-01-09 17:30:00+00:00",
+      "equity": 10464.18
+    },
+    {
+      "timestamp": "2026-01-09 21:30:00+00:00",
+      "equity": 10462.99
+    },
+    {
+      "timestamp": "2026-01-10 01:30:00+00:00",
+      "equity": 10466.56
+    },
+    {
+      "timestamp": "2026-01-10 05:30:00+00:00",
+      "equity": 10465.0
+    },
+    {
+      "timestamp": "2026-01-10 09:30:00+00:00",
+      "equity": 10468.27
+    },
+    {
+      "timestamp": "2026-01-10 13:30:00+00:00",
+      "equity": 10468.29
+    },
+    {
+      "timestamp": "2026-01-10 17:30:00+00:00",
+      "equity": 10468.2
+    },
+    {
+      "timestamp": "2026-01-10 21:30:00+00:00",
+      "equity": 10462.85
+    },
+    {
+      "timestamp": "2026-01-11 01:30:00+00:00",
+      "equity": 10468.23
+    },
+    {
+      "timestamp": "2026-01-11 05:30:00+00:00",
+      "equity": 10467.54
+    },
+    {
+      "timestamp": "2026-01-11 09:30:00+00:00",
+      "equity": 10472.99
+    },
+    {
+      "timestamp": "2026-01-11 13:30:00+00:00",
+      "equity": 10477.4
+    },
+    {
+      "timestamp": "2026-01-11 17:30:00+00:00",
+      "equity": 10481.78
+    },
+    {
+      "timestamp": "2026-01-11 21:30:00+00:00",
+      "equity": 10477.83
+    },
+    {
+      "timestamp": "2026-01-12 01:30:00+00:00",
+      "equity": 10490.66
+    },
+    {
+      "timestamp": "2026-01-12 05:30:00+00:00",
+      "equity": 10496.53
+    },
+    {
+      "timestamp": "2026-01-12 09:30:00+00:00",
+      "equity": 10477.04
+    },
+    {
+      "timestamp": "2026-01-12 13:30:00+00:00",
+      "equity": 10460.55
+    },
+    {
+      "timestamp": "2026-01-12 17:30:00+00:00",
+      "equity": 10479.05
+    },
+    {
+      "timestamp": "2026-01-12 21:30:00+00:00",
+      "equity": 10469.01
+    },
+    {
+      "timestamp": "2026-01-13 01:30:00+00:00",
+      "equity": 10471.84
+    },
+    {
+      "timestamp": "2026-01-13 05:30:00+00:00",
+      "equity": 10483.82
+    },
+    {
+      "timestamp": "2026-01-13 09:30:00+00:00",
+      "equity": 10487.78
+    },
+    {
+      "timestamp": "2026-01-13 13:30:00+00:00",
+      "equity": 10495.77
+    },
+    {
+      "timestamp": "2026-01-13 17:30:00+00:00",
+      "equity": 10511.83
+    },
+    {
+      "timestamp": "2026-01-13 21:30:00+00:00",
+      "equity": 10576.06
+    },
+    {
+      "timestamp": "2026-01-14 01:30:00+00:00",
+      "equity": 10579.26
+    },
+    {
+      "timestamp": "2026-01-14 05:30:00+00:00",
+      "equity": 10577.16
+    },
+    {
+      "timestamp": "2026-01-14 09:30:00+00:00",
+      "equity": 10576.05
+    },
+    {
+      "timestamp": "2026-01-14 13:30:00+00:00",
+      "equity": 10576.2
+    },
+    {
+      "timestamp": "2026-01-14 17:30:00+00:00",
+      "equity": 10581.14
+    },
+    {
+      "timestamp": "2026-01-14 21:30:00+00:00",
+      "equity": 10582.82
+    },
+    {
+      "timestamp": "2026-01-15 01:30:00+00:00",
+      "equity": 10577.14
+    },
+    {
+      "timestamp": "2026-01-15 05:30:00+00:00",
+      "equity": 10576.78
+    },
+    {
+      "timestamp": "2026-01-15 09:30:00+00:00",
+      "equity": 10583.22
+    },
+    {
+      "timestamp": "2026-01-15 13:30:00+00:00",
+      "equity": 10583.64
+    },
+    {
+      "timestamp": "2026-01-15 17:30:00+00:00",
+      "equity": 10573.94
+    },
+    {
+      "timestamp": "2026-01-15 21:30:00+00:00",
+      "equity": 10575.09
+    },
+    {
+      "timestamp": "2026-01-16 01:30:00+00:00",
+      "equity": 10575.03
+    },
+    {
+      "timestamp": "2026-01-16 05:30:00+00:00",
+      "equity": 10575.16
+    },
+    {
+      "timestamp": "2026-01-16 09:30:00+00:00",
+      "equity": 10574.5
+    },
+    {
+      "timestamp": "2026-01-16 13:30:00+00:00",
+      "equity": 10575.94
+    },
+    {
+      "timestamp": "2026-01-16 17:30:00+00:00",
+      "equity": 10571.29
+    },
+    {
+      "timestamp": "2026-01-16 21:30:00+00:00",
+      "equity": 10572.14
+    },
+    {
+      "timestamp": "2026-01-17 01:30:00+00:00",
+      "equity": 10571.63
+    },
+    {
+      "timestamp": "2026-01-17 05:30:00+00:00",
+      "equity": 10572.03
+    },
+    {
+      "timestamp": "2026-01-17 09:30:00+00:00",
+      "equity": 10573.55
+    },
+    {
+      "timestamp": "2026-01-17 13:30:00+00:00",
+      "equity": 10575.06
+    },
+    {
+      "timestamp": "2026-01-17 17:30:00+00:00",
+      "equity": 10576.7
+    },
+    {
+      "timestamp": "2026-01-17 21:30:00+00:00",
+      "equity": 10575.1
+    },
+    {
+      "timestamp": "2026-01-18 01:30:00+00:00",
+      "equity": 10574.15
+    },
+    {
+      "timestamp": "2026-01-18 05:30:00+00:00",
+      "equity": 10575.81
+    },
+    {
+      "timestamp": "2026-01-18 09:30:00+00:00",
+      "equity": 10576.94
+    },
+    {
+      "timestamp": "2026-01-18 13:30:00+00:00",
+      "equity": 10579.31
+    },
+    {
+      "timestamp": "2026-01-18 17:30:00+00:00",
+      "equity": 10583.0
+    },
+    {
+      "timestamp": "2026-01-18 21:30:00+00:00",
+      "equity": 10580.65
+    },
+    {
+      "timestamp": "2026-01-19 01:30:00+00:00",
+      "equity": 10560.77
+    },
+    {
+      "timestamp": "2026-01-19 05:30:00+00:00",
+      "equity": 10558.6
+    },
+    {
+      "timestamp": "2026-01-19 09:30:00+00:00",
+      "equity": 10560.85
+    },
+    {
+      "timestamp": "2026-01-19 13:30:00+00:00",
+      "equity": 10560.57
+    },
+    {
+      "timestamp": "2026-01-19 17:30:00+00:00",
+      "equity": 10560.75
+    },
+    {
+      "timestamp": "2026-01-19 21:30:00+00:00",
+      "equity": 10560.21
+    },
+    {
+      "timestamp": "2026-01-20 01:30:00+00:00",
+      "equity": 10556.86
+    },
+    {
+      "timestamp": "2026-01-20 05:30:00+00:00",
+      "equity": 10550.62
+    },
+    {
+      "timestamp": "2026-01-20 09:30:00+00:00",
+      "equity": 10545.62
+    },
+    {
+      "timestamp": "2026-01-20 13:30:00+00:00",
+      "equity": 10540.13
+    },
+    {
+      "timestamp": "2026-01-20 17:30:00+00:00",
+      "equity": 10529.47
+    },
+    {
+      "timestamp": "2026-01-20 21:30:00+00:00",
+      "equity": 10527.76
+    },
+    {
+      "timestamp": "2026-01-21 01:30:00+00:00",
+      "equity": 10524.88
+    },
+    {
+      "timestamp": "2026-01-21 05:30:00+00:00",
+      "equity": 10528.5
+    },
+    {
+      "timestamp": "2026-01-21 09:30:00+00:00",
+      "equity": 10524.54
+    },
+    {
+      "timestamp": "2026-01-21 13:30:00+00:00",
+      "equity": 10526.16
+    },
+    {
+      "timestamp": "2026-01-21 17:30:00+00:00",
+      "equity": 10516.09
+    },
+    {
+      "timestamp": "2026-01-21 21:30:00+00:00",
+      "equity": 10533.04
+    },
+    {
+      "timestamp": "2026-01-22 01:30:00+00:00",
+      "equity": 10534.97
+    },
+    {
+      "timestamp": "2026-01-22 05:30:00+00:00",
+      "equity": 10531.31
+    },
+    {
+      "timestamp": "2026-01-22 09:30:00+00:00",
+      "equity": 10530.76
+    },
+    {
+      "timestamp": "2026-01-22 13:30:00+00:00",
+      "equity": 10525.67
+    },
+    {
+      "timestamp": "2026-01-22 17:30:00+00:00",
+      "equity": 10524.0
+    },
+    {
+      "timestamp": "2026-01-22 21:30:00+00:00",
+      "equity": 10522.88
+    },
+    {
+      "timestamp": "2026-01-23 01:30:00+00:00",
+      "equity": 10523.91
+    },
+    {
+      "timestamp": "2026-01-23 05:30:00+00:00",
+      "equity": 10521.79
+    },
+    {
+      "timestamp": "2026-01-23 09:30:00+00:00",
+      "equity": 10519.13
+    },
+    {
+      "timestamp": "2026-01-23 13:30:00+00:00",
+      "equity": 10521.15
+    },
+    {
+      "timestamp": "2026-01-23 17:30:00+00:00",
+      "equity": 10529.14
+    },
+    {
+      "timestamp": "2026-01-23 21:30:00+00:00",
+      "equity": 10523.57
+    },
+    {
+      "timestamp": "2026-01-24 01:30:00+00:00",
+      "equity": 10523.84
+    },
+    {
+      "timestamp": "2026-01-24 05:30:00+00:00",
+      "equity": 10523.97
+    },
+    {
+      "timestamp": "2026-01-24 09:30:00+00:00",
+      "equity": 10523.98
+    },
+    {
+      "timestamp": "2026-01-24 13:30:00+00:00",
+      "equity": 10523.28
+    },
+    {
+      "timestamp": "2026-01-24 17:30:00+00:00",
+      "equity": 10524.69
+    },
+    {
+      "timestamp": "2026-01-24 21:30:00+00:00",
+      "equity": 10524.09
+    },
+    {
+      "timestamp": "2026-01-25 01:30:00+00:00",
+      "equity": 10522.97
+    },
+    {
+      "timestamp": "2026-01-25 05:30:00+00:00",
+      "equity": 10520.77
+    },
+    {
+      "timestamp": "2026-01-25 09:30:00+00:00",
+      "equity": 10521.86
+    },
+    {
+      "timestamp": "2026-01-25 13:30:00+00:00",
+      "equity": 10519.39
+    },
+    {
+      "timestamp": "2026-01-25 17:30:00+00:00",
+      "equity": 10508.64
+    },
+    {
+      "timestamp": "2026-01-25 21:30:00+00:00",
+      "equity": 10500.01
+    },
+    {
+      "timestamp": "2026-01-26 01:30:00+00:00",
+      "equity": 10512.27
+    },
+    {
+      "timestamp": "2026-01-26 05:30:00+00:00",
+      "equity": 10512.47
+    },
+    {
+      "timestamp": "2026-01-26 09:30:00+00:00",
+      "equity": 10514.91
+    },
+    {
+      "timestamp": "2026-01-26 13:30:00+00:00",
+      "equity": 10513.13
+    },
+    {
+      "timestamp": "2026-01-26 17:30:00+00:00",
+      "equity": 10518.39
+    },
+    {
+      "timestamp": "2026-01-26 21:30:00+00:00",
+      "equity": 10518.38
+    },
+    {
+      "timestamp": "2026-01-27 01:30:00+00:00",
+      "equity": 10520.3
+    },
+    {
+      "timestamp": "2026-01-27 05:30:00+00:00",
+      "equity": 10520.09
+    },
+    {
+      "timestamp": "2026-01-27 09:30:00+00:00",
+      "equity": 10469.97
+    },
+    {
+      "timestamp": "2026-01-27 13:30:00+00:00",
+      "equity": 10527.88
+    },
+    {
+      "timestamp": "2026-01-27 17:30:00+00:00",
+      "equity": 10624.55
+    },
+    {
+      "timestamp": "2026-01-27 21:30:00+00:00",
+      "equity": 10633.84
+    },
+    {
+      "timestamp": "2026-01-28 01:30:00+00:00",
+      "equity": 10634.58
+    },
+    {
+      "timestamp": "2026-01-28 05:30:00+00:00",
+      "equity": 10634.01
+    },
+    {
+      "timestamp": "2026-01-28 09:30:00+00:00",
+      "equity": 10635.5
+    },
+    {
+      "timestamp": "2026-01-28 13:30:00+00:00",
+      "equity": 10636.22
+    },
+    {
+      "timestamp": "2026-01-28 17:30:00+00:00",
+      "equity": 10634.76
+    },
+    {
+      "timestamp": "2026-01-28 21:30:00+00:00",
+      "equity": 10634.89
+    },
+    {
+      "timestamp": "2026-01-29 01:30:00+00:00",
+      "equity": 10631.95
+    },
+    {
+      "timestamp": "2026-01-29 05:30:00+00:00",
+      "equity": 10626.13
+    },
+    {
+      "timestamp": "2026-01-29 09:30:00+00:00",
+      "equity": 10624.98
+    },
+    {
+      "timestamp": "2026-01-29 13:30:00+00:00",
+      "equity": 10620.65
+    },
+    {
+      "timestamp": "2026-01-29 17:30:00+00:00",
+      "equity": 10603.63
+    },
+    {
+      "timestamp": "2026-01-29 21:30:00+00:00",
+      "equity": 10605.31
+    },
+    {
+      "timestamp": "2026-01-30 01:30:00+00:00",
+      "equity": 10590.72
+    },
+    {
+      "timestamp": "2026-01-30 05:30:00+00:00",
+      "equity": 10591.72
+    },
+    {
+      "timestamp": "2026-01-30 09:30:00+00:00",
+      "equity": 10592.59
+    },
+    {
+      "timestamp": "2026-01-30 13:30:00+00:00",
+      "equity": 10593.33
+    },
+    {
+      "timestamp": "2026-01-30 17:30:00+00:00",
+      "equity": 10585.02
+    },
+    {
+      "timestamp": "2026-01-30 21:30:00+00:00",
+      "equity": 10587.73
+    },
+    {
+      "timestamp": "2026-01-31 01:30:00+00:00",
+      "equity": 10587.09
+    },
+    {
+      "timestamp": "2026-01-31 05:30:00+00:00",
+      "equity": 10586.52
+    },
+    {
+      "timestamp": "2026-01-31 09:30:00+00:00",
+      "equity": 10580.65
+    },
+    {
+      "timestamp": "2026-01-31 13:30:00+00:00",
+      "equity": 10564.3
+    },
+    {
+      "timestamp": "2026-01-31 17:30:00+00:00",
+      "equity": 10544.08
+    },
+    {
+      "timestamp": "2026-01-31 21:30:00+00:00",
+      "equity": 10547.14
+    },
+    {
+      "timestamp": "2026-02-01 01:30:00+00:00",
+      "equity": 10551.16
+    },
+    {
+      "timestamp": "2026-02-01 05:30:00+00:00",
+      "equity": 10549.24
+    },
+    {
+      "timestamp": "2026-02-01 09:30:00+00:00",
+      "equity": 10548.78
+    },
+    {
+      "timestamp": "2026-02-01 13:30:00+00:00",
+      "equity": 10539.07
+    },
+    {
+      "timestamp": "2026-02-01 17:30:00+00:00",
+      "equity": 10538.61
+    },
+    {
+      "timestamp": "2026-02-01 21:30:00+00:00",
+      "equity": 10531.94
+    },
+    {
+      "timestamp": "2026-02-02 01:30:00+00:00",
+      "equity": 10528.7
+    },
+    {
+      "timestamp": "2026-02-02 05:30:00+00:00",
+      "equity": 10662.84
+    },
+    {
+      "timestamp": "2026-02-02 09:30:00+00:00",
+      "equity": 10676.0
+    },
+    {
+      "timestamp": "2026-02-02 13:30:00+00:00",
+      "equity": 10680.35
+    },
+    {
+      "timestamp": "2026-02-02 17:30:00+00:00",
+      "equity": 10142.19
+    },
+    {
+      "timestamp": "2026-02-02 21:30:00+00:00",
+      "equity": 10162.89
+    },
+    {
+      "timestamp": "2026-02-03 01:30:00+00:00",
+      "equity": 10114.6
+    },
+    {
+      "timestamp": "2026-02-03 05:30:00+00:00",
+      "equity": 10089.69
+    },
+    {
+      "timestamp": "2026-02-03 09:30:00+00:00",
+      "equity": 9948.9
+    },
+    {
+      "timestamp": "2026-02-03 13:30:00+00:00",
+      "equity": 10020.49
+    },
+    {
+      "timestamp": "2026-02-03 17:30:00+00:00",
+      "equity": 9275.19
+    },
+    {
+      "timestamp": "2026-02-03 21:30:00+00:00",
+      "equity": 9834.23
+    },
+    {
+      "timestamp": "2026-02-04 01:30:00+00:00",
+      "equity": 9808.81
+    },
+    {
+      "timestamp": "2026-02-04 05:30:00+00:00",
+      "equity": 9852.58
+    },
+    {
+      "timestamp": "2026-02-04 09:30:00+00:00",
+      "equity": 9790.02
+    },
+    {
+      "timestamp": "2026-02-04 13:30:00+00:00",
+      "equity": 9558.86
+    },
+    {
+      "timestamp": "2026-02-04 17:30:00+00:00",
+      "equity": 9217.31
+    },
+    {
+      "timestamp": "2026-02-04 21:30:00+00:00",
+      "equity": 9389.04
+    },
+    {
+      "timestamp": "2026-02-05 01:30:00+00:00",
+      "equity": 9272.63
+    },
+    {
+      "timestamp": "2026-02-05 05:30:00+00:00",
+      "equity": 9018.73
+    },
+    {
+      "timestamp": "2026-02-05 09:30:00+00:00",
+      "equity": 9282.7
+    },
+    {
+      "timestamp": "2026-02-05 13:30:00+00:00",
+      "equity": 9014.91
+    },
+    {
+      "timestamp": "2026-02-05 17:30:00+00:00",
+      "equity": 8403.72
+    },
+    {
+      "timestamp": "2026-02-05 21:30:00+00:00",
+      "equity": 8144.57
+    },
+    {
+      "timestamp": "2026-02-06 01:30:00+00:00",
+      "equity": 8275.34
+    },
+    {
+      "timestamp": "2026-02-06 05:30:00+00:00",
+      "equity": 8423.29
+    },
+    {
+      "timestamp": "2026-02-06 09:30:00+00:00",
+      "equity": 8358.73
+    },
+    {
+      "timestamp": "2026-02-06 13:30:00+00:00",
+      "equity": 8458.65
+    },
+    {
+      "timestamp": "2026-02-06 17:30:00+00:00",
+      "equity": 8850.48
+    },
+    {
+      "timestamp": "2026-02-06 21:30:00+00:00",
+      "equity": 8960.38
+    },
+    {
+      "timestamp": "2026-02-07 01:30:00+00:00",
+      "equity": 8933.69
+    },
+    {
+      "timestamp": "2026-02-07 05:30:00+00:00",
+      "equity": 9028.97
+    },
+    {
+      "timestamp": "2026-02-07 09:30:00+00:00",
+      "equity": 8717.45
+    },
+    {
+      "timestamp": "2026-02-07 13:30:00+00:00",
+      "equity": 8860.41
+    },
+    {
+      "timestamp": "2026-02-07 17:30:00+00:00",
+      "equity": 9045.5
+    },
+    {
+      "timestamp": "2026-02-07 21:30:00+00:00",
+      "equity": 9104.12
+    },
+    {
+      "timestamp": "2026-02-08 01:30:00+00:00",
+      "equity": 9094.31
+    },
+    {
+      "timestamp": "2026-02-08 05:30:00+00:00",
+      "equity": 9055.48
+    },
+    {
+      "timestamp": "2026-02-08 09:30:00+00:00",
+      "equity": 9067.76
+    },
+    {
+      "timestamp": "2026-02-08 13:30:00+00:00",
+      "equity": 9187.29
+    },
+    {
+      "timestamp": "2026-02-08 17:30:00+00:00",
+      "equity": 9106.46
+    },
+    {
+      "timestamp": "2026-02-08 21:30:00+00:00",
+      "equity": 9110.11
+    },
+    {
+      "timestamp": "2026-02-09 01:30:00+00:00",
+      "equity": 8996.3
+    },
+    {
+      "timestamp": "2026-02-09 05:30:00+00:00",
+      "equity": 9004.76
+    },
+    {
+      "timestamp": "2026-02-09 09:30:00+00:00",
+      "equity": 8788.0
+    },
+    {
+      "timestamp": "2026-02-09 13:30:00+00:00",
+      "equity": 8790.17
+    },
+    {
+      "timestamp": "2026-02-09 17:30:00+00:00",
+      "equity": 9173.67
+    },
+    {
+      "timestamp": "2026-02-09 21:30:00+00:00",
+      "equity": 9184.64
+    },
+    {
+      "timestamp": "2026-02-10 01:30:00+00:00",
+      "equity": 9158.53
+    },
+    {
+      "timestamp": "2026-02-10 05:30:00+00:00",
+      "equity": 8860.72
+    },
+    {
+      "timestamp": "2026-02-10 09:30:00+00:00",
+      "equity": 8756.98
+    },
+    {
+      "timestamp": "2026-02-10 13:30:00+00:00",
+      "equity": 8795.64
+    },
+    {
+      "timestamp": "2026-02-10 17:30:00+00:00",
+      "equity": 8705.0
+    },
+    {
+      "timestamp": "2026-02-10 21:30:00+00:00",
+      "equity": 8740.45
+    },
+    {
+      "timestamp": "2026-02-11 01:30:00+00:00",
+      "equity": 8800.15
+    },
+    {
+      "timestamp": "2026-02-11 05:30:00+00:00",
+      "equity": 8503.56
+    },
+    {
+      "timestamp": "2026-02-11 09:30:00+00:00",
+      "equity": 8424.94
+    },
+    {
+      "timestamp": "2026-02-11 13:30:00+00:00",
+      "equity": 8631.11
+    },
+    {
+      "timestamp": "2026-02-11 17:30:00+00:00",
+      "equity": 8409.23
+    },
+    {
+      "timestamp": "2026-02-11 21:30:00+00:00",
+      "equity": 8502.04
+    },
+    {
+      "timestamp": "2026-02-12 01:30:00+00:00",
+      "equity": 8508.33
+    },
+    {
+      "timestamp": "2026-02-12 05:30:00+00:00",
+      "equity": 8593.02
+    },
+    {
+      "timestamp": "2026-02-12 09:30:00+00:00",
+      "equity": 8598.49
+    },
+    {
+      "timestamp": "2026-02-12 13:30:00+00:00",
+      "equity": 8619.1
+    },
+    {
+      "timestamp": "2026-02-12 17:30:00+00:00",
+      "equity": 8280.46
+    },
+    {
+      "timestamp": "2026-02-12 21:30:00+00:00",
+      "equity": 8365.46
+    },
+    {
+      "timestamp": "2026-02-13 01:30:00+00:00",
+      "equity": 8438.0
+    },
+    {
+      "timestamp": "2026-02-13 05:30:00+00:00",
+      "equity": 8377.22
+    },
+    {
+      "timestamp": "2026-02-13 09:30:00+00:00",
+      "equity": 8494.92
+    },
+    {
+      "timestamp": "2026-02-13 13:30:00+00:00",
+      "equity": 8553.06
+    },
+    {
+      "timestamp": "2026-02-13 17:30:00+00:00",
+      "equity": 8918.38
+    },
+    {
+      "timestamp": "2026-02-13 21:30:00+00:00",
+      "equity": 8901.07
+    },
+    {
+      "timestamp": "2026-02-14 01:30:00+00:00",
+      "equity": 8889.4
+    },
+    {
+      "timestamp": "2026-02-14 05:30:00+00:00",
+      "equity": 8900.76
+    },
+    {
+      "timestamp": "2026-02-14 09:30:00+00:00",
+      "equity": 8995.48
+    },
+    {
+      "timestamp": "2026-02-14 13:30:00+00:00",
+      "equity": 8988.06
+    },
+    {
+      "timestamp": "2026-02-14 17:30:00+00:00",
+      "equity": 9038.3
+    },
+    {
+      "timestamp": "2026-02-14 21:30:00+00:00",
+      "equity": 9066.2
+    },
+    {
+      "timestamp": "2026-02-15 01:30:00+00:00",
+      "equity": 8928.79
+    },
+    {
+      "timestamp": "2026-02-15 05:30:00+00:00",
+      "equity": 9066.76
+    },
+    {
+      "timestamp": "2026-02-15 09:30:00+00:00",
+      "equity": 8946.58
+    },
+    {
+      "timestamp": "2026-02-15 13:30:00+00:00",
+      "equity": 8687.6
+    },
+    {
+      "timestamp": "2026-02-15 17:30:00+00:00",
+      "equity": 8560.52
+    },
+    {
+      "timestamp": "2026-02-15 21:30:00+00:00",
+      "equity": 8531.46
+    },
+    {
+      "timestamp": "2026-02-16 01:30:00+00:00",
+      "equity": 8497.4
+    },
+    {
+      "timestamp": "2026-02-16 05:30:00+00:00",
+      "equity": 8491.11
+    },
+    {
+      "timestamp": "2026-02-16 09:30:00+00:00",
+      "equity": 8596.19
+    },
+    {
+      "timestamp": "2026-02-16 13:30:00+00:00",
+      "equity": 8505.99
+    },
+    {
+      "timestamp": "2026-02-16 17:30:00+00:00",
+      "equity": 8583.56
+    },
+    {
+      "timestamp": "2026-02-16 21:30:00+00:00",
+      "equity": 8635.76
+    },
+    {
+      "timestamp": "2026-02-17 01:30:00+00:00",
+      "equity": 8692.38
+    },
+    {
+      "timestamp": "2026-02-17 05:30:00+00:00",
+      "equity": 8603.82
+    },
+    {
+      "timestamp": "2026-02-17 09:30:00+00:00",
+      "equity": 8537.4
+    },
+    {
+      "timestamp": "2026-02-17 13:30:00+00:00",
+      "equity": 8640.4
+    }
+  ],
+  "profile": "high",
+  "symbol": "ETH/USDT",
+  "timeframe": "1h",
+  "exchange": "aster"
+}

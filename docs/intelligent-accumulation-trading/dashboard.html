@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spot Dashboard — Intelligent Accumulation | AIT</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0d1117;--card:#161b22;--border:#30363d;--green:#3fb950;--red:#f85149;--amber:#d29922;--blue:#58a6ff;--teal:#14b8a6;--cyan:#22d3ee;--text:#e6edf3;--text2:#8b949e;--text3:#484f58}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;padding:16px}
+a{color:var(--teal);text-decoration:none}
+.header{display:flex;align-items:center;justify-content:space-between;padding:8px 0 16px;border-bottom:1px solid var(--border);margin-bottom:16px;flex-wrap:wrap;gap:8px}
+.header h1{font-size:1.4rem;font-weight:600;display:flex;align-items:center;gap:12px}
+.header-right{display:flex;align-items:center;gap:12px;font-size:.8rem;color:var(--text2);flex-wrap:wrap}
+.header-nav{color:var(--text2);text-decoration:none;font-size:.8rem;padding:4px 10px;border-radius:6px;transition:color .2s}
+.header-nav:hover{color:var(--teal)}
+.header-nav.active{color:var(--teal);font-weight:600}
+.status-dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.status-dot.running{background:var(--green);box-shadow:0 0 6px var(--green)}
+.status-dot.demo{background:var(--amber);box-shadow:0 0 6px var(--amber)}
+
+/* Exchange Tabs */
+.exchange-tabs{display:flex;gap:4px;margin-bottom:16px}
+.exchange-tab{padding:8px 20px;border-radius:8px 8px 0 0;background:var(--card);border:1px solid var(--border);border-bottom:none;font-size:.85rem;font-weight:500;cursor:pointer;color:var(--text2);transition:all .2s}
+.exchange-tab.active{background:var(--bg);color:var(--teal);border-color:var(--teal);border-bottom:2px solid var(--bg);position:relative;z-index:1}
+.exchange-tab:hover{color:var(--teal)}
+
+/* Cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,145px),1fr));gap:12px;margin-bottom:16px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;position:relative;overflow:hidden}
+.card-label{font-size:.7rem;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.card-value{font-size:1.5rem;font-weight:700}
+.card-sub{font-size:.75rem;color:var(--text2);margin-top:4px}
+.badge{display:inline-block;font-size:.65rem;font-weight:600;padding:2px 7px;border-radius:4px;text-transform:uppercase;letter-spacing:.3px}
+.badge-green{background:rgba(63,185,80,.15);color:var(--green)}
+.badge-red{background:rgba(248,81,73,.15);color:var(--red)}
+.badge-amber{background:rgba(210,153,34,.15);color:var(--amber)}
+.badge-teal{background:rgba(20,184,166,.15);color:var(--teal)}
+
+/* Coin Selector */
+.coin-selector{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.coin-chip{padding:8px 16px;background:var(--card);border:1px solid var(--border);border-radius:10px;cursor:pointer;font-size:.85rem;font-weight:500;transition:all .2s;display:flex;align-items:center;gap:8px}
+.coin-chip.active{border-color:var(--teal);background:rgba(20,184,166,.08)}
+.coin-chip:hover{border-color:var(--teal)}
+.coin-chip .coin-pnl{font-size:.75rem;font-weight:600}
+
+/* Section */
+.section{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:16px}
+.section h2{font-size:1rem;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+
+/* Deal Layers */
+.deal-layers{display:flex;flex-direction:column;gap:6px;margin:16px 0}
+.deal-layer{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:8px;font-size:.82rem}
+.deal-layer.sold{background:rgba(63,185,80,.1);border-left:3px solid var(--green)}
+.deal-layer.held{background:rgba(88,166,255,.08);border-left:3px solid var(--blue)}
+.deal-layer.pending{background:rgba(72,79,88,.1);border-left:3px solid var(--text3)}
+.layer-label{min-width:50px;font-weight:600}
+.layer-qty{min-width:90px;color:var(--text2)}
+.layer-price{min-width:90px;color:var(--text2)}
+.layer-status{margin-left:auto;font-weight:600;font-size:.75rem}
+
+/* Adaptive Panel */
+.adaptive-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+.adaptive-item{padding:12px;background:var(--bg);border:1px solid var(--border);border-radius:8px}
+.adaptive-label{font-size:.65rem;color:var(--text2);text-transform:uppercase;letter-spacing:.3px;margin-bottom:4px}
+.adaptive-value{font-size:1.1rem;font-weight:600}
+
+/* Chart */
+.chart-box{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:16px}
+.chart-box h3{font-size:.8rem;color:var(--text2);margin-bottom:12px;font-weight:500}
+.chart-wrap{position:relative;height:260px}
+
+/* Trade Table */
+table{width:100%;border-collapse:collapse;font-size:.78rem}
+th{text-align:left;color:var(--text2);font-weight:500;padding:8px 6px;border-bottom:1px solid var(--border);font-size:.7rem;text-transform:uppercase;letter-spacing:.3px}
+td{padding:7px 6px;border-bottom:1px solid #1c2128}
+tr:hover td{background:rgba(20,184,166,.04)}
+.pnl-pos{color:var(--green)}
+.pnl-neg{color:var(--red)}
+
+/* Deal Stats */
+.deal-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-top:16px}
+.deal-stat{padding:8px 0}
+.deal-stat-label{font-size:.65rem;color:var(--text2);text-transform:uppercase;letter-spacing:.3px}
+.deal-stat-value{font-size:.95rem;font-weight:600;margin-top:2px}
+
+.footer{text-align:center;padding:12px;font-size:.7rem;color:var(--text3)}
+
+@media(max-width:768px){
+  .cards{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
+  .chart-wrap{height:200px}
+  .deal-layer{flex-wrap:wrap;gap:6px}
+}
+@media(max-width:600px){
+  body{padding:8px}
+  .header h1{font-size:1.1rem}
+  .card-value{font-size:1.2rem}
+  .coin-selector{gap:6px}
+  .coin-chip{padding:6px 10px;font-size:.78rem}
+  table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>
+    <svg width="36" height="36" viewBox="0 0 48 48" fill="none">
+      <rect x="4" y="4" width="40" height="40" rx="4" stroke="#30363d" stroke-width="1" fill="rgba(22,27,34,.8)"/>
+      <circle cx="24" cy="24" r="6" stroke="#14b8a6" stroke-width="2" fill="none" opacity=".9">
+        <animate attributeName="r" values="6;9;6" dur="3s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="24" cy="24" r="3" fill="#14b8a6"/>
+    </svg>
+    Intelligent Accumulation
+  </h1>
+  <div class="header-right">
+    <a href="../intelligent-accumulation-trading.html" class="header-nav">← Overview</a>
+    <a href="risk-profiles.html" class="header-nav">Risk Profiles</a>
+    <a href="pricing.html" class="header-nav">Pricing</a>
+    <a href="../dashboard.html" class="header-nav" style="color:var(--text3);">Futures Dashboard →</a>
+    <span>|</span>
+    <span class="status-dot demo"></span>
+    <span>Demo Data</span>
+    <span id="lastUpdate" style="font-size:.7rem;"></span>
+  </div>
+</div>
+
+<!-- Exchange Tabs -->
+<div class="exchange-tabs">
+  <div class="exchange-tab active" onclick="switchExchange('aster')">Aster</div>
+  <div class="exchange-tab" onclick="switchExchange('hyperliquid')">Hyperliquid</div>
+</div>
+
+<!-- Stat Cards -->
+<div class="cards" id="statCards">
+  <div class="card">
+    <div class="card-label">Equity</div>
+    <div class="card-value" id="equity">$10,651</div>
+    <div class="card-sub" id="equityChange"><span class="pnl-pos">+6.51%</span></div>
+  </div>
+  <div class="card">
+    <div class="card-label">Realized PnL</div>
+    <div class="card-value pnl-pos" id="realizedPnl">+$651.00</div>
+  </div>
+  <div class="card">
+    <div class="card-label">Unrealized PnL</div>
+    <div class="card-value" id="unrealizedPnl" style="color:var(--amber);">+$42.18</div>
+  </div>
+  <div class="card">
+    <div class="card-label">Cash Available</div>
+    <div class="card-value" id="cashAvail">$4,218</div>
+  </div>
+  <div class="card">
+    <div class="card-label">Win / Loss</div>
+    <div class="card-value" id="winLoss">17 / 0</div>
+  </div>
+  <div class="card">
+    <div class="card-label">Win Rate</div>
+    <div class="card-value pnl-pos" id="winRate">100%</div>
+  </div>
+  <div class="card">
+    <div class="card-label">Avg Deal ROI</div>
+    <div class="card-value pnl-pos" id="avgRoi">+1.16%</div>
+  </div>
+</div>
+
+<!-- Coin Selector -->
+<div class="coin-selector" id="coinSelector">
+  <div class="coin-chip active" onclick="selectCoin('ETH')">
+    <span>ETH/USDT</span>
+    <span class="coin-pnl pnl-pos">+6.51%</span>
+  </div>
+  <div class="coin-chip" onclick="selectCoin('ASTER')">
+    <span>ASTER/USDT</span>
+    <span class="coin-pnl pnl-pos">+3.73%</span>
+  </div>
+</div>
+
+<!-- Deal Panel -->
+<div class="section" id="dealPanel">
+  <h2>🟢 ETH/USDT — Active Deal #18</h2>
+  
+  <div class="deal-layers">
+    <div class="deal-layer sold">
+      <span class="layer-label">SO3</span>
+      <span class="layer-qty">0.082 ETH</span>
+      <span class="layer-price">@ $2,412</span>
+      <span class="layer-status" style="color:var(--green);">✓ SOLD +$3.82</span>
+    </div>
+    <div class="deal-layer sold">
+      <span class="layer-label">SO2</span>
+      <span class="layer-qty">0.041 ETH</span>
+      <span class="layer-price">@ $2,460</span>
+      <span class="layer-status" style="color:var(--green);">✓ SOLD +$1.64</span>
+    </div>
+    <div class="deal-layer held">
+      <span class="layer-label">SO1</span>
+      <span class="layer-qty">0.020 ETH</span>
+      <span class="layer-price">@ $2,508</span>
+      <span class="layer-status" style="color:var(--blue);">● HELD</span>
+    </div>
+    <div class="deal-layer held">
+      <span class="layer-label">Base</span>
+      <span class="layer-qty">0.010 ETH</span>
+      <span class="layer-price">@ $2,556</span>
+      <span class="layer-status" style="color:var(--blue);">● HELD</span>
+    </div>
+    <div class="deal-layer pending">
+      <span class="layer-label">SO4</span>
+      <span class="layer-qty">0.164 ETH</span>
+      <span class="layer-price">@ $2,364</span>
+      <span class="layer-status" style="color:var(--text3);">○ PENDING</span>
+    </div>
+    <div class="deal-layer pending">
+      <span class="layer-label">SO5</span>
+      <span class="layer-qty">0.328 ETH</span>
+      <span class="layer-price">@ $2,316</span>
+      <span class="layer-status" style="color:var(--text3);">○ PENDING</span>
+    </div>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:16px;margin:12px 0;padding:12px;background:var(--bg);border-radius:8px;">
+    <span style="font-size:.8rem;color:var(--text2);">Scale-Out Progress:</span>
+    <div style="flex:1;height:8px;background:#21262d;border-radius:4px;overflow:hidden;">
+      <div style="width:33%;height:100%;background:linear-gradient(90deg,var(--green),var(--teal));border-radius:4px;"></div>
+    </div>
+    <span style="font-size:.8rem;color:var(--green);">2/6 layers sold</span>
+  </div>
+
+  <div class="deal-stats">
+    <div class="deal-stat"><div class="deal-stat-label">Avg Entry</div><div class="deal-stat-value">$2,472</div></div>
+    <div class="deal-stat"><div class="deal-stat-label">Current Price</div><div class="deal-stat-value" style="color:var(--teal);">$2,531</div></div>
+    <div class="deal-stat"><div class="deal-stat-label">Realized (this deal)</div><div class="deal-stat-value pnl-pos">+$5.46</div></div>
+    <div class="deal-stat"><div class="deal-stat-label">Unrealized</div><div class="deal-stat-value" style="color:var(--amber);">+$1.77</div></div>
+    <div class="deal-stat"><div class="deal-stat-label">Capital Used</div><div class="deal-stat-value">$382</div></div>
+    <div class="deal-stat"><div class="deal-stat-label">Deal Duration</div><div class="deal-stat-value">4h 22m</div></div>
+  </div>
+</div>
+
+<!-- Adaptive Intelligence -->
+<div class="section">
+  <h2>🧠 Adaptive Intelligence</h2>
+  <div class="adaptive-grid">
+    <div class="adaptive-item">
+      <div class="adaptive-label">Regime</div>
+      <div class="adaptive-value" style="color:var(--amber);">RANGING</div>
+    </div>
+    <div class="adaptive-item">
+      <div class="adaptive-label">TP Target</div>
+      <div class="adaptive-value" style="color:var(--green);">1.5%</div>
+    </div>
+    <div class="adaptive-item">
+      <div class="adaptive-label">Deviation</div>
+      <div class="adaptive-value" style="color:var(--blue);">2.0%</div>
+    </div>
+    <div class="adaptive-item">
+      <div class="adaptive-label">ATR (14)</div>
+      <div class="adaptive-value">1.82%</div>
+    </div>
+    <div class="adaptive-item">
+      <div class="adaptive-label">Direction</div>
+      <div class="adaptive-value" style="color:var(--green);">Bullish</div>
+    </div>
+    <div class="adaptive-item">
+      <div class="adaptive-label">Hurst</div>
+      <div class="adaptive-value">0.42</div>
+    </div>
+  </div>
+</div>
+
+<!-- Equity Curve -->
+<div class="chart-box">
+  <h3>📈 Equity Curve — ETH/USDT Medium 15m</h3>
+  <div class="chart-wrap"><canvas id="equityChart"></canvas></div>
+</div>
+
+<!-- Trade History -->
+<div class="section">
+  <h2>📋 Recent Completed Deals</h2>
+  <table>
+    <thead><tr><th>Deal</th><th>Coin</th><th>Layers</th><th>Avg Entry</th><th>Avg Exit</th><th>PnL</th><th>ROI</th><th>Duration</th></tr></thead>
+    <tbody>
+      <tr><td>#17</td><td>ETH/USDT</td><td>4/8</td><td>$2,489</td><td>$2,526</td><td class="pnl-pos">+$42.18</td><td class="pnl-pos">+1.49%</td><td>6h 12m</td></tr>
+      <tr><td>#16</td><td>ETH/USDT</td><td>3/8</td><td>$2,501</td><td>$2,534</td><td class="pnl-pos">+$31.44</td><td class="pnl-pos">+1.32%</td><td>3h 45m</td></tr>
+      <tr><td>#15</td><td>ETH/USDT</td><td>2/8</td><td>$2,518</td><td>$2,545</td><td class="pnl-pos">+$18.92</td><td class="pnl-pos">+1.07%</td><td>2h 18m</td></tr>
+      <tr><td>#14</td><td>ETH/USDT</td><td>5/8</td><td>$2,445</td><td>$2,491</td><td class="pnl-pos">+$58.32</td><td class="pnl-pos">+1.88%</td><td>11h 04m</td></tr>
+      <tr><td>#13</td><td>ETH/USDT</td><td>3/8</td><td>$2,472</td><td>$2,498</td><td class="pnl-pos">+$26.58</td><td class="pnl-pos">+1.05%</td><td>4h 37m</td></tr>
+      <tr><td>#12</td><td>ASTER/USDT</td><td>4/8</td><td>$0.0821</td><td>$0.0845</td><td class="pnl-pos">+$38.16</td><td class="pnl-pos">+2.92%</td><td>8h 22m</td></tr>
+      <tr><td>#11</td><td>ETH/USDT</td><td>2/8</td><td>$2,510</td><td>$2,533</td><td class="pnl-pos">+$15.64</td><td class="pnl-pos">+0.92%</td><td>1h 55m</td></tr>
+      <tr><td>#10</td><td>ASTER/USDT</td><td>3/8</td><td>$0.0798</td><td>$0.0816</td><td class="pnl-pos">+$22.41</td><td class="pnl-pos">+2.25%</td><td>5h 48m</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="footer">
+  Auto-refresh: 2 min · Data: <code>../data/spot-{exchange}-status.json</code> · Demo data shown when live feed unavailable
+  <br>
+  <a href="../intelligent-accumulation-trading.html">Spot Overview</a> · <a href="risk-profiles.html">Risk Profiles</a> · <a href="pricing.html">Pricing</a> · <a href="../dashboard.html" style="color:var(--text3);">Futures Dashboard</a>
+</div>
+
+<script>
+// Demo data
+const demoData = {
+  aster: {
+    equity: 10651, realizedPnl: 651, unrealizedPnl: 42.18, cash: 4218,
+    wins: 17, losses: 0, avgRoi: 1.16, change: 6.51,
+    coins: [
+      { symbol: 'ETH/USDT', pnl: 6.51 },
+      { symbol: 'ASTER/USDT', pnl: 3.73 }
+    ]
+  },
+  hyperliquid: {
+    equity: 10879, realizedPnl: 879, unrealizedPnl: 28.44, cash: 3650,
+    wins: 11, losses: 0, avgRoi: 1.78, change: 8.79,
+    coins: [
+      { symbol: 'HYPE/USDC', pnl: 8.79 }
+    ]
+  }
+};
+
+let currentExchange = 'aster';
+
+function switchExchange(ex) {
+  currentExchange = ex;
+  document.querySelectorAll('.exchange-tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  updateDisplay();
+}
+
+function selectCoin(sym) {
+  document.querySelectorAll('.coin-chip').forEach(c => c.classList.remove('active'));
+  event.target.closest('.coin-chip').classList.add('active');
+}
+
+function updateDisplay() {
+  const d = demoData[currentExchange];
+  document.getElementById('equity').textContent = '$' + d.equity.toLocaleString();
+  document.getElementById('equityChange').innerHTML = `<span class="${d.change >= 0 ? 'pnl-pos' : 'pnl-neg'}">${d.change >= 0 ? '+' : ''}${d.change}%</span>`;
+  document.getElementById('realizedPnl').textContent = (d.realizedPnl >= 0 ? '+' : '') + '$' + d.realizedPnl.toFixed(2);
+  document.getElementById('realizedPnl').className = 'card-value ' + (d.realizedPnl >= 0 ? 'pnl-pos' : 'pnl-neg');
+  document.getElementById('unrealizedPnl').textContent = (d.unrealizedPnl >= 0 ? '+' : '') + '$' + d.unrealizedPnl.toFixed(2);
+  document.getElementById('cashAvail').textContent = '$' + d.cash.toLocaleString();
+  document.getElementById('winLoss').textContent = d.wins + ' / ' + d.losses;
+  document.getElementById('winRate').textContent = d.wins > 0 ? Math.round(d.wins / (d.wins + d.losses) * 100) + '%' : '—';
+  document.getElementById('avgRoi').textContent = '+' + d.avgRoi + '%';
+
+  // Update coins
+  const sel = document.getElementById('coinSelector');
+  sel.innerHTML = d.coins.map((c, i) =>
+    `<div class="coin-chip ${i === 0 ? 'active' : ''}" onclick="selectCoin('${c.symbol}')">
+      <span>${c.symbol}</span>
+      <span class="coin-pnl ${c.pnl >= 0 ? 'pnl-pos' : 'pnl-neg'}">${c.pnl >= 0 ? '+' : ''}${c.pnl}%</span>
+    </div>`
+  ).join('');
+}
+
+// Equity Chart
+function buildChart() {
+  const ctx = document.getElementById('equityChart').getContext('2d');
+  const days = 90;
+  const labels = [];
+  const data = [];
+  let equity = 10000;
+  const start = new Date('2025-11-19');
+  for (let i = 0; i < days; i++) {
+    const d = new Date(start);
+    d.setDate(d.getDate() + i);
+    labels.push(d);
+    const daily = (Math.random() - 0.35) * 0.4;
+    equity *= (1 + daily / 100);
+    equity = Math.max(equity, 9200);
+    data.push(Math.round(equity * 100) / 100);
+  }
+  data[data.length - 1] = 10651;
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Equity ($)',
+        data: data,
+        borderColor: '#14b8a6',
+        backgroundColor: 'rgba(20,184,166,0.08)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: 0,
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: {
+          type: 'time',
+          time: { unit: 'week' },
+          grid: { color: 'rgba(48,54,61,0.5)' },
+          ticks: { color: '#484f58', font: { size: 10 } }
+        },
+        y: {
+          grid: { color: 'rgba(48,54,61,0.5)' },
+          ticks: { color: '#484f58', font: { size: 10 }, callback: v => '$' + v.toLocaleString() }
+        }
+      }
+    }
+  });
+}
+
+// Auto-refresh
+async function fetchLiveData() {
+  try {
+    const resp = await fetch(`../data/spot-${currentExchange}-status.json`);
+    if (resp.ok) {
+      const live = await resp.json();
+      // Merge live data over demo...
+      document.querySelector('.status-dot').className = 'status-dot running';
+      document.querySelector('.status-dot + span').textContent = 'Live';
+    }
+  } catch(e) { /* demo mode */ }
+  document.getElementById('lastUpdate').textContent = new Date().toLocaleTimeString();
+}
+
+buildChart();
+fetchLiveData();
+setInterval(fetchLiveData, 120000);
+</script>
+</body>
+</html>

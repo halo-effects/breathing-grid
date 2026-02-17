@@ -1,0 +1,26 @@
+2026-02-17 11:11:46,784 [INFO] ── Cycle 1 at 2026-02-17T19:11:46+00:00 ──
+2026-02-17 11:11:53,041 [DEBUG] ETH/USDT: $1999.8300 | regime=ACCUMULATION | ATR%=0.74 | TP=1.18% | Dev=2.00%
+2026-02-17 11:11:53,041 [INFO] 📥 DEAL 1 OPENED: ETH/USDT @ $1999.8300 (regime=ACCUMULATION, TP=1.18%)
+2026-02-17 11:11:54,192 [INFO] Equity: $9999.86 (-0.00%) | Cash: $9600.00 | Deals: 1 active, 0 completed | DD: 0.0%
+2026-02-17 11:14:26,486 [INFO] ============================================================
+2026-02-17 11:14:26,486 [INFO] Spot Paper Trader starting
+2026-02-17 11:14:26,486 [INFO] Exchange: aster | Profile: medium | Capital: $10000
+2026-02-17 11:14:26,486 [INFO] Symbols: ['ETH/USDT'] | Timeframe: 15m | Max coins: 3
+2026-02-17 11:14:26,486 [INFO] ============================================================
+2026-02-17 11:14:26,494 [INFO] Connected to aster
+2026-02-17 11:14:26,709 [INFO] ============================================================
+2026-02-17 11:14:26,709 [INFO] Spot Paper Trader starting
+2026-02-17 11:14:26,709 [INFO] Exchange: hyperliquid | Profile: medium | Capital: $10000
+2026-02-17 11:14:26,709 [INFO] Symbols: ['HYPE/USDC'] | Timeframe: 15m | Max coins: 3
+2026-02-17 11:14:26,709 [INFO] ============================================================
+2026-02-17 11:14:26,713 [INFO] Connected to hyperliquid
+2026-02-17 11:14:27,891 [INFO] ── Cycle 1 at 2026-02-17T19:14:27+00:00 ──
+2026-02-17 11:14:28,067 [INFO] ── Cycle 1 at 2026-02-17T19:14:28+00:00 ──
+2026-02-17 11:14:35,698 [DEBUG] ETH/USDT: $2008.7100 | regime=ACCUMULATION | ATR%=0.77 | TP=1.23% | Dev=2.04%
+2026-02-17 11:14:35,698 [INFO] 📥 DEAL 1 OPENED: ETH/USDT @ $2008.7100 (regime=ACCUMULATION, TP=1.23%)
+2026-02-17 11:14:36,838 [INFO] Equity: $9999.86 (-0.00%) | Cash: $9600.00 | Deals: 1 active, 0 completed | DD: 0.0%
+2026-02-17 11:14:36,841 [DEBUG] Sleeping 900s until next cycle...
+2026-02-17 11:14:42,303 [DEBUG] HYPE/USDC: $29.7020 | regime=ACCUMULATION | ATR%=0.90 | TP=1.44% | Dev=2.39%
+2026-02-17 11:14:42,303 [INFO] 📥 DEAL 1 OPENED: HYPE/USDC @ $29.7020 (regime=ACCUMULATION, TP=1.44%)
+2026-02-17 11:14:43,511 [INFO] Equity: $9999.72 (-0.00%) | Cash: $9600.00 | Deals: 1 active, 0 completed | DD: 0.0%
+2026-02-17 11:14:43,513 [DEBUG] Sleeping 900s until next cycle...

@@ -1,0 +1,85 @@
+{
+  "aster:BTC/USDT": {
+    "symbol": "BTC/USDT",
+    "exchange": "aster",
+    "status": "OK",
+    "candle_count": 25921,
+    "days": 90.0,
+    "gaps": 0,
+    "avg_daily_vol_usd": 8066616.77,
+    "thin_volume": false,
+    "enough_for_backtest": true
+  },
+  "aster:ETH/USDT": {
+    "symbol": "ETH/USDT",
+    "exchange": "aster",
+    "status": "OK",
+    "candle_count": 25920,
+    "days": 90.0,
+    "gaps": 0,
+    "avg_daily_vol_usd": 4715761.23,
+    "thin_volume": false,
+    "enough_for_backtest": true
+  },
+  "aster:BNB/USDT": {
+    "symbol": "BNB/USDT",
+    "exchange": "aster",
+    "status": "OK",
+    "candle_count": 25920,
+    "days": 90.0,
+    "gaps": 0,
+    "avg_daily_vol_usd": 276263.64,
+    "thin_volume": false,
+    "enough_for_backtest": true
+  },
+  "aster:ASTER/USDT": {
+    "symbol": "ASTER/USDT",
+    "exchange": "aster",
+    "status": "OK",
+    "candle_count": 25920,
+    "days": 90.0,
+    "gaps": 0,
+    "avg_daily_vol_usd": 18843278.33,
+    "thin_volume": false,
+    "enough_for_backtest": true
+  },
+  "aster:DOGE/USDT": {
+    "symbol": "DOGE/USDT",
+    "exchange": "aster",
+    "status": "NOT_AVAILABLE",
+    "days": 0
+  },
+  "hyperliquid:HYPE/USDC": {
+    "symbol": "HYPE/USDC",
+    "exchange": "hyperliquid",
+    "status": "SHORT_HISTORY",
+    "candle_count": 5023,
+    "days": 17.4,
+    "gaps": 0,
+    "avg_daily_vol_usd": 115236549.64,
+    "thin_volume": false,
+    "enough_for_backtest": false
+  },
+  "hyperliquid:BTC/USDC": {
+    "symbol": "BTC/USDC",
+    "exchange": "hyperliquid",
+    "status": "SHORT_HISTORY",
+    "candle_count": 5004,
+    "days": 17.4,
+    "gaps": 0,
+    "avg_daily_vol_usd": 62644274.1,
+    "thin_volume": false,
+    "enough_for_backtest": false
+  },
+  "hyperliquid:ETH/USDC": {
+    "symbol": "ETH/USDC",
+    "exchange": "hyperliquid",
+    "status": "SHORT_HISTORY",
+    "candle_count": 5053,
+    "days": 17.5,
+    "gaps": 0,
+    "avg_daily_vol_usd": 44592891.32,
+    "thin_volume": false,
+    "enough_for_backtest": false
+  }
+}

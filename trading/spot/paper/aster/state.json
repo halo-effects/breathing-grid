@@ -1,0 +1,33 @@
+{
+  "cash": 9600.0,
+  "deal_counter": 1,
+  "halted": false,
+  "peak_equity": 10000.0,
+  "max_dd": 0.027217294100100844,
+  "start_time": "2026-02-17T19:18:18.046797+00:00",
+  "deals": {
+    "ETH/USDT": {
+      "deal_id": 1,
+      "symbol": "ETH/USDT",
+      "lots": [
+        {
+          "lot_id": 0,
+          "buy_price": 2011.9,
+          "qty": 0.19874745265669266,
+          "cost_usd": 400.0,
+          "buy_fee": 0.13999999999999999,
+          "buy_time": "2026-02-17T19:18:19+00:00",
+          "sell_price": null,
+          "sell_fee": 0.0,
+          "sell_time": null,
+          "tp_target": 2033.2060210000002,
+          "pnl": 0.0
+        }
+      ],
+      "open_time": "2026-02-17T19:18:19+00:00",
+      "close_time": null,
+      "regime_at_open": "ACCUMULATION"
+    }
+  },
+  "completed_deals": []
+}
