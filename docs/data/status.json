@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-17T08:43:22.129031+00:00",
+  "timestamp": "2026-02-17T08:45:28.233842+00:00",
   "symbol": "HYPEUSDT",
   "timeframe": "5m",
   "running": true,
@@ -7,18 +7,18 @@
   "halted": false,
   "halt_reason": "",
   "regime": "MILD_TREND",
-  "price": 29.846,
-  "equity": 329.9,
+  "price": 29.835,
+  "equity": 329.88,
   "start_equity": 291.97,
   "peak_equity": 336.7,
-  "pnl": 37.93,
-  "pnl_pct": 12.99,
-  "drawdown_pct": 2.02,
+  "pnl": 37.91,
+  "pnl_pct": 12.98,
+  "drawdown_pct": 2.03,
   "max_drawdown_threshold": 25.0,
   "leverage": 1,
-  "capital": 329.97,
-  "available_balance": 101.63,
-  "cycle_count": 8462,
+  "capital": 329.96,
+  "available_balance": 101.67,
+  "cycle_count": 8465,
   "start_time": "2026-02-13T03:50:51.737221+00:00",
   "hedge_mode": false,
   "long_deal": {
@@ -31,7 +31,7 @@
     "direction": "LONG",
     "safety_orders_filled": 2,
     "safety_order_ids": [],
-    "tp_order_id": 1424734421,
+    "tp_order_id": 1425740401,
     "total_qty": 3.0300000000000002,
     "total_cost": 93.28632,
     "avg_entry": 30.78756435643564,
@@ -50,9 +50,9 @@
     "direction": "SHORT",
     "safety_orders_filled": 0,
     "safety_order_ids": [
-      1425706848
+      1425740707
     ],
-    "tp_order_id": 1425707384,
+    "tp_order_id": 1425740554,
     "total_qty": 0.44,
     "total_cost": 13.130040000000001,
     "avg_entry": 29.841,
@@ -68,11 +68,11 @@
   },
   "deal_counter": 77,
   "adaptive_tp": {
-    "current_tp_pct": 0.703,
+    "current_tp_pct": 0.658,
     "baseline_tp_pct": 1.5,
-    "current_dev_pct": 1.227,
+    "current_dev_pct": 1.205,
     "baseline_dev_pct": 2.5,
-    "atr_pct": 0.3568,
+    "atr_pct": 0.3345,
     "atr_baseline_pct": 0.8,
     "tp_min": 0.6,
     "tp_max": 2.5,
@@ -82,9 +82,9 @@
     "regime_dev_mult": 1.1
   },
   "config": {
-    "tp_pct": 0.703,
+    "tp_pct": 0.658,
     "max_sos": 8,
-    "deviation_pct": 1.227,
+    "deviation_pct": 1.205,
     "so_vol_mult": 2.0,
     "base_order_pct": 0.04
   }
