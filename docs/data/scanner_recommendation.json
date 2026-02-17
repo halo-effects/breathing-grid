@@ -1,39 +1,39 @@
 {
-  "timestamp": "2026-02-16T20:08:58.391224+00:00",
+  "timestamp": "2026-02-17T00:09:15.406580+00:00",
   "current_coin": "HYPE/USDT",
   "best_coin": "HYPE/USDT",
-  "best_score": 46.4,
-  "current_score": 46.4,
+  "best_score": 45.8,
+  "current_score": 45.8,
   "action": "HOLD",
   "top_5": [
     {
       "symbol": "HYPE/USDT",
-      "score": 46.4,
-      "daily_roi": 0.2856,
-      "deals_per_day": 2.07
-    },
-    {
-      "symbol": "ZEC/USDT",
-      "score": 42.1,
-      "daily_roi": 0.3755,
-      "deals_per_day": 2.79
+      "score": 45.8,
+      "daily_roi": 0.2895,
+      "deals_per_day": 1.93
     },
     {
       "symbol": "ASTER/USDT",
-      "score": 41.5,
-      "daily_roi": 0.3051,
-      "deals_per_day": 3.36
+      "score": 41.9,
+      "daily_roi": 0.309,
+      "deals_per_day": 3.43
+    },
+    {
+      "symbol": "DOGE/USDT",
+      "score": 36.8,
+      "daily_roi": 0.1917,
+      "deals_per_day": 1.64
     },
     {
       "symbol": "SOL/USDT",
-      "score": 29.6,
-      "daily_roi": 0.2386,
-      "deals_per_day": 1.43
+      "score": 36.2,
+      "daily_roi": 0.2621,
+      "deals_per_day": 1.57
     },
     {
-      "symbol": "BTC/USDT",
-      "score": 29.5,
-      "daily_roi": 0.133,
+      "symbol": "ETH/USDT",
+      "score": 26.9,
+      "daily_roi": 0.1369,
       "deals_per_day": 0.86
     }
   ]
