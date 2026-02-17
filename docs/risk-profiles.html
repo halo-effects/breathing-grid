@@ -1604,47 +1604,69 @@ section { padding: 100px 0; }
 <section class="competitive-section">
   <div class="container">
     <div class="section-label">Competitive Edge</div>
-    <h2 class="section-title fade-in">Most Bots vs. AIT Risk Profiles</h2>
-    <p class="section-subtitle fade-in">See how the portfolio approach compares to traditional one-size-fits-all trading bots.</p>
+    <h2 class="section-title fade-in">Buy-and-Hold DCA vs AIT Risk Profiles</h2>
+    <p class="section-subtitle fade-in">Most people DCA in and hold to dust. They become the exit liquidity. We solve that with smart exits and systematic compounding.</p>
+    
+    <!-- Performance Stats -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin: 32px 0;">
+      <div class="fade-in" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-align: center;">
+        <div style="font-size: 1.3rem; font-weight: 700; color: var(--green); margin-bottom: 8px;">ETH +31.3%</div>
+        <div style="color: var(--text2); font-size: 0.85rem; margin-bottom: 4px;">AIT (12-month, compounded)</div>
+        <div style="color: var(--red); font-size: 1rem; font-weight: 600;">vs -27.3% Buy & Hold</div>
+        <div style="color: var(--green); font-size: 0.95rem; font-weight: 600; margin-top: 6px;">+58.6% Advantage</div>
+      </div>
+      <div class="fade-in" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-align: center;">
+        <div style="font-size: 1.3rem; font-weight: 700; color: var(--green); margin-bottom: 8px;">SOL +36.2%</div>
+        <div style="color: var(--text2); font-size: 0.85rem; margin-bottom: 4px;">AIT (12-month, compounded)</div>
+        <div style="color: var(--red); font-size: 1rem; font-weight: 600;">vs -52.2% Buy & Hold</div>
+        <div style="color: var(--green); font-size: 0.95rem; font-weight: 600; margin-top: 6px;">+88.4% Advantage</div>
+      </div>
+      <div class="fade-in" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-align: center;">
+        <div style="font-size: 1.3rem; font-weight: 700; color: var(--green); margin-bottom: 8px;">BTC +2.2%</div>
+        <div style="color: var(--text2); font-size: 0.85rem; margin-bottom: 4px;">AIT (12-month, compounded)</div>
+        <div style="color: var(--red); font-size: 1rem; font-weight: 600;">vs -29.3% Buy & Hold</div>
+        <div style="color: var(--green); font-size: 0.95rem; font-weight: 600; margin-top: 6px;">+31.5% Advantage</div>
+      </div>
+    </div>
     
     <div class="compare-table fade-in">
       <div class="compare-header">
-        <div class="compare-header-cell others">❌ Most Trading Bots</div>
+        <div class="compare-header-cell others">❌ Buy & Hold DCA</div>
         <div class="compare-header-cell ait">✅ AIT Risk Profiles</div>
       </div>
       <div class="compare-row">
-        <div class="compare-cell others"><span class="compare-icon">⛔</span> One strategy, one risk level — take it or leave it</div>
-        <div class="compare-cell ait"><span class="compare-icon">🎛️</span> Three profiles with custom allocation sliders</div>
+        <div class="compare-cell others"><span class="compare-icon">⛔</span> No exit strategy — hope for the best, become exit liquidity</div>
+        <div class="compare-cell ait"><span class="compare-icon">🎯</span> Smart exits with compounding cycles across three risk profiles</div>
       </div>
       <div class="compare-row">
-        <div class="compare-cell others"><span class="compare-icon">⛔</span> Binary "Conservative" or "Aggressive" — no middle ground</div>
-        <div class="compare-cell ait"><span class="compare-icon">📊</span> Granular control — split capital across Low, Medium & High</div>
+        <div class="compare-cell others"><span class="compare-icon">⛔</span> Capital trapped in losers — no cycling, no compounding</div>
+        <div class="compare-cell ait"><span class="compare-icon">🔄</span> Continuous profit extraction and reinvestment across profiles</div>
       </div>
       <div class="compare-row">
-        <div class="compare-cell others"><span class="compare-icon">⛔</span> Black box parameters — you don't know why settings are chosen</div>
-        <div class="compare-cell ait"><span class="compare-icon">🔍</span> Full transparency — see exactly what each setting does and why</div>
+        <div class="compare-cell others"><span class="compare-icon">⛔</span> Emotional decisions — FOMO buying, panic selling</div>
+        <div class="compare-cell ait"><span class="compare-icon">🤖</span> Full automation with systematic risk management</div>
       </div>
       <div class="compare-row">
-        <div class="compare-cell others"><span class="compare-icon">⛔</span> No insight into risk/reward tradeoffs</div>
-        <div class="compare-cell ait"><span class="compare-icon">📈</span> Clear ROI projections and drawdown expectations per profile</div>
+        <div class="compare-cell others"><span class="compare-icon">⛔</span> One-size-fits-all — same DCA approach regardless of market</div>
+        <div class="compare-cell ait"><span class="compare-icon">📊</span> Adaptive parameters across Low (1×), Medium (2×), High (5×) profiles</div>
       </div>
       <div class="compare-row">
-        <div class="compare-cell others"><span class="compare-icon">⛔</span> Single point of failure if conditions don't suit the strategy</div>
-        <div class="compare-cell ait"><span class="compare-icon">🛡️</span> Portfolio diversification within your bot across risk levels</div>
+        <div class="compare-cell others"><span class="compare-icon">⛔</span> Pray for up-only markets</div>
+        <div class="compare-cell ait"><span class="compare-icon">↕️</span> Dual-tracking profits in both directions with regime awareness</div>
       </div>
       <div class="compare-row">
-        <div class="compare-cell others"><span class="compare-icon">⛔</span> No progression path as experience grows</div>
-        <div class="compare-cell ait"><span class="compare-icon">🚀</span> Natural progression: Conservative → Balanced → Aggressive</div>
+        <div class="compare-cell others"><span class="compare-icon">⛔</span> Manual profit-taking — usually too early or too late</div>
+        <div class="compare-cell ait"><span class="compare-icon">🎛️</span> Custom allocation sliders — choose your own risk-reward balance</div>
       </div>
       <div class="compare-row">
-        <div class="compare-cell others"><span class="compare-icon">⛔</span> No automatic safety nets when things go wrong</div>
-        <div class="compare-cell ait"><span class="compare-icon">🔒</span> Auto-guardrails reduce risk when drawdown thresholds are hit</div>
+        <div class="compare-cell others"><span class="compare-icon">⛔</span> No protection in dangerous markets</div>
+        <div class="compare-cell ait"><span class="compare-icon">🔒</span> Auto-guardrails shift capital to safer profiles during drawdowns</div>
       </div>
     </div>
     
     <div style="margin-top: 48px; text-align: center; padding: 32px; background: rgba(99,102,241,0.08); border-radius: 20px; border: 1px solid rgba(99,102,241,0.15);">
-      <h3 style="color: var(--accent2); font-size: 1.4rem; margin-bottom: 16px;">🧠 Not a Black Box</h3>
-      <p style="color: var(--text2); font-size: 1.1rem; max-width: 600px; margin: 0 auto;">Every decision is logged and explainable. You understand exactly why each trade happened, which profile made it, and how the risk management systems responded. Knowledge is power — especially when it comes to your capital.</p>
+      <h3 style="color: var(--accent2); font-size: 1.4rem; margin-bottom: 16px;">🚀 We ARE the Exit Strategy</h3>
+      <p style="color: var(--text2); font-size: 1.1rem; max-width: 700px; margin: 0 auto;">While buy-and-hold investors watch their portfolios bleed and become exit liquidity for smarter money, our system systematically extracts profits through 97.7% win rate deals. Every completed trade's profit compounds into the next cycle — <strong style="color: var(--green);">that's</strong> how you build wealth in crypto.</p>
     </div>
   </div>
 </section>
