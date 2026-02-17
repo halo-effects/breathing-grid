@@ -633,13 +633,23 @@ function renderStatus() {
   // Adaptive Intelligence Panel
   renderAdaptivePanel(s);
 
-  // Capital Utilization
+  // Capital Utilization — calculate pending from unfilled SO grid
   let activeCost = 0;
   activeDeals.forEach(d => { activeCost += d.total_cost || 0; });
   const totalCap = s.equity || s.capital || 292;
-  const available = s.available_balance != null ? s.available_balance : Math.max(0, totalCap - activeCost);
-  const committed = Math.max(0, totalCap - available);
-  const pendingCost = Math.max(0, committed - activeCost);
+  const cfg = s.config || {};
+  const boUsd = totalCap * (cfg.base_order_pct || 0.04);
+  const soVolMult = cfg.so_vol_mult || 2.0;
+  let pendingCost = 0;
+  activeDeals.forEach(d => {
+    const pendingSOs = (d.safety_order_ids || []).length;
+    for (let i = 1; i <= pendingSOs; i++) {
+      const soNum = d.safety_orders_filled + i;
+      pendingCost += boUsd * Math.pow(soVolMult, soNum);
+    }
+  });
+  const committed = activeCost + pendingCost;
+  const available = Math.max(0, totalCap - committed);
   const utilPct = totalCap > 0 ? Math.min(100, committed / totalCap * 100) : 0;
   const utilColor = utilPct > 80 ? 'var(--green)' : utilPct > 40 ? 'var(--amber)' : 'var(--text)';
   $('cCapUtilLg').innerHTML = `<span style="color:${utilColor}">${fmt(utilPct,1)}%</span>`;
