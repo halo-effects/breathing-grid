@@ -1,24 +1,24 @@
 {
-  "timestamp": "2026-02-17T05:19:20.879563+00:00",
+  "timestamp": "2026-02-17T05:21:23.697334+00:00",
   "symbol": "HYPEUSDT",
   "timeframe": "5m",
   "running": true,
   "dry_run": false,
   "halted": false,
   "halt_reason": "",
-  "regime": "TRENDING",
-  "price": 30.393,
-  "equity": 333.78,
+  "regime": "ACCUMULATION",
+  "price": 30.319,
+  "equity": 333.42,
   "start_equity": 291.97,
   "peak_equity": 336.7,
-  "pnl": 41.81,
-  "pnl_pct": 14.32,
-  "drawdown_pct": 0.87,
+  "pnl": 41.44,
+  "pnl_pct": 14.19,
+  "drawdown_pct": 0.98,
   "max_drawdown_threshold": 25.0,
   "leverage": 1,
-  "capital": 333.83,
-  "available_balance": 114.71,
-  "cycle_count": 8149,
+  "capital": 333.46,
+  "available_balance": 114.75,
+  "cycle_count": 8152,
   "start_time": "2026-02-13T03:50:51.737221+00:00",
   "hedge_mode": false,
   "long_deal": {
@@ -31,7 +31,7 @@
     "direction": "LONG",
     "safety_orders_filled": 2,
     "safety_order_ids": [],
-    "tp_order_id": 1424104319,
+    "tp_order_id": 1424194653,
     "total_qty": 3.0300000000000002,
     "total_cost": 93.28632,
     "avg_entry": 30.78756435643564,
@@ -50,9 +50,9 @@
     "direction": "SHORT",
     "safety_orders_filled": 0,
     "safety_order_ids": [
-      1424180837
+      1424195270
     ],
-    "tp_order_id": 1424147400,
+    "tp_order_id": 1424194918,
     "total_qty": 0.44,
     "total_cost": 13.4156,
     "avg_entry": 30.49,
@@ -63,28 +63,28 @@
   },
   "trend_direction": "bearish",
   "regime_alloc": {
-    "long": 0.25,
-    "short": 0.75
+    "long": 0.7,
+    "short": 0.3
   },
   "deal_counter": 74,
   "adaptive_tp": {
-    "current_tp_pct": 0.767,
+    "current_tp_pct": 0.6,
     "baseline_tp_pct": 1.5,
-    "current_dev_pct": 1.385,
+    "current_dev_pct": 1.2,
     "baseline_dev_pct": 2.5,
-    "atr_pct": 0.341,
+    "atr_pct": 0.344,
     "atr_baseline_pct": 0.8,
     "tp_min": 0.6,
     "tp_max": 2.5,
     "dev_min": 1.2,
     "dev_max": 4.0,
-    "regime_tp_mult": 1.2,
-    "regime_dev_mult": 1.3
+    "regime_tp_mult": 0.85,
+    "regime_dev_mult": 0.85
   },
   "config": {
-    "tp_pct": 0.767,
+    "tp_pct": 0.6,
     "max_sos": 8,
-    "deviation_pct": 1.385,
+    "deviation_pct": 1.2,
     "so_vol_mult": 2.0,
     "base_order_pct": 0.04
   }
