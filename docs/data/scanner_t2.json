@@ -1,33 +1,33 @@
 {
-  "timestamp": "2026-02-17T08:08:55.409802+00:00",
+  "timestamp": "2026-02-17T12:11:12.747347+00:00",
   "candidates_tested": 8,
-  "passed": 8,
+  "passed": 7,
   "rankings": [
     {
       "symbol": "HYPE/USDT",
       "total_deals": 24,
       "win_rate": 100.0,
-      "total_profit": 12.47,
-      "total_profit_pct": 3.72,
-      "max_drawdown_pct": -2.08,
-      "daily_roi_pct": 0.266,
+      "total_profit": 11.74,
+      "total_profit_pct": 3.5,
+      "max_drawdown_pct": -2.25,
+      "daily_roi_pct": 0.2504,
       "deals_per_day": 1.71,
-      "friendly_regime_pct": 61.8,
+      "friendly_regime_pct": 61.6,
       "regime_distribution": {
-        "ACCUMULATION": 38.2,
-        "RANGING": 23.6,
-        "MILD_TREND": 17.4,
-        "TRENDING": 12.6,
-        "EXTREME": 3.9,
+        "ACCUMULATION": 38.1,
+        "RANGING": 23.5,
+        "MILD_TREND": 17.5,
+        "TRENDING": 12.7,
+        "EXTREME": 4.0,
         "DISTRIBUTION": 3.3,
         "BREAKOUT_WARNING": 0.8
       },
-      "risk_adjusted_score": 0.1279,
+      "risk_adjusted_score": 0.1113,
       "profit_factor": 9999,
-      "composite_score": 44.5,
+      "composite_score": 44.2,
       "duration_days": 14.0,
       "avg_so_per_deal": 0.9,
-      "t1_score": 64.4
+      "t1_score": 70.0
     },
     {
       "symbol": "ASTER/USDT",
@@ -38,23 +38,23 @@
       "max_drawdown_pct": -5.83,
       "daily_roi_pct": 0.3051,
       "deals_per_day": 3.36,
-      "friendly_regime_pct": 57.0,
+      "friendly_regime_pct": 56.4,
       "regime_distribution": {
-        "ACCUMULATION": 32.7,
-        "RANGING": 23.7,
-        "MILD_TREND": 17.2,
-        "TRENDING": 14.2,
-        "EXTREME": 5.1,
-        "DISTRIBUTION": 4.5,
+        "ACCUMULATION": 32.6,
+        "RANGING": 23.3,
+        "MILD_TREND": 17.5,
+        "TRENDING": 14.3,
+        "EXTREME": 5.2,
+        "DISTRIBUTION": 4.6,
         "BREAKOUT_WARNING": 2.1,
-        "CHOPPY": 0.6
+        "CHOPPY": 0.4
       },
       "risk_adjusted_score": 0.0523,
       "profit_factor": 9999,
-      "composite_score": 41.4,
+      "composite_score": 41.3,
       "duration_days": 14.0,
       "avg_so_per_deal": 0.4,
-      "t1_score": 90.0
+      "t1_score": 80.0
     },
     {
       "symbol": "DOGE/USDT",
@@ -65,14 +65,14 @@
       "max_drawdown_pct": -2.54,
       "daily_roi_pct": 0.1917,
       "deals_per_day": 1.64,
-      "friendly_regime_pct": 57.3,
+      "friendly_regime_pct": 57.4,
       "regime_distribution": {
         "ACCUMULATION": 35.5,
         "RANGING": 21.3,
-        "MILD_TREND": 15.5,
+        "MILD_TREND": 15.4,
         "TRENDING": 13.5,
         "DISTRIBUTION": 7.1,
-        "EXTREME": 4.6,
+        "EXTREME": 4.7,
         "BREAKOUT_WARNING": 1.9,
         "CHOPPY": 0.6
       },
@@ -81,7 +81,7 @@
       "composite_score": 37.0,
       "duration_days": 14.0,
       "avg_so_per_deal": 0.5,
-      "t1_score": 45.1
+      "t1_score": 45.0
     },
     {
       "symbol": "SOL/USDT",
@@ -92,22 +92,23 @@
       "max_drawdown_pct": -3.93,
       "daily_roi_pct": 0.2621,
       "deals_per_day": 1.57,
-      "friendly_regime_pct": 57.2,
+      "friendly_regime_pct": 57.1,
       "regime_distribution": {
         "ACCUMULATION": 36.0,
-        "RANGING": 21.2,
-        "MILD_TREND": 16.3,
-        "TRENDING": 13.1,
+        "RANGING": 20.9,
+        "MILD_TREND": 16.2,
+        "TRENDING": 13.4,
         "DISTRIBUTION": 7.9,
-        "EXTREME": 3.8,
-        "BREAKOUT_WARNING": 1.6
+        "EXTREME": 3.9,
+        "BREAKOUT_WARNING": 1.6,
+        "CHOPPY": 0.2
       },
       "risk_adjusted_score": 0.0667,
       "profit_factor": 9999,
       "composite_score": 36.3,
       "duration_days": 14.0,
       "avg_so_per_deal": 0.6,
-      "t1_score": 57.8
+      "t1_score": 62.9
     },
     {
       "symbol": "BTC/USDT",
@@ -118,14 +119,14 @@
       "max_drawdown_pct": -2.32,
       "daily_roi_pct": 0.133,
       "deals_per_day": 0.86,
-      "friendly_regime_pct": 58.5,
+      "friendly_regime_pct": 58.6,
       "regime_distribution": {
-        "ACCUMULATION": 36.1,
-        "RANGING": 22.2,
-        "MILD_TREND": 15.6,
+        "ACCUMULATION": 36.4,
+        "RANGING": 22.0,
+        "MILD_TREND": 15.5,
         "TRENDING": 14.2,
         "DISTRIBUTION": 6.5,
-        "EXTREME": 4.2,
+        "EXTREME": 4.1,
         "BREAKOUT_WARNING": 1.1,
         "CHOPPY": 0.1
       },
@@ -134,7 +135,7 @@
       "composite_score": 29.3,
       "duration_days": 14.0,
       "avg_so_per_deal": 0.8,
-      "t1_score": 79.4
+      "t1_score": 79.2
     },
     {
       "symbol": "ETH/USDT",
@@ -145,77 +146,50 @@
       "max_drawdown_pct": -2.9,
       "daily_roi_pct": 0.1369,
       "deals_per_day": 0.86,
-      "friendly_regime_pct": 57.1,
+      "friendly_regime_pct": 57.7,
       "regime_distribution": {
-        "ACCUMULATION": 35.3,
-        "RANGING": 21.7,
-        "MILD_TREND": 16.2,
-        "TRENDING": 14.1,
-        "DISTRIBUTION": 5.2,
+        "ACCUMULATION": 35.8,
+        "RANGING": 21.9,
+        "MILD_TREND": 16.0,
+        "TRENDING": 13.9,
+        "DISTRIBUTION": 5.0,
         "EXTREME": 4.8,
-        "BREAKOUT_WARNING": 2.6,
+        "BREAKOUT_WARNING": 2.5,
         "CHOPPY": 0.1
       },
       "risk_adjusted_score": 0.0473,
       "profit_factor": 9999,
-      "composite_score": 27.0,
+      "composite_score": 27.2,
       "duration_days": 14.0,
       "avg_so_per_deal": 0.8,
-      "t1_score": 73.0
+      "t1_score": 72.5
     },
     {
       "symbol": "XRP/USDT",
-      "total_deals": 12,
+      "total_deals": 11,
       "win_rate": 100.0,
-      "total_profit": 6.42,
-      "total_profit_pct": 1.92,
+      "total_profit": 6.24,
+      "total_profit_pct": 1.86,
       "max_drawdown_pct": -5.27,
-      "daily_roi_pct": 0.1369,
-      "deals_per_day": 0.86,
+      "daily_roi_pct": 0.133,
+      "deals_per_day": 0.79,
       "friendly_regime_pct": 59.3,
       "regime_distribution": {
-        "ACCUMULATION": 36.6,
-        "RANGING": 22.5,
+        "ACCUMULATION": 36.8,
+        "RANGING": 22.2,
         "MILD_TREND": 15.3,
-        "TRENDING": 14.5,
-        "DISTRIBUTION": 6.3,
-        "EXTREME": 3.8,
+        "TRENDING": 14.6,
+        "DISTRIBUTION": 6.2,
+        "EXTREME": 3.9,
         "BREAKOUT_WARNING": 0.8,
-        "CHOPPY": 0.2
+        "CHOPPY": 0.3
       },
-      "risk_adjusted_score": 0.026,
+      "risk_adjusted_score": 0.0252,
       "profit_factor": 9999,
-      "composite_score": 23.2,
+      "composite_score": 22.7,
       "duration_days": 14.0,
       "avg_so_per_deal": 0.7,
-      "t1_score": 62.6
-    },
-    {
-      "symbol": "BNB/USDT",
-      "total_deals": 3,
-      "win_rate": 100.0,
-      "total_profit": 3.49,
-      "total_profit_pct": 1.04,
-      "max_drawdown_pct": -3.38,
-      "daily_roi_pct": 0.0743,
-      "deals_per_day": 0.21,
-      "friendly_regime_pct": 55.5,
-      "regime_distribution": {
-        "ACCUMULATION": 34.0,
-        "RANGING": 21.4,
-        "MILD_TREND": 15.9,
-        "TRENDING": 15.4,
-        "DISTRIBUTION": 5.5,
-        "EXTREME": 5.2,
-        "BREAKOUT_WARNING": 2.6,
-        "CHOPPY": 0.2
-      },
-      "risk_adjusted_score": 0.022,
-      "profit_factor": 9999,
-      "composite_score": 17.8,
-      "duration_days": 14.0,
-      "avg_so_per_deal": 1.7,
-      "t1_score": 77.9
+      "t1_score": 62.2
     }
   ]
 }
