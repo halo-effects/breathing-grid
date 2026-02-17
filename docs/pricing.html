@@ -628,9 +628,10 @@ section { padding: 80px 0; }
       <div class="pricing-card fade-in">
         <div class="tier-name">Starter</div>
         <div class="tier-price">$500</div>
-        <div class="tier-capital">Max Capital: $5,000</div>
+        <div class="tier-capital">Max Capital: $5,000 · 1 Coin</div>
         <div class="tier-desc">Perfect for testing the waters and learning automated trading</div>
         <ul class="feature-list">
+          <li>1 simultaneous coin</li>
           <li>Full bot software</li>
           <li>Lifetime strategy updates</li>
           <li>Two-tier coin scanner</li>
@@ -645,9 +646,10 @@ section { padding: 80px 0; }
       <div class="pricing-card fade-in">
         <div class="tier-name">Trader</div>
         <div class="tier-price">$1,000</div>
-        <div class="tier-capital">Max Capital: $10,000</div>
+        <div class="tier-capital">Max Capital: $10,000 · Up to 2 Coins</div>
         <div class="tier-desc">For serious traders ready to automate their portfolio</div>
         <ul class="feature-list">
+          <li>Up to 2 simultaneous coins</li>
           <li>Full bot software</li>
           <li>Lifetime strategy updates</li>
           <li>Two-tier coin scanner</li>
@@ -663,9 +665,10 @@ section { padding: 80px 0; }
         <div class="popular-badge">Most Popular</div>
         <div class="tier-name">Pro</div>
         <div class="tier-price">$2,500</div>
-        <div class="tier-capital">Max Capital: $25,000</div>
+        <div class="tier-capital">Max Capital: $25,000 · Up to 3 Coins</div>
         <div class="tier-desc">The sweet spot for professional automated trading</div>
         <ul class="feature-list">
+          <li>Up to 3 simultaneous coins</li>
           <li>Full bot software</li>
           <li>Lifetime strategy updates</li>
           <li>Two-tier coin scanner</li>
@@ -680,9 +683,10 @@ section { padding: 80px 0; }
       <div class="pricing-card fade-in">
         <div class="tier-name">Elite</div>
         <div class="tier-price">$5,000</div>
-        <div class="tier-capital">Max Capital: $50,000</div>
+        <div class="tier-capital">Max Capital: $50,000 · Up to 5 Coins</div>
         <div class="tier-desc">For high-capital traders seeking maximum efficiency</div>
         <ul class="feature-list">
+          <li>Up to 5 simultaneous coins</li>
           <li>Full bot software</li>
           <li>Lifetime strategy updates</li>
           <li>Two-tier coin scanner</li>
@@ -697,9 +701,10 @@ section { padding: 80px 0; }
       <div class="pricing-card fade-in">
         <div class="tier-name">Whale</div>
         <div class="tier-price">$10,000</div>
-        <div class="tier-capital">Max Capital: $100,000</div>
+        <div class="tier-capital">Max Capital: $100,000 · Up to 8 Coins</div>
         <div class="tier-desc">For institutional-level capital deployment</div>
         <ul class="feature-list">
+          <li>Up to 8 simultaneous coins</li>
           <li>Full bot software</li>
           <li>Lifetime strategy updates</li>
           <li>Two-tier coin scanner</li>
@@ -1028,7 +1033,47 @@ section { padding: 80px 0; }
             <span class="faq-toggle">+</span>
           </button>
           <div class="faq-answer">
-            The two-tier scanner evaluates 275+ Aster DEX pairs every 4 hours and recommends the optimal coin. Currently HYPE/USDT is the top pick.
+            The two-tier scanner evaluates 275+ Aster DEX pairs every 4 hours and ranks coins by trading fitness. The bot automatically trades the top-ranked coins — how many depends on your tier (1 for Starter up to 8 for Whale). Capital is allocated proportionally based on scanner scores, with automatic rotation when a better coin is found.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-category fade-in">
+        <div class="faq-category-title">Multi-Coin Trading</div>
+        <div class="faq-item">
+          <button class="faq-question">
+            How does multi-coin scaling work across tiers?
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            Higher tiers unlock more simultaneous coins: Starter trades 1, Trader trades up to 2, Pro up to 3, Elite up to 5, and Whale up to 8. The bot's two-tier scanner ranks 275+ coins every 4 hours and automatically selects the top performers. Capital is split proportionally based on each coin's scanner score — a coin that scores twice as high gets roughly twice the allocation. Each coin runs its own independent long/short deal pair with full regime detection and adaptive parameters.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            Why does it cap at 8 coins for the Whale tier?
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            Three reasons. First, <strong>diminishing diversification</strong> — crypto pairs are highly correlated, especially during regime shifts. Beyond 8 coins, you're adding correlation, not diversification. Second, <strong>capital depth matters</strong> — each coin needs enough capital to run a full safety order grid on both long and short sides. Spreading $100K across 8 coins gives ~$12.5K each, which supports deep grids even at higher leverage. Add more coins and the grids get too shallow to be effective. Third, <strong>execution quality</strong> — more coins means more API calls per cycle, which can slow the trading loop and delay fills. Eight coins is the sweet spot where you get broad market coverage without sacrificing execution speed or grid depth.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            What happens when a coin rotates out?
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            Graceful wind-down. When the scanner identifies a better coin, the outgoing coin stops opening new deals but continues managing existing ones. Active deals are given up to 2 hours to close naturally via take-profit. After that, positions are force-closed. A coin must show at least 20% better scanner score to trigger rotation — this prevents unnecessary churn from minor score fluctuations.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            Is there a minimum capital per coin?
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            Yes — approximately $3,000 per coin. If your capital can't support a coin above this floor, the bot automatically reduces the number of active coins. This ensures every coin has enough depth for meaningful safety order grids. A 10% global reserve is also maintained off the table at all times.
           </div>
         </div>
       </div>
