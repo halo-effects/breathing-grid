@@ -64,6 +64,14 @@
 - Rotation threshold: 20% improvement required
 - Output: `trading/live/scanner_t1.json`, `scanner_t2.json`, `scanner_recommendation.json`
 
+### Risk Profile System — Spec'd 2026-02-16
+- Spec: `projects/ait-product/risk-profiles-spec.md`
+- 3 profiles: Low (current/1×), Medium (2-3×), High (5-10× leverage)
+- Users allocate % of capital across profiles (default 100% Low)
+- Auto-guardrails: Medium→Low at 30% DD, High→Medium at 50% DD
+- Virtual sub-accounts, shared exchange account
+- Competitive differentiator: portfolio theory for bot trading
+
 ### Multi-Coin Portfolio Manager — Built 2026-02-15
 - `trading/portfolio_manager.py` — PortfolioManager + CoinSlot classes
 - `trading/run_portfolio.py` — entry point (--dry-run, --max-coins, --leverage, --capital)
