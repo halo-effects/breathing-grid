@@ -1549,16 +1549,16 @@ section { padding: 100px 0; }
 <section class="roi-section">
   <div class="container">
     <div class="section-label">Return Projections</div>
-    <h2 class="section-title fade-in">Expected Returns by Allocation Strategy</h2>
-    <p class="section-subtitle fade-in">Based on backtested performance with $10,000 example capital. See how different allocation strategies affect your potential returns.</p>
+    <h2 class="section-title fade-in">Expected Returns by Allocation Strategy (100% Compounded)</h2>
+    <p class="section-subtitle fade-in">Based on backtested performance with $10,000 example capital. All returns assume 100% compounding — every completed deal's profit reinvests into the next deal's capital.</p>
     
     <table class="roi-table fade-in">
       <thead>
         <tr>
           <th>Allocation Strategy</th>
-          <th>Daily ROI</th>
-          <th>Monthly ROI</th>
-          <th>Annual Projection</th>
+          <th>Daily ROI (Compounded)</th>
+          <th>Monthly ROI (Compounded)</th>
+          <th>Annual Projection (Compounded)</th>
           <th>Risk Level</th>
         </tr>
       </thead>
@@ -1594,8 +1594,13 @@ section { padding: 100px 0; }
       </tbody>
     </table>
     
+    <div style="text-align: center; margin: 32px 0; padding: 20px; background: rgba(99,102,241,0.08); border-radius: 12px; border: 1px solid rgba(99,102,241,0.2);">
+      <div style="color: var(--accent2); font-size: 1.1rem; font-weight: 600; margin-bottom: 8px;">🔄 100% Compounding Effect</div>
+      <div style="color: var(--text2); font-size: 0.95rem;">Every completed deal's profit automatically increases the capital for the next deal. This compounding effect is already included in all projections above.</div>
+    </div>
+    
     <div class="roi-disclaimer fade-in">
-      <strong>Important Disclaimer:</strong> Projections based on backtested performance using historical data. Past results do not guarantee future returns. All trading carries risk of loss, including potential loss of principal. Higher returns come with proportionally higher risk of significant drawdowns. Maximum Risk allocation should only be used by experienced traders who can afford to lose the entire allocated amount.
+      <strong>Important Disclaimer:</strong> Projections based on backtested performance using historical data with 100% profit compounding assumed. Past results do not guarantee future returns. All trading carries risk of loss, including potential loss of principal. Higher returns come with proportionally higher risk of significant drawdowns. Maximum Risk allocation should only be used by experienced traders who can afford to lose the entire allocated amount.
     </div>
   </div>
 </section>
@@ -1611,19 +1616,22 @@ section { padding: 100px 0; }
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin: 32px 0;">
       <div class="fade-in" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-align: center;">
         <div style="font-size: 1.3rem; font-weight: 700; color: var(--green); margin-bottom: 8px;">ETH +31.3%</div>
-        <div style="color: var(--text2); font-size: 0.85rem; margin-bottom: 4px;">AIT (12-month, compounded)</div>
+        <div style="color: var(--text2); font-size: 0.85rem; margin-bottom: 4px;">AIT (100% Compounded)</div>
+        <div style="color: var(--text3); font-size: 0.7rem; margin-bottom: 8px;">Every deal's profit → next deal's capital</div>
         <div style="color: var(--red); font-size: 1rem; font-weight: 600;">vs -27.3% Buy & Hold</div>
         <div style="color: var(--green); font-size: 0.95rem; font-weight: 600; margin-top: 6px;">+58.6% Advantage</div>
       </div>
       <div class="fade-in" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-align: center;">
         <div style="font-size: 1.3rem; font-weight: 700; color: var(--green); margin-bottom: 8px;">SOL +36.2%</div>
-        <div style="color: var(--text2); font-size: 0.85rem; margin-bottom: 4px;">AIT (12-month, compounded)</div>
+        <div style="color: var(--text2); font-size: 0.85rem; margin-bottom: 4px;">AIT (100% Compounded)</div>
+        <div style="color: var(--text3); font-size: 0.7rem; margin-bottom: 8px;">Every deal's profit → next deal's capital</div>
         <div style="color: var(--red); font-size: 1rem; font-weight: 600;">vs -52.2% Buy & Hold</div>
         <div style="color: var(--green); font-size: 0.95rem; font-weight: 600; margin-top: 6px;">+88.4% Advantage</div>
       </div>
       <div class="fade-in" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-align: center;">
         <div style="font-size: 1.3rem; font-weight: 700; color: var(--green); margin-bottom: 8px;">BTC +2.2%</div>
-        <div style="color: var(--text2); font-size: 0.85rem; margin-bottom: 4px;">AIT (12-month, compounded)</div>
+        <div style="color: var(--text2); font-size: 0.85rem; margin-bottom: 4px;">AIT (100% Compounded)</div>
+        <div style="color: var(--text3); font-size: 0.7rem; margin-bottom: 8px;">Every deal's profit → next deal's capital</div>
         <div style="color: var(--red); font-size: 1rem; font-weight: 600;">vs -29.3% Buy & Hold</div>
         <div style="color: var(--green); font-size: 0.95rem; font-weight: 600; margin-top: 6px;">+31.5% Advantage</div>
       </div>
