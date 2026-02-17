@@ -514,50 +514,73 @@ section { padding: 100px 0; }
 }
 .waterfall {
   display: flex;
-  align-items: end;
-  gap: 24px;
+  align-items: center;
+  gap: 16px;
   justify-content: center;
   margin: 40px 0;
+  flex-wrap: wrap;
 }
 .waterfall-step {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .waterfall-box {
-  width: 120px;
-  padding: 20px 16px;
-  border-radius: 12px;
-  margin-bottom: 16px;
+  width: 180px;
+  padding: 24px 20px;
+  border-radius: 14px;
+  margin-bottom: 12px;
   font-weight: 700;
+  font-size: 1.1rem;
   color: white;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.waterfall-box .leverage-text {
+  font-size: 0.8rem;
+  font-weight: 500;
+  opacity: 0.85;
 }
 .waterfall-box.high {
-  height: 100px;
+  min-height: 120px;
   background: linear-gradient(135deg, var(--red), #dc2626);
+  box-shadow: 0 4px 20px rgba(239,68,68,0.25);
 }
 .waterfall-box.medium {
-  height: 80px;
+  min-height: 100px;
   background: linear-gradient(135deg, var(--amber), #d97706);
+  box-shadow: 0 4px 20px rgba(245,158,11,0.25);
 }
 .waterfall-box.low {
-  height: 60px;
+  min-height: 80px;
   background: linear-gradient(135deg, var(--green), #16a34a);
+  box-shadow: 0 4px 20px rgba(34,197,94,0.25);
 }
-.waterfall-arrow {
-  position: absolute;
-  right: -20px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1.5rem;
+.waterfall-arrow-sep {
+  font-size: 2rem;
   color: var(--text3);
+  margin: 0 4px;
+  align-self: center;
+  margin-bottom: 40px;
 }
 .waterfall-label {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 600;
+  margin-top: 4px;
 }
 .waterfall-trigger {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--text3);
+  margin-top: 2px;
+}
+@media (max-width: 600px) {
+  .waterfall { flex-direction: column; gap: 8px; }
+  .waterfall-box { width: 160px; min-height: auto !important; padding: 18px 16px; }
+  .waterfall-arrow-sep { transform: rotate(90deg); margin: 0; }
 }
 
 /* How It Works */
@@ -1429,28 +1452,30 @@ section { padding: 100px 0; }
       <div class="waterfall">
         <div class="waterfall-step">
           <div class="waterfall-box high">
-            High Risk<br>
-            <div style="font-size: 0.8rem; opacity: 0.8;">5-10× Leverage</div>
-            <div class="waterfall-arrow">→</div>
+            <span>High Risk</span>
+            <span class="leverage-text">5-10× Leverage</span>
           </div>
           <div class="waterfall-label">🔴 High Risk</div>
           <div class="waterfall-trigger">50% DD → Medium</div>
         </div>
         
+        <div class="waterfall-arrow-sep">→</div>
+        
         <div class="waterfall-step">
           <div class="waterfall-box medium">
-            Medium Risk<br>
-            <div style="font-size: 0.8rem; opacity: 0.8;">2-3× Leverage</div>
-            <div class="waterfall-arrow">→</div>
+            <span>Medium Risk</span>
+            <span class="leverage-text">2-3× Leverage</span>
           </div>
           <div class="waterfall-label">🟡 Medium Risk</div>
           <div class="waterfall-trigger">30% DD → Low</div>
         </div>
         
+        <div class="waterfall-arrow-sep">→</div>
+        
         <div class="waterfall-step">
           <div class="waterfall-box low">
-            Low Risk<br>
-            <div style="font-size: 0.8rem; opacity: 0.8;">1× Leverage</div>
+            <span>Low Risk</span>
+            <span class="leverage-text">1× Leverage</span>
           </div>
           <div class="waterfall-label">🟢 Low Risk</div>
           <div class="waterfall-trigger">Capital Protected</div>
