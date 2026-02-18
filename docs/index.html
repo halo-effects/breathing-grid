@@ -726,32 +726,36 @@ section { padding: 100px 0; }
     <div class="layer fade-in">
       <div>
         <div class="layer-number">05</div>
-        <div class="layer-title">Bidirectional Dual-Tracking (Spot + Futures)</div>
-        <div class="layer-question">"Profit whether the market goes up or down."</div>
-        <div class="layer-text">Two virtual trading engines run simultaneously — one profits when price rises, one when it falls. The regime detector controls capital allocation between them, and <strong>directional awareness</strong> via SMA50 dynamically flips the allocation to favor the prevailing trend.</div>
-        <div class="layer-text"><strong>Long-only Spot DCA</strong> eliminates funding fees entirely (the "hidden killer" in futures) with ~5-8× more profit per cycle. Combined with <strong>short-only Futures</strong>, you get complete bidirectional coverage — no funding fee drag, no directional blind spots.</div>
-        <div class="layer-text">In a bearish trend, the system shifts weight toward short positions. In a bullish trend, it favors longs. The system doesn't need to predict direction — it <strong>detects</strong> it and adapts in real-time.</div>
+        <div class="layer-title">Intelligent Spot DCA with Scale-Out Exits</div>
+        <div class="layer-question">"You own the coins. Zero funding fees. Maximum profit extraction."</div>
+        <div class="layer-text">Long-only spot DCA — you buy and hold actual coins, never synthetic positions. No funding fees (the "hidden killer" that drains futures traders 0.01% every 8 hours), no liquidation risk, no margin calls. Your assets, your ownership.</div>
+        <div class="layer-text"><strong>Scale-out exits</strong> are the innovation: when price recovers, the system sells the largest lots first — the ones bought cheapest, at the deepest dip — extracting maximum profit per cycle. Instead of a single take-profit, each layer exits independently for ~5-8× more profit per cycle.</div>
+        <div class="layer-text"><strong>Regime-aware accumulation:</strong> In bearish markets, deviations widen to wait for bigger dips. In ranging markets, tighter deviations enable frequent cycling. <strong>Conviction modulation:</strong> when Fear & Greed hits extreme fear, the system widens deviation and accumulates more aggressively — buying when others panic.</div>
       </div>
       <div class="layer-visual">
-        <div style="display:flex; flex-direction:column; gap:20px;">
-          <div style="display:flex; align-items:center; gap:16px;">
-            <div style="width:50px;height:50px;border-radius:12px;background:rgba(34,197,94,0.15);display:flex;align-items:center;justify-content:center;font-size:1.5rem;">📈</div>
-            <div><div style="font-weight:600;color:var(--green)">Long Engine</div><div style="color:var(--text2);font-size:0.85rem;">Profits when price rises</div></div>
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <div style="padding:16px;background:rgba(34,197,94,0.08);border-radius:10px;">
+            <div style="font-size:0.8rem;color:var(--text3);margin-bottom:10px;">DCA ACCUMULATION ▼</div>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <div style="display:flex;justify-content:space-between;font-size:0.85rem;"><span>Base Order</span><span style="color:var(--green)">$100.00</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:0.85rem;"><span>SO1 — deviation 1</span><span style="color:var(--green)">$97.50</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:0.85rem;"><span>SO2 — deviation 2</span><span style="color:var(--green)">$95.00</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:0.85rem;"><span>SO3 — deviation 3</span><span style="color:var(--green)">$92.50</span></div>
+            </div>
           </div>
-          <div style="display:flex; align-items:center; gap:16px;">
-            <div style="width:50px;height:50px;border-radius:12px;background:rgba(239,68,68,0.15);display:flex;align-items:center;justify-content:center;font-size:1.5rem;">📉</div>
-            <div><div style="font-weight:600;color:var(--red)">Short Engine</div><div style="color:var(--text2);font-size:0.85rem;">Profits when price falls</div></div>
+          <div style="text-align:center;font-size:1.2rem;color:var(--text3);">⟱ buy dips &nbsp;&nbsp;&nbsp; ⟰ sell peaks</div>
+          <div style="padding:16px;background:rgba(99,102,241,0.08);border-radius:10px;">
+            <div style="font-size:0.8rem;color:var(--text3);margin-bottom:10px;">SCALE-OUT EXITS ▲ (largest lots first)</div>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <div style="display:flex;justify-content:space-between;font-size:0.85rem;"><span>Sell SO3 first</span><span style="color:var(--accent)">💰 biggest lot, cheapest buy</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:0.85rem;"><span>Sell SO2 next</span><span style="color:var(--accent)">💰 second largest</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:0.85rem;"><span>Sell SO1</span><span style="color:var(--accent)">💰 third</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:0.85rem;"><span>Sell Base last</span><span style="color:var(--accent)">💰 smallest lot</span></div>
+            </div>
           </div>
-          <div style="margin-top:8px;padding:16px;background:rgba(99,102,241,0.08);border-radius:10px;">
-            <div style="font-size:0.8rem;color:var(--text3);margin-bottom:8px;">ALLOCATION BY REGIME</div>
-            <div style="display:flex;justify-content:space-between;font-size:0.85rem;"><span>Trending ▲ Bullish</span><span style="color:var(--green)">75 L / 25 S</span></div>
-            <div style="display:flex;justify-content:space-between;font-size:0.85rem;"><span>Trending ▼ Bearish</span><span style="color:var(--red)">25 L / 75 S</span></div>
-            <div style="display:flex;justify-content:space-between;font-size:0.85rem;"><span>Ranging</span><span>50 / 50</span></div>
-            <div style="display:flex;justify-content:space-between;font-size:0.85rem;"><span>Extreme</span><span style="color:var(--red)">Paused</span></div>
-          </div>
-          <div style="margin-top:12px;padding:12px 16px;background:rgba(34,197,94,0.08);border-radius:10px;border:1px solid rgba(34,197,94,0.15);">
-            <div style="font-size:0.8rem;color:var(--green);font-weight:600;margin-bottom:4px;">🧭 Directional Awareness</div>
-            <div style="font-size:0.8rem;color:var(--text2);">SMA50 on 5-minute data detects trend direction. In directional regimes, allocation automatically flips to favor the prevailing trend — heavier short in bearish markets, heavier long in bullish.</div>
+          <div style="margin-top:4px;padding:12px 16px;background:rgba(34,197,94,0.08);border-radius:10px;border:1px solid rgba(34,197,94,0.15);">
+            <div style="font-size:0.8rem;color:var(--green);font-weight:600;margin-bottom:4px;">🪙 Spot Ownership</div>
+            <div style="font-size:0.8rem;color:var(--text2);">No leverage. No margin. No funding fees. You own the actual coins — the safest way to trade crypto.</div>
           </div>
         </div>
       </div>
@@ -817,7 +821,7 @@ section { padding: 100px 0; }
         <div class="layer-number">08</div>
         <div class="layer-title">Intelligent Portfolio Management</div>
         <div class="layer-question">"Why trade one coin when the scanner finds eight?"</div>
-        <div class="layer-text">A two-tier scanner continuously evaluates the entire market to find optimal trading candidates. Capital is dynamically allocated across up to 8 simultaneous coins (scaling with your tier), each running independent dual-tracking DCA with full regime detection.</div>
+        <div class="layer-text">A two-tier scanner continuously evaluates the entire market to find optimal trading candidates. Capital is dynamically allocated across up to 8 simultaneous coins (scaling with your tier), each running independent DCA engines with full regime detection and conviction scoring.</div>
         <div class="layer-text"><strong>Tier 1:</strong> Fast filters — ADX, ATR%, Hurst exponent, volume, and maturity checks eliminate 90% of candidates in seconds.<br><strong>Tier 2:</strong> Full backtests on shortlisted coins rank them by expected performance.</div>
         <div class="layer-text">When a significantly better opportunity emerges (20%+ improvement threshold), the system gracefully winds down the weakest position and rotates capital into the new candidate — no abrupt exits, no churn.</div>
       </div>
@@ -939,8 +943,8 @@ section { padding: 100px 0; }
         <tr><td>When Markets Drop</td><td>Become exit liquidity for others</td><td>Smart DCA down, then exit at profit</td></tr>
         <tr><td>Capital Efficiency</td><td>Money trapped in losing positions</td><td>Continuous cycling and compounding</td></tr>
         <tr><td>Dangerous Conditions</td><td>Keep buying into the void</td><td>Pause automatically, preserve capital</td></tr>
-        <tr><td>Direction Coverage</td><td>Long-only — pray for up-only</td><td>Dual-tracking — profits both ways</td></tr>
-        <tr><td>Risk Management</td><td>Hope and prayers</td><td>Dynamic margin-aware allocation</td></tr>
+        <tr><td>Direction Coverage</td><td>Long-only — pray for up-only</td><td>Regime-adaptive — buys smart, exits smarter</td></tr>
+        <tr><td>Risk Management</td><td>Hope and prayers</td><td>Conviction-driven capital protection with auto-reserves</td></tr>
         <tr><td>Daily Management</td><td>Emotional decision-making</td><td>Zero — fully automated</td></tr>
       </tbody>
     </table>
@@ -1044,12 +1048,12 @@ section { padding: 100px 0; }
         <p>Configurable hard limit on total losses. The system stops before it crosses the line.</p>
       </div>
       <div class="risk-card fade-in">
-        <h4>🛡️ Margin Reserve</h4>
-        <p>10% of capital always held in reserve. Never fully exposed, always has room to maneuver.</p>
+        <h4>🛡️ Capital Reserve</h4>
+        <p>10-30% of capital held in reserve depending on risk profile. Never fully exposed.</p>
       </div>
       <div class="risk-card fade-in">
-        <h4>⚖️ Controlled Leverage</h4>
-        <p>Default 1× (Low profile). Higher profiles offer 2–5× with automatic de-risking guardrails at drawdown thresholds.</p>
+        <h4>⚖️ Spot Ownership</h4>
+        <p>You own the actual coins — no leverage, no liquidation risk, no funding fees. Your assets, your keys.</p>
       </div>
       <div class="risk-card fade-in">
         <h4>🎯 Smart Priorities</h4>
@@ -1096,7 +1100,7 @@ section { padding: 100px 0; }
         <div class="evo-desc">Added a brain — the system could detect what was happening.</div>
         <ul class="evo-features">
           <li>Market condition detection across six regimes</li>
-          <li>Dynamic capital allocation between long/short</li>
+          <li>Dynamic capital allocation based on market regime</li>
           <li>Automatic pause in extreme conditions</li>
           <li>Reduced but not eliminated monitoring</li>
         </ul>
@@ -1108,8 +1112,8 @@ section { padding: 100px 0; }
         <ul class="evo-features">
           <li>Dynamic TP, deviation, and allocation — all adaptive</li>
           <li>Volatility-responsive grid spacing</li>
-          <li>SMA50 directional awareness — allocation flips with trend direction</li>
-          <li>Margin-aware intelligent order management</li>
+          <li>Conviction scoring — F&amp;G and macro indicators modulate all parameters</li>
+          <li>Capital-aware intelligent order management</li>
           <li>Self-optimizing for current conditions</li>
           <li>Zero daily management required</li>
         </ul>
@@ -1120,7 +1124,7 @@ section { padding: 100px 0; }
         <div class="evo-desc">From single-coin to intelligent portfolio. Dynamic coin selection, diversification, and auto-rotation.</div>
         <ul class="evo-features">
           <li>Two-tier scanner: fast filters + full backtests to find optimal coins</li>
-          <li>2–3 coins trading simultaneously with independent dual-tracking</li>
+          <li>2–3 coins trading simultaneously with independent DCA engines</li>
           <li>Score-proportional capital allocation across the portfolio</li>
           <li>Automatic rotation when better opportunities emerge</li>
           <li>Graceful wind-down of departing positions</li>
@@ -1133,7 +1137,7 @@ section { padding: 100px 0; }
         <div class="evo-title">Risk Profiles & Tier-Based Scaling</div>
         <div class="evo-desc">Portfolio theory meets grid trading. Choose your risk, scale your edge.</div>
         <ul class="evo-features">
-          <li>Three risk profiles: Low (1×), Medium (2×), High (5×) — allocate capital across them like a portfolio</li>
+          <li>Three risk profiles: Low (5 SOs, conservative), Medium (8 SOs, balanced), High (12 SOs, aggressive) — allocate capital across them like a portfolio</li>
           <li>Tier-based coin scaling: Starter trades 1 coin, Whale trades up to 8 simultaneously</li>
           <li>Each coin × each profile = independent trading engine with its own parameters</li>
           <li>Auto-guardrails: Medium→Low at 30% drawdown, High→Medium at 50%</li>
@@ -1151,7 +1155,7 @@ section { padding: 100px 0; }
           <li>Smart Exit: regime-gated profit taking — ride the bull, protect the bear (+15% alpha in bears, -1.8% drag in bulls)</li>
           <li>Conviction-Driven DCA: Fear & Greed + macro intelligence modulates accumulation (+35% Sharpe, -32% drawdown)</li>
           <li>Macro Intelligence: 8 real-time indicators including F&G, BTC Dominance, Pi Cycle, MVRV Z-Score, NUPL</li>
-          <li>Spot DCA Strategy: long-only spot + short-only futures = zero funding fees, ~5-8× more profit per cycle</li>
+          <li>Spot DCA Strategy: Spot DCA with scale-out exits: zero funding fees, you own the coins, ~5-8× more profit per cycle vs perpetual futures</li>
           <li>Full lifecycle: Entry → Accumulate → Compound → Exit → Rotate — zero human intervention</li>
           <li>Wyckoff structural analysis for accumulation/distribution detection</li>
         </ul>
