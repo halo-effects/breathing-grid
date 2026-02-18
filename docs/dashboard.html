@@ -554,7 +554,7 @@ table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
       <button id="tradeNext" style="background:var(--bg);color:var(--text2);border:1px solid var(--border);border-radius:4px;padding:4px 10px;font-size:.75rem;cursor:pointer">Next →</button>
     </div>
   </div>
-  <div style="overflow-x:auto"><table><thead><tr><th>Time</th><th>Symbol</th><th>Action</th><th>Dir</th><th>Price</th><th>TP Target</th><th>Qty</th><th>Duration</th><th>Orders</th><th>PnL</th><th>Regime</th></tr></thead><tbody id="tradesBody"></tbody></table></div>
+  <div style="overflow-x:auto"><table><thead id="tradesHead"><tr><th>Time</th><th>Symbol</th><th>Action</th><th>Dir</th><th>Price</th><th>TP Target</th><th>Qty</th><th>Duration</th><th>Orders</th><th>PnL</th><th>Regime</th></tr></thead><tbody id="tradesBody"></tbody></table></div>
 </div>
 
 <!-- Portfolio: Rotation History -->
@@ -1500,14 +1500,39 @@ function renderSentiment(s) {
 }
 
 function renderSpotDeals(s) {
-  // For spot, the deal section shows a summary
   $('dealTitle').textContent = 'Position Summary';
   const coins = Object.entries(s.coins || {});
   if (!coins.length) {
     $('dealContent').innerHTML = '<div class="no-deal">No active positions</div>';
     return;
   }
-  $('dealContent').innerHTML = '<div class="no-deal" style="color:var(--text2);font-size:.8rem">See coin positions above for detailed view</div>';
+  const active = coins.filter(([,c]) => c.state === 'ACTIVE' || c.layers > 0);
+  if (!active.length) {
+    $('dealContent').innerHTML = '<div class="no-deal">No active positions</div>';
+    return;
+  }
+  let html = '<div style="overflow-x:auto"><table><thead><tr><th>Symbol</th><th>Side</th><th>Layers</th><th>Avg Entry</th><th>Current</th><th>Unreal. PnL</th><th>Invested</th><th>TP Target</th><th>Next SO</th></tr></thead><tbody>';
+  active.forEach(([sym, c]) => {
+    const pnl = parseFloat(c.unrealized_pnl || 0);
+    const pnlClass = pnl > 0 ? 'pnl-pos' : pnl < 0 ? 'pnl-neg' : '';
+    const symbol = sym.replace('/USDT','').replace('USDT','');
+    const sideBadge = c.side === 'long' || c.side === 'LONG'
+      ? '<span class="badge badge-green" style="font-size:.65rem">LONG</span>'
+      : '<span class="badge badge-red" style="font-size:.65rem">SHORT</span>';
+    html += `<tr>
+      <td><span class="badge badge-blue" style="font-size:.7rem">${symbol}</span></td>
+      <td>${sideBadge}</td>
+      <td>${c.layers || 0}</td>
+      <td>${fmtUsd(c.avg_entry, 4)}</td>
+      <td>${fmtUsd(c.current_price, 4)}</td>
+      <td class="${pnlClass}">${fmtUsd(pnl)}</td>
+      <td>${fmtUsd(c.invested || 0)}</td>
+      <td>${c.next_tp_price ? fmtUsd(c.next_tp_price, 4) : '--'}</td>
+      <td>${c.next_so_price ? fmtUsd(c.next_so_price, 4) : '--'}</td>
+    </tr>`;
+  });
+  html += '</tbody></table></div>';
+  $('dealContent').innerHTML = html;
 }
 
 function renderSpotBottom(s) {
@@ -1893,6 +1918,7 @@ function renderCharts() {
 let tradePage = 0;
 
 function renderTrades() {
+  if (IS_SPOT) { renderSpotTrades(); return; }
   const tpTrades = trades.filter(t => t.action === 'TP_HIT');
   const ctx3 = $('chartTrades').getContext('2d');
   if(chartTrades) chartTrades.destroy();
@@ -1933,7 +1959,53 @@ function renderTrades() {
   if (!IS_SPOT) renderStatus();
 }
 
+function formatDuration(h) {
+  const hrs = parseFloat(h || 0);
+  if (hrs < 24) return fmt(hrs, 1) + 'h';
+  const d = Math.floor(hrs / 24);
+  const rem = hrs - d * 24;
+  return d + 'd ' + fmt(rem, 0) + 'h';
+}
+
+function renderSpotTradesPage() {
+  $('tradesHead').innerHTML = '<tr><th>Time</th><th>Symbol</th><th>Regime</th><th>Layers</th><th>Invested</th><th>PnL</th><th>Return%</th><th>Duration</th></tr>';
+  const pageSize = parseInt($('tradePageSize').value) || 25;
+  const allTrades = trades.slice().reverse();
+  const totalPages = Math.max(1, Math.ceil(allTrades.length / pageSize));
+  tradePage = Math.max(0, Math.min(tradePage, totalPages - 1));
+  const start = tradePage * pageSize;
+  const pageTrades = allTrades.slice(start, start + pageSize);
+  $('tradeCount').textContent = `(${trades.length} deals)`;
+  $('tradePageInfo').textContent = `Page ${tradePage + 1} of ${totalPages}`;
+  $('tradePrev').disabled = tradePage === 0;
+  $('tradeNext').disabled = tradePage >= totalPages - 1;
+  $('tradePrev').style.opacity = tradePage === 0 ? '.4' : '1';
+  $('tradeNext').style.opacity = tradePage >= totalPages - 1 ? '.4' : '1';
+  const body = $('tradesBody');
+  if (!pageTrades.length) { body.innerHTML = '<tr><td colspan="8" style="text-align:center;color:var(--text2);padding:20px">No trades yet</td></tr>'; return; }
+  body.innerHTML = pageTrades.map(t => {
+    const pnl = parseFloat(t.pnl || 0);
+    const pnlClass = pnl > 0 ? 'pnl-pos' : pnl < 0 ? 'pnl-neg' : '';
+    const ret = parseFloat(t.return_pct || 0);
+    const retClass = ret > 0 ? 'pnl-pos' : ret < 0 ? 'pnl-neg' : '';
+    const ct = t.close_time ? new Date(t.close_time) : null;
+    const timeStr = ct ? ct.toLocaleDateString('en-US',{month:'short',day:'numeric'}) + ' ' + ct.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',hour12:false}) : '--';
+    const symbol = (t.symbol || '').replace('/USDT','').replace('USDT','');
+    return `<tr>
+      <td>${timeStr}</td>
+      <td><span class="badge badge-blue" style="font-size:.7rem">${symbol}</span></td>
+      <td>${regimeBadge(t.regime)}</td>
+      <td>${t.layers || '--'}</td>
+      <td>${fmtUsd(parseFloat(t.invested || 0))}</td>
+      <td class="${pnlClass}">${fmtUsd(pnl)}</td>
+      <td class="${retClass}">${fmt(ret, 2)}%</td>
+      <td>${formatDuration(t.duration_h)}</td>
+    </tr>`;
+  }).join('');
+}
+
 function renderTradesPage() {
+  if (IS_SPOT) { renderSpotTradesPage(); return; }
   const pageSize = parseInt($('tradePageSize').value) || 25;
   const allTrades = trades.slice().reverse();
   const totalPages = Math.max(1, Math.ceil(allTrades.length / pageSize));
