@@ -96,6 +96,17 @@ tr:hover td{background:rgba(88,166,255,.04)}
 .feature-title{font-size:.8rem;font-weight:600;margin-bottom:4px}
 .feature-desc{font-size:.7rem;color:var(--text2);line-height:1.4}
 
+/* Portfolio allocation donut */
+.alloc-wrap{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.alloc-chart{flex-shrink:0}
+.alloc-legend{display:grid;grid-template-columns:1fr;gap:6px;font-size:.78rem}
+.alloc-legend-item{display:flex;align-items:center;gap:8px}
+.alloc-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.alloc-legend-sym{font-weight:600;min-width:48px}
+.alloc-legend-pct{color:var(--text2);min-width:42px;text-align:right}
+.alloc-legend-amt{color:var(--text2);min-width:70px;text-align:right}
+.alloc-legend-pnl{min-width:70px;text-align:right}
+
 /* Conviction gauge */
 .conviction-gauge{position:relative;width:200px;height:120px;margin:0 auto 16px}
 .conviction-gauge svg{width:100%;height:100%}
@@ -323,6 +334,12 @@ table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
 <div class="section" id="compoundingSection" style="display:none">
   <h2>📈 Compounding Tracker</h2>
   <div id="compoundingContent"></div>
+</div>
+
+<!-- Spot: Portfolio Allocation -->
+<div class="section" id="portfolioAllocSection" style="display:none">
+  <h2>🥧 Portfolio Allocation</h2>
+  <div id="portfolioAllocContent"></div>
 </div>
 
 <!-- Spot: Risk Profile & Regime -->
@@ -749,6 +766,7 @@ function showSpotUI() {
   // Show spot sections
   $('lifecycleSection').style.display = '';
   $('compoundingSection').style.display = '';
+  $('portfolioAllocSection').style.display = '';
   $('riskProfileSection').style.display = '';
   $('convictionSection').style.display = '';
   $('macroSection').style.display = '';
@@ -771,6 +789,7 @@ function showSpotUI() {
 function showFuturesUI() {
   $('lifecycleSection').style.display = 'none';
   $('compoundingSection').style.display = 'none';
+  $('portfolioAllocSection').style.display = 'none';
   $('riskProfileSection').style.display = 'none';
   $('convictionSection').style.display = 'none';
   $('macroSection').style.display = 'none';
@@ -848,6 +867,8 @@ function renderSpotStatus() {
   renderLifecycle(s);
   // Compounding
   renderCompounding(s);
+  // Portfolio Allocation
+  renderPortfolioAllocation(s);
   // Risk Profile & Regime
   renderRiskProfile(s);
   // Coin Selector
@@ -1122,6 +1143,57 @@ function renderManualControls(s) {
   });
 
   $('manualControlsContent').innerHTML = html;
+}
+
+const ALLOC_COLORS = ['#58a6ff','#d29922','#3fb950','#bc8cff','#39d2c0','#f78166','#79c0ff','#7ee787'];
+const ALLOC_CASH_COLOR = '#30363d';
+
+function renderPortfolioAllocation(s) {
+  const section = $('portfolioAllocSection');
+  if (!s || !s.coins) { section.style.display = 'none'; return; }
+  section.style.display = '';
+  const equity = s.equity || s.capital || 1;
+  const coins = Object.entries(s.coins).filter(([,c]) => c.invested > 0);
+  const totalInvested = coins.reduce((sum,[,c]) => sum + c.invested, 0);
+  const cash = Math.max(0, equity - totalInvested);
+
+  // Build segments: coins + cash
+  const segments = coins.map(([sym, c], i) => ({
+    label: sym, color: ALLOC_COLORS[i % ALLOC_COLORS.length],
+    value: c.invested, pct: (c.invested / equity * 100),
+    pnl: c.unrealized_pnl || 0
+  }));
+  segments.push({ label: 'Cash', color: ALLOC_CASH_COLOR, value: cash, pct: (cash / equity * 100), pnl: 0 });
+
+  // SVG donut
+  const R = 70, SW = 20, CX = 100, CY = 100, C = 2 * Math.PI * R;
+  let offset = 0;
+  let circles = '';
+  for (const seg of segments) {
+    const dash = (seg.pct / 100) * C;
+    circles += `<circle cx="${CX}" cy="${CY}" r="${R}" fill="none" stroke="${seg.color}" stroke-width="${SW}" stroke-dasharray="${dash} ${C - dash}" stroke-dashoffset="${-offset}" transform="rotate(-90 ${CX} ${CY})"/>`;
+    offset += dash;
+  }
+  const svg = `<svg viewBox="0 0 200 200" width="180" height="180" class="alloc-chart">
+    ${circles}
+    <text x="${CX}" y="${CY - 6}" text-anchor="middle" fill="var(--text)" font-size="13" font-weight="700">$${fmt(equity,0)}</text>
+    <text x="${CX}" y="${CY + 10}" text-anchor="middle" fill="var(--text2)" font-size="8">Total Equity</text>
+  </svg>`;
+
+  // Legend
+  const legend = segments.map(seg => {
+    const pnlCls = seg.pnl >= 0 ? 'pnl-pos' : 'pnl-neg';
+    const pnlStr = seg.label === 'Cash' ? '—' : `<span class="${pnlCls}">${seg.pnl >= 0 ? '+' : ''}$${fmt(seg.pnl,2)}</span>`;
+    return `<div class="alloc-legend-item">
+      <span class="alloc-dot" style="background:${seg.color}"></span>
+      <span class="alloc-legend-sym">${seg.label}</span>
+      <span class="alloc-legend-pct">${seg.pct.toFixed(1)}%</span>
+      <span class="alloc-legend-amt">$${fmt(seg.value,0)}</span>
+      <span class="alloc-legend-pnl">${pnlStr}</span>
+    </div>`;
+  }).join('');
+
+  $('portfolioAllocContent').innerHTML = `<div class="alloc-wrap">${svg}<div class="alloc-legend">${legend}</div></div>`;
 }
 
 function renderRiskProfile(s) {
