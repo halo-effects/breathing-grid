@@ -3,19 +3,19 @@
   "profile": "medium",
   "exchange": "hyperliquid",
   "capital": 10000.0,
-  "equity": 9997.0,
+  "equity": 9994.52,
   "cash": 9600.0,
-  "pnl_pct": -0.03,
+  "pnl_pct": -0.05,
   "coins": {
     "HYPE/USDC": {
       "state": "ACCUMULATING",
       "side": "long",
       "layers": 1,
       "avg_entry": 29.645,
-      "current_price": 29.443,
-      "unrealized_pnl": -2.72,
-      "next_so_price": 29.0521,
-      "next_tp_price": 30.047,
+      "current_price": 29.259,
+      "unrealized_pnl": -5.2,
+      "next_so_price": 28.8149,
+      "next_tp_price": 30.0642,
       "invested": 400.0,
       "realized_pnl": 0
     }
@@ -25,9 +25,9 @@
   "total_realized_pnl": 0,
   "max_drawdown_pct": 0.15,
   "regime": "RANGING",
-  "trend_direction": "bullish",
-  "last_update": "2026-02-18T15:47:56+00:00",
-  "uptime_hours": 1.3,
+  "trend_direction": "bearish",
+  "last_update": "2026-02-18T16:03:01+00:00",
+  "uptime_hours": 1.5,
   "halted": false,
   "symbols": [
     "HYPE/USDC"
@@ -47,14 +47,14 @@
   "conviction_enabled": true,
   "conviction": {
     "HYPE/USDC": {
-      "score": 62.5,
+      "score": 61.6,
       "band": "moderate",
       "macro": 29.5,
-      "regime": 11.8,
-      "momentum": 14.1,
-      "tp_mult": 1.319,
-      "dev_mult": 1.219,
-      "so_mult": 1.175,
+      "regime": 12.0,
+      "momentum": 14.0,
+      "tp_mult": 1.312,
+      "dev_mult": 1.212,
+      "so_mult": 1.167,
       "max_so_adj": 1
     }
   },
