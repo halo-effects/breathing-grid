@@ -314,6 +314,18 @@ table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
   </div>
 </div>
 
+<!-- Spot: Lifecycle Stage Indicator -->
+<div class="section" id="lifecycleSection" style="display:none">
+  <h2>🔄 Lifecycle Pipeline</h2>
+  <div id="lifecycleContent"></div>
+</div>
+
+<!-- Spot: Compounding Tracker -->
+<div class="section" id="compoundingSection" style="display:none">
+  <h2>📈 Compounding Tracker</h2>
+  <div id="compoundingContent"></div>
+</div>
+
 <!-- Spot: Risk Profile & Regime -->
 <div class="section" id="riskProfileSection" style="display:none">
   <h2>🛡️ Risk Profile & Regime</h2>
@@ -394,6 +406,18 @@ table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
 <div class="section" id="spotCoinsSection" style="display:none">
   <h2>🪙 Coin Positions</h2>
   <div id="spotCoinsContent"></div>
+</div>
+
+<!-- Spot: DCA Layer Visualization -->
+<div class="section" id="dcaLayerSection" style="display:none">
+  <h2>📊 DCA Layer Visualization</h2>
+  <div id="dcaLayerContent"></div>
+</div>
+
+<!-- Spot: Manual Controls Panel -->
+<div class="section" id="manualControlsSection" style="display:none">
+  <h2>🎛️ Manual Controls</h2>
+  <div id="manualControlsContent"></div>
 </div>
 
 <!-- Spot: Smart Entry Leaderboard -->
@@ -724,11 +748,15 @@ async function fetchTrades() {
 // ── UI Visibility Toggle ─────────────────────────────────
 function showSpotUI() {
   // Show spot sections
+  $('lifecycleSection').style.display = '';
+  $('compoundingSection').style.display = '';
   $('riskProfileSection').style.display = '';
   $('convictionSection').style.display = '';
   $('macroSection').style.display = '';
   $('spotCoinSelectorSection').style.display = '';
   $('spotCoinsSection').style.display = '';
+  $('dcaLayerSection').style.display = '';
+  $('manualControlsSection').style.display = '';
   $('spotScannerSection').style.display = '';
   $('sentimentSection').style.display = '';
   // Hide futures sections
@@ -736,17 +764,21 @@ function showSpotUI() {
   $('scannerSection').style.display = 'none';
   $('openOrdersSection').style.display = 'none';
   $('featuresSection').style.display = 'none';
-  $('chartsRow').style.display = 'none'; // No chart data yet for spot
+  $('chartsRow').style.display = 'none';
   $('cardFunding').style.display = 'none';
   $('bLeverageStat').style.display = 'none';
 }
 
 function showFuturesUI() {
+  $('lifecycleSection').style.display = 'none';
+  $('compoundingSection').style.display = 'none';
   $('riskProfileSection').style.display = 'none';
   $('convictionSection').style.display = 'none';
   $('macroSection').style.display = 'none';
   $('spotCoinSelectorSection').style.display = 'none';
   $('spotCoinsSection').style.display = 'none';
+  $('dcaLayerSection').style.display = 'none';
+  $('manualControlsSection').style.display = 'none';
   $('spotScannerSection').style.display = 'none';
   $('sentimentSection').style.display = 'none';
   $('adaptiveSection').style.display = '';
@@ -767,8 +799,9 @@ function renderSpotStatus() {
   const symbols = s.symbols || Object.keys(s.coins || {});
   $('symbolBadge').textContent = symbols.join(', ') + ' · ' + (s.timeframe || '15m');
   const dot = $('statusDot');
-  dot.className = 'status-dot ' + (s.halted ? 'halted' : s.running ? 'running' : 'stopped');
-  $('statusLabel').textContent = s.halted ? 'HALTED' : s.running ? 'Running' : 'Stopped';
+  const acctPaused = s.account_paused || false;
+  dot.className = 'status-dot ' + (s.halted ? 'halted' : acctPaused ? 'halted' : s.running ? 'running' : 'stopped');
+  $('statusLabel').textContent = s.halted ? 'HALTED' : acctPaused ? 'PAUSED' : s.running ? 'Running' : 'Stopped';
 
   // Last updated
   if (s.last_update) {
@@ -812,6 +845,10 @@ function renderSpotStatus() {
   // Regime badge in alloc area
   $('allocBadge').innerHTML = `Regime: ${regimeBadge(s.regime, true)} · Trend: <span style="color:${s.trend_direction==='bullish'?'var(--green)':'var(--red)'}">${s.trend_direction||'--'}</span>`;
 
+  // Lifecycle
+  renderLifecycle(s);
+  // Compounding
+  renderCompounding(s);
   // Risk Profile & Regime
   renderRiskProfile(s);
   // Coin Selector
@@ -822,12 +859,270 @@ function renderSpotStatus() {
   renderMacro(s);
   // Coin Positions
   renderSpotCoins(s);
+  // DCA Layers
+  renderDCALayers(s);
+  // Manual Controls
+  renderManualControls(s);
   // Sentiment
   renderSentiment(s);
   // Capital utilization in bottom bar
   renderSpotBottom(s);
   // Deal section — show spot coins as deal panels
   renderSpotDeals(s);
+}
+
+// ── Lifecycle Pipeline ────────────────────────────────────
+function renderLifecycle(s) {
+  if (!s || !s.coins) return;
+  const coins = s.coins;
+  const symbols = s.symbols || Object.keys(coins);
+  if (!symbols.length) { $('lifecycleSection').style.display = 'none'; return; }
+
+  let html = '';
+  symbols.forEach(sym => {
+    const c = coins[sym];
+    // Determine stage
+    let stage = 'discover';
+    if (c) {
+      const layers = c.layers || 0;
+      const exitPressure = s.sentiment?.[sym]?.exit_pressure || 0;
+      if (exitPressure > 35) stage = 'exit';
+      else if (s.deals_completed > 0 && layers > 0) stage = 'compound';
+      else if (layers > 0) stage = 'accumulate';
+      else stage = 'discover';
+    }
+    // Check rotation recommendation
+    // (simple heuristic: if scanner suggests rotate for this coin)
+
+    const stages = ['discover','accumulate','compound','exit','rotate'];
+    const labels = ['Discover','Accumulate','Compound','Exit','Rotate'];
+    html += `<div style="margin-bottom:10px"><div style="font-size:.8rem;font-weight:600;margin-bottom:6px">${sym}</div><div class="lifecycle-pipeline">`;
+    stages.forEach((st, i) => {
+      if (i > 0) html += '<span class="lifecycle-arrow">▸</span>';
+      html += `<div class="lifecycle-stage ${st}${st === stage ? ' active' : ''}">${labels[i]}</div>`;
+    });
+    html += '</div></div>';
+  });
+  $('lifecycleContent').innerHTML = html;
+}
+
+// ── Compounding Tracker ──────────────────────────────────
+function renderCompounding(s) {
+  if (!s) return;
+  const startCap = s.capital || 10000;
+  const equity = s.equity || startCap;
+  const growth = ((equity - startCap) / startCap * 100);
+  const totalPnl = s.total_realized_pnl || 0;
+  const uptime = s.uptime_hours || 1;
+  const dailyRate = totalPnl / uptime * 24;
+  const monthly = dailyRate * 30;
+  const annual = startCap * (Math.pow(1 + (dailyRate / startCap), 365) - 1);
+  const wr = s.win_rate || 0;
+  const deals = s.deals_completed || 0;
+  const growthPct = Math.max(0, Math.min(100, (equity / (startCap * 2)) * 100));
+
+  $('compoundingContent').innerHTML = `
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:16px">
+      <div style="text-align:center;padding:14px;background:var(--bg);border-radius:8px;border:1px solid var(--border)">
+        <div style="font-size:.65rem;color:var(--text2);text-transform:uppercase;margin-bottom:6px">Starting Capital</div>
+        <div style="font-size:1.6rem;font-weight:800">${fmtUsd(startCap)}</div>
+      </div>
+      <div style="text-align:center;padding:14px;background:var(--bg);border-radius:8px;border:1px solid var(--border)">
+        <div style="font-size:.65rem;color:var(--text2);text-transform:uppercase;margin-bottom:6px">Current Equity</div>
+        <div style="font-size:1.6rem;font-weight:800;color:${pctColor(growth)}">${fmtUsd(equity)}</div>
+      </div>
+      <div style="text-align:center;padding:14px;background:var(--bg);border-radius:8px;border:1px solid var(--border)">
+        <div style="font-size:.65rem;color:var(--text2);text-transform:uppercase;margin-bottom:6px">Growth</div>
+        <div style="font-size:1.6rem;font-weight:800;color:${pctColor(growth)}">${growth >= 0 ? '+' : ''}${fmt(growth)}%</div>
+      </div>
+      <div style="text-align:center;padding:14px;background:var(--bg);border-radius:8px;border:1px solid var(--border)">
+        <div style="font-size:.65rem;color:var(--text2);text-transform:uppercase;margin-bottom:6px">Deals / Win Rate</div>
+        <div style="font-size:1.6rem;font-weight:800">${deals} <span style="font-size:.9rem;color:var(--text2)">/ ${fmt(wr,0)}%</span></div>
+      </div>
+    </div>
+    <div class="compound-bar"><div class="compound-bar-fill" style="width:${growthPct}%"></div></div>
+    <div style="display:flex;justify-content:space-between;font-size:.7rem;color:var(--text2);margin-top:4px">
+      <span>${fmtUsd(startCap)}</span><span>Target: ${fmtUsd(startCap * 2)}</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px">
+      <div style="text-align:center;padding:10px;background:var(--bg);border-radius:6px;border:1px solid var(--border)">
+        <div style="font-size:.6rem;color:var(--text3);text-transform:uppercase;margin-bottom:4px">Daily Rate</div>
+        <div style="font-size:1rem;font-weight:600;color:${pctColor(dailyRate)}">${fmtUsd(dailyRate)}</div>
+      </div>
+      <div style="text-align:center;padding:10px;background:var(--bg);border-radius:6px;border:1px solid var(--border)">
+        <div style="font-size:.6rem;color:var(--text3);text-transform:uppercase;margin-bottom:4px">Monthly Proj.</div>
+        <div style="font-size:1rem;font-weight:600;color:${pctColor(monthly)}">${fmtUsd(monthly)}</div>
+      </div>
+      <div style="text-align:center;padding:10px;background:var(--bg);border-radius:6px;border:1px solid var(--border)">
+        <div style="font-size:.6rem;color:var(--text3);text-transform:uppercase;margin-bottom:4px">Annual Proj. (compound)</div>
+        <div style="font-size:1rem;font-weight:600;color:${pctColor(annual)}">${fmtUsd(annual)}</div>
+      </div>
+    </div>`;
+}
+
+// ── DCA Layer Visualization ──────────────────────────────
+function renderDCALayers(s) {
+  if (!s || !s.coins) return;
+  const coins = Object.entries(s.coins).filter(([,c]) => c.layers > 0);
+  if (!coins.length) { $('dcaLayerSection').style.display = 'none'; return; }
+  $('dcaLayerSection').style.display = '';
+
+  let html = '';
+  coins.forEach(([sym, c]) => {
+    const tp = c.next_tp_price || 0;
+    const cur = c.current_price || 0;
+    const avg = c.avg_entry || 0;
+    const nextSO = c.next_so_price || 0;
+    const layers = c.layers || 1;
+
+    // Estimate SO prices from base entry and deviation pattern
+    const basePrice = avg; // approximate
+    const devPct = basePrice > 0 && nextSO > 0 ? ((basePrice - nextSO) / basePrice * 100 / layers) : 2.5;
+
+    // Collect all price points
+    const points = [];
+    // Filled layers
+    for (let i = 0; i < layers; i++) {
+      const p = basePrice * (1 - devPct * i / 100);
+      points.push({price: p, type: 'filled', label: i === 0 ? 'Base' : `SO${i}`, color: 'var(--amber)'});
+    }
+    // Unfilled future SOs (show up to 3 more)
+    for (let i = layers; i < layers + 3; i++) {
+      const p = basePrice * (1 - devPct * i / 100);
+      points.push({price: p, type: 'unfilled', label: `SO${i}`, color: 'var(--text3)'});
+    }
+    points.push({price: cur, type: 'current', label: `Current $${cur.toFixed(2)}`, color: 'var(--blue)'});
+    points.push({price: tp, type: 'tp', label: `TP $${tp.toFixed(2)}`, color: 'var(--green)'});
+
+    const allPrices = points.map(p => p.price).filter(p => p > 0);
+    const minP = Math.min(...allPrices) * 0.998;
+    const maxP = Math.max(...allPrices) * 1.002;
+    const range = maxP - minP || 1;
+
+    html += `<div style="margin-bottom:20px"><div style="font-size:.85rem;font-weight:600;margin-bottom:8px">${sym}</div>`;
+    html += '<div class="dca-viz">';
+    html += '<div class="dca-price-axis"></div>';
+    html += '<div style="position:relative;flex:1">';
+    points.forEach(pt => {
+      if (pt.price <= 0) return;
+      const topPct = ((maxP - pt.price) / range * 100);
+      const lineStyle = pt.type === 'current' ? 'height:3px' : pt.type === 'tp' ? 'height:2px' : 'height:1px';
+      const opacity = pt.type === 'unfilled' ? 'opacity:.4' : '';
+      html += `<div class="dca-layer" style="top:${topPct}%;${opacity}">
+        <div class="dca-layer-dot" style="background:${pt.color}"></div>
+        <div class="dca-layer-line" style="background:${pt.color};${lineStyle}"></div>
+        <div class="dca-layer-label" style="color:${pt.color}">${pt.label}</div>
+      </div>`;
+    });
+    html += '</div></div></div>';
+  });
+  $('dcaLayerContent').innerHTML = html;
+}
+
+// ── Manual Controls Panel ────────────────────────────────
+let _confirmState = {};
+function ctrlCmd(cmdObj, label, isDanger) {
+  const key = JSON.stringify(cmdObj);
+  if (isDanger && !_confirmState[key]) {
+    _confirmState[key] = true;
+    setTimeout(() => delete _confirmState[key], 5000);
+    // Re-render to show confirm state
+    if (status) renderManualControls(status);
+    return;
+  }
+  delete _confirmState[key];
+  // Copy command and also show PowerShell one-liner
+  const acctDir = ACCOUNT_ID.replace('paper-', '');
+  const jsonStr = JSON.stringify([cmdObj]);
+  const psCmd = `echo '${jsonStr}' > trading/spot/paper/${acctDir}/commands.json`;
+  navigator.clipboard.writeText(psCmd).then(() => {
+    showCmdToast('📋 ' + label);
+  }).catch(() => {
+    prompt('Copy this command:', psCmd);
+  });
+  if (status) renderManualControls(status);
+}
+
+function renderManualControls(s) {
+  if (!s) return;
+  const ctrl = s.controls || {};
+  const paused = ctrl.account_paused || false;
+  const pausedCoins = new Set(ctrl.paused_coins || []);
+  const convOverrides = ctrl.conviction_overrides || {};
+  const soAdj = ctrl.max_so_adjustments || {};
+  const skipSO = new Set(ctrl.skip_next_so || []);
+
+  let html = '<div class="ctrl-section">';
+  // Account controls
+  html += '<div class="ctrl-row">';
+  html += `<span class="ctrl-label" style="font-weight:700;font-size:.85rem">Account:</span>`;
+  html += `<span class="badge ${paused ? 'badge-amber' : 'badge-green'}" style="font-size:.75rem">${paused ? '⏸ Paused' : '▶ Running'}</span>`;
+  if (paused) {
+    html += `<button class="ctrl-btn ctrl-btn-safe" onclick="ctrlCmd({action:'resume_account'},'Resume Account')">▶ Resume</button>`;
+  } else {
+    html += `<button class="ctrl-btn ctrl-btn-warn" onclick="ctrlCmd({action:'pause_account'},'Pause Account')">⏸ Pause</button>`;
+  }
+  const emergKey = JSON.stringify({action:'emergency_exit'});
+  const emergConfirming = _confirmState[emergKey];
+  html += `<button class="ctrl-btn ctrl-btn-danger${emergConfirming ? ' confirming' : ''}" onclick="ctrlCmd({action:'emergency_exit'},'Emergency Exit',true)">${emergConfirming ? '⚠️ Click again to confirm' : '🛑 Emergency Exit'}</button>`;
+  html += '</div></div>';
+
+  // Per-coin controls
+  const symbols = s.symbols || Object.keys(s.coins || {});
+  symbols.forEach(sym => {
+    const c = (s.coins || {})[sym];
+    const isPaused = pausedCoins.has(sym);
+    const hasConvOverride = sym in convOverrides;
+    const convVal = convOverrides[sym] || '';
+    const soAdjVal = soAdj[sym] || 0;
+    const willSkip = skipSO.has(sym);
+    const state = c ? c.state : 'IDLE';
+    const layers = c ? c.layers : 0;
+
+    html += `<div class="ctrl-section">`;
+    html += `<div class="ctrl-row" style="margin-bottom:10px">`;
+    html += `<span style="font-weight:700;font-size:.9rem">${sym}</span>`;
+    html += `<span class="badge ${isPaused ? 'badge-amber' : 'badge-green'}" style="font-size:.7rem">${isPaused ? '⏸ Paused' : '▶ Active'} (${state}, Layer ${layers})</span>`;
+    html += '</div>';
+
+    // Row 1: Pause/Resume, Force Close, Skip SO
+    html += '<div class="ctrl-row">';
+    if (isPaused) {
+      html += `<button class="ctrl-btn ctrl-btn-safe" onclick="ctrlCmd({action:'resume_coin',symbol:'${sym}'},'Resume ${sym}')">▶ Resume</button>`;
+    } else {
+      html += `<button class="ctrl-btn ctrl-btn-warn" onclick="ctrlCmd({action:'pause_coin',symbol:'${sym}'},'Pause ${sym}')">⏸ Pause</button>`;
+    }
+    const fcKey = JSON.stringify({action:'force_close',symbol:sym});
+    const fcConfirm = _confirmState[fcKey];
+    html += `<button class="ctrl-btn ctrl-btn-danger${fcConfirm ? ' confirming' : ''}" onclick="ctrlCmd({action:'force_close',symbol:'${sym}'},'Force Close ${sym}',true)">${fcConfirm ? '⚠️ Confirm?' : 'Force Close'}</button>`;
+    html += `<button class="ctrl-btn ${willSkip ? 'ctrl-btn-warn' : 'ctrl-btn-safe'}" onclick="ctrlCmd({action:'skip_next_so',symbol:'${sym}'},'Skip Next SO ${sym}')">${willSkip ? '⏭ Skip Queued' : '⏭ Skip Next SO'}</button>`;
+    html += '</div>';
+
+    // Row 2: Conviction Override
+    html += '<div class="ctrl-row">';
+    html += `<span class="ctrl-label">Conviction: ${hasConvOverride ? convVal + ' (override)' : 'auto'}</span>`;
+    html += `<input class="ctrl-input" type="number" min="0" max="100" id="convInput_${sym.replace('/','_')}" value="${hasConvOverride ? convVal : ''}" placeholder="0-100">`;
+    html += `<button class="ctrl-btn ctrl-btn-safe" onclick="var v=document.getElementById('convInput_${sym.replace('/','_')}').value;if(v)ctrlCmd({action:'override_conviction',symbol:'${sym}',score:Number(v)},'Override Conviction ${sym}')">Set</button>`;
+    if (hasConvOverride) {
+      html += `<button class="ctrl-btn ctrl-btn-warn" onclick="ctrlCmd({action:'clear_conviction_override',symbol:'${sym}'},'Clear Override ${sym}')">Clear</button>`;
+    }
+    html += '</div>';
+
+    // Row 3: Max SO adjustment
+    const effectiveMaxSO = 8 + soAdjVal; // approximate base
+    html += '<div class="ctrl-row">';
+    html += `<span class="ctrl-label">Max SOs: ${effectiveMaxSO} ${soAdjVal !== 0 ? '(' + (soAdjVal > 0 ? '+' : '') + soAdjVal + ' adj)' : ''}</span>`;
+    html += `<button class="ctrl-btn ctrl-btn-safe" onclick="ctrlCmd({action:'adjust_max_sos',symbol:'${sym}',delta:1},'Max SO +1 ${sym}')">+</button>`;
+    html += `<button class="ctrl-btn ctrl-btn-warn" onclick="ctrlCmd({action:'adjust_max_sos',symbol:'${sym}',delta:-1},'Max SO -1 ${sym}')">−</button>`;
+    if (soAdjVal !== 0) {
+      html += `<button class="ctrl-btn ctrl-btn-warn" onclick="ctrlCmd({action:'reset_max_sos',symbol:'${sym}'},'Reset Max SO ${sym}')">Reset</button>`;
+    }
+    html += '</div>';
+
+    html += '</div>';
+  });
+
+  $('manualControlsContent').innerHTML = html;
 }
 
 function renderRiskProfile(s) {
