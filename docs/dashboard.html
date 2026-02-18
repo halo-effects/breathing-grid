@@ -248,9 +248,8 @@ table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
 
 <!-- Account Switcher -->
 <div class="account-switcher" id="accountSwitcher">
-  <a class="account-pill" href="?id=live" data-id="live"><span class="pill-dot" style="background:var(--green)"></span>Live Futures</a>
-  <a class="account-pill" href="?id=paper-aster" data-id="paper-aster"><span class="pill-dot" style="background:var(--amber)"></span>Paper · Aster</a>
-  <a class="account-pill" href="?id=paper-hyper" data-id="paper-hyper"><span class="pill-dot" style="background:var(--amber)"></span>Paper · Hyper</a>
+  <a class="account-pill" href="?id=paper-aster" data-id="paper-aster"><span class="pill-dot" style="background:var(--amber)"></span>Aster Spot</a>
+  <a class="account-pill" href="?id=paper-hyper" data-id="paper-hyper"><span class="pill-dot" style="background:var(--amber)"></span>Hyperliquid Spot</a>
 </div>
 
 <div class="cards" id="cards">
@@ -478,7 +477,7 @@ const ACCOUNTS = {
   'paper-hyper': { label: 'Spot Paper · Hyper', type: 'spot', paper: true, exchange: 'Hyperliquid' },
 };
 const params = new URLSearchParams(location.search);
-const ACCOUNT_ID = ACCOUNTS[params.get('id')] ? params.get('id') : 'live';
+const ACCOUNT_ID = ACCOUNTS[params.get('id')] ? params.get('id') : 'paper-aster';
 const ACCOUNT = ACCOUNTS[ACCOUNT_ID];
 const IS_SPOT = ACCOUNT.type === 'spot';
 const IS_PAPER = ACCOUNT.paper;
