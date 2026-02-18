@@ -151,6 +151,48 @@ tr:hover td{background:rgba(88,166,255,.04)}
 .rotation-badge-remove{color:var(--red)}
 .rotation-badge-winddown{color:var(--amber)}
 
+/* Lifecycle pipeline */
+.lifecycle-pipeline{display:flex;align-items:center;gap:0;margin:8px 0}
+.lifecycle-stage{padding:6px 14px;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;background:var(--bg);border:1px solid var(--border);color:var(--text3);position:relative;transition:all .3s}
+.lifecycle-stage:first-child{border-radius:6px 0 0 6px}
+.lifecycle-stage:last-child{border-radius:0 6px 6px 0}
+.lifecycle-stage.active{color:#fff;border-color:transparent;animation:stagePulse 2s infinite}
+.lifecycle-stage.discover.active{background:var(--purple)}
+.lifecycle-stage.accumulate.active{background:var(--blue)}
+.lifecycle-stage.compound.active{background:var(--green)}
+.lifecycle-stage.exit.active{background:var(--amber)}
+.lifecycle-stage.rotate.active{background:var(--red)}
+.lifecycle-arrow{color:var(--text3);font-size:.6rem;margin:0 -1px;z-index:1}
+@keyframes stagePulse{0%,100%{opacity:1}50%{opacity:.7}}
+
+/* DCA Layer Viz */
+.dca-viz{position:relative;height:200px;margin:12px 0;display:flex;gap:16px}
+.dca-price-axis{width:4px;background:linear-gradient(180deg,var(--green),var(--border),var(--red));border-radius:2px;position:relative;flex-shrink:0}
+.dca-layer{position:absolute;left:12px;right:0;height:2px;display:flex;align-items:center}
+.dca-layer-line{flex:1;height:2px;border-radius:1px}
+.dca-layer-label{font-size:.6rem;white-space:nowrap;margin-left:8px;min-width:120px}
+.dca-layer-dot{width:8px;height:8px;border-radius:50%;position:absolute;left:-2px;transform:translateY(-50%)}
+
+/* Compounding tracker */
+.compound-bar{height:12px;background:#21262d;border-radius:6px;overflow:hidden;margin:8px 0}
+.compound-bar-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,var(--blue),var(--green));transition:width .8s}
+
+/* Manual controls */
+.ctrl-section{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:12px}
+.ctrl-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.ctrl-btn{padding:4px 12px;border-radius:16px;font-size:.7rem;font-weight:600;cursor:pointer;border:1px solid;transition:all .2s;display:inline-flex;align-items:center;gap:4px}
+.ctrl-btn-safe{background:rgba(63,185,80,.1);color:var(--green);border-color:rgba(63,185,80,.3)}
+.ctrl-btn-safe:hover{background:rgba(63,185,80,.25)}
+.ctrl-btn-warn{background:rgba(210,153,34,.1);color:var(--amber);border-color:rgba(210,153,34,.3)}
+.ctrl-btn-warn:hover{background:rgba(210,153,34,.25)}
+.ctrl-btn-danger{background:rgba(248,81,73,.1);color:var(--red);border-color:rgba(248,81,73,.3)}
+.ctrl-btn-danger:hover{background:rgba(248,81,73,.25)}
+.ctrl-btn-danger.confirming{background:var(--red);color:#fff;animation:dangerPulse 1s infinite}
+@keyframes dangerPulse{0%,100%{opacity:1}50%{opacity:.8}}
+.ctrl-input{background:var(--bg);border:1px solid var(--border);color:var(--text);border-radius:4px;padding:3px 8px;font-size:.7rem;width:60px;text-align:center}
+.ctrl-label{font-size:.7rem;color:var(--text2)}
+.ctrl-divider{width:1px;height:20px;background:var(--border);margin:0 4px}
+
 @media(max-width:900px){.charts-row{grid-template-columns:1fr}.trades-grid{grid-template-columns:1fr}.adaptive-viz{grid-template-columns:1fr}.macro-grid{grid-template-columns:1fr}.conviction-breakdown{grid-template-columns:1fr}.risk-profile-grid{grid-template-columns:1fr!important}}
 @media(max-width:600px){
 body{padding:8px}
