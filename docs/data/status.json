@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-18T18:57:32.896279+00:00",
+  "timestamp": "2026-02-18T18:59:25.321764+00:00",
   "symbol": "HYPEUSDT",
   "timeframe": "5m",
   "running": false,
@@ -19,7 +19,7 @@
   "leverage": 1,
   "capital": 324.84,
   "available_balance": 0.0,
-  "cycle_count": 11601,
+  "cycle_count": 11607,
   "start_time": "2026-02-13T03:50:51.737221+00:00",
   "hedge_mode": true,
   "long_deal": null,
