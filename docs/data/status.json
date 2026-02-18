@@ -1,25 +1,25 @@
 {
-  "timestamp": "2026-02-18T08:01:13.067554+00:00",
+  "timestamp": "2026-02-18T08:03:13.791785+00:00",
   "symbol": "HYPEUSDT",
   "timeframe": "5m",
   "running": true,
   "dry_run": false,
   "halted": false,
   "halt_reason": "",
-  "regime": "TRENDING",
-  "price": 29.669,
-  "equity": 327.88,
+  "regime": "MILD_TREND",
+  "price": 29.626,
+  "equity": 327.55,
   "start_equity": 291.97,
   "peak_equity": 336.7,
   "total_deposits": 40,
-  "pnl": -4.09,
-  "pnl_pct": -1.23,
-  "drawdown_pct": 2.62,
+  "pnl": -4.42,
+  "pnl_pct": -1.33,
+  "drawdown_pct": 2.72,
   "max_drawdown_threshold": 25.0,
   "leverage": 1,
-  "capital": 327.87,
+  "capital": 327.64,
   "available_balance": 135.08,
-  "cycle_count": 10585,
+  "cycle_count": 10588,
   "start_time": "2026-02-13T03:50:51.737221+00:00",
   "hedge_mode": false,
   "long_deal": {
@@ -64,8 +64,8 @@
   },
   "trend_direction": "bullish",
   "regime_alloc": {
-    "long": 0.75,
-    "short": 0.25
+    "long": 0.6,
+    "short": 0.4
   },
   "deal_counter": 82,
   "adaptive_tp": {
@@ -73,14 +73,14 @@
     "baseline_tp_pct": 1.5,
     "current_dev_pct": 1.5,
     "baseline_dev_pct": 2.5,
-    "atr_pct": 0.2152,
+    "atr_pct": 0.2365,
     "atr_baseline_pct": 0.8,
     "tp_min": 1.0,
     "tp_max": 2.5,
     "dev_min": 1.2,
     "dev_max": 4.0,
-    "regime_tp_mult": 1.2,
-    "regime_dev_mult": 1.3
+    "regime_tp_mult": 1.05,
+    "regime_dev_mult": 1.1
   },
   "config": {
     "tp_pct": 1.0,
