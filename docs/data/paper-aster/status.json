@@ -1,0 +1,66 @@
+{
+  "running": true,
+  "profile": "medium",
+  "exchange": "aster",
+  "capital": 10000.0,
+  "equity": 9995.24,
+  "cash": 9603.82,
+  "pnl_pct": -0.05,
+  "coins": {
+    "ETH/USDT": {
+      "state": "ACCUMULATING",
+      "side": "long",
+      "layers": 1,
+      "avg_entry": 2023.82,
+      "current_price": 1981.1,
+      "unrealized_pnl": -8.44,
+      "next_so_price": 1963.6114,
+      "next_tp_price": 2044.0582,
+      "invested": 400.0,
+      "realized_pnl": 0
+    }
+  },
+  "deals_completed": 1,
+  "win_rate": 100.0,
+  "total_realized_pnl": 3.82,
+  "max_drawdown_pct": 0.11,
+  "regime": "ACCUMULATION",
+  "trend_direction": "bearish",
+  "last_update": "2026-02-18T15:02:12+00:00",
+  "uptime_hours": 0.5,
+  "halted": false,
+  "symbols": [
+    "ETH/USDT"
+  ],
+  "timeframe": "15m",
+  "sentiment": {
+    "ETH/USDT": {
+      "score": 15,
+      "exit_pressure": 15,
+      "narrative": "ETH deeply corrected (-60% from highs), extreme fear creating accumulation opportunity for whales/institutions; potential bull trap or conviction buy.",
+      "tp_multiplier": 1.0,
+      "mode": "none",
+      "updated": "2026-02-18T14:31:31.749774+00:00"
+    }
+  },
+  "grok_enabled": true,
+  "conviction_enabled": true,
+  "conviction": {
+    "ETH/USDT": {
+      "score": 58.7,
+      "band": "moderate",
+      "macro": 29.5,
+      "regime": 12.7,
+      "momentum": 10.5,
+      "tp_mult": 1.29,
+      "dev_mult": 1.19,
+      "so_mult": 1.273,
+      "max_so_adj": 2
+    }
+  },
+  "macro": {
+    "fear_greed": 8,
+    "btc_sma200_dist": -32.62,
+    "pi_cycle_gap": -55.69
+  }
+}

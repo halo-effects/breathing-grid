@@ -1,0 +1,66 @@
+{
+  "running": true,
+  "profile": "medium",
+  "exchange": "hyperliquid",
+  "capital": 10000.0,
+  "equity": 9989.66,
+  "cash": 9600.0,
+  "pnl_pct": -0.1,
+  "coins": {
+    "HYPE/USDC": {
+      "state": "ACCUMULATING",
+      "side": "long",
+      "layers": 1,
+      "avg_entry": 29.645,
+      "current_price": 28.899,
+      "unrealized_pnl": -10.06,
+      "next_so_price": 28.5037,
+      "next_tp_price": 30.0915,
+      "invested": 400.0,
+      "realized_pnl": 0
+    }
+  },
+  "deals_completed": 0,
+  "win_rate": 0.0,
+  "total_realized_pnl": 0,
+  "max_drawdown_pct": 0.15,
+  "regime": "MILD_TREND",
+  "trend_direction": "bearish",
+  "last_update": "2026-02-18T15:02:03+00:00",
+  "uptime_hours": 0.5,
+  "halted": false,
+  "symbols": [
+    "HYPE/USDC"
+  ],
+  "timeframe": "15m",
+  "sentiment": {
+    "HYPE/USDC": {
+      "score": 25,
+      "exit_pressure": 15,
+      "narrative": "Hyperliquid $HYPE positioned for long-term growth with policy involvement and no dilution from airdrops; appearing in trending lists.",
+      "tp_multiplier": 1.0,
+      "mode": "none",
+      "updated": "2026-02-18T14:31:15.357975+00:00"
+    }
+  },
+  "grok_enabled": true,
+  "conviction_enabled": true,
+  "conviction": {
+    "HYPE/USDC": {
+      "score": 55.7,
+      "band": "moderate",
+      "macro": 29.5,
+      "regime": 9.7,
+      "momentum": 10.5,
+      "tp_mult": 1.268,
+      "dev_mult": 1.168,
+      "so_mult": 1.123,
+      "max_so_adj": 1
+    }
+  },
+  "macro": {
+    "fear_greed": 8,
+    "btc_sma200_dist": -32.77,
+    "pi_cycle_gap": -55.69
+  }
+}
