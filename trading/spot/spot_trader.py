@@ -264,6 +264,13 @@ class SpotPaperTrader:
         self._max_dd = 0.0
         self._last_regime: Dict[str, str] = {}
 
+        # Manual control state
+        self._paused_coins: set = set()
+        self._manually_paused: bool = False
+        self._conviction_overrides: Dict[str, float] = {}
+        self._max_so_adjustments: Dict[str, int] = {}
+        self._skip_next_so: set = set()
+
         # Per-exchange output directory
         self.paper_dir = PAPER_BASE / self.exchange_name
         self.paper_dir.mkdir(parents=True, exist_ok=True)
@@ -354,6 +361,9 @@ class SpotPaperTrader:
     # ── Deal management ────────────────────────────────────────────────
 
     def _open_deal(self, symbol: str, price: float, ts: str, regime: str, tp_pct: float):
+        # Check manual controls
+        if self._manually_paused or symbol in self._paused_coins:
+            return
         # Capital per coin with 10% reserve
         available = self.cash * 0.9 / max(1, self.max_coins - len(self.deals))
         base_cost = self.initial_capital * self.profile.base_order_pct
@@ -388,8 +398,18 @@ class SpotPaperTrader:
 
     def _check_safety_orders(self, deal: Deal, current_price: float, ts: str,
                               regime: str, dev_pct: float, tp_pct: float, is_bullish: bool):
+        # Skip if coin is paused
+        if deal.symbol in self._paused_coins:
+            return
+        # Skip next SO (one-time)
+        if deal.symbol in self._skip_next_so:
+            self._skip_next_so.discard(deal.symbol)
+            logger.info("⏭ Skipped SO for %s (one-time skip)", deal.symbol)
+            return
         filled_sos = len(deal.lots) - 1
-        if filled_sos >= self.profile.max_safety_orders:
+        # Apply max SO adjustments
+        effective_max_sos = self.profile.max_safety_orders + self._max_so_adjustments.get(deal.symbol, 0)
+        if filled_sos >= effective_max_sos:
             return
         if regime in BLOCKED_REGIMES:
             return
@@ -512,6 +532,28 @@ class SpotPaperTrader:
                     elif action == "switch_coin":
                         self._cmd_remove_coin(cmd["from"])
                         self._cmd_add_coin(cmd["to"])
+                    elif action == "pause_coin":
+                        self._cmd_pause_coin(cmd["symbol"])
+                    elif action == "resume_coin":
+                        self._cmd_resume_coin(cmd["symbol"])
+                    elif action == "pause_account":
+                        self._cmd_pause_account()
+                    elif action == "resume_account":
+                        self._cmd_resume_account()
+                    elif action == "force_close":
+                        self._cmd_force_close(cmd["symbol"])
+                    elif action == "emergency_exit":
+                        self._cmd_emergency_exit()
+                    elif action == "override_conviction":
+                        self._cmd_override_conviction(cmd["symbol"], cmd["score"])
+                    elif action == "clear_conviction_override":
+                        self._cmd_clear_conviction_override(cmd["symbol"])
+                    elif action == "adjust_max_sos":
+                        self._cmd_adjust_max_sos(cmd["symbol"], cmd["delta"])
+                    elif action == "reset_max_sos":
+                        self._cmd_reset_max_sos(cmd["symbol"])
+                    elif action == "skip_next_so":
+                        self._cmd_skip_next_so(cmd["symbol"])
                     else:
                         logger.warning("Unknown command action: %s", action)
                 except Exception as e:
@@ -558,6 +600,73 @@ class SpotPaperTrader:
             f"Symbol: {symbol}\n"
             f"Active coins: {', '.join(self.symbols) if self.symbols else 'none'}"
         )
+
+    # ── Manual Control Command Handlers ──────────────────────────────
+
+    def _cmd_pause_coin(self, symbol: str):
+        self._paused_coins.add(symbol)
+        logger.info("⏸ Paused coin: %s", symbol)
+        send_telegram(f"⏸ <b>Coin Paused</b>\nSymbol: {symbol}\nNo new deals or SOs. Existing TPs still active.")
+
+    def _cmd_resume_coin(self, symbol: str):
+        self._paused_coins.discard(symbol)
+        logger.info("▶️ Resumed coin: %s", symbol)
+        send_telegram(f"▶️ <b>Coin Resumed</b>\nSymbol: {symbol}\nNormal trading restored.")
+
+    def _cmd_pause_account(self):
+        self._manually_paused = True
+        logger.info("⏸ Account manually paused")
+        send_telegram("⏸ <b>Account Paused</b>\nNo new deals or SOs. Existing TPs still execute.")
+
+    def _cmd_resume_account(self):
+        self._manually_paused = False
+        logger.info("▶️ Account manually resumed")
+        send_telegram("▶️ <b>Account Resumed</b>\nNormal trading restored.")
+
+    def _cmd_force_close(self, symbol: str):
+        """Force close active deal but keep the symbol (can reopen next cycle)."""
+        if symbol not in self.deals:
+            logger.info("⚠️ No active deal for %s to force close", symbol)
+            return
+        self._force_close_deal(symbol)
+        # Note: unlike remove_coin, we do NOT remove from self.symbols
+
+    def _cmd_emergency_exit(self):
+        """Force close ALL active deals and pause account."""
+        symbols = list(self.deals.keys())
+        logger.warning("🛑 EMERGENCY EXIT: closing %d active deals", len(symbols))
+        send_telegram(f"🛑 <b>EMERGENCY EXIT</b>\nClosing {len(symbols)} active deal(s) and pausing account.")
+        for sym in symbols:
+            self._force_close_deal(sym)
+        self._manually_paused = True
+        logger.info("🛑 Emergency exit complete. Account paused.")
+        send_telegram("🛑 <b>Emergency Exit Complete</b>\nAll deals closed. Account paused.")
+
+    def _cmd_override_conviction(self, symbol: str, score: float):
+        self._conviction_overrides[symbol] = float(score)
+        logger.info("🎯 Conviction override set for %s: %.1f", symbol, score)
+        send_telegram(f"🎯 <b>Conviction Override</b>\nSymbol: {symbol}\nOverride score: {score}")
+
+    def _cmd_clear_conviction_override(self, symbol: str):
+        self._conviction_overrides.pop(symbol, None)
+        logger.info("🎯 Conviction override cleared for %s", symbol)
+        send_telegram(f"🎯 <b>Conviction Override Cleared</b>\nSymbol: {symbol}\nUsing auto-calculated score.")
+
+    def _cmd_adjust_max_sos(self, symbol: str, delta: int):
+        current = self._max_so_adjustments.get(symbol, 0)
+        self._max_so_adjustments[symbol] = current + int(delta)
+        logger.info("📊 Max SO adjustment for %s: %+d (total: %+d)", symbol, delta, self._max_so_adjustments[symbol])
+        send_telegram(f"📊 <b>Max SO Adjusted</b>\nSymbol: {symbol}\nDelta: {delta:+d}\nTotal adjustment: {self._max_so_adjustments[symbol]:+d}")
+
+    def _cmd_reset_max_sos(self, symbol: str):
+        self._max_so_adjustments.pop(symbol, None)
+        logger.info("📊 Max SO adjustment reset for %s", symbol)
+        send_telegram(f"📊 <b>Max SO Reset</b>\nSymbol: {symbol}\nUsing default max SOs.")
+
+    def _cmd_skip_next_so(self, symbol: str):
+        self._skip_next_so.add(symbol)
+        logger.info("⏭ Skip next SO for %s", symbol)
+        send_telegram(f"⏭ <b>Skip Next SO</b>\nSymbol: {symbol}\nNext safety order will be skipped (one-time).")
 
     def _force_close_deal(self, symbol: str):
         """Force close an active deal at current market price."""
@@ -614,7 +723,12 @@ class SpotPaperTrader:
             "start_time": self._start_time.isoformat(),
             "symbols": self.symbols,
             "deals": {s: d.to_dict() for s, d in self.deals.items()},
-            "completed_deals": [d.to_dict() for d in self.completed_deals[-50:]],  # keep last 50
+            "completed_deals": [d.to_dict() for d in self.completed_deals[-50:]],
+            "paused_coins": list(self._paused_coins),
+            "manually_paused": self._manually_paused,
+            "conviction_overrides": self._conviction_overrides,
+            "max_so_adjustments": self._max_so_adjustments,
+            "skip_next_so": list(self._skip_next_so),
         }
         state_path = self.paper_dir / "state.json"
         state_path.write_text(json.dumps(state, indent=2, default=str), encoding="utf-8")
@@ -641,6 +755,12 @@ class SpotPaperTrader:
                 self.deals[sym] = Deal.from_dict(d)
             for d in state.get("completed_deals", []):
                 self.completed_deals.append(Deal.from_dict(d))
+            # Manual control state
+            self._paused_coins = set(state.get("paused_coins", []))
+            self._manually_paused = state.get("manually_paused", False)
+            self._conviction_overrides = state.get("conviction_overrides", {})
+            self._max_so_adjustments = state.get("max_so_adjustments", {})
+            self._skip_next_so = set(state.get("skip_next_so", []))
             logger.info("State loaded: cash=$%.2f, %d active deals, %d completed, symbols=%s",
                         self.cash, len(self.deals), len(self.completed_deals), self.symbols)
         except Exception as e:
@@ -713,6 +833,17 @@ class SpotPaperTrader:
             "halted": self._halted,
             "symbols": self.symbols,
             "timeframe": self.timeframe,
+            "paused_coins": list(self._paused_coins),
+            "account_paused": self._manually_paused,
+            "conviction_overrides": self._conviction_overrides,
+            "max_so_adjustments": self._max_so_adjustments,
+            "controls": {
+                "paused_coins": list(self._paused_coins),
+                "account_paused": self._manually_paused,
+                "conviction_overrides": self._conviction_overrides,
+                "max_so_adjustments": self._max_so_adjustments,
+                "skip_next_so": list(self._skip_next_so),
+            },
         }
         (self.paper_dir / "status.json").write_text(
             json.dumps(status, indent=2, default=str), encoding="utf-8"
@@ -859,10 +990,11 @@ class SpotPaperTrader:
             # Process active deal
             if symbol in self.deals:
                 deal = self.deals[symbol]
-                if not self._halted:
+                if not self._halted and not self._manually_paused:
                     self._check_safety_orders(deal, price, ts, regime, dev_pct, tp_pct, is_bullish)
+                # TPs always execute even when paused
                 self._check_exits(deal, price, ts, regime, atr_pct_val)
-            elif not self._halted and regime not in BLOCKED_REGIMES and len(self.deals) < self.max_coins:
+            elif not self._halted and not self._manually_paused and regime not in BLOCKED_REGIMES and len(self.deals) < self.max_coins:
                 # Open new deal
                 self._open_deal(symbol, price, ts, regime, tp_pct)
 
