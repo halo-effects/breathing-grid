@@ -763,15 +763,15 @@ section { padding: 100px 0; }
         <div class="layer-number">06</div>
         <div class="layer-title">Risk Profiles & Capital Management</div>
         <div class="layer-question">"Choose your risk. The system handles the rest."</div>
-        <div class="layer-text">Three risk profiles — Low, Medium, and High — let you control exactly where you sit on the risk-reward spectrum. Allocate capital across profiles like a portfolio: conservative, balanced, or aggressive. Each profile has its own leverage, grid depth, and adaptive parameters.</div>
-        <div class="layer-text">The system continuously monitors margin, maintains safety reserves, auto-skips unaffordable orders, and always prioritizes closing profitable positions. Built-in guardrails automatically de-risk when drawdowns hit thresholds.</div>
+        <div class="layer-text">Three risk profiles — Low, Medium, and High — let you control exactly where you sit on the risk-reward spectrum. Allocate capital across profiles like a portfolio: conservative, balanced, or aggressive. Each profile has its own accumulation depth, deviation strategy, and adaptive parameters.</div>
+        <div class="layer-text">The system continuously monitors capital utilization, maintains safety reserves, auto-skips unaffordable orders, and always prioritizes closing profitable positions. Built-in guardrails automatically de-risk when drawdowns hit thresholds.</div>
       </div>
       <div class="layer-visual">
         <div style="display:flex; flex-direction:column; gap:16px;">
           <div style="font-size:0.8rem;color:var(--text3);margin-bottom:4px;">RISK PROFILES</div>
-          <div style="display:flex;justify-content:space-between;font-size:0.85rem;padding:8px 0;border-bottom:1px solid var(--border);"><span style="font-weight:600;color:var(--green);">Low Risk</span><span style="color:var(--text2);">1× leverage · 8 SOs · Conservative</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:0.85rem;padding:8px 0;border-bottom:1px solid var(--border);"><span style="font-weight:600;color:var(--amber);">Medium Risk</span><span style="color:var(--text2);">2× leverage · 12 SOs · Balanced</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:0.85rem;padding:8px 0;border-bottom:1px solid var(--border);"><span style="font-weight:600;color:var(--red);">High Risk</span><span style="color:var(--text2);">5× leverage · 16 SOs · Aggressive</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:0.85rem;padding:8px 0;border-bottom:1px solid var(--border);"><span style="font-weight:600;color:var(--green);">Low Risk</span><span style="color:var(--text2);">5 SOs · 3.0% Dev · Conservative</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:0.85rem;padding:8px 0;border-bottom:1px solid var(--border);"><span style="font-weight:600;color:var(--amber);">Medium Risk</span><span style="color:var(--text2);">8 SOs · 2.5% Dev · Balanced</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:0.85rem;padding:8px 0;border-bottom:1px solid var(--border);"><span style="font-weight:600;color:var(--red);">High Risk</span><span style="color:var(--text2);">12 SOs · 2.0% Dev · Aggressive</span></div>
           <div style="margin-top:12px;display:flex;flex-direction:column;gap:10px;">
             <div style="display:flex;align-items:center;gap:12px;"><span style="color:var(--green);font-size:1.1rem;">🛡️</span><span style="font-size:0.85rem;">10% capital safety reserve</span></div>
             <div style="display:flex;align-items:center;gap:12px;"><span style="color:var(--green);font-size:1.1rem;">⚡</span><span style="font-size:0.85rem;">Auto-skips unaffordable orders</span></div>
