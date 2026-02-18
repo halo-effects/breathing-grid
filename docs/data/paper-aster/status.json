@@ -3,64 +3,34 @@
   "profile": "medium",
   "exchange": "aster",
   "capital": 10000.0,
-  "equity": 9994.96,
-  "cash": 9603.82,
-  "pnl_pct": -0.05,
+  "equity": 9998.36,
+  "cash": 9600.0,
+  "pnl_pct": -0.02,
   "coins": {
     "ETH/USDT": {
       "state": "ACCUMULATING",
       "side": "long",
       "layers": 1,
-      "avg_entry": 2023.82,
-      "current_price": 1979.69,
-      "unrealized_pnl": -8.72,
-      "next_so_price": 1938.8196,
-      "next_tp_price": 2047.8427,
+      "avg_entry": 2011.9,
+      "current_price": 2004.36,
+      "unrealized_pnl": -1.5,
+      "next_so_price": 1969.1471,
+      "next_tp_price": 2033.206,
       "invested": 400.0,
       "realized_pnl": 0
     }
   },
-  "deals_completed": 1,
-  "win_rate": 100.0,
-  "total_realized_pnl": 3.82,
-  "max_drawdown_pct": 0.11,
-  "regime": "TRENDING",
-  "trend_direction": "bearish",
-  "last_update": "2026-02-18T16:03:28+00:00",
-  "uptime_hours": 1.5,
+  "deals_completed": 0,
+  "win_rate": 0.0,
+  "total_realized_pnl": 0,
+  "max_drawdown_pct": 0.03,
+  "regime": "ACCUMULATION",
+  "trend_direction": "bullish",
+  "last_update": "2026-02-17T19:48:33+00:00",
+  "uptime_hours": 0.5,
   "halted": false,
   "symbols": [
     "ETH/USDT"
   ],
-  "timeframe": "15m",
-  "sentiment": {
-    "ETH/USDT": {
-      "score": 35,
-      "exit_pressure": 25,
-      "narrative": "Institutional whales quietly accumulating ETH ahead of breakout, smart money positioning.",
-      "tp_multiplier": 1.0,
-      "mode": "none",
-      "updated": "2026-02-18T15:32:58.092133+00:00"
-    }
-  },
-  "grok_enabled": true,
-  "conviction_enabled": true,
-  "conviction": {
-    "ETH/USDT": {
-      "score": 56.7,
-      "band": "moderate",
-      "macro": 29.5,
-      "regime": 7.4,
-      "momentum": 14.0,
-      "tp_mult": 1.275,
-      "dev_mult": 1.175,
-      "so_mult": 1.131,
-      "max_so_adj": 1
-    }
-  },
-  "macro": {
-    "fear_greed": 8,
-    "btc_sma200_dist": -32.52,
-    "pi_cycle_gap": -55.69
-  }
+  "timeframe": "15m"
 }

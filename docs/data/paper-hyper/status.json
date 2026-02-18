@@ -3,19 +3,19 @@
   "profile": "medium",
   "exchange": "hyperliquid",
   "capital": 10000.0,
-  "equity": 9994.52,
+  "equity": 9999.25,
   "cash": 9600.0,
-  "pnl_pct": -0.05,
+  "pnl_pct": -0.01,
   "coins": {
     "HYPE/USDC": {
       "state": "ACCUMULATING",
       "side": "long",
       "layers": 1,
       "avg_entry": 29.645,
-      "current_price": 29.259,
-      "unrealized_pnl": -5.2,
-      "next_so_price": 28.8149,
-      "next_tp_price": 30.0642,
+      "current_price": 29.61,
+      "unrealized_pnl": -0.47,
+      "next_so_price": 28.7631,
+      "next_tp_price": 30.0138,
       "invested": 400.0,
       "realized_pnl": 0
     }
@@ -23,44 +23,14 @@
   "deals_completed": 0,
   "win_rate": 0.0,
   "total_realized_pnl": 0,
-  "max_drawdown_pct": 0.15,
-  "regime": "RANGING",
+  "max_drawdown_pct": 0.01,
+  "regime": "ACCUMULATION",
   "trend_direction": "bearish",
-  "last_update": "2026-02-18T16:03:01+00:00",
-  "uptime_hours": 1.5,
+  "last_update": "2026-02-17T19:48:40+00:00",
+  "uptime_hours": 0.5,
   "halted": false,
   "symbols": [
     "HYPE/USDC"
   ],
-  "timeframe": "15m",
-  "sentiment": {
-    "HYPE/USDC": {
-      "score": 65,
-      "exit_pressure": 15,
-      "narrative": "Bullish momentum from Arthur Hayes accumulation plans and $150 price target; emphasis on deflationary tokenomics via revenue buyback-and-burn.",
-      "tp_multiplier": 1.375,
-      "mode": "trend_ride",
-      "updated": "2026-02-18T15:32:28.539964+00:00"
-    }
-  },
-  "grok_enabled": true,
-  "conviction_enabled": true,
-  "conviction": {
-    "HYPE/USDC": {
-      "score": 61.6,
-      "band": "moderate",
-      "macro": 29.5,
-      "regime": 12.0,
-      "momentum": 14.0,
-      "tp_mult": 1.312,
-      "dev_mult": 1.212,
-      "so_mult": 1.167,
-      "max_so_adj": 1
-    }
-  },
-  "macro": {
-    "fear_greed": 8,
-    "btc_sma200_dist": -32.54,
-    "pi_cycle_gap": -55.69
-  }
+  "timeframe": "15m"
 }
