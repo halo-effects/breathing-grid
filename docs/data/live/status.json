@@ -1,25 +1,25 @@
 {
-  "timestamp": "2026-02-18T15:25:00.960290+00:00",
+  "timestamp": "2026-02-18T15:26:58.872443+00:00",
   "symbol": "HYPEUSDT",
   "timeframe": "5m",
   "running": true,
   "dry_run": false,
   "halted": false,
   "halt_reason": "",
-  "regime": "MILD_TREND",
-  "price": 29.111,
-  "equity": 325.68,
+  "regime": "ACCUMULATION",
+  "price": 29.125,
+  "equity": 325.77,
   "start_equity": 291.97,
   "peak_equity": 336.7,
   "total_deposits": 40,
-  "pnl": -6.29,
-  "pnl_pct": -1.9,
-  "drawdown_pct": 3.27,
+  "pnl": -6.2,
+  "pnl_pct": -1.87,
+  "drawdown_pct": 3.24,
   "max_drawdown_threshold": 25.0,
   "leverage": 1,
-  "capital": 325.68,
-  "available_balance": 135.99,
-  "cycle_count": 11260,
+  "capital": 325.83,
+  "available_balance": 136.03,
+  "cycle_count": 11263,
   "start_time": "2026-02-13T03:50:51.737221+00:00",
   "hedge_mode": false,
   "long_deal": {
@@ -51,7 +51,7 @@
     "direction": "SHORT",
     "safety_orders_filled": 1,
     "safety_order_ids": [
-      1438927586
+      1439104483
     ],
     "tp_order_id": 1439083202,
     "total_qty": 1.34,
@@ -64,28 +64,28 @@
   },
   "trend_direction": "bullish",
   "regime_alloc": {
-    "long": 0.6,
-    "short": 0.4
+    "long": 0.7,
+    "short": 0.3
   },
   "deal_counter": 84,
   "adaptive_tp": {
     "current_tp_pct": 1.0,
     "baseline_tp_pct": 1.5,
-    "current_dev_pct": 1.615,
+    "current_dev_pct": 1.5,
     "baseline_dev_pct": 2.5,
-    "atr_pct": 0.4699,
+    "atr_pct": 0.4567,
     "atr_baseline_pct": 0.8,
     "tp_min": 1.0,
     "tp_max": 2.5,
     "dev_min": 1.2,
     "dev_max": 4.0,
-    "regime_tp_mult": 1.05,
-    "regime_dev_mult": 1.1
+    "regime_tp_mult": 0.85,
+    "regime_dev_mult": 0.85
   },
   "config": {
     "tp_pct": 1.0,
     "max_sos": 8,
-    "deviation_pct": 1.615,
+    "deviation_pct": 1.5,
     "so_vol_mult": 2.0,
     "base_order_pct": 0.04
   },
@@ -93,5 +93,5 @@
   "last_funding_time": "2026-02-18T12:00:00+00:00",
   "last_funding_rate": -7.018e-05,
   "last_funding_cost": -0.0123,
-  "current_funding_rate": -6.278e-05
+  "current_funding_rate": -6.456e-05
 }
