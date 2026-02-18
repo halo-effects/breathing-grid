@@ -1,0 +1,48 @@
+{
+  "running": true,
+  "mode": "live",
+  "profile": "medium",
+  "exchange": "aster",
+  "capital": 325.0,
+  "equity": 324.84,
+  "cash": 311.84,
+  "pnl_pct": -0.05,
+  "coins": {
+    "ASTER/USDT": {
+      "state": "ACCUMULATING",
+      "side": "long",
+      "layers": 1,
+      "avg_entry": 0.6928,
+      "current_price": 0.6926,
+      "unrealized_pnl": -0.0,
+      "next_so_price": 0.6661,
+      "next_tp_price": 0.7057,
+      "invested": 13.0,
+      "realized_pnl": 0
+    }
+  },
+  "deals_completed": 0,
+  "win_rate": 0.0,
+  "total_realized_pnl": 0,
+  "max_drawdown_pct": 0.05,
+  "regime": "MILD_TREND",
+  "trend_direction": "bearish",
+  "last_update": "2026-02-18T18:55:00+00:00",
+  "uptime_hours": 0.0,
+  "halted": false,
+  "symbols": [
+    "ASTER/USDT"
+  ],
+  "timeframe": "15m",
+  "paused_coins": [],
+  "account_paused": false,
+  "conviction_overrides": {},
+  "max_so_adjustments": {},
+  "controls": {
+    "paused_coins": [],
+    "account_paused": false,
+    "conviction_overrides": {},
+    "max_so_adjustments": {},
+    "skip_next_so": []
+  }
+}

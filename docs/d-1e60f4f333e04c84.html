@@ -301,7 +301,8 @@ table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
 
 <!-- Exchange Tabs -->
 <div class="account-switcher" id="accountSwitcher">
-  <span class="account-pill" data-id="live" onclick="switchAccount('live')"><span class="pill-dot" style="background:var(--green)"></span>Aster Futures</span>
+  <span class="account-pill" data-id="spot-live" onclick="switchAccount('spot-live')"><span class="pill-dot" style="background:var(--green)"></span>Aster Spot (Live)</span>
+  <span class="account-pill" data-id="live" onclick="switchAccount('live')"><span class="pill-dot" style="background:var(--text2)"></span>Aster Futures (Old)</span>
 </div>
 
 <div class="cards" id="cards">
@@ -600,12 +601,13 @@ const $ = id => document.getElementById(id);
 
 // ── Account Configuration ─────────────────────────────────
 const ACCOUNTS = {
-  'paper-aster': { label: 'Aster Spot', type: 'spot', exchange: 'Aster' },
-  'paper-hyper': { label: 'Hyperliquid Spot', type: 'spot', exchange: 'Hyperliquid' },
-  'live':        { label: 'Aster Futures', type: 'futures', exchange: 'Aster' },
+  'spot-live':   { label: 'Aster Spot (Live)', type: 'spot', exchange: 'Aster' },
+  'paper-aster': { label: 'Aster Spot (Paper)', type: 'spot', exchange: 'Aster' },
+  'paper-hyper': { label: 'Hyperliquid Spot (Paper)', type: 'spot', exchange: 'Hyperliquid' },
+  'live':        { label: 'Aster Futures (Old)', type: 'futures', exchange: 'Aster' },
 };
 const DATA_PREFIX = location.hostname.includes('github.io') ? 'data/' : '';
-let ACCOUNT_ID = 'live';
+let ACCOUNT_ID = 'spot-live';
 let ACCOUNT = ACCOUNTS[ACCOUNT_ID];
 let IS_SPOT = ACCOUNT.type === 'spot';
 let ACCT_DATA = DATA_PREFIX + ACCOUNT_ID + '/';
