@@ -997,6 +997,10 @@ section { padding: 100px 0; }
         <div class="profile-description">
           Perfect for capital preservation, beginners, and long-term compounding. Conservative grid with patient profit-taking. Survives extended drawdowns without liquidation. Think fortress — unbreakable, steady growth.
         </div>
+        <div style="margin-top:16px;padding:12px;background:rgba(34,197,94,0.08);border-radius:10px;border:1px solid rgba(34,197,94,0.15);font-size:0.85rem;">
+          <div style="color:var(--green);font-weight:600;margin-bottom:4px;">🫁 Conviction Response</div>
+          <div style="color:var(--text2);">Conservative conviction scaling. High conviction gently widens deviation (+15%). Smart Exit triggers earlier (lower thresholds) — protects capital first.</div>
+        </div>
       </div>
 
       <!-- Medium Risk Profile -->
@@ -1034,6 +1038,10 @@ section { padding: 100px 0; }
         <div class="profile-description">
           For experienced traders scaling up their returns. Deeper grid, faster profit realization, moderate leverage. Can handle medium-term adverse moves. Think rocket — controlled power for faster acceleration.
         </div>
+        <div style="margin-top:16px;padding:12px;background:rgba(245,158,11,0.08);border-radius:10px;border:1px solid rgba(245,158,11,0.15);font-size:0.85rem;">
+          <div style="color:var(--amber);font-weight:600;margin-bottom:4px;">🫁 Conviction Response</div>
+          <div style="color:var(--text2);">Balanced conviction scaling. High conviction moderately widens deviation (+25%) and adds safety orders. Smart Exit uses standard thresholds — balanced protection.</div>
+        </div>
       </div>
 
       <!-- High Risk Profile -->
@@ -1070,6 +1078,10 @@ section { padding: 100px 0; }
         
         <div class="profile-description">
           For risk-tolerant experienced traders seeking maximum growth. Deep Martingale, tight parameters, trades through extreme volatility. High return potential with commensurate risk. Think lightning — maximum power, maximum speed, maximum danger.
+        </div>
+        <div style="margin-top:16px;padding:12px;background:rgba(239,68,68,0.08);border-radius:10px;border:1px solid rgba(239,68,68,0.15);font-size:0.85rem;">
+          <div style="color:var(--red);font-weight:600;margin-bottom:4px;">🫁 Conviction Response</div>
+          <div style="color:var(--text2);">Aggressive conviction scaling. High conviction significantly widens deviation (+40%), deepens grid, increases SO sizing. Smart Exit rides longer (higher thresholds) — maximum profit extraction.</div>
         </div>
       </div>
     </div>
@@ -1158,6 +1170,24 @@ section { padding: 100px 0; }
           <td class="low">5–15%</td>
           <td class="medium">15–35%</td>
           <td class="high">35–70%</td>
+        </tr>
+        <tr>
+          <td>Conviction Deviation Boost</td>
+          <td class="low">+15% (Conservative)</td>
+          <td class="medium">+25% (Balanced)</td>
+          <td class="high">+40% (Aggressive)</td>
+        </tr>
+        <tr>
+          <td>Smart Exit Sensitivity</td>
+          <td class="low">Early trigger (protective)</td>
+          <td class="medium">Standard thresholds</td>
+          <td class="high">Late trigger (ride longer)</td>
+        </tr>
+        <tr>
+          <td>Macro Signal Weight</td>
+          <td class="low">High (cautious response)</td>
+          <td class="medium">Moderate (balanced)</td>
+          <td class="high">Low (trades through fear)</td>
         </tr>
       </tbody>
     </table>
@@ -1605,6 +1635,55 @@ section { padding: 100px 0; }
   </div>
 </section>
 
+<!-- Conviction & Intelligence Integration -->
+<section style="background: linear-gradient(135deg, rgba(99,102,241,0.06) 0%, rgba(34,197,94,0.06) 100%); border-top: 1px solid var(--border);">
+  <div class="container">
+    <div class="section-label">Intelligence Integration</div>
+    <h2 class="section-title fade-in">How Conviction Scoring Interacts with Risk Profiles</h2>
+    <p class="section-subtitle fade-in">Each risk profile responds differently to the same macro intelligence signals. Higher risk = more aggressive conviction response.</p>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 32px;">
+      <div class="fade-in" style="background:var(--card);border:1px solid rgba(34,197,94,0.3);border-radius:16px;padding:24px;">
+        <h3 style="color:var(--green);font-size:1.1rem;font-weight:700;margin-bottom:12px;">🟢 Low Risk + High Conviction</h3>
+        <div style="color:var(--text2);font-size:0.9rem;line-height:1.6;">
+          <div style="margin-bottom:8px;">When Fear & Greed hits Extreme Fear and the regime is accumulation:</div>
+          <div>• Deviation widens gently (+15%)</div>
+          <div>• TP targets remain patient</div>
+          <div>• Grid depth stays conservative (8 SOs)</div>
+          <div>• Smart Exit triggers <strong>earlier</strong> — capital protection first</div>
+          <div style="margin-top:8px;color:var(--green);font-style:italic;">"Even in maximum opportunity, the Foundation stays safe"</div>
+        </div>
+      </div>
+      <div class="fade-in" style="background:var(--card);border:1px solid rgba(245,158,11,0.3);border-radius:16px;padding:24px;">
+        <h3 style="color:var(--amber);font-size:1.1rem;font-weight:700;margin-bottom:12px;">🟡 Medium Risk + High Conviction</h3>
+        <div style="color:var(--text2);font-size:0.9rem;line-height:1.6;">
+          <div style="margin-bottom:8px;">Same conditions — balanced response:</div>
+          <div>• Deviation widens moderately (+25%)</div>
+          <div>• Additional safety orders activated</div>
+          <div>• Grid deepens to capture more of the move</div>
+          <div>• Smart Exit uses standard thresholds</div>
+          <div style="margin-top:8px;color:var(--amber);font-style:italic;">"Capture the opportunity with controlled aggression"</div>
+        </div>
+      </div>
+      <div class="fade-in" style="background:var(--card);border:1px solid rgba(239,68,68,0.3);border-radius:16px;padding:24px;">
+        <h3 style="color:var(--red);font-size:1.1rem;font-weight:700;margin-bottom:12px;">🔴 High Risk + High Conviction</h3>
+        <div style="color:var(--text2);font-size:0.9rem;line-height:1.6;">
+          <div style="margin-bottom:8px;">Same conditions — maximum response:</div>
+          <div>• Deviation widens aggressively (+40%)</div>
+          <div>• SO sizing increases significantly</div>
+          <div>• Maximum grid depth (16 SOs)</div>
+          <div>• Smart Exit rides <strong>longer</strong> — maximum extraction</div>
+          <div style="margin-top:8px;color:var(--red);font-style:italic;">"Maximum conviction = maximum deployment"</div>
+        </div>
+      </div>
+    </div>
+    
+    <div style="text-align:center;margin-top:32px;padding:20px;background:rgba(99,102,241,0.08);border-radius:12px;border:1px solid rgba(99,102,241,0.2);">
+      <div style="color:var(--accent2);font-weight:600;">Smart Entry picks the coin → Fear & Greed tells you WHEN to buy → Your risk profile determines HOW MUCH to commit</div>
+    </div>
+  </div>
+</section>
+
 <!-- Competitive Edge -->
 <section class="competitive-section">
   <div class="container">
@@ -1643,12 +1722,16 @@ section { padding: 100px 0; }
         <div class="compare-header-cell ait">✅ AIT Risk Profiles</div>
       </div>
       <div class="compare-row">
+        <div class="compare-cell others"><span class="compare-icon">⛔</span> Pick coins from Reddit, Twitter, FOMO — no systematic selection</div>
+        <div class="compare-cell ait"><span class="compare-icon">🔍</span> Smart Entry: 3-tier scoring with on-chain data finds coins BEFORE they pump</div>
+      </div>
+      <div class="compare-row">
         <div class="compare-cell others"><span class="compare-icon">⛔</span> No exit strategy — hope for the best, become exit liquidity</div>
-        <div class="compare-cell ait"><span class="compare-icon">🎯</span> Smart exits with compounding cycles across three risk profiles</div>
+        <div class="compare-cell ait"><span class="compare-icon">🎯</span> Smart Exit: regime-gated profit taking — ride the bull, protect the bear</div>
       </div>
       <div class="compare-row">
         <div class="compare-cell others"><span class="compare-icon">⛔</span> Capital trapped in losers — no cycling, no compounding</div>
-        <div class="compare-cell ait"><span class="compare-icon">🔄</span> Continuous profit extraction and reinvestment across profiles</div>
+        <div class="compare-cell ait"><span class="compare-icon">🔄</span> Conviction-driven accumulation + continuous compounding across profiles</div>
       </div>
       <div class="compare-row">
         <div class="compare-cell others"><span class="compare-icon">⛔</span> Emotional decisions — FOMO buying, panic selling</div>
@@ -1754,6 +1837,28 @@ section { padding: 100px 0; }
         </button>
         <div class="faq-answer">
           The system uses a cascading protection model with three hard limits:<br><br>• <strong>Medium Risk</strong> → automatically shifts to Low Risk if drawdown hits 30%<br>• <strong>High Risk</strong> → steps down to Medium Risk at 50% drawdown, then to Low Risk at 60%<br>• <strong>Kill Switch</strong> → complete trading halt if total portfolio drawdown exceeds 70%<br><br>These triggers are automatic and immediate — no manual intervention required. Capital flows from riskier profiles into safer ones, preserving your account while the market stabilizes.
+        </div>
+      </div>
+      
+      <div class="faq-item fade-in">
+        <button class="faq-question">
+          How does conviction scoring affect my risk profile?
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          Each risk profile responds differently to the same macro intelligence signals. When conviction is high (e.g., Extreme Fear + accumulation regime), <strong>Low Risk</strong> gently widens deviation (+15%) while keeping conservative grid depth. <strong>Medium Risk</strong> moderately widens (+25%) and adds safety orders. <strong>High Risk</strong> aggressively widens (+40%) with maximum grid deployment. Smart Exit also adapts: Low Risk triggers earlier (protective), High Risk rides longer (maximum extraction). The same market conditions produce different behaviors per profile — that's the power of the integration.
+        </div>
+      </div>
+      
+      <div class="faq-item fade-in">
+        <button class="faq-question">
+          How does Smart Exit differ per risk profile?
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <strong>Low Risk:</strong> Lower exit thresholds — triggers TIGHTEN and PARTIAL_EXIT earlier, prioritizing capital protection over maximum profit. In bear markets, exits are amplified even further.<br><br>
+          <strong>Medium Risk:</strong> Standard thresholds — balanced approach between protection and profit extraction.<br><br>
+          <strong>High Risk:</strong> Higher thresholds — rides positions longer before triggering exits, maximizing profit extraction in trending markets. Only triggers FULL_EXIT at the highest scores. The regime-gating multipliers also differ: Low Risk amplifies bear-market exits more aggressively (2.0×), while High Risk uses less amplification (1.4×).
         </div>
       </div>
       
