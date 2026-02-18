@@ -1478,16 +1478,16 @@ function renderMacro(s) {
   if (!s.macro) { $('macroSection').style.display = 'none'; return; }
   $('macroSection').style.display = '';
   const m = s.macro;
-  const fg = m.fear_greed || 0;
-  // F&G color scale
+  // Handle both flat and nested macro formats
+  const fg = typeof m.fear_greed === 'object' ? (m.fear_greed?.value || 0) : (m.fear_greed || 0);
   const fgColor = fg <= 20 ? '#f85149' : fg <= 40 ? '#d29922' : fg <= 60 ? '#e6edf3' : fg <= 80 ? '#3fb950' : '#3fb950';
   const fgLabel = fg <= 20 ? 'Extreme Fear' : fg <= 40 ? 'Fear' : fg <= 60 ? 'Neutral' : fg <= 80 ? 'Greed' : 'Extreme Greed';
   const fgPos = Math.max(2, Math.min(98, fg));
 
-  const btcDist = m.btc_sma200_dist || 0;
+  const btcDist = typeof m.btc_sma === 'object' ? (m.btc_sma?.distance_pct || 0) : (m.btc_sma200_dist || 0);
   const btcColor = btcDist > 0 ? 'var(--green)' : btcDist > -20 ? 'var(--amber)' : 'var(--red)';
 
-  const piGap = m.pi_cycle_gap || 0;
+  const piGap = typeof m.pi_cycle === 'object' ? (m.pi_cycle?.gap_pct || 0) : (m.pi_cycle_gap || 0);
   const piColor = piGap > -10 ? 'var(--red)' : piGap > -30 ? 'var(--amber)' : 'var(--green)';
 
   $('macroContent').innerHTML = `
