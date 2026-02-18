@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-18T07:12:56.157246+00:00",
+  "timestamp": "2026-02-18T07:15:31.490102+00:00",
   "symbol": "HYPEUSDT",
   "timeframe": "5m",
   "running": true,
@@ -14,12 +14,12 @@
   "total_deposits": 40,
   "pnl": -5.02,
   "pnl_pct": -1.51,
-  "drawdown_pct": 2.89,
+  "drawdown_pct": 2.9,
   "max_drawdown_threshold": 25.0,
   "leverage": 1,
-  "capital": 326.96,
-  "available_balance": 135.08,
-  "cycle_count": 10512,
+  "capital": 326.95,
+  "available_balance": 135.1,
+  "cycle_count": 10516,
   "start_time": "2026-02-13T03:50:51.737221+00:00",
   "hedge_mode": false,
   "long_deal": {
