@@ -29,8 +29,8 @@
   "max_drawdown_pct": 0.09,
   "regime": "ACCUMULATION",
   "trend_direction": "bearish",
-  "last_update": "2026-02-19T08:23:57+00:00",
-  "uptime_hours": 10.1,
+  "last_update": "2026-02-19T08:39:04+00:00",
+  "uptime_hours": 10.4,
   "halted": false,
   "symbols": [
     "ASTER/USDT"
