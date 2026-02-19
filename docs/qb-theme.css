@@ -1,0 +1,835 @@
+/* QuickBooks-Inspired Light Theme — AIT Product Pages
+   Overrides the dark theme variables and styles */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap');
+
+:root {
+  --bg: #ffffff;
+  --card: #ffffff;
+  --border: #C3CED5;
+  --accent: #0D333F;
+  --accent2: #0D333F;
+  --green: #2CA01C;
+  --red: #D52B1E;
+  --amber: #BA8B00;
+  --text: #000000;
+  --text2: #393A3D;
+  --text3: #6B6C72;
+  --gradient1: #0D333F;
+  --gradient2: #2CA01C;
+  --cta-green: #5BEF76;
+  --off-white: #F4F4EE;
+  --dark-teal: #0D333F;
+  --light-teal: #EAF6F7;
+  --teal-border: #DBEDEE;
+}
+
+/* Base */
+body {
+  background: var(--bg) !important;
+  color: var(--text) !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  line-height: 1.6 !important;
+}
+
+/* ===== HEADER ===== */
+.top-header,
+header.top-header {
+  background: rgba(255,255,255,0.95) !important;
+  backdrop-filter: blur(12px) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+.header-title,
+a.header-title {
+  color: var(--dark-teal) !important;
+}
+.header-nav,
+a.header-nav {
+  color: var(--text2) !important;
+}
+.header-nav:hover,
+a.header-nav:hover {
+  color: var(--dark-teal) !important;
+}
+/* Active nav link styling — uses accent2 color in original */
+a.header-nav[style*="color:var(--accent2)"],
+a.header-nav[style*="color: var(--accent2)"] {
+  color: var(--dark-teal) !important;
+  font-weight: 600 !important;
+}
+.header-btn,
+a.header-btn {
+  background: var(--cta-green) !important;
+  color: #000 !important;
+  border-radius: 4px !important;
+  font-weight: 600 !important;
+}
+
+/* ===== HERO ===== */
+.hero {
+  background: var(--dark-teal) !important;
+  min-height: 80vh !important;
+}
+.hero::before {
+  background: radial-gradient(circle at 30% 50%, rgba(91,239,118,0.08) 0%, transparent 50%),
+              radial-gradient(circle at 70% 50%, rgba(255,255,255,0.03) 0%, transparent 50%) !important;
+}
+.hero h1 {
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: #ffffff !important;
+  background-clip: unset !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  font-size: clamp(2.5rem, 6vw, 4rem) !important;
+}
+.hero p {
+  color: rgba(255,255,255,0.75) !important;
+}
+.hero-badge {
+  background: rgba(91,239,118,0.15) !important;
+  color: var(--cta-green) !important;
+  border-radius: 4px !important;
+  font-size: 0.75rem !important;
+  letter-spacing: 1.5px !important;
+}
+.hero-badges .hero-badge {
+  background: rgba(255,255,255,0.1) !important;
+  color: rgba(255,255,255,0.9) !important;
+  border-radius: 4px !important;
+  border: 1px solid rgba(255,255,255,0.15) !important;
+}
+.hero-stat-value {
+  color: var(--cta-green) !important;
+}
+.hero-stat-label {
+  color: rgba(255,255,255,0.5) !important;
+}
+
+/* Hero visual circles (risk-profiles page) */
+.risk-circle {
+  box-shadow: none !important;
+}
+.risk-circle.low {
+  background: var(--cta-green) !important;
+}
+.risk-circle.medium {
+  background: var(--amber) !important;
+}
+.risk-circle.high {
+  background: var(--red) !important;
+}
+.risk-label {
+  color: rgba(255,255,255,0.8) !important;
+}
+
+/* ===== SECTIONS — Alternating Backgrounds ===== */
+section {
+  padding: 80px 0 !important;
+}
+
+/* Off-white sections */
+.problem-section,
+.pricing-section,
+.profiles-section,
+.roi-section,
+.allocation-section {
+  background: var(--off-white) !important;
+}
+
+/* Dark teal sections */
+.comparison-section,
+.capacity-section,
+.faq-section,
+.guardrails-section {
+  background: var(--dark-teal) !important;
+}
+.comparison-section *,
+.capacity-section *,
+.faq-section *,
+.guardrails-section * {
+  /* Let specific overrides handle colors */
+}
+.comparison-section .section-title,
+.capacity-section .section-title,
+.faq-section .section-title,
+.guardrails-section .section-title {
+  color: #ffffff !important;
+}
+.comparison-section .section-subtitle,
+.capacity-section .section-subtitle,
+.faq-section .section-subtitle,
+.guardrails-section .section-subtitle {
+  color: rgba(255,255,255,0.7) !important;
+}
+.comparison-section .section-label,
+.capacity-section .section-label,
+.faq-section .section-label,
+.guardrails-section .section-label {
+  background: rgba(91,239,118,0.15) !important;
+  color: var(--cta-green) !important;
+}
+
+/* Sections with inline style backgrounds — override via specificity */
+section[style*="background: linear-gradient"],
+section[style*="background: #0d0d15"],
+section[style*="background:#0d0d15"] {
+  background: var(--off-white) !important;
+}
+
+/* ===== SECTION LABELS (Eyebrow text) ===== */
+.section-label {
+  background: rgba(13,51,63,0.08) !important;
+  color: var(--dark-teal) !important;
+  font-size: 0.7rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+  border-radius: 4px !important;
+  padding: 6px 14px !important;
+}
+
+/* ===== SECTION TITLES ===== */
+.section-title {
+  color: var(--text) !important;
+  font-weight: 700 !important;
+}
+.section-subtitle {
+  color: var(--text2) !important;
+}
+
+/* ===== CARDS ===== */
+.problem-card,
+.feature-card,
+.pricing-card,
+.profile-card,
+.risk-card,
+.faq-item,
+.step-card,
+.breakeven-card,
+.check-item,
+.amplifier-item {
+  background: #ffffff !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+  transition: transform 0.2s, border-color 0.2s !important;
+}
+.problem-card:hover,
+.feature-card:hover,
+.pricing-card:hover,
+.amplifier-item:hover {
+  transform: translateY(-2px) !important;
+  border-color: var(--dark-teal) !important;
+  box-shadow: none !important;
+}
+
+/* Profile cards — keep colored borders */
+.profile-card.low {
+  border-color: #2CA01C !important;
+  background: #ffffff !important;
+}
+.profile-card.medium {
+  border-color: var(--amber) !important;
+  background: #ffffff !important;
+}
+.profile-card.high {
+  border-color: var(--red) !important;
+  background: #ffffff !important;
+}
+.profile-card.low:hover,
+.profile-card.medium:hover,
+.profile-card.high:hover {
+  box-shadow: none !important;
+}
+
+/* Card text */
+.problem-card h3,
+.feature-title,
+.step-title,
+.amplifier-title {
+  color: var(--text) !important;
+}
+.problem-card p,
+.feature-desc,
+.step-desc,
+.amplifier-desc,
+.profile-description,
+.profile-subtitle {
+  color: var(--text2) !important;
+}
+
+/* ===== PRICING CARDS ===== */
+.pricing-card {
+  padding: 36px 28px !important;
+}
+.pricing-card.featured {
+  border-color: var(--dark-teal) !important;
+  border-width: 2px !important;
+  box-shadow: none !important;
+  transform: translateY(-8px) scale(1.01) !important;
+}
+.pricing-card.featured:hover {
+  transform: translateY(-10px) scale(1.01) !important;
+  box-shadow: none !important;
+}
+.popular-badge {
+  background: var(--dark-teal) !important;
+  color: #ffffff !important;
+  border-radius: 4px !important;
+}
+.tier-name {
+  color: var(--text) !important;
+}
+.tier-price {
+  color: var(--dark-teal) !important;
+}
+.tier-capital {
+  color: var(--text2) !important;
+}
+.tier-desc {
+  color: var(--text3) !important;
+}
+.feature-list li {
+  color: var(--text2) !important;
+}
+.feature-list li::before {
+  color: #2CA01C !important;
+}
+.select-btn {
+  background: var(--cta-green) !important;
+  color: #000000 !important;
+  border-radius: 4px !important;
+  font-weight: 600 !important;
+  border: none !important;
+}
+.select-btn:hover {
+  opacity: 0.85 !important;
+}
+.featured .select-btn {
+  background: var(--cta-green) !important;
+  color: #000000 !important;
+}
+
+/* ===== BUTTONS (General) ===== */
+.cta-btn.primary,
+.bottom-cta-btn {
+  background: var(--cta-green) !important;
+  color: #000000 !important;
+  border-radius: 4px !important;
+  font-weight: 600 !important;
+}
+.cta-btn.secondary {
+  background: transparent !important;
+  color: var(--dark-teal) !important;
+  border: 2px solid var(--dark-teal) !important;
+  border-radius: 4px !important;
+}
+
+/* ===== TABLES ===== */
+.comparison-table {
+  background: #ffffff !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 12px !important;
+}
+.comparison-table th {
+  color: var(--text3) !important;
+  border-bottom: 1px solid var(--border) !important;
+  background: var(--off-white) !important;
+}
+.comparison-table th.low { background: rgba(44,160,28,0.06) !important; }
+.comparison-table th.medium { background: rgba(186,139,0,0.06) !important; }
+.comparison-table th.high { background: rgba(213,43,30,0.06) !important; }
+.comparison-table td {
+  border-bottom: 1px solid #eee !important;
+  color: var(--text) !important;
+}
+.comparison-table td:first-child {
+  color: var(--text) !important;
+}
+.comparison-table td.low { color: #2CA01C !important; }
+.comparison-table td.medium { color: var(--amber) !important; }
+.comparison-table td.high { color: var(--red) !important; }
+.comparison-table td:last-child {
+  color: #2CA01C !important;
+}
+
+.roi-table {
+  background: #ffffff !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 12px !important;
+}
+.roi-table th {
+  background: var(--off-white) !important;
+  color: var(--text3) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+.roi-table td {
+  border-bottom: 1px solid #eee !important;
+  color: var(--text) !important;
+}
+
+/* ===== LAYER VISUALS ===== */
+.layer-visual {
+  background: var(--light-teal) !important;
+  border: 1px solid var(--teal-border) !important;
+  border-radius: 12px !important;
+}
+.layer-number {
+  color: rgba(13,51,63,0.12) !important;
+}
+.layer-title {
+  color: var(--text) !important;
+}
+.layer-question {
+  color: var(--dark-teal) !important;
+}
+.layer-text {
+  color: var(--text2) !important;
+}
+
+/* Regime list */
+.regime-item {
+  border-bottom: 1px solid var(--border) !important;
+}
+.regime-name {
+  color: var(--text) !important;
+}
+.regime-desc {
+  color: var(--text2) !important;
+}
+
+/* ===== BREATHING BARS ===== */
+.breathing-bar.tp {
+  background: var(--cta-green) !important;
+}
+.breathing-bar.dev {
+  background: var(--dark-teal) !important;
+}
+
+/* ===== EVOLUTION TIMELINE ===== */
+.evolution-timeline::before {
+  background: linear-gradient(180deg, var(--border), var(--dark-teal), var(--cta-green)) !important;
+}
+.evo-item::before {
+  border-color: var(--dark-teal) !important;
+  background: var(--bg) !important;
+}
+.evo-item:last-child::before {
+  background: var(--cta-green) !important;
+  border-color: var(--cta-green) !important;
+}
+.evo-gen {
+  color: var(--dark-teal) !important;
+}
+.evo-title {
+  color: var(--text) !important;
+}
+.evo-desc {
+  color: var(--text2) !important;
+}
+.evo-features li {
+  color: var(--text2) !important;
+}
+.evo-features li::before {
+  color: var(--text3) !important;
+}
+
+/* ===== CTA SECTION ===== */
+.cta-section,
+.bottom-cta,
+.bottom-cta-section {
+  background: var(--dark-teal) !important;
+}
+.cta-section::before,
+.bottom-cta::before,
+.bottom-cta-section::before {
+  background: radial-gradient(circle at 50% 50%, rgba(91,239,118,0.06) 0%, transparent 60%) !important;
+}
+.cta-quote {
+  color: rgba(255,255,255,0.75) !important;
+}
+.cta-quote em {
+  color: #ffffff !important;
+}
+.bottom-cta h2,
+.bottom-cta-section h2,
+.bottom-cta-content h2 {
+  color: #ffffff !important;
+}
+.bottom-cta p,
+.bottom-cta-section p,
+.bottom-cta-content p {
+  color: rgba(255,255,255,0.7) !important;
+}
+
+/* ===== FOOTER ===== */
+footer,
+.footer {
+  background: #000000 !important;
+  border-top: none !important;
+}
+.footer-links a,
+footer a {
+  color: rgba(255,255,255,0.6) !important;
+}
+.footer-links a:hover,
+footer a:hover {
+  color: var(--cta-green) !important;
+}
+.footer-copyright,
+footer > div:last-child {
+  color: rgba(255,255,255,0.4) !important;
+}
+
+/* ===== FAQ (in dark teal section) ===== */
+.faq-section .faq-item,
+.comparison-section .faq-item {
+  background: rgba(255,255,255,0.06) !important;
+  border-color: rgba(255,255,255,0.1) !important;
+}
+.faq-section .faq-question {
+  color: #ffffff !important;
+}
+.faq-section .faq-question:hover {
+  background: rgba(255,255,255,0.05) !important;
+}
+.faq-section .faq-answer {
+  color: rgba(255,255,255,0.7) !important;
+}
+.faq-section .faq-category-title {
+  color: var(--cta-green) !important;
+}
+
+/* ===== CAPACITY SECTION (dark teal) ===== */
+.capacity-visual {
+  background: rgba(255,255,255,0.06) !important;
+  border-color: rgba(255,255,255,0.1) !important;
+}
+.capacity-title {
+  color: #ffffff !important;
+}
+.capacity-bar {
+  background: rgba(255,255,255,0.15) !important;
+}
+.capacity-fill {
+  background: var(--cta-green) !important;
+}
+.capacity-stats {
+  color: rgba(255,255,255,0.7) !important;
+}
+.capacity-desc {
+  color: rgba(255,255,255,0.7) !important;
+}
+
+/* ===== GUARDRAILS (dark teal) ===== */
+.guardrails-visual {
+  background: rgba(255,255,255,0.06) !important;
+  border-color: rgba(255,255,255,0.1) !important;
+}
+.guardrails-visual h3 {
+  color: var(--cta-green) !important;
+}
+.waterfall-label {
+  color: rgba(255,255,255,0.8) !important;
+}
+.waterfall-trigger {
+  color: rgba(255,255,255,0.5) !important;
+}
+.waterfall-arrow-sep {
+  color: rgba(255,255,255,0.4) !important;
+}
+.waterfall-box {
+  border-radius: 12px !important;
+}
+.waterfall-box.low {
+  background: #2CA01C !important;
+  box-shadow: none !important;
+}
+.waterfall-box.medium {
+  background: var(--amber) !important;
+  box-shadow: none !important;
+}
+.waterfall-box.high {
+  background: var(--red) !important;
+  box-shadow: none !important;
+}
+
+/* ===== COMPARISON TABLE (risk-profiles — in dark teal) ===== */
+.comparison-section .comparison-table {
+  background: rgba(255,255,255,0.04) !important;
+  border-color: rgba(255,255,255,0.1) !important;
+}
+.comparison-section .comparison-table th {
+  color: rgba(255,255,255,0.5) !important;
+  border-bottom-color: rgba(255,255,255,0.1) !important;
+  background: rgba(255,255,255,0.03) !important;
+}
+.comparison-section .comparison-table th.low { background: rgba(91,239,118,0.08) !important; }
+.comparison-section .comparison-table th.medium { background: rgba(186,139,0,0.08) !important; }
+.comparison-section .comparison-table th.high { background: rgba(213,43,30,0.08) !important; }
+.comparison-section .comparison-table td {
+  color: rgba(255,255,255,0.8) !important;
+  border-bottom-color: rgba(255,255,255,0.06) !important;
+}
+.comparison-section .comparison-table td:first-child {
+  color: rgba(255,255,255,0.9) !important;
+}
+.comparison-section .comparison-table td.low { color: var(--cta-green) !important; }
+.comparison-section .comparison-table td.medium { color: #FFD700 !important; }
+.comparison-section .comparison-table td.high { color: #FF6B6B !important; }
+
+/* ===== COMPARE TABLE (competitive edge) ===== */
+.compare-table {
+  border-color: var(--border) !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+}
+.compare-header-cell.others {
+  background: rgba(213,43,30,0.06) !important;
+  color: var(--red) !important;
+}
+.compare-header-cell.ait {
+  background: rgba(44,160,28,0.06) !important;
+  color: #2CA01C !important;
+}
+.compare-row {
+  border-top-color: var(--border) !important;
+}
+.compare-cell.others {
+  color: var(--text3) !important;
+}
+.compare-cell.ait {
+  color: var(--text) !important;
+}
+
+/* ===== NOT ITEMS ===== */
+.not-item {
+  background: rgba(213,43,30,0.04) !important;
+  border-color: rgba(213,43,30,0.12) !important;
+  color: var(--text2) !important;
+}
+
+/* ===== CHECKLIST ITEMS ===== */
+.check-item {
+  background: var(--light-teal) !important;
+  border-color: var(--teal-border) !important;
+  color: var(--text) !important;
+}
+
+/* ===== STEP NUMBERS ===== */
+.step-number {
+  background: var(--dark-teal) !important;
+  color: #ffffff !important;
+}
+
+/* ===== AMPLIFIER RANKS ===== */
+.amplifier-rank {
+  background: var(--dark-teal) !important;
+}
+.amplifier-impact {
+  color: var(--text3) !important;
+}
+
+/* ===== BREAKEVEN CARDS ===== */
+.breakeven-card {
+  background: #ffffff !important;
+}
+.breakeven-tier {
+  color: var(--text) !important;
+}
+.breakeven-price {
+  color: var(--dark-teal) !important;
+}
+.breakeven-daily {
+  color: #2CA01C !important;
+}
+.breakeven-days {
+  color: var(--text3) !important;
+}
+
+/* ===== DISCLAIMERS ===== */
+.disclaimer,
+.roi-disclaimer {
+  background: rgba(213,43,30,0.05) !important;
+  border-color: rgba(213,43,30,0.15) !important;
+  color: var(--text2) !important;
+}
+
+/* ===== ALLOCATION UI ===== */
+.allocation-ui {
+  background: #ffffff !important;
+  border-color: var(--border) !important;
+}
+.preset-btn {
+  background: #ffffff !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+}
+.preset-btn:hover,
+.preset-btn.active {
+  border-color: var(--dark-teal) !important;
+  background: rgba(13,51,63,0.05) !important;
+  color: var(--dark-teal) !important;
+}
+.slider-name {
+  color: var(--text) !important;
+}
+.stat-item {
+  background: var(--light-teal) !important;
+}
+.stat-label {
+  color: var(--text2) !important;
+}
+.stat-value {
+  color: #2CA01C !important;
+}
+.allocation-slider::-webkit-slider-thumb {
+  background: var(--dark-teal) !important;
+  box-shadow: none !important;
+}
+.allocation-slider::-moz-range-thumb {
+  background: var(--dark-teal) !important;
+  box-shadow: none !important;
+}
+
+/* ===== DASHBOARD MOCK ===== */
+.dash-mock {
+  background: var(--off-white) !important;
+  border-color: var(--border) !important;
+}
+.dash-topbar {
+  border-bottom-color: var(--border) !important;
+}
+.dash-pill {
+  border-color: var(--border) !important;
+  background: #ffffff !important;
+  color: var(--text2) !important;
+}
+.dash-pill.active {
+  background: var(--dark-teal) !important;
+  color: #ffffff !important;
+  border-color: var(--dark-teal) !important;
+}
+.dash-card {
+  background: #ffffff !important;
+  border-color: var(--border) !important;
+}
+.dash-card-title {
+  color: var(--text3) !important;
+}
+.dash-pos-symbol {
+  color: var(--text) !important;
+}
+.dash-pos-state {
+  color: var(--amber) !important;
+}
+.dash-pos-row .label {
+  color: var(--text3) !important;
+}
+.dash-pos-row {
+  color: var(--text) !important;
+}
+.dash-layer-bar {
+  background: #eee !important;
+}
+.dash-layer-fill {
+  background: var(--dark-teal) !important;
+}
+.dash-table th {
+  color: var(--text3) !important;
+  border-bottom-color: var(--border) !important;
+}
+.dash-table td {
+  color: var(--text) !important;
+  border-bottom-color: #eee !important;
+}
+.stat-positive {
+  color: #2CA01C !important;
+}
+.stat-negative {
+  color: var(--red) !important;
+}
+.dash-macro-label {
+  color: var(--text3) !important;
+}
+
+/* ===== INLINE STYLE OVERRIDES ===== */
+/* Cards with inline bg using var(--card) */
+[style*="background:var(--card)"],
+[style*="background: var(--card)"] {
+  background: #ffffff !important;
+  border-color: var(--border) !important;
+}
+
+/* Inline gradient backgrounds on sections */
+[style*="background: linear-gradient(135deg, rgba(99,102,241"] {
+  background: var(--off-white) !important;
+}
+[style*="background: linear-gradient(135deg, rgba(34,197,94"] {
+  background: var(--off-white) !important;
+}
+[style*="border-top: 1px solid var(--border)"],
+[style*="border-bottom: 1px solid var(--border)"] {
+  border-color: var(--border) !important;
+}
+
+/* Inline red/green/accent colored backgrounds */
+[style*="background: rgba(239,68,68,0.08)"],
+[style*="background: rgba(239,68,68,0.05)"],
+[style*="background:rgba(239,68,68,0.08)"],
+[style*="background:rgba(239,68,68,0.05)"] {
+  background: rgba(213,43,30,0.04) !important;
+  border-color: rgba(213,43,30,0.12) !important;
+}
+[style*="background: rgba(34,197,94,0.08)"],
+[style*="background:rgba(34,197,94,0.08)"] {
+  background: rgba(44,160,28,0.04) !important;
+}
+[style*="background: rgba(99,102,241,0.08)"],
+[style*="background:rgba(99,102,241,0.08)"] {
+  background: rgba(13,51,63,0.04) !important;
+}
+
+/* Profile icons keep their gradient colors */
+.profile-icon.low { background: #2CA01C !important; }
+.profile-icon.medium { background: var(--amber) !important; }
+.profile-icon.high { background: var(--red) !important; }
+
+/* ===== SPEC ITEMS ===== */
+.spec-item {
+  border-bottom-color: #eee !important;
+}
+.spec-label {
+  color: var(--text) !important;
+}
+.spec-value {
+  color: var(--text2) !important;
+}
+
+/* ===== SVG LOGO — brighten for light bg ===== */
+.top-header svg rect {
+  fill: rgba(13,51,63,0.08) !important;
+  stroke: var(--border) !important;
+}
+.top-header svg line {
+  stroke: var(--border) !important;
+}
+
+/* ===== SCROLL ANIMATIONS ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+@media (max-width: 600px) {
+  section {
+    padding: 48px 0 !important;
+  }
+}
