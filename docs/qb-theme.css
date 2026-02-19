@@ -291,13 +291,15 @@ section[style*="background:#0d0d15"] {
 
 /* Card headings — QB gradient text (green→cyan→blue) */
 .problem-card h3,
-.feature-title,
-.step-title,
-.amplifier-title {
+.feature-card .feature-title,
+.step-card .step-title,
+.amplifier-item .amplifier-title,
+section .problem-card h3 {
   background: linear-gradient(96deg, #5BEF76 3%, #38E8F6 40%, #236CFF 92%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
+  color: transparent !important;
   font-weight: 500 !important;
   font-size: 1.25rem !important;
   line-height: 1.35 !important;
