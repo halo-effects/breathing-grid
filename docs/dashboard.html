@@ -1635,9 +1635,12 @@ function renderSpotBottom(s) {
   const totalInvested = coins.reduce((a,c) => a + (c.invested||0), 0);
   const symbols = Object.keys(s.coins || {}).map(s => s.split('/')[0]);
   $('bTrading').innerHTML = symbols.map(s => `<span class="badge badge-blue" style="font-size:.7rem">${s}</span>`).join(' ');
-  $('bAvgProfit').textContent = fmtUsd(s.total_realized_pnl || 0);
+  var btmCsv = trades.filter(function(t){ return t.close_time; });
+  var btmPnl = btmCsv.length > 0 ? btmCsv.reduce(function(a,t){ return a + parseFloat(t.pnl||0); }, 0) : (s.total_realized_pnl || 0);
+  var btmDeals = btmCsv.length || s.deals_completed || 0;
+  $('bAvgProfit').textContent = fmtUsd(btmPnl);
   $('bAvgProfit').previousElementSibling.textContent = 'Realized PnL';
-  $('bAvgDur').textContent = s.deals_completed || 0;
+  $('bAvgDur').textContent = btmDeals;
   $('bAvgDur').previousElementSibling.textContent = 'Deals Done';
   $('bAvgSO').textContent = coins.reduce((a,c) => a + (c.layers||0), 0);
   $('bAvgSO').previousElementSibling.textContent = 'Total Layers';
