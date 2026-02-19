@@ -846,10 +846,10 @@ async function fetchHistory() {
 async function fetchTrades() {
   try {
     const r = await fetch(ACCT_DATA+'trades.csv?t='+Date.now());
-    if(!r.ok) return;
+    if(!r.ok) { trades = []; renderTrades(); return; }
     trades = parseCSV(await r.text());
     renderTrades();
-  } catch(e) {}
+  } catch(e) { trades = []; renderTrades(); }
 }
 
 // ── UI Visibility Toggle ─────────────────────────────────
