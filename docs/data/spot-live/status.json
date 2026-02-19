@@ -13,13 +13,13 @@
       "side": "long",
       "layers": 1,
       "avg_entry": 0.7083,
-      "current_price": 0.6948,
+      "current_price": 0.6947,
       "unrealized_pnl": -0.25,
-      "next_so_price": 0.681,
+      "next_so_price": 0.6786,
       "next_tp_price": 0.7154,
       "invested": 13.0,
       "realized_pnl": 0,
-      "conviction": 55.0,
+      "conviction": 53.2,
       "conviction_band": "moderate"
     }
   },
@@ -27,10 +27,10 @@
   "win_rate": 100.0,
   "total_realized_pnl": 0.23,
   "max_drawdown_pct": 0.09,
-  "regime": "MILD_TREND",
+  "regime": "TRENDING",
   "trend_direction": "bearish",
-  "last_update": "2026-02-19T10:56:03+00:00",
-  "uptime_hours": 12.7,
+  "last_update": "2026-02-19T11:11:10+00:00",
+  "uptime_hours": 12.9,
   "halted": false,
   "symbols": [
     "ASTER/USDT"
