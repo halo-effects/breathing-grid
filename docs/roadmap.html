@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roadmap — Adaptive Intelligence Trading</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #0a0a0f;
+  --card: #12121a;
+  --border: #1e1e2e;
+  --accent: #6366f1;
+  --accent2: #818cf8;
+  --green: #22c55e;
+  --red: #ef4444;
+  --amber: #f59e0b;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --text3: #64748b;
+  --gradient1: linear-gradient(135deg, #6366f1, #8b5cf6);
+  --gradient2: linear-gradient(135deg, #22c55e, #06b6d4);
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+.header-nav:hover { color: var(--accent2) !important; }
+
+/* Hero */
+.hero {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 100px 24px 60px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 50%, rgba(99,102,241,0.08) 0%, transparent 50%),
+              radial-gradient(circle at 70% 50%, rgba(34,197,94,0.06) 0%, transparent 50%);
+  animation: heroGlow 8s ease-in-out infinite alternate;
+}
+@keyframes heroGlow {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-2%, 2%); }
+}
+.hero-content { position: relative; z-index: 1; max-width: 850px; }
+.hero-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 50px;
+  background: rgba(99,102,241,0.15);
+  color: var(--accent2);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.hero h1 {
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, #e2e8f0 0%, #6366f1 50%, #22c55e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero p {
+  font-size: 1.2rem;
+  color: var(--text2);
+  max-width: 650px;
+  margin: 0 auto 40px;
+}
+
+/* Sections */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+section { padding: 100px 0; }
+.section-label {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 4px;
+  background: rgba(99,102,241,0.1);
+  color: var(--accent2);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.section-title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+.section-subtitle {
+  font-size: 1.1rem;
+  color: var(--text2);
+  max-width: 650px;
+  margin-bottom: 48px;
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  display: flex;
+  gap: 0;
+  margin-top: 48px;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--green), var(--accent), var(--accent2), rgba(139,92,246,0.4));
+  border-radius: 2px;
+}
+.timeline-phase {
+  flex: 1;
+  position: relative;
+  padding-top: 64px;
+}
+.timeline-dot {
+  position: absolute;
+  top: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 3px solid var(--green);
+  background: var(--bg);
+  z-index: 2;
+}
+.timeline-dot.next { border-color: var(--accent); }
+.timeline-dot.future { border-color: var(--accent2); opacity: 0.6; }
+.timeline-dot.live::after {
+  content: '';
+  position: absolute;
+  top: -4px; left: -4px; right: -4px; bottom: -4px;
+  border-radius: 50%;
+  border: 2px solid var(--green);
+  animation: pulse-ring 2s ease-out infinite;
+}
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+.timeline-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  margin: 0 8px;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.timeline-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+.timeline-card.active { border-color: var(--green); }
+.timeline-status {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.timeline-status.live { background: rgba(34,197,94,0.15); color: var(--green); }
+.timeline-status.ready { background: rgba(99,102,241,0.15); color: var(--accent2); }
+.timeline-status.planned { background: rgba(139,92,246,0.1); color: #a78bfa; }
+.timeline-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+.timeline-card p { color: var(--text2); font-size: 0.88rem; margin-bottom: 12px; }
+.timeline-card ul { list-style: none; }
+.timeline-card ul li { color: var(--text2); font-size: 0.82rem; padding: 3px 0; padding-left: 18px; position: relative; }
+.timeline-card ul li::before { content: '→'; position: absolute; left: 0; color: var(--text3); }
+
+/* Regime Diagram */
+.regime-diagram {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 32px;
+  align-items: center;
+  margin-top: 48px;
+}
+.regime-inputs, .regime-outputs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.regime-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 18px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: border-color 0.2s;
+}
+.regime-box:hover { border-color: var(--accent); }
+.regime-engine {
+  background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(34,197,94,0.1));
+  border: 2px solid var(--accent);
+  border-radius: 20px;
+  padding: 32px 24px;
+  text-align: center;
+  min-width: 200px;
+  position: relative;
+}
+.regime-engine::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, var(--accent), var(--green));
+  opacity: 0.15;
+  z-index: -1;
+  animation: enginePulse 3s ease-in-out infinite;
+}
+@keyframes enginePulse {
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 0.25; }
+}
+.regime-engine h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+.regime-engine p { color: var(--text2); font-size: 0.78rem; }
+.arrow-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: var(--text3);
+  font-size: 1.5rem;
+}
+
+/* Strategy cards */
+.strategy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  margin-top: 48px;
+}
+.strategy-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.strategy-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+.strategy-icon { font-size: 2rem; margin-bottom: 14px; }
+.strategy-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 6px; }
+.strategy-card .sweet-spot {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: rgba(99,102,241,0.1);
+  color: var(--accent2);
+  margin-bottom: 10px;
+}
+.strategy-card p { color: var(--text2); font-size: 0.9rem; }
+
+/* Defense grid */
+.defense-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 48px;
+}
+.defense-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.defense-card:hover { transform: translateY(-4px); border-color: var(--green); }
+.defense-card h4 { font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.defense-card p { color: var(--text2); font-size: 0.9rem; }
+
+/* Philosophy box */
+.philosophy-box {
+  background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(34,197,94,0.06));
+  border: 1px solid rgba(99,102,241,0.2);
+  border-radius: 20px;
+  padding: 48px;
+  text-align: center;
+  max-width: 750px;
+  margin: 0 auto;
+}
+.philosophy-box h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.philosophy-box p {
+  color: var(--text2);
+  font-size: 1.05rem;
+  margin-bottom: 12px;
+}
+.philosophy-box .highlight {
+  color: var(--green);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+/* CTA */
+.cta-section {
+  text-align: center;
+  padding: 120px 24px;
+  position: relative;
+}
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(99,102,241,0.08) 0%, transparent 60%);
+}
+.cta-btn {
+  display: inline-block;
+  padding: 14px 36px;
+  background: var(--gradient2);
+  color: #fff;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(34,197,94,0.25); }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .timeline { flex-direction: column; gap: 24px; }
+  .timeline::before { display: none; }
+  .timeline-dot { display: none; }
+  .timeline-phase { padding-top: 0; }
+  .timeline-card { margin: 0; }
+  .regime-diagram { grid-template-columns: 1fr; text-align: center; }
+  .arrow-col { flex-direction: row; justify-content: center; }
+}
+@media (max-width: 600px) {
+  body { overflow-x: hidden; }
+  .top-header { padding: 8px 12px !important; gap: 8px !important; }
+  .header-logo { width: 26px !important; height: 26px !important; }
+  .header-title { font-size: .9rem !important; }
+  .header-nav { font-size: .8rem !important; }
+  .header-btn { padding: 4px 10px !important; font-size: .75rem !important; }
+  .hero { padding: 60px 16px 40px; min-height: 60vh; }
+  .container { padding: 0 12px; }
+  section { padding: 48px 0; }
+  .section-title { font-size: clamp(1.4rem, 4vw, 1.8rem); }
+  .philosophy-box { padding: 28px 20px; }
+  .cta-section { padding: 48px 16px; }
+}
+
+/* Scroll animations */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.visible { opacity: 1; transform: none; }
+</style>
+<link rel="stylesheet" href="qb-theme.css?v=11">
+</head>
+<body>
+
+<!-- Top Header -->
+<header class="top-header" style="position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,15,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;gap:12px;">
+  <a href="./" style="display:flex;align-items:center;flex-shrink:0;"><svg class="header-logo" width="32" height="32" viewBox="0 0 48 48" fill="none">
+    <rect x="4" y="4" width="40" height="40" rx="4" stroke="#30363d" stroke-width="1" fill="rgba(22,27,34,.8)"/>
+    <line x1="4" y1="17.3" x2="44" y2="17.3" stroke="#30363d" stroke-width="0.7"/>
+    <line x1="4" y1="24" x2="44" y2="24" stroke="#30363d" stroke-width="0.7"/>
+    <line x1="4" y1="30.7" x2="44" y2="30.7" stroke="#30363d" stroke-width="0.7"/>
+    <line x1="17.3" y1="4" x2="17.3" y2="44" stroke="#30363d" stroke-width="0.7"/>
+    <line x1="24" y1="4" x2="24" y2="44" stroke="#30363d" stroke-width="0.7"/>
+    <line x1="30.7" y1="4" x2="30.7" y2="44" stroke="#30363d" stroke-width="0.7"/>
+    <circle cx="24" cy="24" r="6" stroke="#58a6ff" stroke-width="2" fill="none" opacity=".9">
+      <animate attributeName="r" values="6;9;6" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values=".9;.3;.9" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="24" cy="24" r="11" stroke="#3fb950" stroke-width="1.5" fill="none" opacity=".5">
+      <animate attributeName="r" values="11;14;11" dur="3s" repeatCount="indefinite" begin="0.5s"/>
+      <animate attributeName="opacity" values=".5;.15;.5" dur="3s" repeatCount="indefinite" begin="0.5s"/>
+    </circle>
+    <circle cx="24" cy="24" r="16" stroke="#d29922" stroke-width="1" fill="none" opacity=".3">
+      <animate attributeName="r" values="16;18;16" dur="3s" repeatCount="indefinite" begin="1s"/>
+      <animate attributeName="opacity" values=".3;.1;.3" dur="3s" repeatCount="indefinite" begin="1s"/>
+    </circle>
+    <circle cx="24" cy="24" r="3" fill="#58a6ff">
+      <animate attributeName="r" values="3;4;3" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <path d="M24 8l4 5h-8z" fill="#3fb950" opacity=".8">
+      <animate attributeName="opacity" values=".8;.3;.8" dur="3s" repeatCount="indefinite"/>
+    </path>
+    <path d="M24 40l4-5h-8z" fill="#f85149" opacity=".8">
+      <animate attributeName="opacity" values=".8;.3;.8" dur="3s" repeatCount="indefinite" begin="1.5s"/>
+    </path>
+  </svg></a>
+  <a href="./" class="header-title" style="font-size:1.15rem;font-weight:600;letter-spacing:-.02em;white-space:nowrap;text-decoration:none;color:inherit;">Adaptive Intelligence Trading</a>
+  <a href="./" class="header-nav" style="margin-left:auto;color:var(--text2);text-decoration:none;font-size:.9rem;font-weight:500;padding:6px 12px;border-radius:6px;transition:color 0.2s;">Product Overview</a>
+  <a href="risk-profiles.html" class="header-nav" style="color:var(--text2);text-decoration:none;font-size:.9rem;font-weight:500;padding:6px 12px;border-radius:6px;transition:color 0.2s;">Risk Profiles</a>
+  <a href="pricing.html" class="header-nav" style="color:var(--text2);text-decoration:none;font-size:.9rem;font-weight:500;padding:6px 12px;border-radius:6px;transition:color 0.2s;">Pricing</a>
+  <a href="roadmap.html" class="header-nav" style="color:var(--accent2);text-decoration:none;font-size:.9rem;font-weight:500;padding:6px 12px;border-radius:6px;transition:color 0.2s;">Roadmap</a>
+  <a class="header-btn" href="dashboard.html" target="_blank" style="padding:6px 16px;background:var(--gradient2);color:#fff;border-radius:6px;font-size:.85rem;font-weight:600;text-decoration:none;white-space:nowrap;">Live Dashboard</a>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">The Future of Markets</div>
+    <h1>When Every Bot Can Predict, We Win by Not Predicting</h1>
+    <p>Markets are evolving toward AI-dominated trading. Statistical edges get competed away. But volatility persists — and that's where AIT lives. A multi-strategy platform that harvests what will always exist.</p>
+  </div>
+</section>
+
+<!-- Bot vs Bot Thesis -->
+<section style="background: linear-gradient(180deg, var(--bg) 0%, #0d0d15 100%);">
+  <div class="container">
+    <div class="section-label">The Thesis</div>
+    <h2 class="section-title fade-in">The Bot vs Bot Future Is Already Here</h2>
+    <p class="section-subtitle fade-in">AI-dominated markets don't eliminate opportunity — they change where it lives.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:24px;">
+      <div class="fade-in" style="background:var(--card);border:1px solid rgba(239,68,68,0.2);border-radius:16px;padding:28px;">
+        <div style="font-size:1.8rem;margin-bottom:12px;">⚔️</div>
+        <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:8px;color:var(--red);">Edges That Die</h3>
+        <p style="color:var(--text2);font-size:0.9rem;">Statistical arbitrage, momentum signals, mean-reversion on micro-timeframes — as more bots compete, alpha compresses to zero.</p>
+      </div>
+      <div class="fade-in" style="background:var(--card);border:1px solid rgba(34,197,94,0.2);border-radius:16px;padding:28px;">
+        <div style="font-size:1.8rem;margin-bottom:12px;">🌊</div>
+        <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:8px;color:var(--green);">What Persists</h3>
+        <p style="color:var(--text2);font-size:0.9rem;">Volatility driven by real utility projects, macro/geopolitical shocks, natural economic cycles, and human fear & greed. These can't be arbitraged away.</p>
+      </div>
+      <div class="fade-in" style="background:var(--card);border:1px solid rgba(99,102,241,0.2);border-radius:16px;padding:28px;">
+        <div style="font-size:1.8rem;margin-bottom:12px;">🧬</div>
+        <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:8px;color:var(--accent2);">AIT's Game</h3>
+        <p style="color:var(--text2);font-size:0.9rem;">Don't predict. Don't compete on speed. Systematically harvest the volatility that will always exist. Different game entirely.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Roadmap Timeline -->
+<section>
+  <div class="container">
+    <div class="section-label">Roadmap</div>
+    <h2 class="section-title fade-in">Strategy Evolution: Now → Next → Future</h2>
+    <p class="section-subtitle fade-in">A portfolio of adaptive strategies, deployed as each matures and market conditions demand.</p>
+
+    <div class="timeline fade-in">
+      <div class="timeline-phase">
+        <div class="timeline-dot live"></div>
+        <div class="timeline-card active">
+          <div class="timeline-status live">● Live</div>
+          <h3>Spot Grid DCA</h3>
+          <p>Systematic mean-reversion that harvests volatility through conviction-driven accumulation and scale-out exits.</p>
+          <ul>
+            <li>Regime-adaptive grid spacing</li>
+            <li>Fear & Greed conviction modulation</li>
+            <li>Scale-out exits (largest lots first)</li>
+            <li>Zero funding fees — spot ownership</li>
+            <li>Low AI-competition risk</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-phase">
+        <div class="timeline-dot next"></div>
+        <div class="timeline-card">
+          <div class="timeline-status ready">Built — Ready</div>
+          <h3>Futures Engine</h3>
+          <p>Hedging, shorting, and capital-efficient exposure. Built and tested — deploying when market conditions warrant.</p>
+          <ul>
+            <li>Short capability for bear markets</li>
+            <li>Hedge existing spot positions</li>
+            <li>Capital-efficient leverage (conservative)</li>
+            <li>Integrated with regime detection</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-phase">
+        <div class="timeline-dot future"></div>
+        <div class="timeline-card">
+          <div class="timeline-status planned">Planned</div>
+          <h3>ICT / Smart Money Concepts</h3>
+          <p>Reading where bots cluster liquidity — order blocks, fair value gaps, liquidity sweeps.</p>
+          <ul>
+            <li>Order block detection</li>
+            <li>Fair value gap identification</li>
+            <li>Liquidity sweep mapping</li>
+            <li>Meta-strategy: trading bot behavior</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-phase">
+        <div class="timeline-dot future"></div>
+        <div class="timeline-card">
+          <div class="timeline-status planned">Evolving</div>
+          <h3>Future Strategies</h3>
+          <p>As market dynamics shift, new strategies slot into the platform. The adaptive layer decides when and how much to allocate.</p>
+          <ul>
+            <li>On-chain flow analysis</li>
+            <li>Cross-exchange arbitrage</li>
+            <li>Sentiment-driven positioning</li>
+            <li>Whatever the market demands next</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Adaptive Intelligence Layer -->
+<section style="background: linear-gradient(135deg, rgba(99,102,241,0.06) 0%, rgba(34,197,94,0.04) 100%); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="container">
+    <div class="section-label">The Real Moat</div>
+    <h2 class="section-title fade-in">The Adaptive Intelligence Layer</h2>
+    <p class="section-subtitle fade-in">The core differentiator isn't any single strategy. It's the regime detection + capital allocation engine that orchestrates everything.</p>
+
+    <div class="regime-diagram fade-in">
+      <div class="regime-inputs">
+        <div style="font-size:0.75rem;color:var(--text3);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:4px;">Market Signals</div>
+        <div class="regime-box"><span style="color:var(--green);">📊</span> Price Action & Volatility</div>
+        <div class="regime-box"><span style="color:var(--accent2);">😱</span> Fear & Greed Index</div>
+        <div class="regime-box"><span style="color:var(--amber);">🪙</span> BTC Dominance & Macro</div>
+        <div class="regime-box"><span style="color:var(--red);">⛓️</span> On-Chain Metrics</div>
+        <div class="regime-box"><span style="color:var(--green);">📈</span> Volume & Momentum</div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+        <div style="color:var(--text3);font-size:1.8rem;">→</div>
+        <div class="regime-engine">
+          <div style="font-size:1.8rem;margin-bottom:8px;">🧠</div>
+          <h3>Adaptive Intelligence</h3>
+          <p style="margin-top:8px;">Regime Detection<br>+ Capital Allocation</p>
+          <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:6px;justify-content:center;">
+            <span style="background:rgba(34,197,94,0.2);color:var(--green);padding:2px 8px;border-radius:4px;font-size:0.65rem;font-weight:600;">TRENDING</span>
+            <span style="background:rgba(245,158,11,0.2);color:var(--amber);padding:2px 8px;border-radius:4px;font-size:0.65rem;font-weight:600;">RANGING</span>
+            <span style="background:rgba(99,102,241,0.2);color:var(--accent2);padding:2px 8px;border-radius:4px;font-size:0.65rem;font-weight:600;">ACCUMULATION</span>
+            <span style="background:rgba(239,68,68,0.2);color:var(--red);padding:2px 8px;border-radius:4px;font-size:0.65rem;font-weight:600;">DISTRIBUTION</span>
+            <span style="background:rgba(239,68,68,0.3);color:var(--red);padding:2px 8px;border-radius:4px;font-size:0.65rem;font-weight:600;">EXTREME</span>
+          </div>
+        </div>
+        <div style="color:var(--text3);font-size:1.8rem;">→</div>
+      </div>
+
+      <div class="regime-outputs">
+        <div style="font-size:0.75rem;color:var(--text3);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:4px;">Strategy Allocation</div>
+        <div class="regime-box" style="border-color:rgba(34,197,94,0.3);"><span style="color:var(--green);">🟢</span> Spot Grid DCA — <span style="color:var(--text3);font-size:0.8rem;">60-100%</span></div>
+        <div class="regime-box" style="border-color:rgba(99,102,241,0.3);"><span style="color:var(--accent2);">🔵</span> Futures Hedge — <span style="color:var(--text3);font-size:0.8rem;">0-30%</span></div>
+        <div class="regime-box" style="border-color:rgba(139,92,246,0.3);"><span style="color:#a78bfa;">🟣</span> ICT Strategies — <span style="color:var(--text3);font-size:0.8rem;">0-25%</span></div>
+        <div class="regime-box" style="border-color:rgba(245,158,11,0.3);"><span style="color:var(--amber);">🟡</span> Cash Reserve — <span style="color:var(--text3);font-size:0.8rem;">0-40%</span></div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:48px;max-width:650px;margin-left:auto;margin-right:auto;" class="fade-in">
+      <div style="background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.2);border-radius:12px;padding:24px;">
+        <div style="color:var(--accent2);font-size:1rem;font-weight:600;margin-bottom:8px;">This is the "Adaptive Intelligence" earning its name</div>
+        <div style="color:var(--text2);font-size:0.95rem;">Real-time regime detection → dynamic capital allocation → strategies that thrive in current conditions. Shifts automatically as markets change. No single strategy. A living portfolio.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Grid DCA Survives -->
+<section>
+  <div class="container">
+    <div class="section-label">Conviction</div>
+    <h2 class="section-title fade-in">Why Grid DCA Survives the AI Revolution</h2>
+    <p class="section-subtitle fade-in">In a world of hyper-competitive prediction bots, grid DCA plays an entirely different game.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:32px;">
+      <div class="fade-in">
+        <div style="background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.15);border-radius:16px;padding:28px;">
+          <h3 style="color:var(--red);font-size:1.1rem;font-weight:700;margin-bottom:16px;">❌ Prediction Bots</h3>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;">
+            <li style="color:var(--text2);font-size:0.9rem;padding-left:20px;position:relative;"><span style="position:absolute;left:0;color:var(--red);">✗</span> Compete on speed — latency arms race</li>
+            <li style="color:var(--text2);font-size:0.9rem;padding-left:20px;position:relative;"><span style="position:absolute;left:0;color:var(--red);">✗</span> Alpha decays as competitors copy signals</li>
+            <li style="color:var(--text2);font-size:0.9rem;padding-left:20px;position:relative;"><span style="position:absolute;left:0;color:var(--red);">✗</span> Overfitting risk — backtests ≠ live</li>
+            <li style="color:var(--text2);font-size:0.9rem;padding-left:20px;position:relative;"><span style="position:absolute;left:0;color:var(--red);">✗</span> Require constant model retraining</li>
+            <li style="color:var(--text2);font-size:0.9rem;padding-left:20px;position:relative;"><span style="position:absolute;left:0;color:var(--red);">✗</span> Single point of failure if model breaks</li>
+          </ul>
+        </div>
+      </div>
+      <div class="fade-in">
+        <div style="background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.15);border-radius:16px;padding:28px;">
+          <h3 style="color:var(--green);font-size:1.1rem;font-weight:700;margin-bottom:16px;">✅ Adaptive Grid DCA</h3>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;">
+            <li style="color:var(--text2);font-size:0.9rem;padding-left:20px;position:relative;"><span style="position:absolute;left:0;color:var(--green);">✓</span> Harvests volatility — doesn't predict direction</li>
+            <li style="color:var(--text2);font-size:0.9rem;padding-left:20px;position:relative;"><span style="position:absolute;left:0;color:var(--green);">✓</span> Edge comes from discipline, not information</li>
+            <li style="color:var(--text2);font-size:0.9rem;padding-left:20px;position:relative;"><span style="position:absolute;left:0;color:var(--green);">✓</span> Bot competition creates MORE volatility to harvest</li>
+            <li style="color:var(--text2);font-size:0.9rem;padding-left:20px;position:relative;"><span style="position:absolute;left:0;color:var(--green);">✓</span> Regime-adaptive — evolves with conditions</li>
+            <li style="color:var(--text2);font-size:0.9rem;padding-left:20px;position:relative;"><span style="position:absolute;left:0;color:var(--green);">✓</span> Spot ownership — no liquidation risk</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Multi-Strategy Arsenal -->
+<section style="background:#0d0d15;">
+  <div class="container">
+    <div class="section-label">Arsenal</div>
+    <h2 class="section-title fade-in">Multi-Strategy Arsenal</h2>
+    <p class="section-subtitle fade-in">Each strategy thrives in specific market conditions. The adaptive layer allocates to whichever fits the current regime.</p>
+
+    <div class="strategy-grid">
+      <div class="strategy-card fade-in">
+        <div class="strategy-icon">📊</div>
+        <h3>Spot Grid DCA</h3>
+        <div class="sweet-spot">Ranging · Accumulation · Mild Trend</div>
+        <p>Systematic mean-reversion with conviction-driven accumulation. Buys dips with calibrated aggression, sells peaks with scale-out exits. The workhorse — reliable in most conditions.</p>
+      </div>
+      <div class="strategy-card fade-in">
+        <div class="strategy-icon">⚡</div>
+        <h3>Futures Engine</h3>
+        <div class="sweet-spot">Distribution · Bear · Trending</div>
+        <p>Short capability for bear markets, hedging for spot positions, capital-efficient leverage. Turns downtrends into opportunity instead of just surviving them.</p>
+      </div>
+      <div class="strategy-card fade-in">
+        <div class="strategy-icon">🔮</div>
+        <h3>ICT / Smart Money</h3>
+        <div class="sweet-spot">All Regimes · Liquidity Events</div>
+        <p>Order blocks, fair value gaps, liquidity sweeps. The meta-play: reading where bots cluster liquidity and positioning ahead of the sweep. Trading the traders.</p>
+      </div>
+      <div class="strategy-card fade-in">
+        <div class="strategy-icon">🧬</div>
+        <h3>Future Strategies</h3>
+        <div class="sweet-spot">As Markets Evolve</div>
+        <p>The platform is built to absorb new strategies as market dynamics change. Each strategy plugs into the same regime detection and capital allocation layer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Defensive Systems -->
+<section>
+  <div class="container">
+    <div class="section-label">Defense</div>
+    <h2 class="section-title fade-in">Defensive Innovation</h2>
+    <p class="section-subtitle fade-in">Offense wins games. Defense wins championships. These systems protect capital when markets get hostile.</p>
+
+    <div class="defense-grid">
+      <div class="defense-card fade-in">
+        <h4>🌱 Spring Accumulation</h4>
+        <p>Smart bottom-catching that replaces blunt drawdown halts. Instead of stopping when prices drop, the system recognizes Wyckoff spring patterns and accumulates at the deepest point of capitulation — buying the fear.</p>
+      </div>
+      <div class="defense-card fade-in">
+        <h4>⏱️ Dwell-Time Compression</h4>
+        <p>During consolidation, grids tighten automatically to capture smaller moves more frequently. Turns dead time into productive cycling — compressing the time capital sits idle.</p>
+      </div>
+      <div class="defense-card fade-in">
+        <h4>🎯 Conviction Gating</h4>
+        <p>New positions only open when conviction score exceeds threshold. Low-conviction environments mean smaller positions, wider spacing, faster exits. The system knows when to be aggressive and when to be cautious.</p>
+      </div>
+      <div class="defense-card fade-in">
+        <h4>💧 Liquidity-Aware Sizing</h4>
+        <p>Order sizes adapt to available liquidity. No oversized orders that move the market against you. Position sizing respects the order book depth and historical volume profile.</p>
+      </div>
+      <div class="defense-card fade-in">
+        <h4>🛡️ Regime-Gated Exits</h4>
+        <p>In bull markets, exit signals are suppressed to ride the wave. In distribution/bear, exits amplify to protect capital. The system changes its personality based on where we are in the cycle.</p>
+      </div>
+      <div class="defense-card fade-in">
+        <h4>🔄 Graceful Rotation</h4>
+        <p>When better opportunities emerge, positions wind down gradually — no panic exits, no abrupt closes. Capital migrates to stronger candidates with a 20% improvement threshold to prevent churn.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Philosophy -->
+<section style="background: linear-gradient(135deg, rgba(99,102,241,0.06) 0%, rgba(34,197,94,0.04) 100%); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="container" style="text-align:center;">
+    <div class="philosophy-box fade-in">
+      <div style="font-size:2rem;margin-bottom:16px;">🧭</div>
+      <h3>The Philosophy</h3>
+      <p>In a world where the smartest AI wins at prediction, AIT wins by <strong style="color:var(--text);">not trying to predict</strong>.</p>
+      <p>We systematically harvest the volatility that will always exist — driven by real projects, real fear, real greed, and real economic cycles.</p>
+      <p class="highlight" style="margin-top:16px;">Different game entirely.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container" style="position:relative;z-index:1;">
+    <h2 class="fade-in" style="font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;margin-bottom:16px;">Ready to See It in Action?</h2>
+    <p class="fade-in" style="color:var(--text2);font-size:1.1rem;max-width:500px;margin:0 auto 32px;">Watch the adaptive intelligence layer work in real-time on the live dashboard.</p>
+    <a href="dashboard.html" class="cta-btn fade-in">Live Dashboard →</a>
+    <div style="margin-top:24px;display:flex;gap:24px;justify-content:center;flex-wrap:wrap;" class="fade-in">
+      <a href="./" style="color:var(--text2);text-decoration:none;font-size:0.9rem;transition:color 0.2s;">Product Overview</a>
+      <a href="pricing.html" style="color:var(--text2);text-decoration:none;font-size:0.9rem;transition:color 0.2s;">Pricing</a>
+      <a href="risk-profiles.html" style="color:var(--text2);text-decoration:none;font-size:0.9rem;transition:color 0.2s;">Risk Profiles</a>
+    </div>
+  </div>
+</section>
+
+<footer style="text-align:center; padding:48px 24px; color:var(--text3); font-size:0.8rem; border-top:1px solid var(--border); background:#0d0d15;">
+  <div style="display:flex; justify-content:center; gap:32px; margin-bottom:24px; flex-wrap:wrap;">
+    <a href="./" style="color:var(--text2); text-decoration:none; transition:color 0.2s;">Product Overview</a>
+    <a href="risk-profiles.html" style="color:var(--text2); text-decoration:none; transition:color 0.2s;">Risk Profiles</a>
+    <a href="pricing.html" style="color:var(--text2); text-decoration:none; transition:color 0.2s;">Pricing</a>
+    <a href="roadmap.html" style="color:var(--text2); text-decoration:none; transition:color 0.2s;">Roadmap</a>
+    <a href="dashboard.html" style="color:var(--text2); text-decoration:none; transition:color 0.2s;">Live Dashboard</a>
+  </div>
+  <div>© 2026 Halo Effects · Adaptive Intelligence Trading</div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
