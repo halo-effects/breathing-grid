@@ -4,7 +4,7 @@
   "profile": "medium",
   "exchange": "aster",
   "capital": 325.0,
-  "equity": 325.01,
+  "equity": 325.02,
   "cash": 312.06,
   "pnl_pct": 0.0,
   "coins": {
@@ -29,8 +29,8 @@
   "max_drawdown_pct": 0.05,
   "regime": "DISTRIBUTION",
   "trend_direction": "bullish",
-  "last_update": "2026-02-19T01:33:22+00:00",
-  "uptime_hours": 3.3,
+  "last_update": "2026-02-19T01:48:27+00:00",
+  "uptime_hours": 3.5,
   "halted": false,
   "symbols": [
     "ASTER/USDT"
