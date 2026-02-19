@@ -206,6 +206,39 @@ section {
   color: var(--cta-green) !important;
 }
 
+/* Force ALL text in dark sections to be readable */
+.comparison-section h2, .comparison-section h3, .comparison-section p, .comparison-section strong, .comparison-section div,
+.capacity-section h2, .capacity-section h3, .capacity-section p, .capacity-section strong, .capacity-section div,
+.faq-section h2, .faq-section h3, .faq-section p, .faq-section strong, .faq-section div,
+.guardrails-section h2, .guardrails-section h3, .guardrails-section p, .guardrails-section strong, .guardrails-section div {
+  color: rgba(255,255,255,0.85) !important;
+}
+.comparison-section h2, .comparison-section h3,
+.capacity-section h2, .capacity-section h3,
+.faq-section h2, .faq-section h3,
+.guardrails-section h2, .guardrails-section h3 {
+  color: #ffffff !important;
+}
+.comparison-section strong, .capacity-section strong,
+.faq-section strong, .guardrails-section strong {
+  color: var(--cta-green) !important;
+}
+/* Stat highlight boxes in dark sections */
+.comparison-section [style*="background: rgba(99,102,241"],
+.comparison-section [style*="background:rgba(99,102,241"] {
+  background: rgba(255,255,255,0.08) !important;
+  border-color: rgba(255,255,255,0.15) !important;
+}
+/* Compare table in dark sections */
+.comparison-section .compare-table,
+.comparison-section table {
+  color: rgba(255,255,255,0.85) !important;
+}
+.comparison-section td, .comparison-section th {
+  color: rgba(255,255,255,0.85) !important;
+  border-color: rgba(255,255,255,0.1) !important;
+}
+
 /* Sections with inline style backgrounds — override via specificity */
 section[style*="background: linear-gradient"],
 section[style*="background: #0d0d15"],
