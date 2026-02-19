@@ -97,15 +97,19 @@ tr:hover td{background:rgba(88,166,255,.04)}
 .feature-desc{font-size:.7rem;color:var(--text2);line-height:1.4}
 
 /* Portfolio allocation donut */
-.alloc-wrap{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.alloc-wrap{display:flex;align-items:center;gap:32px;flex-wrap:wrap}
 .alloc-chart{flex-shrink:0}
-.alloc-legend{display:grid;grid-template-columns:1fr;gap:6px;font-size:.78rem}
-.alloc-legend-item{display:flex;align-items:center;gap:8px}
-.alloc-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-.alloc-legend-sym{font-weight:600;min-width:48px}
-.alloc-legend-pct{color:var(--text2);min-width:42px;text-align:right}
-.alloc-legend-amt{color:var(--text2);min-width:70px;text-align:right}
-.alloc-legend-pnl{min-width:70px;text-align:right}
+.alloc-table{border-collapse:collapse;font-size:.88rem;flex:1;min-width:0}
+.alloc-table th{text-align:left;color:var(--text3);font-weight:500;font-size:.72rem;text-transform:uppercase;letter-spacing:.5px;padding:4px 12px 8px 12px;border-bottom:1px solid var(--border)}
+.alloc-table th:not(:first-child){text-align:right}
+.alloc-table td{padding:8px 12px;border-bottom:1px solid rgba(48,54,61,.4)}
+.alloc-table td:not(:first-child){text-align:right}
+.alloc-table tr:last-child td{border-bottom:none}
+.alloc-dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:8px;vertical-align:middle}
+.alloc-sym{font-weight:600;font-size:.9rem}
+.alloc-table .alloc-pct{color:var(--text2);font-size:.85rem;min-width:50px}
+.alloc-table .alloc-amt{color:var(--text);font-weight:600;font-size:.9rem;min-width:70px}
+.alloc-table .alloc-pnl{min-width:80px;font-size:.85rem}
 
 /* Conviction gauge */
 .conviction-gauge{position:relative;width:200px;height:120px;margin:0 auto 16px}
@@ -213,13 +217,10 @@ tr:hover td{background:rgba(88,166,255,.04)}
   .conviction-breakdown{grid-template-columns:1fr}
   .risk-profile-grid{grid-template-columns:1fr!important}
   /* Portfolio donut: reduce size */
-  .alloc-wrap{flex-direction:column;align-items:center;gap:12px}
+  .alloc-wrap{flex-direction:column;align-items:center;gap:16px}
   .alloc-chart{width:140px!important;height:140px!important}
-  .alloc-legend{font-size:.72rem;gap:4px}
-  .alloc-legend-sym{min-width:40px}
-  .alloc-legend-pct{min-width:36px}
-  .alloc-legend-amt{min-width:60px}
-  .alloc-legend-pnl{min-width:60px}
+  .alloc-table{font-size:.8rem}
+  .alloc-table th,.alloc-table td{padding:6px 8px}
   /* Risk profile: force single column on tablet so stat boxes get room */
   .risk-profile-layout{grid-template-columns:1fr!important}
   /* Tables: horizontal scroll */
