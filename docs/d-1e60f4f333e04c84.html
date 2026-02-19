@@ -919,13 +919,21 @@ function renderSpotStatus() {
     $('lastUpdated').textContent = 'Updated ' + (ago < 60 ? ago+'m ago' : Math.round(ago/60)+'h ago');
   }
 
-  // Top cards
+  // Top cards — use trades.csv as source of truth for completed deal stats (survives bot restarts)
+  const csvCompleted = trades.filter(t => t.close_time);
+  const csvRealPnl = csvCompleted.reduce((a, t) => a + parseFloat(t.pnl || 0), 0);
+  const csvWins = csvCompleted.filter(t => parseFloat(t.pnl || 0) > 0).length;
+  const csvLosses = csvCompleted.length - csvWins;
+  const dealsCompleted = csvCompleted.length || s.deals_completed || 0;
+  const totalRealPnl = csvCompleted.length > 0 ? csvRealPnl : (s.total_realized_pnl || 0);
+  const winRate = dealsCompleted > 0 ? (csvCompleted.length > 0 ? csvWins / dealsCompleted * 100 : (s.win_rate || 0)) : 0;
+
   $('cEquity').textContent = fmtUsd(s.equity);
   const pnlPct = s.pnl_pct || 0;
   $('cEquitySub').innerHTML = `Capital: ${fmtUsd(s.capital)} · <span style="color:${pctColor(pnlPct)}">${pnlPct>=0?'+':''}${fmt(pnlPct)}%</span>`;
 
-  $('cRealPnl').innerHTML = `<span style="color:${pctColor(s.total_realized_pnl)}">${fmtUsd(s.total_realized_pnl)}</span>`;
-  $('cRealPnlSub').textContent = s.deals_completed + ' completed deal' + (s.deals_completed!==1?'s':'');
+  $('cRealPnl').innerHTML = `<span style="color:${pctColor(totalRealPnl)}">${fmtUsd(totalRealPnl)}</span>`;
+  $('cRealPnlSub').textContent = dealsCompleted + ' completed deal' + (dealsCompleted!==1?'s':'');
 
   // Unrealized from coins
   let totalUnreal = 0;
@@ -936,18 +944,17 @@ function renderSpotStatus() {
   $('cUnrealPnlSub').innerHTML = `<span style="color:${pctColor(unrealPct)}">${unrealPct>=0?'+':''}${fmt(unrealPct)}%</span> on ${fmtUsd(totalInvested)} invested`;
 
   // Win/Loss
-  $('cWinLoss').innerHTML = `<span style="color:var(--green)">${s.deals_completed}W</span> / <span style="color:var(--red)">0L</span>`;
-  $('cWinLossSub').textContent = s.deals_completed + ' total';
+  $('cWinLoss').innerHTML = `<span style="color:var(--green)">${csvWins}W</span> / <span style="color:var(--red)">${csvLosses}L</span>`;
+  $('cWinLossSub').textContent = dealsCompleted + ' total';
 
   // Win Rate
-  const wr = s.win_rate || 0;
-  const wrc = wr > 80 ? 'var(--green)' : wr > 50 ? 'var(--amber)' : wr > 0 ? 'var(--red)' : 'var(--text2)';
-  $('cWinRate').innerHTML = s.deals_completed > 0 ? `<span style="color:${wrc}">${fmt(wr,1)}%</span>` : '<span style="color:var(--text2)">&mdash;</span>';
-  $('cWinRateSub').textContent = s.deals_completed > 0 ? s.deals_completed + ' trades' : 'No closed trades';
+  const wrc = winRate > 80 ? 'var(--green)' : winRate > 50 ? 'var(--amber)' : winRate > 0 ? 'var(--red)' : 'var(--text2)';
+  $('cWinRate').innerHTML = dealsCompleted > 0 ? `<span style="color:${wrc}">${fmt(winRate,1)}%</span>` : '<span style="color:var(--text2)">&mdash;</span>';
+  $('cWinRateSub').textContent = dealsCompleted > 0 ? dealsCompleted + ' trades' : 'No closed trades';
 
   // Avg daily ROI
   const startEq = s.capital || 10000;
-  const totalROI = startEq > 0 ? ((s.total_realized_pnl || 0) / startEq * 100) : 0;
+  const totalROI = startEq > 0 ? (totalRealPnl / startEq * 100) : 0;
   $('cAvgROI').innerHTML = `<span style="color:${pctColor(totalROI)}">${totalROI>=0?'+':''}${fmt(totalROI, 3)}%</span>`;
   $('cAvgROISub').textContent = `on ${fmtUsd(startEq)} capital`;
 
