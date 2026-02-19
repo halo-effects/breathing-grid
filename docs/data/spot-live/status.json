@@ -4,22 +4,22 @@
   "profile": "medium",
   "exchange": "aster",
   "capital": 325.0,
-  "equity": 325.09,
+  "equity": 325.06,
   "cash": 312.06,
-  "pnl_pct": 0.03,
+  "pnl_pct": 0.02,
   "coins": {
     "ASTER/USDT": {
       "state": "ACCUMULATING",
       "side": "long",
       "layers": 1,
       "avg_entry": 0.7083,
-      "current_price": 0.7099,
-      "unrealized_pnl": 0.03,
+      "current_price": 0.708,
+      "unrealized_pnl": -0.01,
       "next_so_price": 0.6924,
       "next_tp_price": 0.7154,
       "invested": 13.0,
       "realized_pnl": 0,
-      "conviction": 55.2,
+      "conviction": 54.2,
       "conviction_band": "moderate"
     }
   },
@@ -29,8 +29,8 @@
   "max_drawdown_pct": 0.05,
   "regime": "DISTRIBUTION",
   "trend_direction": "bullish",
-  "last_update": "2026-02-19T02:03:31+00:00",
-  "uptime_hours": 3.8,
+  "last_update": "2026-02-19T02:19:05+00:00",
+  "uptime_hours": 4.0,
   "halted": false,
   "symbols": [
     "ASTER/USDT"
@@ -45,25 +45,25 @@
       "value": 9,
       "classification": "Extreme Fear"
     },
-    "btc_dominance": 56.21,
+    "btc_dominance": 56.22,
     "btc_sma": {
-      "price": 66617.96,
-      "sma200": 99642.31,
+      "price": 66835.29,
+      "sma200": 99643.4,
       "above_sma200": false,
-      "distance_pct": -33.14
+      "distance_pct": -32.93
     },
     "pi_cycle": {
-      "ma_111": 88109.84,
-      "ma_350x2": 199587.2,
+      "ma_111": 88111.71,
+      "ma_350x2": 199588.38,
       "cross_imminent": false,
       "topped": false,
       "gap_pct": -55.85
     },
     "ssr": {
-      "ssr": 5.09,
+      "ssr": 5.1,
       "zone": "normal"
     },
-    "_timestamp": 1771463894.2836416
+    "_timestamp": 1771467541.1535635
   },
   "controls": {
     "paused_coins": [],
