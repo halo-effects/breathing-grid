@@ -81,11 +81,16 @@ a.header-btn {
   -webkit-text-fill-color: #ffffff !important;
   background-clip: unset !important;
   color: #ffffff !important;
-  font-weight: 700 !important;
-  font-size: clamp(2.5rem, 6vw, 4rem) !important;
+  font-weight: 300 !important;
+  font-size: clamp(2.5rem, 6vw, 4.5rem) !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.02em !important;
 }
 .hero p {
-  color: rgba(255,255,255,0.75) !important;
+  color: rgba(255,255,255,0.7) !important;
+  font-weight: 400 !important;
+  font-size: 1.05rem !important;
+  line-height: 1.7 !important;
 }
 .hero-badge {
   background: rgba(91,239,118,0.15) !important;
@@ -193,10 +198,24 @@ section[style*="background:#0d0d15"] {
 /* ===== SECTION TITLES ===== */
 .section-title {
   color: var(--text) !important;
-  font-weight: 700 !important;
+  font-weight: 300 !important;
+  font-size: clamp(2rem, 4vw, 3rem) !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.02em !important;
 }
 .section-subtitle {
   color: var(--text2) !important;
+  font-weight: 400 !important;
+  font-size: 1rem !important;
+  line-height: 1.7 !important;
+}
+
+/* Dark section titles — white, same light weight */
+.comparison-section .section-title,
+.capacity-section .section-title,
+.faq-section .section-title,
+.guardrails-section .section-title {
+  font-weight: 300 !important;
 }
 
 /* ===== CARDS ===== */
