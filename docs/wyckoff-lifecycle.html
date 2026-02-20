@@ -628,6 +628,191 @@ for(let i=0;i<3;i++){
   </table>
 </div>
 
+<!-- Product Features -->
+<style>
+.features-section {
+  max-width: 1100px;
+  margin: 60px auto 48px;
+  padding: 0 24px;
+}
+.features-section h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 8px;
+}
+.features-section .section-sub {
+  text-align: center;
+  color: var(--text3);
+  font-size: 0.85rem;
+  margin-bottom: 32px;
+}
+.feature-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(460px, 1fr));
+  gap: 24px;
+}
+.feature-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 32px;
+  transition: border-color 0.2s;
+}
+.feature-box:hover { border-color: var(--accent); }
+.feature-box .feat-icon {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+.feature-box h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.feature-box .feat-tagline {
+  color: var(--accent2);
+  font-size: 0.82rem;
+  font-style: italic;
+  margin-bottom: 14px;
+}
+.feature-box ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.feature-box ul li {
+  font-size: 0.84rem;
+  color: var(--text2);
+  padding: 4px 0;
+}
+.feature-box ul li::before {
+  content: '✓ ';
+  color: var(--green);
+  font-weight: 700;
+}
+.feature-box ul li.feat-sub::before {
+  content: '  · ';
+  color: var(--text3);
+  font-weight: 400;
+}
+
+/* Dashboard mock table */
+.dashboard-section {
+  max-width: 800px;
+  margin: 36px auto 0;
+}
+.dashboard-section h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 14px;
+  color: var(--text2);
+}
+.dash-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.dash-table th, .dash-table td {
+  padding: 12px 18px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.84rem;
+}
+.dash-table th {
+  color: var(--text3);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.5px;
+}
+.dash-table tr:last-child td { border-bottom: none; }
+.opp-best { color: var(--teal); font-weight: 600; }
+.opp-good { color: var(--blue); font-weight: 600; }
+.opp-mod { color: var(--green); font-weight: 600; }
+.opp-wait { color: var(--orange); font-weight: 600; }
+</style>
+
+<div class="features-section">
+  <h2>Built-In Intelligence</h2>
+  <p class="section-sub">Every coin is validated. Every phase is tracked. You always know where to deploy.</p>
+
+  <div class="feature-cards">
+    <!-- Feature 1: Pre-Trade Coin Certification -->
+    <div class="feature-box">
+      <div class="feat-icon">🛡️</div>
+      <h3>Pre-Trade Coin Certification</h3>
+      <div class="feat-tagline">"Battle-tested across a full market cycle before you trade it"</div>
+      <ul>
+        <li>Every coin must pass a <strong>3–4 year full cycle backtest</strong> before it's tradeable on AIT</li>
+        <li>Validation criteria:</li>
+        <li class="feat-sub">Positive PnL on medium profile</li>
+        <li class="feat-sub">At least 1 complete Wyckoff cycle (exit → markdown → spring)</li>
+        <li class="feat-sub">No catastrophic unprotected drawdowns</li>
+        <li class="feat-sub">Exit signals fire at historical tops</li>
+        <li>Failures are analyzed to improve the scoring engine — the system gets smarter with every coin evaluated</li>
+      </ul>
+    </div>
+
+    <!-- Feature 2: Real-Time Phase Detection Dashboard -->
+    <div class="feature-box">
+      <div class="feat-icon">📡</div>
+      <h3>Real-Time Phase Detection Dashboard</h3>
+      <div class="feat-tagline">"Know exactly where every coin is in its cycle — in real time"</div>
+      <ul>
+        <li>1h candles stored in real-time for all certified coins</li>
+        <li>System knows the <strong>current Wyckoff phase</strong> for every coin, updated hourly</li>
+        <li>Dashboard displays current phase per coin with visual indicators</li>
+        <li><strong>Coin Opportunity Ranking</strong> — ranks by entry quality:</li>
+        <li class="feat-sub">SPRING = Best entry (buying the bottom)</li>
+        <li class="feat-sub">DCA/Accumulation = Good entry (grid trading range)</li>
+        <li class="feat-sub">MARKUP = Moderate (trend running, still profitable)</li>
+        <li class="feat-sub">EXIT/MARKDOWN = Wait (distribution or decline)</li>
+        <li>Helps new investors or fresh capital <strong>time the market</strong> — deploy where the cycle says to deploy</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Mock Dashboard -->
+  <div class="dashboard-section">
+    <h3>📊 Live Opportunity Dashboard (Preview)</h3>
+    <table class="dash-table">
+      <thead>
+        <tr><th>Coin</th><th>Phase</th><th>Signal</th><th>Opportunity</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>SOL</strong></td>
+          <td>🔵 SPRING</td>
+          <td>28% below exit price</td>
+          <td class="opp-best">Best entry — buying bottom</td>
+        </tr>
+        <tr>
+          <td><strong>BTC</strong></td>
+          <td>🔷 DCA</td>
+          <td>Ranging</td>
+          <td class="opp-good">Good — accumulating</td>
+        </tr>
+        <tr>
+          <td><strong>ETH</strong></td>
+          <td>🟢 MARKUP</td>
+          <td>Breakout confirmed</td>
+          <td class="opp-mod">Moderate — trend running</td>
+        </tr>
+        <tr>
+          <td><strong>HYPE</strong></td>
+          <td>🟠 EXIT</td>
+          <td>F&amp;G 85, score 52</td>
+          <td class="opp-wait">Wait — distribution</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
 <!-- V12d Backtest Results -->
 <div class="results-section">
   <h2>V12d ETH/USDT Backtest Results</h2>
