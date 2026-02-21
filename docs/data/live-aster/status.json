@@ -1,0 +1,75 @@
+{
+  "running": true,
+  "mode": "live",
+  "profile": "high",
+  "exchange": "aster",
+  "capital": 325.0,
+  "equity": 325.53,
+  "cash": 309.29,
+  "pnl_pct": 0.16,
+  "coins": {
+    "ETH/USDT": {
+      "state": "ACCUMULATING",
+      "side": "long",
+      "layers": 1,
+      "avg_entry": 1978.97,
+      "current_price": 1980.96,
+      "unrealized_pnl": 0.02,
+      "next_so_price": 1947.3065,
+      "next_tp_price": 1994.8018,
+      "invested": 16.23,
+      "realized_pnl": 0,
+      "conviction": 62.1,
+      "conviction_band": "moderate"
+    }
+  },
+  "deals_completed": 5,
+  "win_rate": 80.0,
+  "total_realized_pnl": 0.54,
+  "max_drawdown_pct": 3.95,
+  "regime": "RANGING",
+  "trend_direction": "bullish",
+  "last_update": "2026-02-21T16:26:36+00:00",
+  "uptime_hours": 0.0,
+  "halted": false,
+  "symbols": [
+    "ETH/USDT"
+  ],
+  "timeframe": "1h",
+  "paused_coins": [],
+  "account_paused": false,
+  "conviction_overrides": {},
+  "max_so_adjustments": {},
+  "macro": {
+    "fear_greed": {
+      "value": 8,
+      "classification": "Extreme Fear"
+    },
+    "btc_dominance": 56.47,
+    "btc_sma": {
+      "price": 68162.0,
+      "sma200": 99179.23,
+      "above_sma200": false,
+      "distance_pct": -31.27
+    },
+    "pi_cycle": {
+      "ma_111": 87352.45,
+      "ma_350x2": 199378.88,
+      "cross_imminent": false,
+      "topped": false,
+      "gap_pct": -56.19
+    },
+    "ssr": {
+      "ssr": 5.19,
+      "zone": "normal"
+    },
+    "_timestamp": 1771691188.4727051
+  },
+  "controls": {
+    "paused_coins": [],
+    "account_paused": false,
+    "conviction_overrides": {},
+    "max_so_adjustments": {},
+    "skip_next_so": []
+  }
+}
