@@ -252,6 +252,21 @@ body {
   .nav-links a.btn-blue { margin-top: 8px; padding: 14px; text-align: center; width: 100%; border-radius: 25px; }
 }
 
+
+/* Mobile table fixes */
+@media (max-width: 768px) {
+  .bt-table { font-size: 14px; }
+  .bt-table th, .bt-table td { padding: 8px 6px; }
+  .bt-table th { font-size: 11px; letter-spacing: 0.5px; }
+  .comp-table th, .comp-table td { padding: 10px 8px; font-size: 13px; }
+  .comp-table th { font-size: 11px; letter-spacing: 0.5px; }
+  .comp-table td:first-child { font-size: 12px; min-width: 80px; }
+}
+@media (max-width: 420px) {
+  .bt-table { font-size: 13px; }
+  .bt-table th, .bt-table td { padding: 8px 4px; }
+  .comp-table th, .comp-table td { padding: 8px 6px; font-size: 12px; }
+}
 </style>
 </head>
 <body>
@@ -482,7 +497,7 @@ body {
     <div class="fade-in" style="margin-bottom:32px;">
       <h3 style="font-size:20px;font-weight:500;margin-bottom:4px;text-align:center;">Backtest Results</h3>
       <div style="font-size:14px;color:var(--text-tertiary-dark);text-align:center;margin-bottom:16px;">Oct 2020 → Feb 2026 · $10,000 starting capital · 1h candles</div>
-      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;"><table class="bt-table">
+      <table class="bt-table">
         <thead><tr><th></th><th>Low</th><th>Medium</th><th>High</th></tr></thead>
         <tbody>
           <tr><td style="font-weight:500;">ETH</td><td class="green">+325%</td><td class="green">+539%</td><td class="green">+1,116%</td></tr>
@@ -491,7 +506,6 @@ body {
           <tr><td style="font-weight:500;">Win Rate</td><td class="green">100%</td><td class="green">100%</td><td class="green">100%</td></tr>
         </tbody>
       </table>
-    </div>
 
     <div class="fade-in" style="text-align:center;padding:20px;background:var(--bg-card-dark);border-radius:var(--radius-card);">
       <div style="font-size:16px;color:var(--text-body-dark);">Auto-guardrails de-risk automatically: <strong>Medium→Low at 30% drawdown</strong>, <strong>High→Medium at 50%</strong>. You just pick a profile — the system protects you.</div>
@@ -528,7 +542,7 @@ body {
     </div>
 
     <!-- Strategy comparison table -->
-    <div class="fade-in" style="overflow-x:auto;">
+    <div class="fade-in">
       <table class="comp-table">
         <thead><tr><th></th><th>Buy & Hold</th><th>Adaptive Intelligence</th></tr></thead>
         <tbody>
