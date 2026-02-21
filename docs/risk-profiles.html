@@ -1658,29 +1658,87 @@ section { padding: 100px 0; }
     <h2 class="section-title fade-in">Buy-and-Hold DCA vs AIT Risk Profiles</h2>
     <p class="section-subtitle fade-in">Most people DCA in and hold to dust. They become the exit liquidity. We solve that with smart exits and systematic compounding.</p>
     
-    <!-- Performance Stats -->
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin: 32px 0;">
-      <div class="fade-in" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-align: center;">
-        <div style="font-size: 1.3rem; font-weight: 700; color: var(--green); margin-bottom: 8px;">ETH +31.3%</div>
-        <div style="color: var(--text2); font-size: 0.85rem; margin-bottom: 4px;">AIT (100% Compounded)</div>
-        <div style="color: var(--text3); font-size: 0.7rem; margin-bottom: 8px;">Every deal's profit → next deal's capital</div>
-        <div style="color: var(--red); font-size: 1rem; font-weight: 600;">vs -27.3% Buy & Hold</div>
-        <div style="color: var(--green); font-size: 0.95rem; font-weight: 600; margin-top: 6px;">+58.6% Advantage</div>
-      </div>
-      <div class="fade-in" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-align: center;">
-        <div style="font-size: 1.3rem; font-weight: 700; color: var(--green); margin-bottom: 8px;">SOL +36.2%</div>
-        <div style="color: var(--text2); font-size: 0.85rem; margin-bottom: 4px;">AIT (100% Compounded)</div>
-        <div style="color: var(--text3); font-size: 0.7rem; margin-bottom: 8px;">Every deal's profit → next deal's capital</div>
-        <div style="color: var(--red); font-size: 1rem; font-weight: 600;">vs -52.2% Buy & Hold</div>
-        <div style="color: var(--green); font-size: 0.95rem; font-weight: 600; margin-top: 6px;">+88.4% Advantage</div>
-      </div>
-      <div class="fade-in" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-align: center;">
-        <div style="font-size: 1.3rem; font-weight: 700; color: var(--green); margin-bottom: 8px;">BTC +2.2%</div>
-        <div style="color: var(--text2); font-size: 0.85rem; margin-bottom: 4px;">AIT (100% Compounded)</div>
-        <div style="color: var(--text3); font-size: 0.7rem; margin-bottom: 8px;">Every deal's profit → next deal's capital</div>
-        <div style="color: var(--red); font-size: 1rem; font-weight: 600;">vs -29.3% Buy & Hold</div>
-        <div style="color: var(--green); font-size: 0.95rem; font-weight: 600; margin-top: 6px;">+31.5% Advantage</div>
-      </div>
+    <!-- V12e Backtested Performance — Full Wyckoff Cycle (Oct 2021 → Feb 2025, $10K Start) -->
+    <h3 class="fade-in" style="color: var(--text); font-size: 1.2rem; margin: 40px 0 8px; text-align: center;">📊 ETH/USDT — Full Wyckoff Cycle (Oct 2021 → Feb 2025)</h3>
+    <p style="color: var(--text3); text-align: center; font-size: 0.85rem; margin-bottom: 16px;">3.5 years · $10,000 starting capital · 100% win rate on all DCA deals</p>
+    <table class="roi-table fade-in" style="margin-bottom: 32px;">
+      <thead>
+        <tr>
+          <th>Profile</th>
+          <th>Total Return</th>
+          <th>Final Equity</th>
+          <th>Sharpe Ratio</th>
+          <th>Win Rate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="color: var(--green); font-weight: 600;">Low (50%)</td>
+          <td style="color: var(--green); font-weight: 700;">+260%</td>
+          <td>$35,955</td>
+          <td>1.11</td>
+          <td style="color: var(--green);">100%</td>
+        </tr>
+        <tr>
+          <td style="color: var(--amber); font-weight: 600;">Medium (70%)</td>
+          <td style="color: var(--green); font-weight: 700;">+261%</td>
+          <td>$36,077</td>
+          <td>1.03</td>
+          <td style="color: var(--green);">100%</td>
+        </tr>
+        <tr>
+          <td style="color: var(--red); font-weight: 600;">High (90%)</td>
+          <td style="color: var(--green); font-weight: 700;">+299%</td>
+          <td>$39,945</td>
+          <td>1.26</td>
+          <td style="color: var(--green);">100%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="fade-in" style="color: var(--text); font-size: 1.2rem; margin: 40px 0 8px; text-align: center;">📊 SOL/USDT — Full Wyckoff Cycle (Oct 2021 → Feb 2025)</h3>
+    <p style="color: var(--text3); text-align: center; font-size: 0.85rem; margin-bottom: 16px;">3.5 years · $10,000 starting capital · 100% win rate on all DCA deals</p>
+    <table class="roi-table fade-in" style="margin-bottom: 32px;">
+      <thead>
+        <tr>
+          <th>Profile</th>
+          <th>Total Return</th>
+          <th>Final Equity</th>
+          <th>Sharpe Ratio</th>
+          <th>Win Rate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="color: var(--green); font-weight: 600;">Low (50%)</td>
+          <td style="color: var(--green); font-weight: 700;">+324%</td>
+          <td>$42,369</td>
+          <td>1.22</td>
+          <td style="color: var(--green);">100%</td>
+        </tr>
+        <tr>
+          <td style="color: var(--amber); font-weight: 600;">Medium (70%)</td>
+          <td style="color: var(--green); font-weight: 700;">+377%</td>
+          <td>$47,711</td>
+          <td>1.13</td>
+          <td style="color: var(--green);">100%</td>
+        </tr>
+        <tr>
+          <td style="color: var(--red); font-weight: 600;">High (90%)</td>
+          <td style="color: var(--green); font-weight: 700;">+614%</td>
+          <td>$71,380</td>
+          <td>1.10</td>
+          <td style="color: var(--green);">100%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="fade-in" style="color: var(--text); font-size: 1.2rem; margin: 40px 0 8px; text-align: center;">📊 BTC/USDT — Full Wyckoff Cycle</h3>
+    <p style="color: var(--text3); text-align: center; font-size: 0.85rem; margin-bottom: 16px;">Backtest in progress — results coming soon</p>
+
+    <div style="text-align: center; margin: 24px 0; padding: 16px; background: rgba(34,197,94,0.08); border-radius: 12px; border: 1px solid rgba(34,197,94,0.2);">
+      <div style="color: var(--green); font-size: 1.1rem; font-weight: 600;">✅ 100% Win Rate Across All Profiles</div>
+      <div style="color: var(--text2); font-size: 0.9rem; margin-top: 4px;">Every DCA deal closed as a winner over the full 3.5-year Wyckoff market cycle</div>
     </div>
     
     <div class="compare-table fade-in">
