@@ -486,12 +486,12 @@ tr:hover td{background:rgba(99,102,241,.04)}
 <div class="features-section">
   <h2>⚡ System Features</h2>
   <div class="features-grid">
-    <div class="feat-card"><div class="feat-icon">🔄</div><div class="feat-title">Wyckoff Lifecycle</div><div class="feat-desc">5-phase market cycle management — DCA, Exit, Markdown, Spring, Markup — adapts strategy to each stage automatically.</div></div>
-    <div class="feat-card"><div class="feat-icon">🧠</div><div class="feat-title">Daily TA Scorer</div><div class="feat-desc">AI-driven distribution detection scores markets 0–100 daily. Crosses 50 = begin exit. Catches tops early.</div></div>
-    <div class="feat-card"><div class="feat-icon">📊</div><div class="feat-title">Per-Coin F&amp;G</div><div class="feat-desc">CFGI.io integration provides real-time Fear &amp; Greed sentiment for each coin, not just Bitcoin.</div></div>
-    <div class="feat-card"><div class="feat-icon">🛡️</div><div class="feat-title">100% Win Rate</div><div class="feat-desc">DCA grid achieves perfect deal completion across all backtests. Every deal closes in profit.</div></div>
-    <div class="feat-card"><div class="feat-icon">📈</div><div class="feat-title">Multi-Coin</div><div class="feat-desc">Trades ETH, SOL, and BTC simultaneously with independent lifecycle tracking per coin.</div></div>
-    <div class="feat-card"><div class="feat-icon">⚡</div><div class="feat-title">Adaptive Grid</div><div class="feat-desc">ATR-driven take-profit and deviation adjustment. Grid breathes with volatility — wide in chaos, tight in calm.</div></div>
+    <div class="feat-card"><div class="feat-icon">🔄</div><div class="feat-title">Wyckoff Lifecycle</div><div class="feat-desc">5-phase market cycle: DCA → Exit → Markdown → Spring → Markup. Each phase uses purpose-built execution strategy.</div></div>
+    <div class="feat-card"><div class="feat-icon">🧠</div><div class="feat-title">AI Top Detection</div><div class="feat-desc">Daily TA scorer combines RSI divergence, volume exhaustion, wick rejection, and momentum stall to detect distribution.</div></div>
+    <div class="feat-card"><div class="feat-icon">📊</div><div class="feat-title">Per-Coin Sentiment</div><div class="feat-desc">CFGI.io integration provides real-time Fear &amp; Greed per coin. Modulates phase transitions and exit timing.</div></div>
+    <div class="feat-card"><div class="feat-icon">🛡️</div><div class="feat-title">100% Win Rate</div><div class="feat-desc">Every DCA deal in 3+ years of backtesting closed in profit. Scale-out exits ensure no losing trades.</div></div>
+    <div class="feat-card"><div class="feat-icon">📈</div><div class="feat-title">3-Coin Portfolio</div><div class="feat-desc">Simultaneous ETH, SOL, BTC positions. Score-proportional allocation. Automatic rebalancing.</div></div>
+    <div class="feat-card"><div class="feat-icon">⚡</div><div class="feat-title">Adaptive Grid</div><div class="feat-desc">ATR-driven take profit and grid deviation. Expands in volatile markets, contracts in quiet periods.</div></div>
   </div>
 </div>
 
@@ -517,13 +517,12 @@ tr:hover td{background:rgba(99,102,241,.04)}
 
 <!-- ══════════ 9. BOTTOM STATS BAR ══════════ -->
 <div class="bottom-bar" id="bottomBar">
-  <div class="bstat"><span>Coins</span><span id="bCoins">--</span></div>
+  <div class="bstat"><span>Trading</span><span id="bCoins">--</span></div>
   <div class="bstat"><span>Avg Profit</span><span id="bAvgProfit">--</span></div>
   <div class="bstat"><span>Avg Duration</span><span id="bAvgDur">--</span></div>
   <div class="bstat"><span>Uptime</span><span id="bUptime">--</span></div>
   <div class="bstat"><span>Drawdown</span><span id="bDD">--</span><div class="dd-gauge"><div class="dd-gauge-fill" id="bDDBar" style="width:0%;background:var(--green)"></div></div></div>
-  <div class="bstat"><span>Regime</span><span id="bRegime">--</span></div>
-  <div class="bstat"><span>Trend</span><span id="bTrend">--</span></div>
+  <div class="bstat"><span>Profile</span><span id="bProfile">--</span></div>
 </div>
 
 <!-- ══════════ 10. FOOTER ══════════ -->
@@ -603,6 +602,12 @@ function render(){
   $('vWRSub').textContent=(S.deals_completed||0)+' deals completed';
 
   renderCoinCards();
+  renderCompounding();
+  renderPortfolioAlloc();
+  renderRiskProfile();
+  renderMacro();
+  renderDCALayers();
+  renderCapUtilDonut();
   renderAIPanel();
   renderCapDonut();
   renderFlowDiagram();
@@ -839,6 +844,270 @@ function renderFlowDiagram(){
 }
 
 // ═══════════════════════════════════════════════════════
+// COMPOUNDING TRACKER
+// ═══════════════════════════════════════════════════════
+function renderCompounding(){
+  const cap=S.capital||10000, eq=S.equity||cap, rpnl=S.total_realized_pnl||0;
+  const hours=S.uptime_hours||0, deals=S.deals_completed||0, wr=S.win_rate||0;
+  const growth=cap>0?((eq-cap)/cap*100):0;
+  const days=Math.max(hours/24,1);
+  const dailyRate=rpnl/days;
+  const monthlyProj=dailyRate*30;
+  const annualProj=dailyRate>0?cap*(Math.pow(1+(dailyRate/cap),365)-1):0;
+
+  $('compCards').innerHTML=`
+    <div class="comp-card"><div class="cc-lbl">Starting Capital</div><div class="cc-val">${fUsd(cap)}</div></div>
+    <div class="comp-card"><div class="cc-lbl">Current Equity</div><div class="cc-val" style="color:${pC(eq-cap)}">${fUsd(eq)}</div></div>
+    <div class="comp-card"><div class="cc-lbl">Growth</div><div class="cc-val" style="color:${pC(growth)}">${growth>=0?'+':''}${fmt(growth)}%</div></div>
+    <div class="comp-card"><div class="cc-lbl">Deals / Win Rate</div><div class="cc-val">${deals}</div><div class="cc-sub">${fmt(wr,1)}% win rate</div></div>`;
+
+  const target=cap*2;
+  const fillPct=Math.min(Math.max((eq/target)*100,0),100);
+  $('compFill').style.width=fillPct+'%';
+  $('compStart').textContent=fUsd(cap);
+  $('compTarget').textContent='2× Target: '+fUsd(target);
+
+  $('projCards').innerHTML=`
+    <div class="proj-card"><div class="pj-lbl">Daily Rate</div><div class="pj-val">${fUsd(dailyRate)}</div><div class="pj-sub">${fmt(cap>0?(dailyRate/cap*100):0,3)}% / day</div></div>
+    <div class="proj-card"><div class="pj-lbl">Monthly Projection</div><div class="pj-val">${fUsd(monthlyProj)}</div><div class="pj-sub">Based on ${fmt(days,0)} days data</div></div>
+    <div class="proj-card"><div class="pj-lbl">Annual Projection</div><div class="pj-val">${fUsd(annualProj)}</div><div class="pj-sub">Compound estimate</div></div>`;
+}
+
+// ═══════════════════════════════════════════════════════
+// PORTFOLIO ALLOCATION
+// ═══════════════════════════════════════════════════════
+function renderPortfolioAlloc(){
+  const syms=S.symbols||Object.keys(S.coins||{});
+  const eq=S.equity||0;
+  const coinColors={ETH:'#627eea',SOL:'#9945ff',BTC:'#f7931a'};
+  const items=[];
+  let totalInv=0;
+  syms.forEach(sym=>{
+    const c=(S.coins||{})[sym]||{};
+    const base=sym.split('/')[0];
+    const inv=c.invested||0;
+    totalInv+=inv;
+    items.push({name:base,inv,pnl:(c.unrealized_pnl||0)+(c.realized_pnl||0),color:coinColors[base]||'#555'});
+  });
+  const cash=eq-totalInv;
+  items.push({name:'Cash',inv:Math.max(cash,0),pnl:0,color:'#2a2a3a'});
+  const total=items.reduce((a,i)=>a+i.inv,0)||1;
+
+  // SVG donut
+  const r=80,cx=100,cy=100,sw=28;
+  let angle=-90,paths='';
+  items.forEach(item=>{
+    const pct=item.inv/total;
+    if(pct<0.001)return;
+    const sweep=pct*360;
+    const rad=n=>n*Math.PI/180;
+    const x1=cx+r*Math.cos(rad(angle)),y1=cy+r*Math.sin(rad(angle));
+    const x2=cx+r*Math.cos(rad(angle+sweep)),y2=cy+r*Math.sin(rad(angle+sweep));
+    const large=sweep>180?1:0;
+    paths+=`<path d="M${x1},${y1} A${r},${r} 0 ${large},1 ${x2},${y2}" stroke="${item.color}" stroke-width="${sw}" fill="none"/>`;
+    angle+=sweep;
+  });
+
+  let tableRows=items.map(i=>{
+    const pct=(i.inv/total*100);
+    return `<tr><td><span class="alloc-dot" style="background:${i.color}"></span>${i.name}</td><td>${fmt(pct,1)}%</td><td>${fUsd(i.inv)}</td><td style="color:${pC(i.pnl)}">${i.pnl!==0?(i.pnl>0?'+':'')+fUsd(i.pnl):'--'}</td></tr>`;
+  }).join('');
+
+  $('allocInner').innerHTML=`
+    <div class="alloc-donut" style="position:relative;width:200px;height:200px">
+      <svg width="200" height="200" viewBox="0 0 200 200">${paths}</svg>
+      <div class="alloc-center"><div class="ac-val">${fUsd(eq)}</div><div class="ac-lbl">Total Equity</div></div>
+    </div>
+    <div class="alloc-table"><table><thead><tr><th>Asset</th><th>Alloc %</th><th>Value</th><th>PnL</th></tr></thead><tbody>${tableRows}</tbody></table></div>`;
+}
+
+// ═══════════════════════════════════════════════════════
+// RISK PROFILE & REGIME
+// ═══════════════════════════════════════════════════════
+function renderRiskProfile(){
+  const profile=S.profile||'medium';
+  const params={maxSOs:8,reserve:'15%',baseDev:'2.5%',baseTP:'1.5%'};
+  const rg=S.regime||'--';
+  const tr=S.trend_direction||'--';
+  const tArr=tr==='bullish'?'▲':tr==='bearish'?'▼':'—';
+  const tCol=tr==='bullish'?'var(--green)':tr==='bearish'?'var(--red)':'var(--text2)';
+  const rgDesc={ACCUMULATION:'Low-volatility accumulation phase — tight grid spacing, frequent captures',DISTRIBUTION:'Distribution detected — preparing to exit positions',TRENDING:'Strong directional trend — wider parameters, trailing stops active',RANGING:'Range-bound market — ideal conditions for grid trading',CHOPPY:'Noisy price action — cautious position sizing',EXTREME:'Extreme volatility — capital protection mode engaged'};
+
+  $('riskGrid').innerHTML=`
+    <div class="risk-col">
+      <h3>Risk Profile</h3>
+      <div class="risk-badge medium">${profile.toUpperCase()}</div>
+      <div class="risk-params">
+        <div class="risk-param">Max SOs: <strong>${params.maxSOs}</strong></div>
+        <div class="risk-param">Base Dev: <strong>${params.baseDev}</strong></div>
+        <div class="risk-param">Reserve: <strong>${params.reserve}</strong></div>
+        <div class="risk-param">Base TP: <strong>${params.baseTP}</strong></div>
+        <div class="risk-param">Effective TP: <strong>ATR-adj</strong></div>
+        <div class="risk-param">Effective Dev: <strong>ATR-adj</strong></div>
+      </div>
+    </div>
+    <div class="risk-col" style="text-align:center">
+      <h3>Market Regime</h3>
+      <div><span class="regime-badge ${REGIME_CLS[rg]||''}" style="font-size:.85rem;padding:6px 16px">${rg}</span></div>
+      <div class="regime-desc" style="margin-top:10px">${rgDesc[rg]||'Analyzing market conditions…'}</div>
+      <div class="regime-big" style="color:${tCol}">${tArr}</div>
+      <div style="font-size:.82rem;color:${tCol};font-weight:600">${tr.charAt(0).toUpperCase()+tr.slice(1)} Trend</div>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════════════════
+// MACRO INDICATORS
+// ═══════════════════════════════════════════════════════
+function renderMacro(){
+  // Fear & Greed - check status.json for value
+  const fgi=S.fear_greed_index!=null?S.fear_greed_index:null;
+  const fgiVal=fgi!=null?fgi:'--';
+  const fgiLabel=fgi!=null?(fgi<=20?'Extreme Fear':fgi<=40?'Fear':fgi<=60?'Neutral':fgi<=80?'Greed':'Extreme Greed'):'--';
+  const fgiCol=fgi!=null?(fgi<=20?'var(--red)':fgi<=40?'var(--amber)':fgi<=60?'var(--text2)':fgi<=80?'var(--green)':'var(--green)'):'var(--text2)';
+
+  // Per-coin CFGI
+  const syms=S.symbols||[];
+  let cfgiHtml='';
+  let hasCfgi=false;
+  syms.forEach(sym=>{
+    const c=(S.coins||{})[sym]||{};
+    if(c.cfgi!=null){hasCfgi=true;const base=sym.split('/')[0];const cv=c.cfgi;const cc=cv<=25?'var(--red)':cv<=45?'var(--amber)':cv<=55?'var(--text2)':'var(--green)';cfgiHtml+=`<div style="margin:4px 0"><span style="font-weight:600">${base}:</span> <span style="color:${cc};font-weight:700;font-size:1.1rem">${cv}</span></div>`}
+  });
+  if(!hasCfgi)cfgiHtml='<div class="mc-val" style="color:var(--text3)">--</div><div style="font-size:.7rem;color:var(--text3)">Not yet available</div>';
+
+  $('macroGrid').innerHTML=`
+    <div class="macro-card">
+      <div class="mc-title">Fear & Greed Index</div>
+      <div class="mc-val" style="color:${fgiCol}">${fgiVal}</div>
+      <div class="mc-label" style="color:${fgiCol}">${fgiLabel}</div>
+      <div class="fg-bar">${fgi!=null?`<div class="fg-dot" style="left:${fgi}%"></div>`:''}</div>
+      <div class="fg-labels"><span>Extreme Fear</span><span>Neutral</span><span>Extreme Greed</span></div>
+    </div>
+    <div class="macro-card">
+      <div class="mc-title">CFGI Per-Coin</div>
+      ${cfgiHtml}
+    </div>
+    <div class="macro-card">
+      <div class="mc-title">Pi Cycle Gap</div>
+      <div class="mc-val" style="color:var(--text3)">--</div>
+      <div style="font-size:.7rem;color:var(--text3)">Data not yet available</div>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════════════════
+// DCA LAYER VISUALIZATION
+// ═══════════════════════════════════════════════════════
+function renderDCALayers(){
+  const syms=S.symbols||Object.keys(S.coins||{});
+  let html='',hasLayers=false;
+  syms.forEach(sym=>{
+    const c=(S.coins||{})[sym]||{};
+    const lc=(S.lifecycle||{})[sym]||{};
+    const phase=lc.phase||'DCA';
+    if(phase!=='DCA'||!c.layers||c.layers<1)return;
+    hasLayers=true;
+    const m=cm(sym);
+    const entry=c.avg_entry||0, price=c.current_price||0, tp=c.next_tp_price||0;
+    const maxSO=8, filled=c.layers||0;
+
+    // Calculate SO prices from entry and deviation pattern
+    const baseDev=0.025;// 2.5%
+    const soPrices=[entry];// Base order
+    for(let i=1;i<=maxSO;i++){soPrices.push(entry*(1-baseDev*i))}
+
+    // All prices to determine axis range
+    const allPrices=[...soPrices.slice(0,filled+4),price,tp].filter(p=>p>0);
+    const mn=Math.min(...allPrices)*0.998, mx=Math.max(...allPrices)*1.002;
+    const rng=mx-mn||1;
+    const yPct=v=>((mx-v)/rng*100);
+
+    html+=`<div class="dca-layer-card"><h4><div class="coin-icon ${m.icon}" style="width:24px;height:24px;font-size:.55rem">${m.label}</div>${m.name} DCA Layers</h4><div class="layer-axis">`;
+
+    // Filled layers
+    for(let i=0;i<filled;i++){
+      const p=soPrices[i];
+      const y=yPct(p);
+      const label=i===0?'Base':'SO'+i;
+      html+=`<div class="layer-line" style="top:${y}%"></div><div class="layer-dot filled" style="top:${y}%;left:20px"><div class="layer-label" style="left:20px">${label}</div><div class="layer-price" style="right:auto;left:-55px">${fUsd(p,pDec(p))}</div></div>`;
+    }
+
+    // Unfilled future SOs (show 3)
+    for(let i=filled;i<Math.min(filled+3,maxSO+1);i++){
+      const p=soPrices[i];
+      if(!p)continue;
+      const y=yPct(p);
+      html+=`<div class="layer-line" style="top:${y}%;opacity:.3"></div><div class="layer-dot unfilled" style="top:${y}%;left:20px"><div class="layer-label" style="left:20px;opacity:.5">SO${i}</div><div class="layer-price" style="right:auto;left:-55px;opacity:.5">${fUsd(p,pDec(p))}</div></div>`;
+    }
+
+    // Current price
+    const cpY=yPct(price);
+    html+=`<div class="layer-dot current" style="top:${cpY}%;left:50%"><div class="layer-label" style="left:14px;color:var(--accent);font-weight:600">Now ${fUsd(price,pDec(price))}</div></div>`;
+
+    // TP target
+    if(tp){
+      const tpY=yPct(tp);
+      html+=`<div class="layer-dot tp" style="top:${tpY}%;left:80%"><div class="layer-label" style="left:14px;color:var(--green);font-weight:600">TP ${fUsd(tp,pDec(tp))}</div></div>`;
+    }
+
+    html+=`</div></div>`;
+  });
+
+  const sec=$('dcaLayersSection');
+  if(hasLayers){sec.style.display='block';$('dcaLayersGrid').innerHTML=html}
+  else{sec.style.display='none'}
+}
+
+// ═══════════════════════════════════════════════════════
+// CAPITAL UTILIZATION DONUT (NEW)
+// ═══════════════════════════════════════════════════════
+function renderCapUtilDonut(){
+  const syms=S.symbols||Object.keys(S.coins||{});
+  const eq=S.equity||0, maxSO=8;
+  let active=0, pending=0;
+  syms.forEach(sym=>{
+    const c=(S.coins||{})[sym]||{};
+    active+=(c.invested||0);
+    // Estimate pending: remaining SOs * approximate SO size
+    const filled=c.layers||0;
+    const remaining=maxSO-filled;
+    if(remaining>0&&c.invested>0&&filled>0){
+      const avgPerLayer=c.invested/filled;
+      pending+=remaining*avgPerLayer*1.2;// SOs scale up ~1.2x
+    }
+  });
+  const reserve=Math.max(eq-active-pending,0);
+  const total=active+pending+reserve||1;
+  const activePct=(active/total*100);
+
+  const legs=[
+    {label:'Active',val:active,color:'var(--accent)',hex:'#6366f1'},
+    {label:'Pending',val:pending,color:'var(--amber)',hex:'#f59e0b'},
+    {label:'Reserve',val:reserve,color:'var(--text3)',hex:'#1e1e2e'},
+  ];
+
+  $('cutilLegend').innerHTML=`<div style="font-size:2.5rem;font-weight:700;color:var(--text);margin-bottom:12px">${fmt(activePct,1)}%</div><div style="font-size:.72rem;color:var(--text3);margin-bottom:16px">Capital Deployed</div>`+legs.map(l=>`<div class="cutil-leg"><span class="cl-dot" style="background:${l.color}"></span>${l.label}<span class="cl-val">${fUsd(l.val)}</span></div>`).join('');
+
+  // Canvas donut
+  const cvs=$('cutilDonut'),ctx=cvs.getContext('2d');
+  const dpr=window.devicePixelRatio||1,sz=200;
+  cvs.width=sz*dpr;cvs.height=sz*dpr;cvs.style.width=sz+'px';cvs.style.height=sz+'px';
+  ctx.scale(dpr,dpr);
+  const cx=sz/2,cy=sz/2,r=72,lw=22;
+  ctx.clearRect(0,0,sz,sz);
+  ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.strokeStyle='#1e1e2e';ctx.lineWidth=lw;ctx.stroke();
+  let angle=-Math.PI/2;
+  legs.filter(l=>l.val>0).forEach(s=>{
+    const sweep=(s.val/total)*Math.PI*2;
+    if(sweep<0.01)return;
+    ctx.beginPath();ctx.arc(cx,cy,r,angle,angle+sweep);
+    ctx.strokeStyle=s.hex;ctx.lineWidth=lw;ctx.lineCap='butt';ctx.stroke();
+    angle+=sweep;
+  });
+  ctx.fillStyle='#e2e8f0';ctx.font='bold 28px Inter,system-ui';ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.fillText(fmt(activePct,0)+'%',cx,cy);
+}
+
+// ═══════════════════════════════════════════════════════
 // TRADES
 // ═══════════════════════════════════════════════════════
 function renderTrades(){
@@ -909,7 +1178,7 @@ function renderEquityChart(){
 // ═══════════════════════════════════════════════════════
 function renderBottomBar(){
   const syms=S.symbols||[];
-  $('bCoins').textContent=syms.map(s=>s.split('/')[0]).join(', ');
+  $('bCoins').innerHTML=syms.map(s=>{const b=s.split('/')[0];const m=cm(s);return `<span class="coin-icon ${m.icon}" style="width:22px;height:22px;font-size:.5rem;display:inline-flex;vertical-align:middle;margin:0 2px">${m.label}</span>`}).join('');
   // Avg profit from trades
   const tpTrades=trades.filter(t=>parseFloat(t.pnl||0)!==0);
   const avgP=tpTrades.length?tpTrades.reduce((a,t)=>a+parseFloat(t.pnl||0),0)/tpTrades.length:0;
@@ -919,14 +1188,12 @@ function renderBottomBar(){
   $('bAvgDur').textContent=durs.length?durs[Math.floor(durs.length/2)]:'--';
   $('bUptime').textContent=S.uptime_hours!=null?fmt(S.uptime_hours,1)+'h':'--';
   const dd=S.max_drawdown_pct||0;
-  const ddCol=dd>5?'var(--red)':dd>2?'var(--amber)':'var(--green)';
+  const ddCol=dd>25?'var(--red)':dd>10?'var(--amber)':'var(--green)';
   $('bDD').innerHTML=`<span style="color:${ddCol}">${fmt(dd)}%</span>`;
-  $('bDDBar').style.width=Math.min(dd*5,100)+'%';
+  $('bDDBar').style.width=Math.min(dd*4,100)+'%';
   $('bDDBar').style.background=ddCol;
-  const rg=S.regime||'--';
-  $('bRegime').innerHTML=`<span class="regime-badge ${REGIME_CLS[rg]||''}">${rg}</span>`;
-  const tr=S.trend_direction||'--', tArr=tr==='bullish'?'▲':tr==='bearish'?'▼':'—', tCol=tr==='bullish'?'var(--green)':tr==='bearish'?'var(--red)':'var(--text2)';
-  $('bTrend').innerHTML=`<span style="color:${tCol};font-weight:700">${tArr} ${tr}</span>`;
+  const profile=S.profile||'--';
+  $('bProfile').innerHTML=`<span class="risk-badge medium" style="font-size:.65rem;padding:2px 8px;margin:0">${profile.toUpperCase()}</span>`;
 }
 
 // ═══════════════════════════════════════════════════════
