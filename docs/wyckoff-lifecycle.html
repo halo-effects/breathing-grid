@@ -180,6 +180,25 @@ body {
   .grid-2 { grid-template-columns: 1fr; }
   .results-table th, .results-table td { padding: 10px 8px; font-size: 12px; }
 }
+
+/* ── HAMBURGER MENU ── */
+.nav-toggle { display: none; background: none; border: none; font-size: 28px; cursor: pointer; color: var(--text-heading, #000); padding: 8px; line-height: 1; }
+@media (max-width: 768px) {
+  .nav-toggle { display: block; margin-left: auto; }
+  .nav-links { display: none; position: absolute; top: calc(100% + 8px); left: 0; right: 0; background: #FFF; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); flex-direction: column; padding: 16px; gap: 4px; }
+  .nav-links.open { display: flex; }
+  .nav-links a { font-size: 16px !important; padding: 12px 16px; border-radius: 10px; text-align: center; }
+  .nav-links a:hover { background: rgba(34,105,252,0.06); text-decoration: none; }
+  .nav-links a.btn-blue { margin-top: 8px; padding: 14px !important; text-align: center; width: 100%; border-radius: 25px; }
+}
+
+@media (max-width: 768px) {
+  .dark-section { margin-left: 0 !important; margin-right: 0 !important; border-radius: 0; padding: 40px 16px; }
+  .results-table, .dash-table, .profile-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .hero h1 { font-size: 28px; line-height: 34px; }
+  .hero { padding-top: 110px; }
+}
+
 </style>
 </head>
 <body>
@@ -190,6 +209,7 @@ body {
     <img src="AIT-logo.png" alt="AIT" onerror="this.style.display='none'">
     <span>Adaptive Intelligence Trading</span>
   </a>
+  <button class="nav-toggle" aria-label="Menu">☰</button>
   <div class="nav-links">
     <a href="index.html">Product</a>
     <a href="wyckoff-lifecycle.html" class="active">Wyckoff Lifecycle</a>
@@ -528,5 +548,21 @@ for(var i=0;i<3;i++){var x=.79+i*.025;gridArrow(x,.85-i*.04,true);}
   <p>Adaptive Intelligence Trading &#183; Wyckoff Lifecycle Engine &#183; 2024&#8211;2026</p>
 </div>
 
+<script>
+(function(){
+  var btn = document.querySelector('.nav-toggle');
+  var links = document.querySelector('.nav-links');
+  if(btn && links){
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      links.classList.toggle('open');
+      btn.textContent = links.classList.contains('open') ? '\u2715' : '\u2630';
+    });
+    document.addEventListener('click', function(e){
+      if(!e.target.closest('.nav')){ links.classList.remove('open'); btn.textContent = '\u2630'; }
+    });
+  }
+})();
+</script>
 </body>
 </html>
