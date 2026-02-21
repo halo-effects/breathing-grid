@@ -4,57 +4,75 @@
   "profile": "medium",
   "exchange": "hyperliquid",
   "capital": 10000.0,
-  "equity": 9998.93,
-  "cash": 8800.0,
-  "pnl_pct": -0.01,
+  "equity": 10011.6,
+  "cash": 8811.61,
+  "pnl_pct": 0.12,
   "coins": {
-    "ETH/USDC": {
-      "state": "ACCUMULATING",
-      "side": "long",
-      "layers": 1,
-      "avg_entry": 1960.9,
-      "current_price": 1960.3,
-      "unrealized_pnl": -0.12,
-      "next_so_price": 1916.7798,
-      "next_tp_price": 1984.7053,
-      "invested": 400.0,
-      "realized_pnl": 0,
-      "cfgi": 39.0
-    },
-    "SOL/USDC": {
-      "state": "ACCUMULATING",
-      "side": "long",
-      "layers": 1,
-      "avg_entry": 84.375,
-      "current_price": 84.413,
-      "unrealized_pnl": 0.18,
-      "next_so_price": 82.4766,
-      "next_tp_price": 85.7157,
-      "invested": 400.0,
-      "realized_pnl": 0,
-      "cfgi": 40.5
-    },
     "BTC/USDC": {
       "state": "ACCUMULATING",
       "side": "long",
       "layers": 1,
       "avg_entry": 67746.0,
-      "current_price": 67697.0,
-      "unrealized_pnl": -0.29,
-      "next_so_price": 66306.3975,
-      "next_tp_price": 68462.7527,
+      "current_price": 68299.0,
+      "unrealized_pnl": 3.26,
+      "next_so_price": 66391.08,
+      "next_tp_price": 68423.46,
       "invested": 400.0,
       "realized_pnl": 0,
-      "cfgi": 47.0
+      "conviction": 60.6,
+      "conviction_band": "moderate",
+      "lifecycle_phase": "DCA",
+      "exit_lots_remaining": 0,
+      "spring_deployed": 0.0,
+      "lifecycle_unrealized": 0.0,
+      "lifecycle_pnl": 0.0
+    },
+    "ETH/USDC": {
+      "state": "ACCUMULATING",
+      "side": "long",
+      "layers": 1,
+      "avg_entry": 1990.9,
+      "current_price": 1987.9,
+      "unrealized_pnl": -0.6,
+      "next_so_price": 1931.173,
+      "next_tp_price": 2010.809,
+      "invested": 400.0,
+      "realized_pnl": 0,
+      "conviction": 51.5,
+      "conviction_band": "moderate",
+      "lifecycle_phase": "DCA",
+      "exit_lots_remaining": 0,
+      "spring_deployed": 0.0,
+      "lifecycle_unrealized": 0.0,
+      "lifecycle_pnl": 0.0
+    },
+    "SOL/USDC": {
+      "state": "ACCUMULATING",
+      "side": "long",
+      "layers": 1,
+      "avg_entry": 86.587,
+      "current_price": 86.19,
+      "unrealized_pnl": -1.83,
+      "next_so_price": 84.8553,
+      "next_tp_price": 87.4529,
+      "invested": 400.0,
+      "realized_pnl": 0,
+      "conviction": 59.6,
+      "conviction_band": "moderate",
+      "lifecycle_phase": "DCA",
+      "exit_lots_remaining": 0,
+      "spring_deployed": 0.0,
+      "lifecycle_unrealized": 0.0,
+      "lifecycle_pnl": 0.0
     }
   },
-  "deals_completed": 0,
-  "win_rate": 0.0,
-  "total_realized_pnl": 0,
-  "max_drawdown_pct": 0.03,
-  "regime": "DISTRIBUTION",
+  "deals_completed": 3,
+  "win_rate": 100.0,
+  "total_realized_pnl": 11.61,
+  "max_drawdown_pct": 0.05,
+  "regime": "EXTREME",
   "trend_direction": "bullish",
-  "last_update": "2026-02-21T04:40:45+00:00",
+  "last_update": "2026-02-21T16:57:24+00:00",
   "uptime_hours": 0.0,
   "halted": false,
   "symbols": [
@@ -67,53 +85,43 @@
   "account_paused": false,
   "conviction_overrides": {},
   "max_so_adjustments": {},
+  "macro": {
+    "fear_greed": {
+      "value": 8,
+      "classification": "Extreme Fear"
+    },
+    "btc_dominance": 56.48,
+    "btc_sma": {
+      "price": 68334.6,
+      "sma200": 99180.09,
+      "above_sma200": false,
+      "distance_pct": -31.1
+    },
+    "pi_cycle": {
+      "ma_111": 87353.87,
+      "ma_350x2": 199379.78,
+      "cross_imminent": false,
+      "topped": false,
+      "gap_pct": -56.19
+    },
+    "ssr": {
+      "ssr": 5.2,
+      "zone": "normal"
+    },
+    "_timestamp": 1771693027.0449746
+  },
+  "lifecycle_enabled": true,
+  "lifecycle_phases": {
+    "ETH/USDC": "DCA",
+    "SOL/USDC": "DCA",
+    "BTC/USDC": "DCA"
+  },
+  "lifecycle_total_pnl": 0.0,
   "controls": {
     "paused_coins": [],
     "account_paused": false,
     "conviction_overrides": {},
     "max_so_adjustments": {},
     "skip_next_so": []
-  },
-  "lifecycle_enabled": true,
-  "fear_greed_index": 47.0,
-  "lifecycle": {
-    "ETH/USDC": {
-      "phase": "DCA",
-      "score": 25.0,
-      "exit_phases": 0,
-      "spring_phases": 0,
-      "markdown_phases": 0,
-      "markup_phases": 0,
-      "short_pnl": 0.0,
-      "spring_pnl": 0.0,
-      "markup_pnl": 0.0
-    },
-    "SOL/USDC": {
-      "phase": "DCA",
-      "score": 25.0,
-      "exit_phases": 0,
-      "spring_phases": 0,
-      "markdown_phases": 0,
-      "markup_phases": 0,
-      "short_pnl": 0.0,
-      "spring_pnl": 0.0,
-      "markup_pnl": 0.0
-    },
-    "BTC/USDC": {
-      "phase": "MARKDOWN",
-      "score": 25.0,
-      "exit_phases": 0,
-      "spring_phases": 0,
-      "markdown_phases": 1,
-      "markup_phases": 0,
-      "short_pnl": 0.0,
-      "spring_pnl": 0.0,
-      "markup_pnl": 0.0
-    }
-  },
-  "candle_counts": {
-    "ETH/USDC": 38700,
-    "SOL/USDC": 40902,
-    "BTC/USDC": 47441
   }
 }
