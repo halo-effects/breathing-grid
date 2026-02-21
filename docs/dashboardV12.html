@@ -279,18 +279,28 @@ tr:hover td{background:rgba(99,102,241,.04)}
 .fg-labels{display:flex;justify-content:space-between;font-size:.55rem;color:var(--text3)}
 
 /* ── DCA Layers Viz ── */
-.dca-layers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
-.dca-layer-card{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:10px;padding:16px}
-.dca-layer-card h4{font-size:.82rem;font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:8px}
-.layer-axis{position:relative;height:260px;margin:0 40px 0 60px}
-.layer-line{position:absolute;left:0;right:0;height:1px;background:rgba(255,255,255,.06)}
-.layer-dot{position:absolute;width:12px;height:12px;border-radius:50%;transform:translate(-50%,-50%);z-index:2}
-.layer-dot.filled{background:var(--amber);box-shadow:0 0 6px rgba(245,158,11,.4)}
-.layer-dot.unfilled{background:rgba(245,158,11,.2);border:1px dashed rgba(245,158,11,.3)}
-.layer-dot.current{background:var(--accent);box-shadow:0 0 10px var(--accent);animation:pulse 2s infinite}
-.layer-dot.tp{background:var(--green);box-shadow:0 0 6px var(--green)}
-.layer-label{position:absolute;font-size:.6rem;color:var(--text2);white-space:nowrap;transform:translateY(-50%)}
-.layer-price{position:absolute;right:calc(100% + 8px);font-size:.6rem;color:var(--text3);white-space:nowrap;transform:translateY(-50%)}
+.dca-layers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.dca-layer-card{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:10px;padding:20px}
+.dca-layer-card h4{font-size:.85rem;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.layer-row{display:flex;align-items:center;gap:0;padding:5px 0;position:relative}
+.layer-row+.layer-row{border-top:1px solid rgba(255,255,255,.04)}
+.layer-row .lr-price{width:90px;font-size:.78rem;font-weight:600;text-align:right;padding-right:12px;flex-shrink:0}
+.layer-row .lr-bar-wrap{flex:1;position:relative;height:22px;background:rgba(255,255,255,.03);border-radius:4px;overflow:hidden}
+.layer-row .lr-bar{height:100%;border-radius:4px;min-width:3px}
+.layer-row .lr-label{width:52px;font-size:.72rem;font-weight:600;padding-left:10px;flex-shrink:0}
+.layer-row.lr-filled .lr-bar{background:linear-gradient(90deg,rgba(245,158,11,.5),rgba(245,158,11,.8))}
+.layer-row.lr-filled .lr-label{color:var(--amber)}
+.layer-row.lr-filled .lr-price{color:var(--text)}
+.layer-row.lr-unfilled .lr-bar{background:rgba(245,158,11,.12);border:1px dashed rgba(245,158,11,.2)}
+.layer-row.lr-unfilled .lr-label{color:var(--text3)}
+.layer-row.lr-unfilled .lr-price{color:var(--text3)}
+.layer-row.lr-current .lr-bar{background:linear-gradient(90deg,rgba(99,102,241,.4),rgba(99,102,241,.85));box-shadow:0 0 8px rgba(99,102,241,.3)}
+.layer-row.lr-current .lr-label{color:var(--accent);font-weight:700}
+.layer-row.lr-current .lr-price{color:var(--accent);font-weight:700}
+.layer-row.lr-tp .lr-bar{background:linear-gradient(90deg,rgba(16,185,129,.3),rgba(16,185,129,.7))}
+.layer-row.lr-tp .lr-label{color:var(--green);font-weight:700}
+.layer-row.lr-tp .lr-price{color:var(--green);font-weight:700}
+.layer-row .lr-pct{font-size:.65rem;color:var(--text3);padding-left:6px;width:50px;flex-shrink:0;text-align:right}
 
 /* ── Capital Util Donut 2 ── */
 .cutil-inner{display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap}
@@ -1009,47 +1019,75 @@ function renderDCALayers(){
     const m=cm(sym);
     const entry=c.avg_entry||0, price=c.current_price||0, tp=c.next_tp_price||0;
     const maxSO=8, filled=c.layers||0;
+    const dec=pDec(entry);
 
-    // Calculate SO prices from entry and deviation pattern
-    const baseDev=0.025;// 2.5%
-    const soPrices=[entry];// Base order
-    for(let i=1;i<=maxSO;i++){soPrices.push(entry*(1-baseDev*i))}
+    // Build all price levels: TP, Base, filled SOs, next unfilled SOs
+    const levels=[];
 
-    // All prices to determine axis range
-    const allPrices=[...soPrices.slice(0,filled+4),price,tp].filter(p=>p>0);
-    const mn=Math.min(...allPrices)*0.998, mx=Math.max(...allPrices)*1.002;
-    const rng=mx-mn||1;
-    const yPct=v=>((mx-v)/rng*100);
-
-    html+=`<div class="dca-layer-card"><h4><div class="coin-icon ${m.icon}" style="width:24px;height:24px;font-size:.55rem">${m.label}</div>${m.name} DCA Layers</h4><div class="layer-axis">`;
-
-    // Filled layers
-    for(let i=0;i<filled;i++){
-      const p=soPrices[i];
-      const y=yPct(p);
-      const label=i===0?'Base':'SO'+i;
-      html+=`<div class="layer-line" style="top:${y}%"></div><div class="layer-dot filled" style="top:${y}%;left:20px"><div class="layer-label" style="left:20px">${label}</div><div class="layer-price" style="right:auto;left:-55px">${fUsd(p,pDec(p))}</div></div>`;
+    // TP at top
+    if(tp>0){
+      const pctFromEntry=((tp-entry)/entry*100);
+      levels.push({price:tp, label:'TP', type:'tp', pct:'+'+pctFromEntry.toFixed(2)+'%'});
     }
 
-    // Unfilled future SOs (show 3)
+    // Base order
+    levels.push({price:entry, label:'Base', type:'filled', pct:'entry'});
+
+    // Filled SOs (layers includes base, so SOs start at index 1)
+    const baseDev=c.next_so_price&&entry>0 ? (entry-c.next_so_price)/entry : 0.025;
+    for(let i=1;i<filled;i++){
+      const soPrice=entry*(1-baseDev*i);
+      const pct=((soPrice-entry)/entry*100);
+      levels.push({price:soPrice, label:'SO'+i, type:'filled', pct:pct.toFixed(1)+'%'});
+    }
+
+    // Next unfilled SOs (show 3)
     for(let i=filled;i<Math.min(filled+3,maxSO+1);i++){
-      const p=soPrices[i];
-      if(!p)continue;
-      const y=yPct(p);
-      html+=`<div class="layer-line" style="top:${y}%;opacity:.3"></div><div class="layer-dot unfilled" style="top:${y}%;left:20px"><div class="layer-label" style="left:20px;opacity:.5">SO${i}</div><div class="layer-price" style="right:auto;left:-55px;opacity:.5">${fUsd(p,pDec(p))}</div></div>`;
+      const soPrice=i===filled&&c.next_so_price?c.next_so_price:entry*(1-baseDev*i);
+      const pct=((soPrice-entry)/entry*100);
+      levels.push({price:soPrice, label:'SO'+i, type:'unfilled', pct:pct.toFixed(1)+'%'});
     }
 
-    // Current price
-    const cpY=yPct(price);
-    html+=`<div class="layer-dot current" style="top:${cpY}%;left:50%"><div class="layer-label" style="left:14px;color:var(--accent);font-weight:600">Now ${fUsd(price,pDec(price))}</div></div>`;
+    // Sort descending by price (highest at top)
+    levels.sort((a,b)=>b.price-a.price);
 
-    // TP target
-    if(tp){
-      const tpY=yPct(tp);
-      html+=`<div class="layer-dot tp" style="top:${tpY}%;left:80%"><div class="layer-label" style="left:14px;color:var(--green);font-weight:600">TP ${fUsd(tp,pDec(tp))}</div></div>`;
+    // Insert current price marker in the right position
+    // Find where it belongs in the sorted list
+    let priceInserted=false;
+    const finalLevels=[];
+    for(let i=0;i<levels.length;i++){
+      if(!priceInserted&&price>=levels[i].price){
+        const pctFromEntry=((price-entry)/entry*100);
+        const sign=pctFromEntry>=0?'+':'';
+        finalLevels.push({price:price, label:'NOW', type:'current', pct:sign+pctFromEntry.toFixed(2)+'%'});
+        priceInserted=true;
+      }
+      finalLevels.push(levels[i]);
+    }
+    if(!priceInserted){
+      const pctFromEntry=((price-entry)/entry*100);
+      finalLevels.push({price:price, label:'NOW', type:'current', pct:pctFromEntry.toFixed(2)+'%'});
     }
 
-    html+=`</div></div>`;
+    // Find the max bar width reference (TP distance from lowest shown)
+    const allPrices=finalLevels.map(l=>l.price);
+    const pMin=Math.min(...allPrices), pMax=Math.max(...allPrices);
+    const pRange=pMax-pMin||1;
+
+    html+=`<div class="dca-layer-card"><h4><div class="coin-icon ${m.icon}" style="width:24px;height:24px;font-size:.55rem">${m.label}</div>${m.name} DCA Layers</h4>`;
+
+    finalLevels.forEach(lv=>{
+      // Bar width: position relative to price range (higher price = wider bar)
+      const barPct=Math.max(8,((lv.price-pMin)/pRange)*100);
+      html+=`<div class="layer-row lr-${lv.type}">
+        <div class="lr-price">${fUsd(lv.price,dec)}</div>
+        <div class="lr-bar-wrap"><div class="lr-bar" style="width:${barPct.toFixed(1)}%"></div></div>
+        <div class="lr-label">${lv.label}</div>
+        <div class="lr-pct">${lv.pct}</div>
+      </div>`;
+    });
+
+    html+=`</div>`;
   });
 
   const sec=$('dcaLayersSection');
