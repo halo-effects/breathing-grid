@@ -4,44 +4,44 @@
   "profile": "medium",
   "exchange": "aster",
   "capital": 10000.0,
-  "equity": 10024.98,
+  "equity": 10022.89,
   "cash": 8822.91,
-  "pnl_pct": 0.25,
+  "pnl_pct": 0.23,
   "coins": {
     "ETH/USDT": {
       "state": "EXITING",
       "side": "long",
       "layers": 2,
       "avg_entry": 2011.9,
-      "current_price": 1990.57,
-      "unrealized_pnl": -4.24,
+      "current_price": 1988.28,
+      "unrealized_pnl": -4.69,
       "next_so_price": 1921.3645,
       "next_tp_price": 2032.019,
       "invested": 1200.0,
       "realized_pnl": 7.64,
-      "cfgi": 39.0
+      "cfgi": 35.0
     },
     "BTC/USDT": {
       "state": "ACCUMULATING",
       "side": "long",
       "layers": 1,
       "avg_entry": 67997.84,
-      "current_price": 68503.89,
-      "unrealized_pnl": 2.98,
+      "current_price": 68440.42,
+      "unrealized_pnl": 2.6,
       "next_so_price": 66637.8832,
       "next_tp_price": 68677.8184,
       "invested": 400.0,
       "realized_pnl": 0,
-      "cfgi": 52.0
+      "cfgi": 51.0
     },
     "BNB/USDT": {
       "state": "ACCUMULATING",
       "side": "long",
       "layers": 1,
       "avg_entry": 628.32,
-      "current_price": 634.22,
-      "unrealized_pnl": 3.75,
-      "next_so_price": 614.9682,
+      "current_price": 632.23,
+      "unrealized_pnl": 2.49,
+      "next_so_price": 609.4704,
       "next_tp_price": 634.6032,
       "invested": 400.0,
       "realized_pnl": 0,
@@ -54,8 +54,8 @@
   "max_drawdown_pct": 11.89,
   "regime": "DISTRIBUTION",
   "trend_direction": "bullish",
-  "last_update": "2026-02-21T14:50:08+00:00",
-  "uptime_hours": 1.5,
+  "last_update": "2026-02-21T15:05:16+00:00",
+  "uptime_hours": 1.8,
   "halted": false,
   "symbols": [
     "ETH/USDT",
@@ -75,5 +75,5 @@
     "skip_next_so": []
   },
   "lifecycle_enabled": false,
-  "fear_greed_index": 52.0
+  "fear_greed_index": 51.0
 }
