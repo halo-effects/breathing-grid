@@ -4,17 +4,17 @@
   "profile": "medium",
   "exchange": "hyperliquid",
   "capital": 10000.0,
-  "equity": 10011.6,
+  "equity": 10012.94,
   "cash": 8811.61,
-  "pnl_pct": 0.12,
+  "pnl_pct": 0.13,
   "coins": {
     "BTC/USDC": {
       "state": "ACCUMULATING",
       "side": "long",
       "layers": 1,
       "avg_entry": 67746.0,
-      "current_price": 68299.0,
-      "unrealized_pnl": 3.26,
+      "current_price": 68418.0,
+      "unrealized_pnl": 3.96,
       "next_so_price": 66391.08,
       "next_tp_price": 68423.46,
       "invested": 400.0,
@@ -32,13 +32,13 @@
       "side": "long",
       "layers": 1,
       "avg_entry": 1990.9,
-      "current_price": 1987.9,
-      "unrealized_pnl": -0.6,
-      "next_so_price": 1931.173,
+      "current_price": 1989.7,
+      "unrealized_pnl": -0.24,
+      "next_so_price": 1936.1503,
       "next_tp_price": 2010.809,
       "invested": 400.0,
       "realized_pnl": 0,
-      "conviction": 51.5,
+      "conviction": 56.0,
       "conviction_band": "moderate",
       "lifecycle_phase": "DCA",
       "exit_lots_remaining": 0,
@@ -51,8 +51,8 @@
       "side": "long",
       "layers": 1,
       "avg_entry": 86.587,
-      "current_price": 86.19,
-      "unrealized_pnl": -1.83,
+      "current_price": 86.25,
+      "unrealized_pnl": -1.56,
       "next_so_price": 84.8553,
       "next_tp_price": 87.4529,
       "invested": 400.0,
@@ -70,10 +70,10 @@
   "win_rate": 100.0,
   "total_realized_pnl": 11.61,
   "max_drawdown_pct": 0.05,
-  "regime": "EXTREME",
+  "regime": "MILD_TREND",
   "trend_direction": "bullish",
-  "last_update": "2026-02-21T16:57:24+00:00",
-  "uptime_hours": 0.0,
+  "last_update": "2026-02-21T17:57:56+00:00",
+  "uptime_hours": 1.0,
   "halted": false,
   "symbols": [
     "ETH/USDC",
@@ -90,25 +90,25 @@
       "value": 8,
       "classification": "Extreme Fear"
     },
-    "btc_dominance": 56.48,
+    "btc_dominance": 56.5,
     "btc_sma": {
-      "price": 68334.6,
-      "sma200": 99180.09,
+      "price": 68431.69,
+      "sma200": 99180.58,
       "above_sma200": false,
-      "distance_pct": -31.1
+      "distance_pct": -31.0
     },
     "pi_cycle": {
-      "ma_111": 87353.87,
-      "ma_350x2": 199379.78,
+      "ma_111": 87354.82,
+      "ma_350x2": 199380.38,
       "cross_imminent": false,
       "topped": false,
       "gap_pct": -56.19
     },
     "ssr": {
-      "ssr": 5.2,
+      "ssr": 5.21,
       "zone": "normal"
     },
-    "_timestamp": 1771693027.0449746
+    "_timestamp": 1771696669.6649861
   },
   "lifecycle_enabled": true,
   "lifecycle_phases": {
