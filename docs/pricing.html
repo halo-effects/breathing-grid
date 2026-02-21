@@ -4,1198 +4,739 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Plans & Pricing — Adaptive Intelligence Trading</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
-  --bg: #0a0a0f;
-  --card: #12121a;
-  --border: #1e1e2e;
-  --accent: #6366f1;
-  --accent2: #818cf8;
-  --green: #22c55e;
-  --red: #ef4444;
-  --amber: #f59e0b;
-  --text: #e2e8f0;
-  --text2: #94a3b8;
-  --text3: #64748b;
-  --gradient1: linear-gradient(135deg, #6366f1, #8b5cf6);
-  --gradient2: linear-gradient(135deg, #22c55e, #06b6d4);
+  --ait-blue: #2269FC;
+  --ait-blue-hover: #1B56D4;
+  --ait-blue-light-end: #D7F5FF;
+  --ait-blue-10: rgba(34, 105, 252, 0.1);
+  --bg-white: #FFFFFF;
+  --bg-black: #000000;
+  --bg-void: #010414;
+  --bg-card-dark: #1A1D2C;
+  --bg-charcoal: #191919;
+  --bg-slate: #2F2F2F;
+  --text-heading: #03071C;
+  --text-body: rgba(3, 7, 28, 0.5);
+  --text-heading-dark: #FFFFFF;
+  --text-body-dark: rgba(255, 255, 255, 0.5);
+  --text-tertiary-dark: rgba(255, 255, 255, 0.3);
+  --text-subtle-dark: rgba(255, 255, 255, 0.2);
+  --border-light: #E5E7EB;
+  --border-glass: rgba(255, 255, 255, 0.2);
+  --grad-cta-dark: linear-gradient(90deg, #223576, #1A285A 40%, #121C3E 50%, #0A1025 60%, #000001 80%, #000);
+  --grad-cta-light: linear-gradient(270deg, #D7F5FF, #2269FC 55%);
+  --profit: #00D68F;
+  --loss: #FF4D4F;
+  --warning: #FFAA00;
+  --font: 'Poppins', sans-serif;
+  --radius-card: 10px;
+  --radius-section: 24px;
+  --radius-pill: 25px;
+  --radius-badge: 140px;
+  --section-gap: 80px;
+  --nav-height-desktop: 100px;
+  --nav-height-mobile: 75px;
 }
 body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg-white);
+  color: var(--text-heading);
+  font-family: var(--font);
   line-height: 1.7;
   overflow-x: hidden;
 }
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
-/* Hero */
+/* ── NAV ── */
+.nav {
+  position: fixed; top: 16px; left: 16px; right: 16px; z-index: 100;
+  height: var(--nav-height-desktop);
+  background: var(--bg-white);
+  border-radius: var(--radius-pill);
+  display: flex; align-items: center;
+  padding: 0 24px;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+}
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-heading); flex-shrink: 0; }
+.nav-logo span { font-size: 18px; font-weight: 600; white-space: nowrap; }
+.nav-links { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+.nav-links a {
+  font-size: 18px; font-weight: 500; color: #000; text-decoration: none;
+  padding: 6px 14px; border-radius: 8px; transition: all 0.2s; white-space: nowrap;
+}
+.nav-links a:hover { text-decoration: underline; }
+.nav-links a.active { color: var(--ait-blue); }
+.btn-blue {
+  background: var(--grad-cta-dark); color: #FFF; border: none; border-radius: var(--radius-pill);
+  padding: 8px 16px; font-size: 18px; font-weight: 600; font-family: var(--font);
+  cursor: pointer; text-decoration: none; display: inline-block; transition: transform 0.3s;
+}
+.btn-blue:hover { transform: translateY(-2px); }
+.btn-blue-light {
+  background: var(--grad-cta-light); color: #FFF; border: none; border-radius: var(--radius-pill);
+  padding: 12px 80px; font-size: 18px; font-weight: 600; font-family: var(--font);
+  cursor: pointer; text-decoration: none; display: inline-block; transition: transform 0.3s;
+}
+.btn-blue-light:hover { transform: translateY(-2px); }
+.btn-blue-outline {
+  background: transparent; color: var(--ait-blue); border: 1px solid var(--ait-blue);
+  border-radius: var(--radius-pill); padding: 8px 20px; font-size: 16px; font-weight: 500;
+  font-family: var(--font); cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.2s;
+}
+.btn-blue-outline:hover { background: var(--ait-blue); color: #FFF; }
+
+/* ── CONTAINER ── */
+.container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+
+/* ── DARK SECTION ── */
+.dark-section {
+  background: var(--bg-black); border-radius: var(--radius-section);
+  padding: 64px 48px; color: var(--text-heading-dark);
+  margin-left: 16px; margin-right: 16px;
+}
+.dark-section h2 { font-size: 36px; font-weight: 500; line-height: 40px; color: #FFF; margin-bottom: 16px; }
+.dark-section .sub { font-size: 16px; font-weight: 400; line-height: 24px; color: var(--text-body-dark); margin-bottom: 40px; max-width: 700px; }
+.dark-section .sub strong { color: #FFF; }
+.card-dark { background: var(--bg-card-dark); border-radius: var(--radius-card); padding: 24px; }
+
+/* ── LIGHT SECTION ── */
+.light-section { padding: 100px 0; }
+.light-section h2 { font-size: 36px; font-weight: 500; line-height: 40px; color: var(--text-heading); margin-bottom: 16px; }
+.light-section .sub { font-size: 18px; font-weight: 400; line-height: 28px; color: var(--text-body); margin-bottom: 40px; max-width: 700px; }
+.card-light { background: transparent; border: 1px solid var(--border-light); border-radius: var(--radius-card); padding: 20px; }
+
+.pill { background: var(--bg-charcoal); border-radius: var(--radius-badge); padding: 8px 16px; color: #FFF; font-size: 14px; display: inline-block; margin-bottom: 16px; }
+
+/* ── HERO ── */
 .hero {
-  min-height: 90vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 80px 24px 60px;
-  position: relative;
-  overflow: hidden;
+  min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+  align-items: center; text-align: center; padding: 140px 24px 80px;
 }
-.hero::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at 30% 50%, rgba(99,102,241,0.08) 0%, transparent 50%),
-              radial-gradient(circle at 70% 50%, rgba(99,102,241,0.06) 0%, transparent 50%);
-  animation: heroGlow 8s ease-in-out infinite alternate;
-}
-@keyframes heroGlow {
-  0% { transform: translate(0, 0); }
-  100% { transform: translate(-2%, 2%); }
-}
-.hero-content { position: relative; z-index: 1; max-width: 800px; }
 .hero h1 {
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  font-weight: 800;
-  line-height: 1.1;
-  margin-bottom: 24px;
-  background: linear-gradient(135deg, #e2e8f0 0%, #6366f1 50%, #22c55e 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-size: 48px; font-weight: 600; line-height: 48px; color: var(--text-heading);
+  margin-bottom: 20px; max-width: 800px;
 }
-.hero p {
-  font-size: 1.25rem;
-  color: var(--text2);
-  max-width: 600px;
-  margin: 0 auto 40px;
-}
-.hero-badges {
-  display: flex;
-  gap: 24px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 32px;
-}
-.hero-badge {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  border-radius: 50px;
-  background: rgba(99,102,241,0.15);
-  color: var(--accent2);
-  font-size: 0.9rem;
-  font-weight: 600;
-}
+.hero p { font-size: 20px; font-weight: 400; line-height: 28px; color: var(--text-heading); max-width: 620px; margin-bottom: 40px; }
+.hero-badges { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 32px; }
+.hero-badge { display: flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: var(--radius-badge); border: 1px solid var(--border-light); font-size: 14px; font-weight: 500; color: var(--text-heading); }
 
-/* Sections */
-.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-section { padding: 80px 0; }
-.section-label {
-  display: inline-block;
-  padding: 4px 12px;
-  border-radius: 4px;
-  background: rgba(99,102,241,0.1);
-  color: var(--accent2);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  margin-bottom: 16px;
-}
-.section-title {
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
-  font-weight: 700;
-  margin-bottom: 16px;
-  line-height: 1.2;
-  text-align: center;
-}
-.section-subtitle {
-  font-size: 1.1rem;
-  color: var(--text2);
-  max-width: 650px;
-  margin: 0 auto 48px;
-  text-align: center;
-}
+/* ── GRIDS ── */
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
 
-/* Pricing Tiers */
-.pricing-section { background: linear-gradient(180deg, var(--bg) 0%, #0d0d15 100%); }
+/* ── PRICING CARDS ── */
 .pricing-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
-  margin-top: 48px;
+  gap: 20px;
 }
 .pricing-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
+  background: var(--bg-card-dark);
+  border-radius: var(--radius-card);
   padding: 32px 24px;
   position: relative;
-  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  transition: transform 0.3s;
+  display: flex; flex-direction: column;
 }
-.pricing-card:hover { transform: translateY(-4px); }
+.pricing-card:hover { transform: translateY(-2px); }
 .pricing-card.featured {
-  border-color: var(--accent);
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(99,102,241,0.2);
+  border: 2px solid var(--ait-blue);
+  transform: translateY(-8px);
 }
-.pricing-card.featured:hover {
-  transform: translateY(-12px) scale(1.02);
-}
+.pricing-card.featured:hover { transform: translateY(-10px); }
 .popular-badge {
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 6px 16px;
-  background: var(--gradient1);
-  color: white;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  padding: 6px 16px; background: var(--grad-cta-light); color: #FFF;
+  border-radius: var(--radius-pill); font-size: 12px; font-weight: 600; letter-spacing: 0.5px; white-space: nowrap;
 }
-.tier-name {
-  font-size: 1.4rem;
-  font-weight: 700;
-  margin-bottom: 8px;
-  text-align: center;
-}
-.tier-price {
-  font-size: 3rem;
-  font-weight: 800;
-  color: var(--green);
-  text-align: center;
-  margin-bottom: 8px;
-}
-.tier-capital {
-  text-align: center;
-  color: var(--text2);
-  font-size: 0.95rem;
-  margin-bottom: 16px;
-}
-.tier-desc {
-  text-align: center;
-  color: var(--text3);
-  font-size: 0.9rem;
-  margin-bottom: 24px;
-}
-.feature-list {
-  list-style: none;
-  margin-bottom: 32px;
-}
+.tier-name { font-size: 20px; font-weight: 500; color: #FFF; margin-bottom: 8px; text-align: center; }
+.tier-price { font-size: 48px; font-weight: 700; color: var(--profit); text-align: center; margin-bottom: 4px; }
+.tier-capital { text-align: center; color: var(--text-body-dark); font-size: 14px; margin-bottom: 20px; }
+.feature-list { list-style: none; margin-bottom: 28px; flex: 1; }
 .feature-list li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 6px 0;
-  font-size: 0.9rem;
+  display: flex; align-items: center; gap: 10px; padding: 5px 0;
+  font-size: 14px; color: var(--text-body-dark); line-height: 20px;
 }
-.feature-list li::before {
-  content: '✓';
-  color: var(--green);
-  font-weight: bold;
-}
+.feature-list li::before { content: '✓'; color: var(--profit); font-weight: 700; flex-shrink: 0; }
 .select-btn {
-  width: 100%;
-  padding: 14px;
-  background: var(--gradient1);
-  color: white;
-  border: none;
-  border-radius: 10px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: opacity 0.2s;
+  width: 100%; padding: 12px; background: var(--grad-cta-light); color: #FFF;
+  border: none; border-radius: var(--radius-pill); font-size: 16px; font-weight: 600;
+  font-family: var(--font); cursor: pointer; transition: transform 0.3s;
 }
-.select-btn:hover { opacity: 0.9; }
-.featured .select-btn {
-  background: var(--gradient2);
-}
+.select-btn:hover { transform: translateY(-2px); }
 
-/* All Plans Include */
+/* ── FEATURE CARDS (light bg) ── */
 .features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 24px;
-  margin-top: 48px;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;
 }
 .feature-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 24px;
-  transition: transform 0.2s, border-color 0.2s;
+  border: 1px solid var(--border-light); border-radius: var(--radius-card);
+  padding: 24px; transition: transform 0.3s;
 }
-.feature-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--accent);
-}
-.feature-icon {
-  font-size: 2rem;
-  margin-bottom: 16px;
-}
-.feature-title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-.feature-desc {
-  color: var(--text2);
-  font-size: 0.9rem;
-}
+.feature-card:hover { transform: translateY(-2px); }
+.feature-icon { font-size: 28px; margin-bottom: 12px; }
+.feature-title { font-size: 16px; font-weight: 600; color: var(--text-heading); margin-bottom: 6px; }
+.feature-desc { font-size: 14px; color: var(--text-body); line-height: 20px; }
 
-/* Capacity Pool */
-.capacity-section { background: #0d0d15; }
-.capacity-visual {
-  max-width: 600px;
-  margin: 0 auto;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 32px;
-  text-align: center;
-}
-.capacity-title {
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-bottom: 16px;
-}
-.capacity-bar {
-  width: 100%;
-  height: 20px;
-  background: var(--border);
-  border-radius: 10px;
-  overflow: hidden;
-  margin-bottom: 16px;
-}
-.capacity-fill {
-  width: 15%;
-  height: 100%;
-  background: var(--gradient2);
-  border-radius: 10px;
-  animation: fillPulse 3s ease-in-out infinite;
-}
-@keyframes fillPulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
-}
-.capacity-stats {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 24px;
-  font-size: 0.9rem;
-}
-.capacity-desc {
-  color: var(--text2);
-  font-size: 0.95rem;
-  line-height: 1.6;
-  margin-bottom: 16px;
-}
-
-/* Breakeven Calculator */
-.breakeven-section { padding-top: 100px; }
+/* ── BREAKEVEN ── */
 .breakeven-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
-  margin-top: 32px;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;
 }
 .breakeven-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 24px;
-  text-align: center;
+  background: var(--bg-card-dark); border-radius: var(--radius-card);
+  padding: 24px; text-align: center;
 }
-.breakeven-tier {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 12px;
-}
-.breakeven-price {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--accent2);
-  margin-bottom: 8px;
-}
-.breakeven-daily {
-  color: var(--green);
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-.breakeven-days {
-  color: var(--text3);
-  font-size: 0.9rem;
-}
-.disclaimer {
-  margin-top: 24px;
-  padding: 16px;
-  background: rgba(239,68,68,0.1);
-  border: 1px solid rgba(239,68,68,0.2);
-  border-radius: 10px;
-  color: var(--text2);
-  font-size: 0.85rem;
-  text-align: center;
-}
+.breakeven-tier { font-size: 16px; font-weight: 500; color: #FFF; margin-bottom: 8px; }
+.breakeven-price { font-size: 24px; font-weight: 700; color: var(--ait-blue); margin-bottom: 4px; }
+.breakeven-daily { color: var(--profit); font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+.breakeven-days { color: var(--text-tertiary-dark); font-size: 13px; }
 
-/* How It Works */
-.steps-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 32px;
-  margin-top: 48px;
+/* ── CAPACITY ── */
+.capacity-visual {
+  max-width: 600px; margin: 0 auto;
+  background: var(--bg-card-dark); border-radius: var(--radius-card); padding: 32px; text-align: center;
 }
-.step-card {
-  text-align: center;
-  padding: 32px 24px;
-}
-.step-number {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: var(--gradient1);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin: 0 auto 24px;
-}
-.step-title {
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin-bottom: 16px;
-}
-.step-desc {
-  color: var(--text2);
-  font-size: 0.95rem;
-}
+.capacity-bar { width: 100%; height: 16px; background: rgba(255,255,255,0.1); border-radius: 8px; overflow: hidden; margin-bottom: 12px; }
+.capacity-fill { width: 15%; height: 100%; background: var(--grad-cta-light); border-radius: 8px; animation: fillPulse 3s ease-in-out infinite; }
+@keyframes fillPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
 
-/* FAQ */
-.faq-section { background: #0d0d15; }
-.faq-container {
-  max-width: 800px;
-  margin: 0 auto;
-}
-.faq-category {
-  margin-bottom: 40px;
-}
-.faq-category-title {
-  font-size: 1.4rem;
-  font-weight: 700;
-  margin-bottom: 24px;
-  color: var(--accent2);
-}
-.faq-item {
-  margin-bottom: 16px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  overflow: hidden;
-}
+/* ── STEPS ── */
+.step-card { background: var(--bg-card-dark); border-radius: var(--radius-card); padding: 32px; text-align: center; }
+.step-num { font-size: 36px; font-weight: 700; color: var(--ait-blue); margin-bottom: 12px; }
+.step-card h3 { font-size: 20px; font-weight: 500; color: #FFF; margin-bottom: 8px; }
+.step-card p { font-size: 14px; color: var(--text-body-dark); line-height: 22px; }
+
+/* ── FAQ ── */
+.faq-container { max-width: 800px; margin: 0 auto; }
+.faq-category { margin-bottom: 40px; }
+.faq-category-title { font-size: 20px; font-weight: 600; margin-bottom: 20px; color: var(--ait-blue); }
+.faq-item { margin-bottom: 12px; border: 1px solid var(--border-light); border-radius: var(--radius-card); overflow: hidden; }
 .faq-question {
-  width: 100%;
-  background: none;
-  border: none;
-  color: var(--text);
-  padding: 20px 24px;
-  text-align: left;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  width: 100%; background: none; border: none; color: var(--text-heading); padding: 18px 20px;
+  text-align: left; font-size: 16px; font-weight: 500; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center; font-family: var(--font);
 }
-.faq-question:hover {
-  background: rgba(99,102,241,0.05);
-}
-.faq-answer {
-  padding: 0 24px 20px 24px;
-  color: var(--text2);
-  font-size: 0.95rem;
-  line-height: 1.6;
-  display: none;
-}
-.faq-answer.open {
-  display: block;
-}
-.faq-toggle {
-  font-size: 1.2rem;
-  transition: transform 0.2s;
-}
-.faq-item.open .faq-toggle {
-  transform: rotate(45deg);
-}
+.faq-question:hover { background: rgba(34,105,252,0.03); }
+.faq-answer { padding: 0 20px 18px; color: var(--text-body); font-size: 15px; line-height: 1.6; display: none; }
+.faq-answer.open { display: block; }
+.faq-toggle { font-size: 18px; transition: transform 0.2s; flex-shrink: 0; margin-left: 12px; }
+.faq-item.open .faq-toggle { transform: rotate(45deg); }
 
-/* Bottom CTA */
-.bottom-cta {
-  text-align: center;
-  padding: 100px 24px;
-  position: relative;
-}
-.bottom-cta::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: radial-gradient(circle at 50% 50%, rgba(99,102,241,0.08) 0%, transparent 60%);
-}
-.bottom-cta-content {
-  position: relative;
-  z-index: 1;
-}
-.bottom-cta h2 {
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 700;
-  margin-bottom: 16px;
-}
-.bottom-cta p {
-  font-size: 1.1rem;
-  color: var(--text2);
-  margin-bottom: 32px;
-}
-.bottom-cta-btn {
-  display: inline-block;
-  padding: 16px 32px;
-  background: var(--gradient2);
-  color: white;
-  text-decoration: none;
-  border-radius: 10px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  transition: opacity 0.2s;
-}
-.bottom-cta-btn:hover {
-  opacity: 0.9;
-}
+/* ── FOOTER ── */
+.footer { background: var(--bg-black); border-radius: var(--radius-section) var(--radius-section) 0 0; margin: 0 16px; padding: 48px 24px; text-align: center; color: var(--text-tertiary-dark); font-size: 14px; }
+.footer a { color: var(--text-body-dark); text-decoration: none; transition: color 0.2s; }
+.footer a:hover { color: #FFF; }
+.footer-links { display: flex; justify-content: center; gap: 32px; margin-bottom: 24px; flex-wrap: wrap; }
 
-/* Footer */
-.footer {
-  text-align: center;
-  padding: 48px 24px;
-  border-top: 1px solid var(--border);
-  background: #0d0d15;
-}
-.footer-links {
-  display: flex;
-  justify-content: center;
-  gap: 32px;
-  margin-bottom: 24px;
-}
-.footer-links a {
-  color: var(--text2);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.footer-links a:hover {
-  color: var(--accent2);
-}
-.footer-copyright {
-  color: var(--text3);
-  font-size: 0.9rem;
-}
-
-/* Scroll animations */
-.fade-in {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
+/* ── SCROLL ANIM ── */
+.fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .fade-in.visible { opacity: 1; transform: none; }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .pricing-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  .pricing-card.featured {
-    transform: none;
-  }
-  .pricing-card.featured:hover {
-    transform: translateY(-4px);
-  }
-  .hero-badges {
-    gap: 16px;
-  }
-  .hero-badge {
-    font-size: 0.8rem;
-  }
-  .capacity-stats {
-    flex-direction: column;
-    gap: 8px;
-    text-align: center;
-  }
-  .footer-links {
-    flex-direction: column;
-    gap: 16px;
-  }
+/* ── MOBILE ── */
+@media (max-width: 1023px) {
+  .dark-section { margin-left: 0; margin-right: 0; border-radius: 0; padding: 48px 20px; }
+  .footer { margin: 0; border-radius: 0; }
 }
-@media (max-width: 600px) {
-  body { overflow-x: hidden; }
-  .top-header { padding: 8px 12px !important; gap: 8px !important; }
-  .header-logo { width: 26px !important; height: 26px !important; }
-  .header-title { font-size: .9rem !important; }
-  .header-nav { font-size: .8rem !important; }
-  .header-btn { padding: 4px 10px !important; font-size: .75rem !important; }
-  .hero { padding: 60px 16px 40px; min-height: 70vh; }
-  .hero h1 { font-size: clamp(1.8rem, 5vw, 2.5rem); }
-  .hero p { font-size: .95rem; }
-  .hero-badges { 
-    flex-direction: column; 
-    align-items: center;
-    gap: 12px; 
-  }
-  .container { padding: 0 12px; }
-  section { padding: 48px 0; }
-  .section-title { font-size: clamp(1.4rem, 4vw, 1.8rem); }
-  .section-subtitle { font-size: .9rem; }
-  .features-grid { grid-template-columns: 1fr; gap: 16px; }
-  .steps-grid { grid-template-columns: 1fr; gap: 24px; }
-  .breakeven-grid { grid-template-columns: 1fr; gap: 16px; }
+@media (max-width: 768px) {
+  .nav { height: var(--nav-height-mobile); top: 8px; left: 8px; right: 8px; padding: 0 12px; }
+  .nav-links a:not(.btn-blue) { display: none; }
+  .nav-links { gap: 8px; }
+  .hero { padding: 120px 16px 60px; min-height: auto; }
+  .hero h1 { font-size: 32px; line-height: 34px; }
+  .hero p { font-size: 16px; }
+  .btn-blue-light { padding: 12px 40px; }
+  .grid-3 { grid-template-columns: 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .pricing-card.featured { transform: none; }
+  .pricing-card.featured:hover { transform: translateY(-2px); }
+  .light-section { padding: 60px 0; }
+  .light-section h2, .dark-section h2 { font-size: 28px; line-height: 32px; }
+  .dark-section { padding: 40px 16px; }
+  .features-grid { grid-template-columns: 1fr; }
+  .breakeven-grid { grid-template-columns: 1fr; }
+  .hero-badges { gap: 10px; }
+}
+@media (max-width: 480px) {
+  .hero-badges { flex-direction: column; align-items: center; }
+  .nav-logo span { font-size: 14px; }
 }
 </style>
-<link rel="stylesheet" href="qb-theme.css?v=11">
 </head>
 <body>
 
-<!-- Top Header -->
-<header class="top-header" style="position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,15,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;gap:12px;">
-  <a href="./" style="display:flex;align-items:center;flex-shrink:0;"><svg class="header-logo" width="32" height="32" viewBox="0 0 48 48" fill="none">
-    <rect x="4" y="4" width="40" height="40" rx="4" stroke="#30363d" stroke-width="1" fill="rgba(22,27,34,.8)"/>
-    <line x1="4" y1="17.3" x2="44" y2="17.3" stroke="#30363d" stroke-width="0.7"/>
-    <line x1="4" y1="24" x2="44" y2="24" stroke="#30363d" stroke-width="0.7"/>
-    <line x1="4" y1="30.7" x2="44" y2="30.7" stroke="#30363d" stroke-width="0.7"/>
-    <line x1="17.3" y1="4" x2="17.3" y2="44" stroke="#30363d" stroke-width="0.7"/>
-    <line x1="24" y1="4" x2="24" y2="44" stroke="#30363d" stroke-width="0.7"/>
-    <line x1="30.7" y1="4" x2="30.7" y2="44" stroke="#30363d" stroke-width="0.7"/>
-    <circle cx="24" cy="24" r="6" stroke="#58a6ff" stroke-width="2" fill="none" opacity=".9">
-      <animate attributeName="r" values="6;9;6" dur="3s" repeatCount="indefinite"/>
-      <animate attributeName="opacity" values=".9;.3;.9" dur="3s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="24" cy="24" r="11" stroke="#3fb950" stroke-width="1.5" fill="none" opacity=".5">
-      <animate attributeName="r" values="11;14;11" dur="3s" repeatCount="indefinite" begin="0.5s"/>
-      <animate attributeName="opacity" values=".5;.15;.5" dur="3s" repeatCount="indefinite" begin="0.5s"/>
-    </circle>
-    <circle cx="24" cy="24" r="16" stroke="#d29922" stroke-width="1" fill="none" opacity=".3">
-      <animate attributeName="r" values="16;18;16" dur="3s" repeatCount="indefinite" begin="1s"/>
-      <animate attributeName="opacity" values=".3;.1;.3" dur="3s" repeatCount="indefinite" begin="1s"/>
-    </circle>
-    <circle cx="24" cy="24" r="3" fill="#58a6ff">
-      <animate attributeName="r" values="3;4;3" dur="3s" repeatCount="indefinite"/>
-    </circle>
-    <path d="M24 8l4 5h-8z" fill="#3fb950" opacity=".8">
-      <animate attributeName="opacity" values=".8;.3;.8" dur="3s" repeatCount="indefinite"/>
-    </path>
-    <path d="M24 40l4-5h-8z" fill="#f85149" opacity=".8">
-      <animate attributeName="opacity" values=".8;.3;.8" dur="3s" repeatCount="indefinite" begin="1.5s"/>
-    </path>
-  </svg></a>
-  <a href="./" class="header-title" style="font-size:1.15rem;font-weight:600;letter-spacing:-.02em;white-space:nowrap;text-decoration:none;color:inherit;">Adaptive Intelligence Trading</a>
-  <a href="./" class="header-nav" style="margin-left:auto;color:var(--text2);text-decoration:none;font-size:.9rem;font-weight:500;padding:6px 12px;border-radius:6px;transition:color 0.2s;">Product Overview</a>
-  <a href="risk-profiles.html" class="header-nav" style="color:var(--text2);text-decoration:none;font-size:.9rem;font-weight:500;padding:6px 12px;border-radius:6px;transition:color 0.2s;">Risk Profiles</a>
-  <a href="pricing.html" target="_blank" class="header-nav" style="color:var(--accent2);text-decoration:none;font-size:.9rem;font-weight:500;padding:6px 12px;border-radius:6px;transition:color 0.2s;">Pricing</a>
-  <a href="roadmap.html" class="header-nav" style="color:var(--text2);text-decoration:none;font-size:.9rem;font-weight:500;padding:6px 12px;border-radius:6px;transition:color 0.2s;">Roadmap</a>
-  <a class="header-btn" href="dashboard.html" target="_blank" style="padding:6px 16px;background:var(--gradient2);color:#fff;border-radius:6px;font-size:.85rem;font-weight:600;text-decoration:none;white-space:nowrap;">Live Dashboard</a>
-  </header>
+<!-- NAV -->
+<nav class="nav">
+  <a href="./" class="nav-logo">
+    <svg width="36" height="36" viewBox="0 0 48 48" fill="none">
+      <rect x="4" y="4" width="40" height="40" rx="4" stroke="#E5E7EB" stroke-width="1" fill="rgba(255,255,255,.9)"/>
+      <line x1="4" y1="17.3" x2="44" y2="17.3" stroke="#E5E7EB" stroke-width="0.7"/>
+      <line x1="4" y1="24" x2="44" y2="24" stroke="#E5E7EB" stroke-width="0.7"/>
+      <line x1="4" y1="30.7" x2="44" y2="30.7" stroke="#E5E7EB" stroke-width="0.7"/>
+      <line x1="17.3" y1="4" x2="17.3" y2="44" stroke="#E5E7EB" stroke-width="0.7"/>
+      <line x1="24" y1="4" x2="24" y2="44" stroke="#E5E7EB" stroke-width="0.7"/>
+      <line x1="30.7" y1="4" x2="30.7" y2="44" stroke="#E5E7EB" stroke-width="0.7"/>
+      <circle cx="24" cy="24" r="6" stroke="#2269FC" stroke-width="2" fill="none" opacity=".9">
+        <animate attributeName="r" values="6;9;6" dur="3s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values=".9;.3;.9" dur="3s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="24" cy="24" r="11" stroke="#00D68F" stroke-width="1.5" fill="none" opacity=".5">
+        <animate attributeName="r" values="11;14;11" dur="3s" repeatCount="indefinite" begin="0.5s"/>
+        <animate attributeName="opacity" values=".5;.15;.5" dur="3s" repeatCount="indefinite" begin="0.5s"/>
+      </circle>
+      <circle cx="24" cy="24" r="16" stroke="#FFAA00" stroke-width="1" fill="none" opacity=".3">
+        <animate attributeName="r" values="16;18;16" dur="3s" repeatCount="indefinite" begin="1s"/>
+        <animate attributeName="opacity" values=".3;.1;.3" dur="3s" repeatCount="indefinite" begin="1s"/>
+      </circle>
+      <circle cx="24" cy="24" r="3" fill="#2269FC">
+        <animate attributeName="r" values="3;4;3" dur="3s" repeatCount="indefinite"/>
+      </circle>
+      <path d="M24 8l4 5h-8z" fill="#00D68F" opacity=".8">
+        <animate attributeName="opacity" values=".8;.3;.8" dur="3s" repeatCount="indefinite"/>
+      </path>
+      <path d="M24 40l4-5h-8z" fill="#FF4D4F" opacity=".8">
+        <animate attributeName="opacity" values=".8;.3;.8" dur="3s" repeatCount="indefinite" begin="1.5s"/>
+      </path>
+    </svg>
+    <span>Adaptive Intelligence Trading</span>
+  </a>
+  <div class="nav-links">
+    <a href="./">Product Overview</a>
+    <a href="pricing.html" class="active">Pricing</a>
+    <a href="dashboardV12.html" class="btn-blue">Live Dashboard</a>
+  </div>
+</nav>
 
-<!-- Hero -->
+<!-- ═══════════════ HERO (white) ═══════════════ -->
 <section class="hero">
-  <div class="hero-content">
-    <h1>One License. Lifetime Access.</h1>
-    <p>No monthly fees. No subscriptions. Pay once, trade forever. Your license pays for itself in about 29 days.</p>
-    <div class="hero-badges">
-      <div class="hero-badge">💰 No Recurring Fees</div>
-      <div class="hero-badge">📈 ~29 Day Breakeven</div>
-      <div class="hero-badge">⚖️ 3 Risk Profiles</div>
-      <div class="hero-badge">🔓 Lifetime Updates</div>
-    </div>
+  <div class="pill">V12e — Wyckoff Lifecycle Engine</div>
+  <h1>One License. Lifetime Access.</h1>
+  <p>No monthly fees. No subscriptions. Pay once, trade forever. Your license pays for itself in about 29 days.</p>
+  <a href="#pricing" class="btn-blue-light">Choose Your Plan</a>
+  <div class="hero-badges">
+    <div class="hero-badge">💰 No Recurring Fees</div>
+    <div class="hero-badge">📈 ~29 Day Breakeven</div>
+    <div class="hero-badge">⚖️ 3 Risk Profiles</div>
+    <div class="hero-badge">🔓 Lifetime Updates</div>
   </div>
 </section>
 
-<!-- Pricing Tiers -->
-<section class="pricing-section">
+<!-- ═══════════════ PRICING TIERS (dark rounded) ═══════════════ -->
+<div id="pricing" class="dark-section" style="margin-top:var(--section-gap);">
   <div class="container">
-    <div class="section-label">Pricing</div>
-    <h2 class="section-title fade-in">Choose Your Trading Capital Tier</h2>
-    <p class="section-subtitle fade-in">All tiers include the complete AIT system with identical features. Capital caps apply per exchange — currently <strong style="color:var(--accent2)">Aster DEX</strong> and <strong style="color:var(--accent2)">Hyperliquid</strong> (spot trading). Choose based on your capital allocation goals.</p>
-    <div class="pricing-grid">
-      <div class="pricing-card fade-in">
+    <h2 class="fade-in" style="text-align:center;">Choose Your Trading Capital Tier</h2>
+    <p class="sub fade-in" style="text-align:center;margin-left:auto;margin-right:auto;">All tiers include the complete V12e system with identical features. ~20 certified coins available — choose based on how many you want to trade simultaneously. Exchanges: <strong>Hyperliquid</strong> (preferred, all coins) and <strong>Aster</strong>.</p>
+
+    <div class="pricing-grid fade-in">
+      <!-- Starter -->
+      <div class="pricing-card">
         <div class="tier-name">Starter</div>
         <div class="tier-price">$500</div>
-        <div class="tier-capital">Max Capital: $5,000 · 1 Coin</div>
-        <div class="tier-desc">Perfect for testing the waters and learning automated trading</div>
+        <div class="tier-capital">Max $5K · 1 coin from 20 certified</div>
         <ul class="feature-list">
-          <li>1 simultaneous coin</li>
+          <li>1 coin from 20 certified</li>
           <li>3 risk profiles (Low, Medium, High)</li>
-          <li>Full bot software</li>
-          <li>Lifetime strategy updates</li>
-          <li>Two-tier coin scanner</li>
+          <li>V12e Lifecycle Engine (5-phase Wyckoff)</li>
+          <li>Smart Entry + Smart Exit</li>
+          <li>CFGI per-coin Fear &amp; Greed</li>
           <li>Personal live dashboard</li>
-          <li>All 6 market regimes</li>
-          <li>Adaptive Spot DCA with Scale-Out Exits</li>
-          <li>Adaptive TP & deviation</li>
-          <li>Conviction-driven safety orders</li>
-          <li>Zero funding fees — you own the coins</li>
+          <li>Adaptive TP &amp; deviation</li>
+          <li>Scale-out exits</li>
+          <li>Spot ownership — zero funding fees</li>
+          <li>Lifetime updates</li>
         </ul>
         <button class="select-btn" onclick="alert('Payment integration coming soon — crypto payments launching shortly!')">Select Plan</button>
       </div>
-      <div class="pricing-card fade-in">
+      <!-- Trader -->
+      <div class="pricing-card">
         <div class="tier-name">Trader</div>
         <div class="tier-price">$1,000</div>
-        <div class="tier-capital">Max Capital: $10,000 · Up to 2 Coins</div>
-        <div class="tier-desc">For serious traders ready to automate their portfolio</div>
+        <div class="tier-capital">Max $10K · Up to 3 coins</div>
         <ul class="feature-list">
-          <li>Up to 2 simultaneous coins</li>
+          <li>Up to 3 coins from 20 certified</li>
           <li>3 risk profiles (Low, Medium, High)</li>
-          <li>Full bot software</li>
-          <li>Lifetime strategy updates</li>
-          <li>Two-tier coin scanner</li>
+          <li>V12e Lifecycle Engine (5-phase Wyckoff)</li>
+          <li>Smart Entry + Smart Exit</li>
+          <li>CFGI per-coin Fear &amp; Greed</li>
           <li>Personal live dashboard</li>
-          <li>All 6 market regimes</li>
-          <li>Adaptive Spot DCA with Scale-Out Exits</li>
-          <li>Adaptive TP & deviation</li>
-          <li>Conviction-driven safety orders</li>
-          <li>Zero funding fees — you own the coins</li>
+          <li>Adaptive TP &amp; deviation</li>
+          <li>Scale-out exits</li>
+          <li>Spot ownership — zero funding fees</li>
+          <li>Lifetime updates</li>
         </ul>
         <button class="select-btn" onclick="alert('Payment integration coming soon — crypto payments launching shortly!')">Select Plan</button>
       </div>
-      <div class="pricing-card featured fade-in">
+      <!-- Pro -->
+      <div class="pricing-card featured">
         <div class="popular-badge">Most Popular</div>
         <div class="tier-name">Pro</div>
         <div class="tier-price">$2,500</div>
-        <div class="tier-capital">Max Capital: $25,000 · Up to 3 Coins</div>
-        <div class="tier-desc">The sweet spot for professional automated trading</div>
+        <div class="tier-capital">Max $25K · Up to 5 coins</div>
         <ul class="feature-list">
-          <li>Up to 3 simultaneous coins</li>
+          <li>Up to 5 coins from 20 certified</li>
           <li>3 risk profiles (Low, Medium, High)</li>
-          <li>Full bot software</li>
-          <li>Lifetime strategy updates</li>
-          <li>Two-tier coin scanner</li>
+          <li>V12e Lifecycle Engine (5-phase Wyckoff)</li>
+          <li>Smart Entry + Smart Exit</li>
+          <li>CFGI per-coin Fear &amp; Greed</li>
           <li>Personal live dashboard</li>
-          <li>All 6 market regimes</li>
-          <li>Adaptive Spot DCA with Scale-Out Exits</li>
-          <li>Adaptive TP & deviation</li>
-          <li>Conviction-driven safety orders</li>
-          <li>Zero funding fees — you own the coins</li>
+          <li>Adaptive TP &amp; deviation</li>
+          <li>Scale-out exits</li>
+          <li>Spot ownership — zero funding fees</li>
+          <li>Lifetime updates</li>
         </ul>
         <button class="select-btn" onclick="alert('Payment integration coming soon — crypto payments launching shortly!')">Select Plan</button>
       </div>
-      <div class="pricing-card fade-in">
+      <!-- Elite -->
+      <div class="pricing-card">
         <div class="tier-name">Elite</div>
         <div class="tier-price">$5,000</div>
-        <div class="tier-capital">Max Capital: $50,000 · Up to 5 Coins</div>
-        <div class="tier-desc">For high-capital traders seeking maximum efficiency</div>
+        <div class="tier-capital">Max $50K · Up to 10 coins</div>
         <ul class="feature-list">
-          <li>Up to 5 simultaneous coins</li>
+          <li>Up to 10 coins from 20 certified</li>
           <li>3 risk profiles (Low, Medium, High)</li>
-          <li>Full bot software</li>
-          <li>Lifetime strategy updates</li>
-          <li>Two-tier coin scanner</li>
+          <li>V12e Lifecycle Engine (5-phase Wyckoff)</li>
+          <li>Smart Entry + Smart Exit</li>
+          <li>CFGI per-coin Fear &amp; Greed</li>
           <li>Personal live dashboard</li>
-          <li>All 6 market regimes</li>
-          <li>Adaptive Spot DCA with Scale-Out Exits</li>
-          <li>Adaptive TP & deviation</li>
-          <li>Conviction-driven safety orders</li>
-          <li>Zero funding fees — you own the coins</li>
+          <li>Adaptive TP &amp; deviation</li>
+          <li>Scale-out exits</li>
+          <li>Spot ownership — zero funding fees</li>
+          <li>Lifetime updates</li>
         </ul>
         <button class="select-btn" onclick="alert('Payment integration coming soon — crypto payments launching shortly!')">Select Plan</button>
       </div>
-      <div class="pricing-card fade-in">
+      <!-- Whale -->
+      <div class="pricing-card">
         <div class="tier-name">Whale</div>
         <div class="tier-price">$10,000</div>
-        <div class="tier-capital">Max Capital: $100,000 · Up to 8 Coins</div>
-        <div class="tier-desc">For institutional-level capital deployment</div>
+        <div class="tier-capital">Max $100K · All 20 coins</div>
         <ul class="feature-list">
-          <li>Up to 8 simultaneous coins</li>
+          <li>All 20 certified coins</li>
           <li>3 risk profiles (Low, Medium, High)</li>
-          <li>Full bot software</li>
-          <li>Lifetime strategy updates</li>
-          <li>Two-tier coin scanner</li>
+          <li>V12e Lifecycle Engine (5-phase Wyckoff)</li>
+          <li>Smart Entry + Smart Exit</li>
+          <li>CFGI per-coin Fear &amp; Greed</li>
           <li>Personal live dashboard</li>
-          <li>All 6 market regimes</li>
-          <li>Adaptive Spot DCA with Scale-Out Exits</li>
-          <li>Adaptive TP & deviation</li>
-          <li>Conviction-driven safety orders</li>
-          <li>Zero funding fees — you own the coins</li>
+          <li>Adaptive TP &amp; deviation</li>
+          <li>Scale-out exits</li>
+          <li>Spot ownership — zero funding fees</li>
+          <li>Lifetime updates</li>
         </ul>
         <button class="select-btn" onclick="alert('Payment integration coming soon — crypto payments launching shortly!')">Select Plan</button>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- All Plans Include -->
-<section>
+<!-- ═══════════════ EVERY LICENSE INCLUDES (white) ═══════════════ -->
+<section class="light-section">
   <div class="container">
-    <div class="section-label">What's Included</div>
-    <h2 class="section-title fade-in">Every License Includes Everything</h2>
-    <p class="section-subtitle fade-in">No tiered features, no hidden costs. Every plan gets the complete AIT system.</p>
-    <div class="features-grid">
-      <div class="feature-card fade-in">
-        <div class="feature-icon">🤖</div>
-        <div class="feature-title">Full Bot Software</div>
-        <div class="feature-desc">Run on your machine or VPS, you control everything</div>
+    <h2 class="fade-in" style="text-align:center;">Every License Includes Everything</h2>
+    <p class="sub fade-in" style="text-align:center;margin-left:auto;margin-right:auto;">No tiered features, no hidden costs. Every plan gets the complete V12e system — you only choose how many coins to trade.</p>
+    <div class="features-grid fade-in">
+      <div class="feature-card">
+        <div class="feature-icon">🔄</div>
+        <div class="feature-title">V12e Lifecycle Engine</div>
+        <div class="feature-desc">5-phase Wyckoff cycle management: DCA → EXIT → MARKDOWN → SPRING → MARKUP</div>
       </div>
-      <div class="feature-card fade-in">
+      <div class="feature-card">
         <div class="feature-icon">🔍</div>
-        <div class="feature-title">Two-Tier Coin Scanner</div>
-        <div class="feature-desc">275+ pairs scanned every 4 hours, automatic rotation recommendations</div>
+        <div class="feature-title">Smart Entry</div>
+        <div class="feature-desc">3-tier coin scoring pipeline from 20 certified coins across crypto sectors</div>
       </div>
-      <div class="feature-card fade-in">
-        <div class="feature-icon">📊</div>
-        <div class="feature-title">Personal Dashboard</div>
-        <div class="feature-desc">Real-time monitoring with live charts, trade history, and adaptive intelligence panel</div>
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <div class="feature-title">Smart Exit</div>
+        <div class="feature-desc">Regime-gated profit extraction with post-peak reversal detection</div>
       </div>
-      <div class="feature-card fade-in">
+      <div class="feature-card">
+        <div class="feature-icon">😱</div>
+        <div class="feature-title">CFGI Fear &amp; Greed</div>
+        <div class="feature-desc">Per-coin real-time sentiment driving conviction-modulated accumulation</div>
+      </div>
+      <div class="feature-card">
         <div class="feature-icon">🧠</div>
         <div class="feature-title">6 Market Regimes</div>
-        <div class="feature-desc">Automatic detection and parameter adaptation for any market condition</div>
+        <div class="feature-desc">Automatic detection and parameter adaptation every 30 seconds</div>
       </div>
-      <div class="feature-card fade-in">
+      <div class="feature-card">
         <div class="feature-icon">⚖️</div>
         <div class="feature-title">3 Risk Profiles</div>
-        <div class="feature-desc">Low (5 SOs), Medium (8 SOs), High (12 SOs) — accumulation depth profiles with auto-guardrails</div>
+        <div class="feature-desc">Low, Medium, High with auto-guardrails that de-risk at drawdown thresholds</div>
       </div>
-      <div class="feature-card fade-in">
-        <div class="feature-icon">🔄</div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
         <div class="feature-title">Scale-Out DCA</div>
-        <div class="feature-desc">Intelligent spot accumulation with reverse-order profit-taking — sell largest lots first</div>
+        <div class="feature-desc">Sell largest lots first for ~5-8× more profit per cycle</div>
       </div>
-      <div class="feature-card fade-in">
+      <div class="feature-card">
         <div class="feature-icon">🫁</div>
         <div class="feature-title">Breathing Grid</div>
-        <div class="feature-desc">TP and deviation expand/contract with volatility via ATR</div>
+        <div class="feature-desc">Adaptive TP &amp; deviation expand/contract with real-time volatility</div>
       </div>
-      <div class="feature-card fade-in">
+      <div class="feature-card">
         <div class="feature-icon">🧭</div>
         <div class="feature-title">Conviction Engine</div>
-        <div class="feature-desc">F&G index, macro indicators, and regime detection drive parameter adaptation</div>
+        <div class="feature-desc">Fear &amp; Greed modulated accumulation — buy harder in fear, lighter in greed</div>
       </div>
-      <div class="feature-card fade-in">
+      <div class="feature-card">
         <div class="feature-icon">🛡️</div>
         <div class="feature-title">Capital Protection</div>
-        <div class="feature-desc">Profile-based capital reserves (5-30%), auto-skip unaffordable SOs, conviction-driven sizing</div>
+        <div class="feature-desc">Profile-based reserves, auto-skip unaffordable orders, conviction-driven sizing</div>
       </div>
-      <div class="feature-card fade-in">
+      <div class="feature-card">
+        <div class="feature-icon">📈</div>
+        <div class="feature-title">Personal Dashboard</div>
+        <div class="feature-desc">Real-time monitoring with live charts, lifecycle phases, and trade history</div>
+      </div>
+      <div class="feature-card">
         <div class="feature-icon">⚡</div>
         <div class="feature-title">Lifetime Updates</div>
-        <div class="feature-desc">Strategy improvements, new features, exchange support forever</div>
-      </div>
-      <div class="feature-card fade-in">
-        <div class="feature-icon">💰</div>
-        <div class="feature-title">Zero Maker Fees</div>
-        <div class="feature-desc">All limit orders on Aster DEX = 0% maker fee</div>
+        <div class="feature-desc">Strategy improvements, new coins, exchange support — forever</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Global Capacity Pool -->
-<section class="capacity-section">
+<!-- ═══════════════ BREAKEVEN CALCULATOR (dark rounded) ═══════════════ -->
+<div class="dark-section" style="margin-top:0;">
   <div class="container">
-    <div class="section-label">Platform Capacity</div>
-    <h2 class="section-title fade-in">Global Capacity Pool</h2>
-    <p class="section-subtitle fade-in">We cap total platform capital to protect everyone's edge</p>
-    <div class="capacity-visual fade-in">
-      <div class="capacity-title">Aster DEX Pool: $2.5M</div>
-      <div class="capacity-bar">
-        <div class="capacity-fill"></div>
-      </div>
-      <div class="capacity-stats">
-        <span>$375K Active</span>
-        <span>$2.125M Available</span>
-      </div>
-      <div class="capacity-desc">
-        We cap total platform capital per exchange to protect everyone's edge. When too many bots trade the same markets with the same strategy, order clustering erodes profits for everyone. Our pool cap ensures your bot always has room to breathe.
-      </div>
-      <div style="color: var(--text3); font-size: 0.9rem; font-style: italic;">
-        Each new exchange (Binance, Bybit, etc.) adds its own separate pool — expanding total platform capacity and your upgrade options
-      </div>
-    </div>
-  </div>
-</section>
+    <h2 class="fade-in" style="text-align:center;">Your License Pays for Itself</h2>
+    <p class="sub fade-in" style="text-align:center;margin-left:auto;margin-right:auto;">At <strong>0.35% average daily ROI</strong> with 100% profit compounding — every deal's gains reinvest into the next deal's capital.</p>
 
-<!-- Breakeven Calculator -->
-<section class="breakeven-section">
-  <div class="container">
-    <div class="section-label">ROI Calculator</div>
-    <h2 class="section-title fade-in">Your License Pays for Itself (100% Compounded)</h2>
-    <p class="section-subtitle fade-in">At 0.35% average daily ROI with 100% profit compounding — every deal's gains reinvest into the next deal's capital</p>
-    <div class="breakeven-grid">
-      <div class="breakeven-card fade-in">
+    <div class="breakeven-grid fade-in">
+      <div class="breakeven-card">
         <div class="breakeven-tier">Starter</div>
         <div class="breakeven-price">$500</div>
-        <div style="color:var(--text3);font-size:0.8rem;margin-bottom:8px;">$5K cap · 1 coin</div>
+        <div style="color:var(--text-tertiary-dark);font-size:12px;margin-bottom:6px;">$5K cap · 1 coin</div>
         <div class="breakeven-daily">~$17.50/day</div>
-        <div class="breakeven-days">29 days to break even</div>
+        <div class="breakeven-days">≈ 29 days to break even</div>
       </div>
-      <div class="breakeven-card fade-in">
+      <div class="breakeven-card">
         <div class="breakeven-tier">Trader</div>
         <div class="breakeven-price">$1,000</div>
-        <div style="color:var(--text3);font-size:0.8rem;margin-bottom:8px;">$10K cap · 2 coins</div>
+        <div style="color:var(--text-tertiary-dark);font-size:12px;margin-bottom:6px;">$10K cap · 3 coins</div>
         <div class="breakeven-daily">~$35/day</div>
-        <div class="breakeven-days">29 days to break even</div>
+        <div class="breakeven-days">≈ 29 days to break even</div>
       </div>
-      <div class="breakeven-card fade-in">
+      <div class="breakeven-card">
         <div class="breakeven-tier">Pro</div>
         <div class="breakeven-price">$2,500</div>
-        <div style="color:var(--text3);font-size:0.8rem;margin-bottom:8px;">$25K cap · 3 coins</div>
+        <div style="color:var(--text-tertiary-dark);font-size:12px;margin-bottom:6px;">$25K cap · 5 coins</div>
         <div class="breakeven-daily">~$87.50/day</div>
-        <div class="breakeven-days">29 days to break even</div>
+        <div class="breakeven-days">≈ 29 days to break even</div>
       </div>
-      <div class="breakeven-card fade-in">
+      <div class="breakeven-card">
         <div class="breakeven-tier">Elite</div>
         <div class="breakeven-price">$5,000</div>
-        <div style="color:var(--text3);font-size:0.8rem;margin-bottom:8px;">$50K cap · 5 coins</div>
+        <div style="color:var(--text-tertiary-dark);font-size:12px;margin-bottom:6px;">$50K cap · 10 coins</div>
         <div class="breakeven-daily">~$175/day</div>
-        <div class="breakeven-days">29 days to break even</div>
+        <div class="breakeven-days">≈ 29 days to break even</div>
       </div>
-      <div class="breakeven-card fade-in">
+      <div class="breakeven-card">
         <div class="breakeven-tier">Whale</div>
         <div class="breakeven-price">$10,000</div>
-        <div style="color:var(--text3);font-size:0.8rem;margin-bottom:8px;">$100K cap · 8 coins</div>
+        <div style="color:var(--text-tertiary-dark);font-size:12px;margin-bottom:6px;">$100K cap · 20 coins</div>
         <div class="breakeven-daily">~$350/day</div>
-        <div class="breakeven-days">29 days to break even</div>
+        <div class="breakeven-days">≈ 29 days to break even</div>
       </div>
     </div>
-    <div class="disclaimer fade-in">
-      Past performance does not guarantee future returns. Daily ROI assumes 100% compounding (all profits reinvested). Results vary with market conditions.
+
+    <div class="fade-in" style="margin-top:24px;padding:20px;background:var(--bg-card-dark);border-radius:var(--radius-card);text-align:center;">
+      <div style="color:var(--profit);font-size:16px;font-weight:600;margin-bottom:8px;">V12e Backtest Performance (Full Market Cycle)</div>
+      <div style="color:var(--text-body-dark);font-size:14px;">ETH <strong style="color:var(--profit);">+261%</strong> · SOL <strong style="color:var(--profit);">+377%</strong> (Medium) &nbsp;|&nbsp; SOL <strong style="color:var(--profit);">+614%</strong> · BTC <strong style="color:var(--profit);">+463%</strong> (High) &nbsp;|&nbsp; <strong style="color:var(--profit);">100% win rate</strong></div>
+    </div>
+
+    <div class="fade-in" style="margin-top:16px;padding:16px;background:rgba(255,77,79,0.08);border:1px solid rgba(255,77,79,0.15);border-radius:var(--radius-card);text-align:center;">
+      <div style="color:var(--text-body-dark);font-size:13px;">Past performance does not guarantee future returns. Daily ROI assumes 100% compounding (all profits reinvested). Results vary with market conditions.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ GLOBAL CAPACITY POOL (white) ═══════════════ -->
+<section class="light-section" style="padding-bottom:60px;">
+  <div class="container">
+    <h2 class="fade-in" style="text-align:center;">Global Capacity Pool</h2>
+    <p class="sub fade-in" style="text-align:center;margin-left:auto;margin-right:auto;">We cap total platform capital to protect everyone's edge.</p>
+    <div class="capacity-visual fade-in" style="background:var(--text-heading);color:#FFF;">
+      <div style="font-size:18px;font-weight:500;margin-bottom:16px;">Hyperliquid Pool: $2.5M</div>
+      <div class="capacity-bar"><div class="capacity-fill"></div></div>
+      <div style="display:flex;justify-content:space-between;font-size:14px;color:var(--text-body-dark);margin-bottom:20px;"><span>$375K Active</span><span>$2.125M Available</span></div>
+      <div style="color:var(--text-body-dark);font-size:14px;line-height:22px;margin-bottom:12px;">When too many bots trade the same markets with the same strategy, order clustering erodes profits for everyone. Our pool cap ensures your bot always has room to breathe.</div>
+      <div style="color:var(--text-tertiary-dark);font-size:13px;font-style:italic;">Each new exchange adds its own separate pool — expanding total platform capacity</div>
     </div>
   </div>
 </section>
 
-<!-- How It Works -->
-<section style="background: #0d0d15;">
+<!-- ═══════════════ HOW IT WORKS (dark rounded) ═══════════════ -->
+<div class="dark-section" style="margin-top:0;">
   <div class="container">
-    <div class="section-label">Getting Started</div>
-    <h2 class="section-title fade-in">How It Works</h2>
-    <p class="section-subtitle fade-in">Three simple steps to automated trading</p>
-    <div class="steps-grid">
-      <div class="step-card fade-in">
-        <div class="step-number">1</div>
-        <div class="step-title">Choose Your Plan</div>
-        <div class="step-desc">Select the capital tier that matches your trading goals</div>
+    <h2 class="fade-in" style="text-align:center;">Get Started in 3 Steps</h2>
+    <p class="sub fade-in" style="text-align:center;margin-left:auto;margin-right:auto;">No trading knowledge needed. Your crypto stays in YOUR exchange account — full custody at all times.</p>
+    <div class="grid-3 fade-in">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Choose Your Plan</h3>
+        <p>Select the capital tier that matches your goals. All plans include the complete V12e system.</p>
       </div>
-      <div class="step-card fade-in">
-        <div class="step-number">2</div>
-        <div class="step-title">Activate Your License</div>
-        <div class="step-desc">Get your license key, install the bot on your machine or VPS</div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Connect &amp; Configure</h3>
+        <p>Connect your Hyperliquid or Aster account via API keys (trade-only, no withdrawal access). Pick your risk profile.</p>
       </div>
-      <div class="step-card fade-in">
-        <div class="step-number">3</div>
-        <div class="step-title">Start Trading</div>
-        <div class="step-desc">Connect your exchange account (Aster DEX or Hyperliquid), choose your risk profile allocation, and let AIT handle the rest</div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Let V12e Trade</h3>
+        <p>The Wyckoff Lifecycle Engine handles everything — coin selection, entry, accumulation, exit, and rotation. Zero daily management.</p>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- FAQ -->
-<section class="faq-section">
+<!-- ═══════════════ FAQ (white) ═══════════════ -->
+<section class="light-section">
   <div class="container">
-    <div class="section-label">FAQ</div>
-    <h2 class="section-title fade-in">Frequently Asked Questions</h2>
+    <h2 class="fade-in" style="text-align:center;">Frequently Asked Questions</h2>
+    <div style="height:40px;"></div>
     <div class="faq-container">
+
       <div class="faq-category fade-in">
-        <div class="faq-category-title">Licensing & Access</div>
+        <div class="faq-category-title">Licensing &amp; Access</div>
         <div class="faq-item">
-          <button class="faq-question">
-            What exactly do I get with my license?
-            <span class="faq-toggle">+</span>
-          </button>
-          <div class="faq-answer">
-            Full bot software with 3 risk profiles (Low, Medium, High — varying accumulation depth), multi-coin spot trading (tier-dependent), two-tier coin scanner, personal dashboard, lifetime strategy updates, and all adaptive trading parameters. You own the actual coins — no leverage, no margin, zero funding fees. You run it on your own machine — your keys, your data, your control.
-          </div>
+          <button class="faq-question">What exactly do I get with my license?<span class="faq-toggle">+</span></button>
+          <div class="faq-answer">The complete V12e system: Wyckoff Lifecycle Engine (5-phase cycle management), Smart Entry (3-tier coin scoring from 20 certified coins), Smart Exit (regime-gated + reversal detection), CFGI per-coin Fear &amp; Greed, 3 risk profiles with auto-guardrails, scale-out exits, personal live dashboard, and lifetime updates. You own actual coins — spot trading, zero funding fees. Runs on your machine — your keys, your data, your control.</div>
         </div>
         <div class="faq-item">
-          <button class="faq-question">
-            Is this really a lifetime license?
-            <span class="faq-toggle">+</span>
-          </button>
-          <div class="faq-answer">
-            Yes. One payment, use forever. Includes all future strategy updates, new regime detections, and exchange support.
-          </div>
+          <button class="faq-question">Is this really a lifetime license?<span class="faq-toggle">+</span></button>
+          <div class="faq-answer">Yes. One payment, use forever. Includes all future strategy updates, new certified coins, lifecycle improvements, and exchange support.</div>
         </div>
         <div class="faq-item">
-          <button class="faq-question">
-            Can I upgrade my tier later?
-            <span class="faq-toggle">+</span>
-          </button>
-          <div class="faq-answer">
-            Absolutely. You only pay the difference between your current tier and the new one — for example, upgrading from Starter ($500) to Pro ($2,500) costs $2,000. The upgrade is instant: your capital cap increases, you unlock more simultaneous coins (e.g., Starter's 1 coin → Pro's 3 coins), and the bot automatically scales up on the next deal cycle. No downtime, no reconfiguration needed.
-          </div>
+          <button class="faq-question">Can I upgrade my tier later?<span class="faq-toggle">+</span></button>
+          <div class="faq-answer">Absolutely. You only pay the difference — for example, upgrading from Starter ($500) to Pro ($2,500) costs $2,000. The upgrade is instant: your capital cap increases, you unlock more coins (e.g., 1 → 5), and the V12e engine automatically scales up on the next lifecycle phase. No downtime, no reconfiguration.</div>
         </div>
         <div class="faq-item">
-          <button class="faq-question">
-            What happens when I reach my capital cap?
-            <span class="faq-toggle">+</span>
-          </button>
-          <div class="faq-answer">
-            The bot will notify you as you approach your tier's capital limit. At 90% utilization, you'll receive a heads-up suggesting an upgrade. If your account equity grows beyond your cap (e.g., from trading profits), the bot continues running but won't scale order sizes beyond your tier's limit — meaning excess capital sits idle. Upgrading unlocks the full potential of your growing account. Your profits are always yours; the cap only limits how much active capital the bot deploys.
-          </div>
+          <button class="faq-question">What happens when I reach my capital cap?<span class="faq-toggle">+</span></button>
+          <div class="faq-answer">The bot notifies you at 90% utilization. If profits push your account beyond your cap, the bot continues running but won't scale order sizes beyond your tier's limit — excess capital sits idle. Upgrading unlocks the full potential of your growing account. Your profits are always yours.</div>
         </div>
         <div class="faq-item">
-          <button class="faq-question">
-            Can I transfer my license?
-            <span class="faq-toggle">+</span>
-          </button>
-          <div class="faq-answer">
-            Contact support for license transfers. One active installation per license.
-          </div>
+          <button class="faq-question">Can I transfer my license?<span class="faq-toggle">+</span></button>
+          <div class="faq-answer">Contact support for license transfers. One active installation per license.</div>
         </div>
         <div class="faq-item">
-          <button class="faq-question">
-            What if I want a refund?
-            <span class="faq-toggle">+</span>
-          </button>
-          <div class="faq-answer">
-            We offer a 7-day satisfaction guarantee. If the bot doesn't meet expectations, contact us for a full refund.
-          </div>
-        </div>
-      </div>
-      
-      <div class="faq-category fade-in">
-        <div class="faq-category-title">Technical & Setup</div>
-        <div class="faq-item">
-          <button class="faq-question">
-            What do I need to run the bot?
-            <span class="faq-toggle">+</span>
-          </button>
-          <div class="faq-answer">
-            A computer or VPS (Windows/Linux), Python 3.10+, and an exchange account (Aster DEX or Hyperliquid) with API keys. The bot runs 24/7 on your machine.
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question">
-            Which exchanges are supported?
-            <span class="faq-toggle">+</span>
-          </button>
-          <div class="faq-answer">
-            Currently Aster DEX and Hyperliquid (spot trading). More exchanges planned — your license covers all future exchange support.
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question">
-            Is my capital safe?
-            <span class="faq-toggle">+</span>
-          </button>
-          <div class="faq-answer">
-            The bot uses your exchange API keys with trade-only permissions — no withdrawal access. Your funds never leave your exchange account.
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question">
-            How much capital do I need minimum?
-            <span class="faq-toggle">+</span>
-          </button>
-          <div class="faq-answer">
-            We recommend at least $500 for the Starter tier. Below this, minimum order sizes can limit the strategy's effectiveness.
-          </div>
+          <button class="faq-question">What if I want a refund?<span class="faq-toggle">+</span></button>
+          <div class="faq-answer">We offer a 7-day satisfaction guarantee. If the bot doesn't meet expectations, contact us for a full refund.</div>
         </div>
       </div>
 
       <div class="faq-category fade-in">
-        <div class="faq-category-title">Trading & Strategy</div>
+        <div class="faq-category-title">Technical &amp; Setup</div>
         <div class="faq-item">
-          <button class="faq-question">
-            How does the spot DCA with scale-out exits work?
-            <span class="faq-toggle">+</span>
-          </button>
-          <div class="faq-answer">
-            The bot accumulates coins at progressively lower prices using DCA safety orders (long-only spot trading — you own the actual coins). When price recovers, it sells the largest lots first (scale-out exits), locking in profits from the deepest accumulation points. Zero funding fees, no leverage, no margin — just systematic accumulation and intelligent profit-taking across six market regimes.
-          </div>
+          <button class="faq-question">What do I need to run the bot?<span class="faq-toggle">+</span></button>
+          <div class="faq-answer">A computer or VPS (Windows/Linux), Python 3.10+, and an exchange account (Hyperliquid preferred, or Aster) with API keys. The bot runs 24/7 on your machine.</div>
         </div>
         <div class="faq-item">
-          <button class="faq-question">
-            What are the 6 market regimes?
-            <span class="faq-toggle">+</span>
-          </button>
-          <div class="faq-answer">
-            Accumulation, Ranging, Mild Trend, Trending, Distribution, and Extreme. Each has different allocation splits, TP targets, and grid spacing.
-          </div>
+          <button class="faq-question">Which exchanges are supported?<span class="faq-toggle">+</span></button>
+          <div class="faq-answer">Hyperliquid (preferred — supports all 20 certified coins) and Aster. More exchanges planned — your license covers all future exchange support.</div>
         </div>
         <div class="faq-item">
-          <button class="faq-question">
-            What happens in an Extreme regime?
-            <span class="faq-toggle">+</span>
-          </button>
-          <div class="faq-answer">
-            Trading halts automatically. No new deals are opened. This protects your capital during flash crashes or extreme volatility events.
-          </div>
+          <button class="faq-question">Is my capital safe?<span class="faq-toggle">+</span></button>
+          <div class="faq-answer">The bot uses your exchange API keys with trade-only permissions — no withdrawal access. Your funds never leave your exchange account. Spot trading only — no leverage, no liquidation risk.</div>
+        </div>
+      </div>
+
+      <div class="faq-category fade-in">
+        <div class="faq-category-title">Trading &amp; Strategy</div>
+        <div class="faq-item">
+          <button class="faq-question">How does the V12e Lifecycle Engine work?<span class="faq-toggle">+</span></button>
+          <div class="faq-answer">V12e manages each coin through a 5-phase Wyckoff lifecycle: <strong>DCA</strong> (conviction-driven accumulation), <strong>EXIT</strong> (regime-gated profit extraction with reversal detection), <strong>MARKDOWN</strong> (capital protection during downtrends), <strong>SPRING</strong> (identifying bottom accumulation zones), and <strong>MARKUP</strong> (riding the recovery). The engine continuously cycles through phases based on real-time market conditions, not fixed timers.</div>
         </div>
         <div class="faq-item">
-          <button class="faq-question">
-            What's the expected ROI?
-            <span class="faq-toggle">+</span>
-          </button>
-          <div class="faq-answer">
-            Backtested performance shows ~0.35% daily ROI on average with 100% compounding assumed (each completed deal's profit reinvests into the next deal's capital). Actual results vary with market conditions, volatility, and the specific coin being traded. This is not a guarantee.
-          </div>
+          <button class="faq-question">What coins does it trade?<span class="faq-toggle">+</span></button>
+          <div class="faq-answer">~20 certified coins across major crypto sectors. Each coin passes a rigorous 4-stage validation: maturity screen → technical scan → full cycle backtest (≥100% PnL required) → 3×3 risk profile matrix. Smart Entry's 3-tier scoring pipeline selects the best opportunities from this certified pool. How many you trade simultaneously depends on your tier (1 for Starter up to all 20 for Whale).</div>
         </div>
         <div class="faq-item">
-          <button class="faq-question">
-            Can I lose money?
-            <span class="faq-toggle">+</span>
-          </button>
-          <div class="faq-answer">
-            Yes. All trading carries risk. The DCA strategy can experience drawdowns, especially in prolonged downtrends. The capital protection reserves and regime detection help minimize risk but cannot eliminate it.
-          </div>
+          <button class="faq-question">What is the coin certification process?<span class="faq-toggle">+</span></button>
+          <div class="faq-answer">Every coin must pass 4 stages before it's certified for trading: <strong>Stage 1 — Maturity Screen:</strong> market cap, volume, and liquidity thresholds. <strong>Stage 2 — Technical Scan:</strong> volatility profile, spread analysis, order book depth. <strong>Stage 3 — Full Cycle Backtest:</strong> must achieve ≥100% PnL over a complete market cycle. <strong>Stage 4 — Risk Profile Matrix:</strong> tested across all 3 risk profiles (Low/Medium/High) × 3 market conditions to ensure consistent performance. Only coins passing all 4 stages are added to the certified pool.</div>
         </div>
         <div class="faq-item">
-          <button class="faq-question">
-            What are risk profiles?
-            <span class="faq-toggle">+</span>
-          </button>
-          <div class="faq-answer">
-            Three built-in spot trading configurations that control accumulation depth and adaptive parameters — all long-only, no leverage. <strong>Low</strong> (5 safety orders, 3.0% deviation, 30% reserve) is conservative and capital-preserving — this is the default. <strong>Medium</strong> (8 safety orders, 2.5% deviation, 15% reserve) offers higher returns with moderate risk. <strong>High</strong> (12 safety orders, 2.0% deviation, 5% reserve) is aggressive with deep accumulation grids for experienced traders. You allocate your capital across profiles like a portfolio — for example, 60% Low / 30% Medium / 10% High. Built-in guardrails automatically shift capital to lower profiles if drawdowns hit thresholds (e.g., Medium → Low at 30% drawdown). All profiles halt during EXTREME regime for safety. <a href="risk-profiles.html" style="color:var(--accent2);">Learn more →</a>
-          </div>
+          <button class="faq-question">What are risk profiles?<span class="faq-toggle">+</span></button>
+          <div class="faq-answer">Three configurations controlling accumulation depth and risk exposure. <strong>Low:</strong> conservative, capital-preserving (ETH +260%, SOL +324%, BTC +233%). <strong>Medium:</strong> balanced, best risk-adjusted returns (ETH +261%, SOL +377%, BTC +185%). <strong>High:</strong> aggressive, maximum returns (ETH +299%, SOL +614%, BTC +463%). Built-in guardrails automatically shift to lower profiles at drawdown thresholds (Medium→Low at 30%, High→Medium at 50%). All profiles achieve 100% win rate in V12e backtests.</div>
         </div>
         <div class="faq-item">
-          <button class="faq-question">
-            What coins does it trade?
-            <span class="faq-toggle">+</span>
-          </button>
-          <div class="faq-answer">
-            The two-tier scanner evaluates 275+ Aster DEX pairs every 4 hours and ranks coins by trading fitness. The bot automatically trades the top-ranked coins — how many depends on your tier (1 for Starter up to 8 for Whale). Capital is allocated proportionally based on scanner scores, with automatic rotation when a better coin is found.
-          </div>
+          <button class="faq-question">What's the expected ROI?<span class="faq-toggle">+</span></button>
+          <div class="faq-answer">Backtested performance shows ~0.35% daily ROI on average with 100% compounding. V12e backtests over a full market cycle: ETH +261%, SOL +614%, BTC +463% (High profile) with 100% win rate. Actual results vary with market conditions. This is not a guarantee.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Can I lose money?<span class="faq-toggle">+</span></button>
+          <div class="faq-answer">Yes. All trading carries risk. The V12e lifecycle phases (MARKDOWN, SPRING) help manage downtrends, and auto-guardrails de-risk at drawdown thresholds, but cannot eliminate risk entirely.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">What happens in an Extreme regime?<span class="faq-toggle">+</span></button>
+          <div class="faq-answer">Trading halts automatically. No new deals are opened. The V12e engine transitions to MARKDOWN phase to protect capital during flash crashes or extreme volatility events.</div>
         </div>
       </div>
 
       <div class="faq-category fade-in">
         <div class="faq-category-title">Multi-Coin Trading</div>
         <div class="faq-item">
-          <button class="faq-question">
-            How does multi-coin scaling work across tiers?
-            <span class="faq-toggle">+</span>
-          </button>
-          <div class="faq-answer">
-            Higher tiers unlock more simultaneous coins: Starter trades 1, Trader trades up to 2, Pro up to 3, Elite up to 5, and Whale up to 8. The bot's two-tier scanner ranks 275+ coins every 4 hours and automatically selects the top performers. Capital is split proportionally based on each coin's scanner score — a coin that scores twice as high gets roughly twice the allocation. Each coin runs its own independent DCA deal with full regime detection and adaptive parameters.
-          </div>
+          <button class="faq-question">How does multi-coin scaling work across tiers?<span class="faq-toggle">+</span></button>
+          <div class="faq-answer">Higher tiers unlock more simultaneous coins from the 20 certified pool: Starter trades 1, Trader up to 3, Pro up to 5, Elite up to 10, and Whale all 20. Smart Entry's scoring pipeline ranks certified coins and selects the top performers. Capital is allocated proportionally based on each coin's score. Each coin runs its own independent V12e lifecycle with full regime detection and adaptive parameters.</div>
         </div>
         <div class="faq-item">
-          <button class="faq-question">
-            Why does it cap at 8 coins for the Whale tier?
-            <span class="faq-toggle">+</span>
-          </button>
-          <div class="faq-answer">
-            Three reasons. First, <strong>diminishing diversification</strong> — crypto pairs are highly correlated, especially during regime shifts. Beyond 8 coins, you're adding correlation, not diversification. Second, <strong>capital depth matters</strong> — each coin needs enough capital to run a full safety order grid. Spreading $100K across 8 coins gives ~$12.5K each, which supports deep accumulation grids across all risk profiles. Add more coins and the grids get too shallow to be effective. Third, <strong>execution quality</strong> — more coins means more API calls per cycle, which can slow the trading loop and delay fills. Eight coins is the sweet spot where you get broad market coverage without sacrificing execution speed or grid depth.
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question">
-            What happens when a coin rotates out?
-            <span class="faq-toggle">+</span>
-          </button>
-          <div class="faq-answer">
-            Graceful wind-down. When the scanner identifies a better coin, the outgoing coin stops opening new deals but continues managing existing ones. Active deals are given up to 2 hours to close naturally via take-profit. After that, positions are force-closed. A coin must show at least 20% better scanner score to trigger rotation — this prevents unnecessary churn from minor score fluctuations.
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question">
-            Is there a minimum capital per coin?
-            <span class="faq-toggle">+</span>
-          </button>
-          <div class="faq-answer">
-            Yes — approximately $3,000 per coin. If your capital can't support a coin above this floor, the bot automatically reduces the number of active coins. This ensures every coin has enough depth for meaningful safety order grids. A 10% global reserve is also maintained off the table at all times.
-          </div>
+          <button class="faq-question">What happens when a coin rotates out?<span class="faq-toggle">+</span></button>
+          <div class="faq-answer">Graceful wind-down. The outgoing coin completes its current lifecycle phase while the new coin begins its DCA phase. Active deals are given time to close via take-profit. A coin must show significantly better scores to trigger rotation — preventing unnecessary churn.</div>
         </div>
       </div>
 
       <div class="faq-category fade-in">
-        <div class="faq-category-title">Capital & Pool</div>
+        <div class="faq-category-title">Capital &amp; Pool</div>
         <div class="faq-item">
-          <button class="faq-question">
-            Why are there capital caps?
-            <span class="faq-toggle">+</span>
-          </button>
-          <div class="faq-answer">
-            To protect edge. If too many bots trade the same markets with identical strategies, order clustering erodes profits for everyone. Caps ensure the strategy remains effective.
-          </div>
+          <button class="faq-question">Why are there capital caps?<span class="faq-toggle">+</span></button>
+          <div class="faq-answer">To protect edge. If too many bots trade the same markets with identical strategies, order clustering erodes profits for everyone. Caps ensure the V12e strategy remains effective.</div>
         </div>
         <div class="faq-item">
-          <button class="faq-question">
-            What is the Global Capacity Pool?
-            <span class="faq-toggle">+</span>
-          </button>
-          <div class="faq-answer">
-            The total platform-wide capital allocation across all customers on a given exchange. The Aster DEX pool is currently capped at $2.5M to maintain strategy effectiveness. Each new exchange we support (Binance, Bybit, etc.) gets its own separate pool, expanding total platform capacity.
-          </div>
+          <button class="faq-question">What is the Global Capacity Pool?<span class="faq-toggle">+</span></button>
+          <div class="faq-answer">The total platform-wide capital allocation across all customers on a given exchange. Currently capped at $2.5M per exchange to maintain strategy effectiveness. Each new exchange gets its own separate pool.</div>
         </div>
         <div class="faq-item">
-          <button class="faq-question">
-            What if the pool is full?
-            <span class="faq-toggle">+</span>
-          </button>
-          <div class="faq-answer">
-            Join the waitlist. Pool capacity expands as we add new exchanges and coin pairs. Each new exchange adds its own pool — so even if the Aster DEX pool is full, a Binance or Bybit expansion opens fresh capacity.
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question">
-            Can I use more capital than my tier allows?
-            <span class="faq-toggle">+</span>
-          </button>
-          <div class="faq-answer">
-            The bot enforces your tier's capital cap. If your profits push your account beyond your cap, the excess capital simply sits idle — the bot won't scale into it. To unlock your full account, upgrade to a higher tier. You only pay the difference, and the upgrade is instant.
-          </div>
+          <button class="faq-question">What if the pool is full?<span class="faq-toggle">+</span></button>
+          <div class="faq-answer">Join the waitlist. Pool capacity expands as we add new exchanges. Each new exchange adds its own pool — so even if one is full, new exchange support opens fresh capacity.</div>
         </div>
       </div>
 
       <div class="faq-category fade-in">
         <div class="faq-category-title">Payments</div>
         <div class="faq-item">
-          <button class="faq-question">
-            How do I pay?
-            <span class="faq-toggle">+</span>
-          </button>
-          <div class="faq-answer">
-            Cryptocurrency payments (coming soon). We'll support major cryptocurrencies including USDT, BTC, and ETH.
-          </div>
+          <button class="faq-question">How do I pay?<span class="faq-toggle">+</span></button>
+          <div class="faq-answer">Cryptocurrency payments (coming soon). We'll support major cryptocurrencies including USDT, BTC, and ETH.</div>
         </div>
         <div class="faq-item">
-          <button class="faq-question">
-            Is there a trial period?
-            <span class="faq-toggle">+</span>
-          </button>
-          <div class="faq-answer">
-            We offer a 7-day satisfaction guarantee with full refund. No free trial — the lifetime pricing already reflects exceptional value.
-          </div>
+          <button class="faq-question">Is there a trial period?<span class="faq-toggle">+</span></button>
+          <div class="faq-answer">We offer a 7-day satisfaction guarantee with full refund. No free trial — the lifetime pricing already reflects exceptional value.</div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- Bottom CTA -->
-<section class="bottom-cta">
-  <div class="bottom-cta-content">
+<!-- ═══════════════ BOTTOM CTA (dark rounded) ═══════════════ -->
+<div class="dark-section" style="margin-top:0;text-align:center;">
+  <div class="container">
     <h2 class="fade-in">Ready to Trade Smarter?</h2>
-    <p class="fade-in">Join the next generation of adaptive grid trading. Your license pays for itself in about a month.</p>
-    <a href="#pricing" class="bottom-cta-btn fade-in" onclick="document.querySelector('.pricing-section').scrollIntoView({behavior: 'smooth'});">Choose Your Plan</a>
+    <p class="sub fade-in" style="margin-left:auto;margin-right:auto;text-align:center;">Join the V12e Wyckoff Lifecycle Engine. Your license pays for itself in about a month.</p>
+    <a href="#pricing" class="btn-blue-light fade-in" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'});return false;">Choose Your Plan</a>
   </div>
-</section>
+</div>
 
-<!-- Footer -->
-<footer class="footer">
+<!-- FOOTER -->
+<footer class="footer" style="margin-top:var(--section-gap);">
   <div class="footer-links">
     <a href="./">Product Overview</a>
-    <a href="risk-profiles.html">Risk Profiles</a>
     <a href="pricing.html">Pricing</a>
-    <a href="roadmap.html">Roadmap</a>
-    <a href="dashboard.html">Live Dashboard</a>
+    <a href="dashboardV12.html">Live Dashboard</a>
   </div>
-  <div class="footer-copyright">
-    © 2026 Halo Effects · Adaptive Intelligence Trading
-  </div>
+  <div>© 2026 Halo Effects · Adaptive Intelligence Trading</div>
 </footer>
 
 <script>
@@ -1205,22 +746,18 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-// FAQ functionality
-document.querySelectorAll('.faq-question').forEach(question => {
-  question.addEventListener('click', () => {
-    const faqItem = question.parentElement;
-    const answer = faqItem.querySelector('.faq-answer');
-    const isOpen = faqItem.classList.contains('open');
-    
-    // Close all other FAQ items
-    document.querySelectorAll('.faq-item').forEach(item => {
-      item.classList.remove('open');
-      item.querySelector('.faq-answer').classList.remove('open');
+// FAQ accordion
+document.querySelectorAll('.faq-question').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const answer = item.querySelector('.faq-answer');
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq-answer').classList.remove('open');
     });
-    
-    // Toggle current item
-    if (!isOpen) {
-      faqItem.classList.add('open');
+    if (!wasOpen) {
+      item.classList.add('open');
       answer.classList.add('open');
     }
   });
