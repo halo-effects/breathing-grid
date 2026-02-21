@@ -195,6 +195,9 @@ body {
   .dark-section { margin-left: 0; margin-right: 0; border-radius: 0; padding: 48px 20px; }
   .footer { margin: 0; border-radius: 0; }
 }
+@media (max-width: 1024px) {
+  .layers-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
 @media (max-width: 768px) {
   .nav { height: var(--nav-height-mobile); top: 8px; left: 8px; right: 8px; padding: 0 12px; }
   .nav-links a:not(.btn-blue) { display: none; }
@@ -205,7 +208,7 @@ body {
   .hero-stats { gap: 20px; }
   .hero-stat-value { font-size: 24px; }
   .btn-blue-light { padding: 12px 40px; }
-  .grid-3, .grid-2, .layer { grid-template-columns: 1fr; }
+  .grid-3, .grid-2, .layer, .layers-grid { grid-template-columns: 1fr; }
   .layer.reverse { direction: ltr; }
   .light-section { padding: 60px 0; }
   .light-section h2, .dark-section h2 { font-size: 28px; line-height: 32px; }
@@ -367,81 +370,70 @@ body {
 </div>
 
 <!-- ═══════════════ 4. HOW IT WORKS — 8 LAYERS ═══════════════ -->
-<section class="light-section" style="padding-bottom:0;">
+<div class="dark-section" style="margin-top:var(--section-gap);">
   <div class="container">
-    <h2 class="fade-in">Eight Layers Working as One</h2>
-    <p class="sub fade-in">From finding undervalued coins to extracting profits at exactly the right moment — every layer works together so you don't have to.</p>
-  </div>
-</section>
+    <h2 class="fade-in" style="text-align:center;">Eight Layers Working as One</h2>
+    <p class="sub fade-in" style="text-align:center;margin-left:auto;margin-right:auto;">From finding undervalued coins to extracting profits at exactly the right moment — every layer works together so you don't have to.</p>
 
-<!-- Layers 1-4: white -->
-<section class="light-section" style="padding-top:24px;padding-bottom:40px;">
-  <div class="container" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;" class="layers-grid fade-in">
 
-    <div class="card-light fade-in" style="padding:32px;">
-      <div style="font-size:48px;font-weight:700;color:rgba(34,105,252,0.08);line-height:1;margin-bottom:12px;">01</div>
-      <h3 style="font-size:20px;font-weight:600;color:var(--text-heading);margin-bottom:8px;">Smart Entry</h3>
-      <p style="font-size:16px;color:var(--ait-blue);font-weight:500;margin-bottom:12px;">Finds the right coins at the right time.</p>
-      <p style="font-size:15px;color:var(--text-body);line-height:1.6;">Every day, the system scans the entire market and scores every coin across value, momentum, and risk. You get the best opportunities — automatically.</p>
-      <p style="font-size:14px;color:var(--profit);font-weight:500;margin-top:12px;">Would have caught SOL at $8 — six months before its ATH run.</p>
+      <div style="background:var(--bg-card-dark);border-radius:var(--radius-card);padding:28px;">
+        <div style="font-size:42px;font-weight:700;color:rgba(255,255,255,0.05);line-height:1;margin-bottom:10px;">01</div>
+        <h3 style="font-size:18px;font-weight:600;margin-bottom:6px;">Smart Entry</h3>
+        <p style="font-size:14px;color:var(--ait-blue);font-weight:500;margin-bottom:10px;">Finds the right coins at the right time.</p>
+        <p style="font-size:14px;color:var(--text-body-dark);line-height:1.6;">Scans the entire market daily and scores every coin across value, momentum, and risk. You get the best opportunities — automatically.</p>
+      </div>
+
+      <div style="background:var(--bg-card-dark);border-radius:var(--radius-card);padding:28px;">
+        <div style="font-size:42px;font-weight:700;color:rgba(255,255,255,0.05);line-height:1;margin-bottom:10px;">02</div>
+        <h3 style="font-size:18px;font-weight:600;margin-bottom:6px;">Regime Detection</h3>
+        <p style="font-size:14px;color:var(--ait-blue);font-weight:500;margin-bottom:10px;">Knows what kind of market we're in — every 30 seconds.</p>
+        <p style="font-size:14px;color:var(--text-body-dark);line-height:1.6;">Classifies the market into six states. Every decision adapts in real time. In dangerous conditions, trading halts automatically.</p>
+      </div>
+
+      <div style="background:var(--bg-card-dark);border-radius:var(--radius-card);padding:28px;">
+        <div style="font-size:42px;font-weight:700;color:rgba(255,255,255,0.05);line-height:1;margin-bottom:10px;">03</div>
+        <h3 style="font-size:18px;font-weight:600;margin-bottom:6px;">Macro Intelligence</h3>
+        <p style="font-size:14px;color:var(--ait-blue);font-weight:500;margin-bottom:10px;">Reads the room before placing a trade.</p>
+        <p style="font-size:14px;color:var(--text-body-dark);line-height:1.6;">Fear & Greed, on-chain flows, BTC dominance, cycle indicators — eight signals combine into a single conviction score that drives every decision.</p>
+      </div>
+
+      <div style="background:var(--bg-card-dark);border-radius:var(--radius-card);padding:28px;">
+        <div style="font-size:42px;font-weight:700;color:rgba(255,255,255,0.05);line-height:1;margin-bottom:10px;">04</div>
+        <h3 style="font-size:18px;font-weight:600;margin-bottom:6px;">Adaptive Parameters</h3>
+        <p style="font-size:14px;color:var(--ait-blue);font-weight:500;margin-bottom:10px;">Self-tuning for current conditions.</p>
+        <p style="font-size:14px;color:var(--text-body-dark);line-height:1.6;">Targets and spacing adjust dynamically based on real-time volatility. Calm markets get quick cycles. Volatile markets get wider nets for bigger captures.</p>
+      </div>
+
+      <div style="background:var(--bg-card-dark);border-radius:var(--radius-card);padding:28px;">
+        <div style="font-size:42px;font-weight:700;color:rgba(255,255,255,0.05);line-height:1;margin-bottom:10px;">05</div>
+        <h3 style="font-size:18px;font-weight:600;margin-bottom:6px;">Spot DCA &amp; Scale-Out</h3>
+        <p style="font-size:14px;color:var(--ait-blue);font-weight:500;margin-bottom:10px;">You own real coins. No leverage. No liquidation risk.</p>
+        <p style="font-size:14px;color:var(--text-body-dark);line-height:1.6;">Buys the dips in layers, sells the biggest lots first on recovery — 5-8× more profit per cycle. Zero funding fees because you hold actual coins.</p>
+      </div>
+
+      <div style="background:var(--bg-card-dark);border-radius:var(--radius-card);padding:28px;">
+        <div style="font-size:42px;font-weight:700;color:rgba(255,255,255,0.05);line-height:1;margin-bottom:10px;">06</div>
+        <h3 style="font-size:18px;font-weight:600;margin-bottom:6px;">Risk Profiles</h3>
+        <p style="font-size:14px;color:var(--ait-blue);font-weight:500;margin-bottom:10px;">Pick your comfort level. That's it.</p>
+        <p style="font-size:14px;color:var(--text-body-dark);line-height:1.6;">Three profiles — Conservative, Balanced, Aggressive. Built-in guardrails automatically reduce risk if drawdowns hit your threshold. No manual intervention needed.</p>
+      </div>
+
+      <div style="background:var(--bg-card-dark);border-radius:var(--radius-card);padding:28px;">
+        <div style="font-size:42px;font-weight:700;color:rgba(255,255,255,0.05);line-height:1;margin-bottom:10px;">07</div>
+        <h3 style="font-size:18px;font-weight:600;margin-bottom:6px;">Smart Exit</h3>
+        <p style="font-size:14px;color:var(--ait-blue);font-weight:500;margin-bottom:10px;">Knows when to take profits — and when to hold.</p>
+        <p style="font-size:14px;color:var(--text-body-dark);line-height:1.6;">Exits are suppressed in bull markets to let profits run, amplified in bears to protect capital. You ride the upside and exit before the crash — systematically.</p>
+      </div>
+
+      <div style="background:var(--bg-card-dark);border-radius:var(--radius-card);padding:28px;">
+        <div style="font-size:42px;font-weight:700;color:rgba(255,255,255,0.05);line-height:1;margin-bottom:10px;">08</div>
+        <h3 style="font-size:18px;font-weight:600;margin-bottom:6px;">Portfolio Management</h3>
+        <p style="font-size:14px;color:var(--ait-blue);font-weight:500;margin-bottom:10px;">Up to 8 coins at once — always the best ones.</p>
+        <p style="font-size:14px;color:var(--text-body-dark);line-height:1.6;">Capital spreads across top-scoring coins and rebalances automatically. When a better opportunity appears, the system rotates gracefully.</p>
+      </div>
+
     </div>
-
-    <div class="card-light fade-in" style="padding:32px;">
-      <div style="font-size:48px;font-weight:700;color:rgba(34,105,252,0.08);line-height:1;margin-bottom:12px;">02</div>
-      <h3 style="font-size:20px;font-weight:600;color:var(--text-heading);margin-bottom:8px;">Market Regime Detection</h3>
-      <p style="font-size:16px;color:var(--ait-blue);font-weight:500;margin-bottom:12px;">Knows what kind of market we're in — every 30 seconds.</p>
-      <p style="font-size:15px;color:var(--text-body);line-height:1.6;">The system classifies the market into six states — from trending to extreme. Every other decision adapts based on this real-time reading. In dangerous conditions, trading halts automatically.</p>
-    </div>
-
-    <div class="card-light fade-in" style="padding:32px;">
-      <div style="font-size:48px;font-weight:700;color:rgba(34,105,252,0.08);line-height:1;margin-bottom:12px;">03</div>
-      <h3 style="font-size:20px;font-weight:600;color:var(--text-heading);margin-bottom:8px;">Macro Intelligence</h3>
-      <p style="font-size:16px;color:var(--ait-blue);font-weight:500;margin-bottom:12px;">Reads the room before placing a trade.</p>
-      <p style="font-size:15px;color:var(--text-body);line-height:1.6;">Fear & Greed, on-chain flows, BTC dominance, cycle indicators — eight signals combine into a single conviction score. High conviction means bigger bets. Low conviction means caution.</p>
-    </div>
-
-    <div class="card-light fade-in" style="padding:32px;">
-      <div style="font-size:48px;font-weight:700;color:rgba(34,105,252,0.08);line-height:1;margin-bottom:12px;">04</div>
-      <h3 style="font-size:20px;font-weight:600;color:var(--text-heading);margin-bottom:8px;">Adaptive Parameters</h3>
-      <p style="font-size:16px;color:var(--ait-blue);font-weight:500;margin-bottom:12px;">Self-tuning — tighter in calm markets, wider in volatile ones.</p>
-      <p style="font-size:15px;color:var(--text-body);line-height:1.6;">Take-profit targets and grid spacing adjust dynamically based on real-time volatility. Calm markets get quick cycles. Volatile markets get wider nets for bigger captures.</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- Layers 5-8: dark rounded -->
-<div class="dark-section" style="margin-top:0;">
-  <div class="container" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;">
-
-    <div class="fade-in" style="background:var(--bg-card-dark);border-radius:var(--radius-card);padding:32px;">
-      <div style="font-size:48px;font-weight:700;color:rgba(255,255,255,0.05);line-height:1;margin-bottom:12px;">05</div>
-      <h3 style="font-size:20px;font-weight:600;margin-bottom:8px;">Spot DCA with Scale-Out Exits</h3>
-      <p style="font-size:16px;color:var(--ait-blue);font-weight:500;margin-bottom:12px;">You own real coins. No leverage. No liquidation risk.</p>
-      <p style="font-size:15px;color:var(--text-body-dark);line-height:1.6;">Buys the dips in layers, then sells the biggest lots first on recovery — extracting 5-8× more profit per cycle than standard DCA. Zero funding fees because you hold actual coins.</p>
-    </div>
-
-    <div class="fade-in" style="background:var(--bg-card-dark);border-radius:var(--radius-card);padding:32px;">
-      <div style="font-size:48px;font-weight:700;color:rgba(255,255,255,0.05);line-height:1;margin-bottom:12px;">06</div>
-      <h3 style="font-size:20px;font-weight:600;margin-bottom:8px;">Risk Profiles</h3>
-      <p style="font-size:16px;color:var(--ait-blue);font-weight:500;margin-bottom:12px;">Pick your comfort level. The system handles the rest.</p>
-      <p style="font-size:15px;color:var(--text-body-dark);line-height:1.6;">Three profiles — Conservative, Balanced, and Aggressive — each with its own strategy. Built-in guardrails automatically reduce risk if drawdowns hit your threshold. No manual intervention needed.</p>
-    </div>
-
-    <div class="fade-in" style="background:var(--bg-card-dark);border-radius:var(--radius-card);padding:32px;">
-      <div style="font-size:48px;font-weight:700;color:rgba(255,255,255,0.05);line-height:1;margin-bottom:12px;">07</div>
-      <h3 style="font-size:20px;font-weight:600;margin-bottom:8px;">Smart Exit</h3>
-      <p style="font-size:16px;color:var(--ait-blue);font-weight:500;margin-bottom:12px;">Knows when to take profits — and when to hold.</p>
-      <p style="font-size:15px;color:var(--text-body-dark);line-height:1.6;">Exits are suppressed during bull markets to let profits run, and amplified during bears to protect capital. You ride the upside and exit before the crash — systematically, not emotionally.</p>
-    </div>
-
-    <div class="fade-in" style="background:var(--bg-card-dark);border-radius:var(--radius-card);padding:32px;">
-      <div style="font-size:48px;font-weight:700;color:rgba(255,255,255,0.05);line-height:1;margin-bottom:12px;">08</div>
-      <h3 style="font-size:20px;font-weight:600;margin-bottom:8px;">Portfolio Management</h3>
-      <p style="font-size:16px;color:var(--ait-blue);font-weight:500;margin-bottom:12px;">Trades up to 8 coins simultaneously — always the best ones.</p>
-      <p style="font-size:15px;color:var(--text-body-dark);line-height:1.6;">Capital is spread across top-scoring coins and rebalanced automatically. When a better opportunity appears, the system rotates — gracefully closing old positions and opening new ones.</p>
-    </div>
-
   </div>
 </div>
 
