@@ -1,74 +1,36 @@
 {
   "running": true,
-  "mode": "paper",
   "profile": "medium",
   "exchange": "aster",
   "capital": 10000.0,
-  "equity": 10008.81,
-  "cash": 8822.91,
-  "pnl_pct": 0.09,
+  "equity": 9998.36,
+  "cash": 9600.0,
+  "pnl_pct": -0.02,
   "coins": {
     "ETH/USDT": {
-      "state": "EXITING",
+      "state": "ACCUMULATING",
       "side": "long",
-      "layers": 2,
+      "layers": 1,
       "avg_entry": 2011.9,
-      "current_price": 1962.52,
-      "unrealized_pnl": -9.81,
-      "next_so_price": 1931.424,
-      "next_tp_price": 2032.019,
-      "invested": 1200.0,
-      "realized_pnl": 7.64
-    },
-    "BTC/USDT": {
-      "state": "ACCUMULATING",
-      "side": "long",
-      "layers": 1,
-      "avg_entry": 67997.84,
-      "current_price": 67801.85,
-      "unrealized_pnl": -1.15,
-      "next_so_price": 65957.9048,
-      "next_tp_price": 68677.8184,
-      "invested": 400.0,
-      "realized_pnl": 0
-    },
-    "BNB/USDT": {
-      "state": "ACCUMULATING",
-      "side": "long",
-      "layers": 1,
-      "avg_entry": 628.32,
-      "current_price": 624.05,
-      "unrealized_pnl": -2.72,
-      "next_so_price": 609.4704,
-      "next_tp_price": 634.6032,
+      "current_price": 2004.36,
+      "unrealized_pnl": -1.5,
+      "next_so_price": 1969.1471,
+      "next_tp_price": 2033.206,
       "invested": 400.0,
       "realized_pnl": 0
     }
   },
-  "deals_completed": 2,
-  "win_rate": 100.0,
-  "total_realized_pnl": 15.27,
-  "max_drawdown_pct": 11.89,
-  "regime": "RANGING",
+  "deals_completed": 0,
+  "win_rate": 0.0,
+  "total_realized_pnl": 0,
+  "max_drawdown_pct": 0.03,
+  "regime": "ACCUMULATION",
   "trend_direction": "bullish",
-  "last_update": "2026-02-21T00:58:01+00:00",
-  "uptime_hours": 3.3,
+  "last_update": "2026-02-17T19:48:33+00:00",
+  "uptime_hours": 0.5,
   "halted": false,
   "symbols": [
-    "ETH/USDT",
-    "BTC/USDT",
-    "BNB/USDT"
+    "ETH/USDT"
   ],
-  "timeframe": "15m",
-  "paused_coins": [],
-  "account_paused": false,
-  "conviction_overrides": {},
-  "max_so_adjustments": {},
-  "controls": {
-    "paused_coins": [],
-    "account_paused": false,
-    "conviction_overrides": {},
-    "max_so_adjustments": {},
-    "skip_next_so": []
-  }
+  "timeframe": "15m"
 }

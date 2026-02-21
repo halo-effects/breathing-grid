@@ -1,74 +1,36 @@
 {
   "running": true,
-  "mode": "paper",
   "profile": "medium",
   "exchange": "hyperliquid",
   "capital": 10000.0,
-  "equity": 10051.4,
-  "cash": 8858.4,
-  "pnl_pct": 0.51,
+  "equity": 9999.25,
+  "cash": 9600.0,
+  "pnl_pct": -0.01,
   "coins": {
-    "ETH/USDC": {
-      "state": "EXITING",
-      "side": "long",
-      "layers": 2,
-      "avg_entry": 1983.2,
-      "current_price": 1961.7,
-      "unrealized_pnl": -4.33,
-      "next_so_price": 1903.872,
-      "next_tp_price": 2003.032,
-      "invested": 1200.0,
-      "realized_pnl": 7.11
-    },
-    "SOL/USDC": {
-      "state": "ACCUMULATING",
-      "side": "long",
-      "layers": 1,
-      "avg_entry": 84.606,
-      "current_price": 84.369,
-      "unrealized_pnl": -1.12,
-      "next_so_price": 82.9139,
-      "next_tp_price": 85.4521,
-      "invested": 400.0,
-      "realized_pnl": 0
-    },
     "HYPE/USDC": {
       "state": "ACCUMULATING",
       "side": "long",
       "layers": 1,
-      "avg_entry": 30.248,
-      "current_price": 30.194,
-      "unrealized_pnl": -0.71,
-      "next_so_price": 29.643,
-      "next_tp_price": 30.5505,
+      "avg_entry": 29.645,
+      "current_price": 29.61,
+      "unrealized_pnl": -0.47,
+      "next_so_price": 28.7631,
+      "next_tp_price": 30.0138,
       "invested": 400.0,
       "realized_pnl": 0
     }
   },
-  "deals_completed": 4,
-  "win_rate": 100.0,
-  "total_realized_pnl": 51.29,
-  "max_drawdown_pct": 11.89,
-  "regime": "RANGING",
-  "trend_direction": "bullish",
-  "last_update": "2026-02-21T00:58:00+00:00",
-  "uptime_hours": 3.3,
+  "deals_completed": 0,
+  "win_rate": 0.0,
+  "total_realized_pnl": 0,
+  "max_drawdown_pct": 0.01,
+  "regime": "ACCUMULATION",
+  "trend_direction": "bearish",
+  "last_update": "2026-02-17T19:48:40+00:00",
+  "uptime_hours": 0.5,
   "halted": false,
   "symbols": [
-    "HYPE/USDC",
-    "SOL/USDC",
-    "ETH/USDC"
+    "HYPE/USDC"
   ],
-  "timeframe": "15m",
-  "paused_coins": [],
-  "account_paused": false,
-  "conviction_overrides": {},
-  "max_so_adjustments": {},
-  "controls": {
-    "paused_coins": [],
-    "account_paused": false,
-    "conviction_overrides": {},
-    "max_so_adjustments": {},
-    "skip_next_so": []
-  }
+  "timeframe": "15m"
 }
