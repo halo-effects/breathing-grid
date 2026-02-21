@@ -592,18 +592,9 @@ function render(){
   var syms=S.symbols||Object.keys(S.coins||{});
   $('hdrCoins').textContent=syms.join(', ')+' \u00B7 '+(S.timeframe||'1h');
 
-  // Stats row
-  renderStats();
-  renderRiskProfile();
-  renderPortfolioAlloc();
-  renderPositions();
-  renderAIPanel();
-  renderCoinCards();
-  renderCompounding();
-  renderMacro();
-  renderCapDonut();
-  renderFlowDiagram();
-  renderBottomBar();
+  // Stats row — each wrapped so one failure doesn't kill the rest
+  var fns=[renderStats,renderRiskProfile,renderPortfolioAlloc,renderPositions,renderAIPanel,renderCoinCards,renderCompounding,renderMacro,renderCapDonut,renderFlowDiagram,renderBottomBar];
+  fns.forEach(function(fn){try{fn()}catch(e){console.warn(fn.name,e)}});
 }
 
 // STATS ROW (6 cards)
