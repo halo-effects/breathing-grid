@@ -4,1072 +4,809 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Product Overview — Adaptive Intelligence Trading</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
-  --bg: #0a0a0f;
-  --card: #12121a;
-  --border: #1e1e2e;
-  --accent: #6366f1;
-  --accent2: #818cf8;
-  --green: #22c55e;
-  --red: #ef4444;
-  --amber: #f59e0b;
-  --text: #e2e8f0;
-  --text2: #94a3b8;
-  --text3: #64748b;
-  --gradient1: linear-gradient(135deg, #6366f1, #8b5cf6);
-  --gradient2: linear-gradient(135deg, #22c55e, #06b6d4);
+  --ait-blue: #2269FC;
+  --ait-blue-hover: #1B56D4;
+  --ait-blue-light-end: #D7F5FF;
+  --ait-blue-10: rgba(34, 105, 252, 0.1);
+  --bg-white: #FFFFFF;
+  --bg-black: #000000;
+  --bg-void: #010414;
+  --bg-card-dark: #1A1D2C;
+  --bg-charcoal: #191919;
+  --bg-slate: #2F2F2F;
+  --text-heading: #03071C;
+  --text-body: rgba(3, 7, 28, 0.5);
+  --text-heading-dark: #FFFFFF;
+  --text-body-dark: rgba(255, 255, 255, 0.5);
+  --text-tertiary-dark: rgba(255, 255, 255, 0.3);
+  --text-subtle-dark: rgba(255, 255, 255, 0.2);
+  --border-light: #E5E7EB;
+  --border-glass: rgba(255, 255, 255, 0.2);
+  --grad-cta-dark: linear-gradient(90deg, #223576, #1A285A 40%, #121C3E 50%, #0A1025 60%, #000001 80%, #000);
+  --grad-cta-light: linear-gradient(270deg, #D7F5FF, #2269FC 55%);
+  --profit: #00D68F;
+  --loss: #FF4D4F;
+  --warning: #FFAA00;
+  --font: 'Poppins', sans-serif;
+  --radius-card: 10px;
+  --radius-section: 24px;
+  --radius-pill: 25px;
+  --radius-badge: 140px;
+  --section-gap: 80px;
+  --nav-height-desktop: 100px;
+  --nav-height-mobile: 75px;
 }
 body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg-white);
+  color: var(--text-heading);
+  font-family: var(--font);
   line-height: 1.7;
   overflow-x: hidden;
 }
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
-/* Header */
-.header-nav:hover { color: var(--accent2) !important; }
+/* ── NAV ── */
+.nav {
+  position: fixed; top: 16px; left: 16px; right: 16px; z-index: 100;
+  height: var(--nav-height-desktop);
+  background: var(--bg-white);
+  border-radius: var(--radius-pill);
+  display: flex; align-items: center;
+  padding: 0 24px;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+}
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-heading); flex-shrink: 0; }
+.nav-logo span { font-size: 18px; font-weight: 600; white-space: nowrap; }
+.nav-links { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+.nav-links a {
+  font-size: 18px; font-weight: 500; color: #000; text-decoration: none;
+  padding: 6px 14px; border-radius: 8px; transition: all 0.2s; white-space: nowrap;
+}
+.nav-links a:hover { text-decoration: underline; }
+.nav-links a.active { color: var(--ait-blue); }
+.btn-blue {
+  background: var(--grad-cta-dark); color: #FFF; border: none; border-radius: var(--radius-pill);
+  padding: 8px 16px; font-size: 18px; font-weight: 600; font-family: var(--font);
+  cursor: pointer; text-decoration: none; display: inline-block; transition: transform 0.3s;
+}
+.btn-blue:hover { transform: translateY(-2px); }
+.btn-blue-light {
+  background: var(--grad-cta-light); color: #FFF; border: none; border-radius: var(--radius-pill);
+  padding: 12px 80px; font-size: 18px; font-weight: 600; font-family: var(--font);
+  cursor: pointer; text-decoration: none; display: inline-block; transition: transform 0.3s;
+}
+.btn-blue-light:hover { transform: translateY(-2px); }
+.btn-blue-outline {
+  background: transparent; color: var(--ait-blue); border: 1px solid var(--ait-blue);
+  border-radius: var(--radius-pill); padding: 8px 20px; font-size: 16px; font-weight: 500;
+  font-family: var(--font); cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.2s;
+}
+.btn-blue-outline:hover { background: var(--ait-blue); color: #FFF; }
 
-/* Hero */
+/* ── CONTAINER ── */
+.container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+
+/* ── DARK SECTION ── */
+.dark-section {
+  background: var(--bg-black); border-radius: var(--radius-section);
+  padding: 64px 48px; color: var(--text-heading-dark);
+  margin-left: 16px; margin-right: 16px;
+}
+.dark-section h2 { font-size: 36px; font-weight: 500; line-height: 40px; color: #FFF; margin-bottom: 16px; }
+.dark-section .sub { font-size: 16px; font-weight: 400; line-height: 24px; color: var(--text-body-dark); margin-bottom: 40px; max-width: 700px; }
+.dark-section .sub strong { color: #FFF; }
+.card-dark { background: var(--bg-card-dark); border-radius: var(--radius-card); padding: 24px; }
+
+/* ── LIGHT SECTION ── */
+.light-section { padding: 100px 0; }
+.light-section h2 { font-size: 36px; font-weight: 500; line-height: 40px; color: var(--text-heading); margin-bottom: 16px; }
+.light-section .sub { font-size: 18px; font-weight: 400; line-height: 28px; color: var(--text-body); margin-bottom: 40px; max-width: 700px; }
+.card-light { background: transparent; border: 1px solid var(--border-light); border-radius: var(--radius-card); padding: 20px; }
+
+.pill { background: var(--bg-charcoal); border-radius: var(--radius-badge); padding: 8px 16px; color: #FFF; font-size: 14px; display: inline-block; margin-bottom: 16px; }
+
+/* ── HERO ── */
 .hero {
-  min-height: 90vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 80px 24px 60px;
-  position: relative;
-  overflow: hidden;
-}
-.hero::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at 30% 50%, rgba(99,102,241,0.08) 0%, transparent 50%),
-              radial-gradient(circle at 70% 50%, rgba(99,102,241,0.06) 0%, transparent 50%);
-  animation: heroGlow 8s ease-in-out infinite alternate;
-}
-@keyframes heroGlow {
-  0% { transform: translate(0, 0); }
-  100% { transform: translate(-2%, 2%); }
-}
-.hero-content { position: relative; z-index: 1; max-width: 800px; }
-.hero-badge {
-  display: inline-block;
-  padding: 6px 16px;
-  border-radius: 50px;
-  background: rgba(99,102,241,0.15);
-  color: var(--accent2);
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin-bottom: 24px;
+  min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+  align-items: center; text-align: center; padding: 140px 24px 80px;
 }
 .hero h1 {
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  font-weight: 800;
-  line-height: 1.1;
-  margin-bottom: 24px;
-  background: linear-gradient(135deg, #e2e8f0 0%, #6366f1 50%, #22c55e 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-size: 48px; font-weight: 600; line-height: 48px; color: var(--text-heading);
+  margin-bottom: 20px; max-width: 800px;
 }
-.hero p {
-  font-size: 1.25rem;
-  color: var(--text2);
-  max-width: 600px;
-  margin: 0 auto 40px;
-}
-.hero-stats {
-  display: flex;
-  gap: 48px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
+.hero p { font-size: 20px; font-weight: 400; line-height: 28px; color: var(--text-heading); max-width: 620px; margin-bottom: 40px; }
+.hero-stats { display: flex; gap: 48px; justify-content: center; flex-wrap: wrap; margin-top: 48px; }
 .hero-stat { text-align: center; }
-.hero-stat-value {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--green);
-}
-.hero-stat-label {
-  font-size: 0.8rem;
-  color: var(--text3);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
+.hero-stat-value { font-size: 32px; font-weight: 700; color: var(--profit); }
+.hero-stat-label { font-size: 14px; color: var(--text-body); text-transform: uppercase; letter-spacing: 0.5px; }
 
-/* Sections */
-.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
-section { padding: 100px 0; }
-.section-label {
-  display: inline-block;
-  padding: 4px 12px;
-  border-radius: 4px;
-  background: rgba(99,102,241,0.1);
-  color: var(--accent2);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  margin-bottom: 16px;
-}
-.section-title {
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
-  font-weight: 700;
-  margin-bottom: 16px;
-  line-height: 1.2;
-}
-.section-subtitle {
-  font-size: 1.1rem;
-  color: var(--text2);
-  max-width: 650px;
-  margin-bottom: 48px;
-}
+/* ── GRIDS ── */
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
 
-/* Problem Section */
-.problem-section { background: linear-gradient(180deg, var(--bg) 0%, #0d0d15 100%); }
-.problem-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 24px;
-}
-.problem-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 32px;
-  transition: transform 0.2s, border-color 0.2s;
-}
-.problem-card:hover { transform: translateY(-4px); border-color: var(--accent); }
-.problem-icon { font-size: 2rem; margin-bottom: 16px; }
-.problem-card h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; }
-.problem-card p { color: var(--text2); font-size: 0.95rem; }
+/* ── LAYER (how it works) ── */
+.layer { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-bottom: 60px; }
+.layer.reverse { direction: rtl; }
+.layer.reverse > * { direction: ltr; }
+.layer-num { font-size: 64px; font-weight: 700; color: rgba(34,105,252,0.12); line-height: 1; margin-bottom: 4px; }
+.layer-title { font-size: 24px; font-weight: 500; line-height: 32px; margin-bottom: 8px; }
+.layer-q { font-size: 16px; color: var(--ait-blue); font-style: italic; margin-bottom: 12px; }
+.layer-text { font-size: 16px; color: var(--text-body-dark); line-height: 24px; margin-bottom: 12px; }
+.layer-text strong { color: #FFF; }
+.layer-visual { background: var(--bg-card-dark); border-radius: var(--radius-card); padding: 28px; }
 
-/* Layers */
-.layers-section { position: relative; }
-.layer {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
-  margin-bottom: 80px;
-}
-.layer:nth-child(even) { direction: rtl; }
-.layer:nth-child(even) > * { direction: ltr; }
-.layer-number {
-  font-size: 6rem;
-  font-weight: 800;
-  color: rgba(99,102,241,0.1);
-  line-height: 1;
-  margin-bottom: 8px;
-}
-.layer-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; }
-.layer-question {
-  font-size: 1rem;
-  color: var(--accent2);
-  font-style: italic;
-  margin-bottom: 16px;
-}
-.layer-text { color: var(--text2); font-size: 0.95rem; margin-bottom: 16px; }
-.layer-visual {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 32px;
-  min-height: 300px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.regime-list { list-style: none; }
-.regime-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--border);
-}
-.regime-item:last-child { border: none; }
-.regime-dot {
-  width: 10px; height: 10px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-.regime-name { font-weight: 600; min-width: 120px; }
-.regime-desc { color: var(--text2); font-size: 0.85rem; }
+/* ── RISK PROFILE CARDS ── */
+.risk-profile-card { background: var(--bg-card-dark); border-radius: var(--radius-card); padding: 28px; display: flex; flex-direction: column; }
+.risk-profile-card h3 { font-size: 24px; font-weight: 500; margin-bottom: 8px; }
+.risk-profile-card p { font-size: 16px; color: var(--text-body-dark); line-height: 24px; }
+.risk-profile-card .stat { font-size: 14px; color: var(--text-tertiary-dark); margin-top: auto; padding-top: 16px; }
+.risk-profile-card .stat strong { color: var(--profit); }
 
-/* Breathing animation */
-.breathing-demo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-}
-.breathing-bar {
-  height: 8px;
-  border-radius: 4px;
-  animation: breathe 4s ease-in-out infinite;
-}
-.breathing-bar.tp { background: var(--gradient2); }
-.breathing-bar.dev { background: var(--gradient1); }
-@keyframes breathe {
-  0%, 100% { width: 40%; }
-  50% { width: 90%; }
-}
-.breathing-label {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  font-size: 0.75rem;
-  color: var(--text3);
-}
+/* ── GET STARTED STEPS ── */
+.step-card { background: var(--bg-card-dark); border-radius: var(--radius-card); padding: 32px; text-align: center; }
+.step-num { font-size: 36px; font-weight: 700; color: var(--ait-blue); margin-bottom: 12px; }
+.step-card h3 { font-size: 24px; font-weight: 500; color: #FFF; margin-bottom: 8px; }
+.step-card p { font-size: 16px; color: var(--text-body-dark); line-height: 24px; }
 
-/* Comparison */
-.comparison-section { background: #0d0d15; }
-.comparison-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  border-radius: 16px;
-  overflow: hidden;
-  background: var(--card);
-  border: 1px solid var(--border);
-}
-.comparison-table th, .comparison-table td {
-  padding: 16px 24px;
-  text-align: left;
-  border-bottom: 1px solid var(--border);
-}
-.comparison-table th {
-  font-weight: 600;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--text3);
-}
-.comparison-table td:first-child { color: var(--text2); }
-.comparison-table td:last-child { color: var(--green); font-weight: 500; }
-.comparison-table tr:last-child td { border: none; }
+/* ── COMPARISON TABLE ── */
+.comp-table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: var(--radius-card); overflow: hidden; border: 1px solid var(--border-light); }
+.comp-table th, .comp-table td { padding: 14px 20px; text-align: left; border-bottom: 1px solid var(--border-light); font-size: 16px; }
+.comp-table th { font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-body); }
+.comp-table tr:last-child td { border-bottom: none; }
+.comp-table td:last-child { color: var(--profit); font-weight: 500; }
 
-/* Checklist */
-.checklist {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 16px;
-  margin-top: 32px;
-}
-.check-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 16px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  font-size: 0.95rem;
-}
-.check-icon { font-size: 1.2rem; flex-shrink: 0; }
+/* ── CHECKLIST ── */
+.check-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+.check-item { display: flex; align-items: center; gap: 12px; padding: 16px; border: 1px solid var(--border-light); border-radius: var(--radius-card); font-size: 16px; color: var(--text-heading); }
 
-/* Risk */
-.risk-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-}
-.risk-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 24px;
-}
-.risk-card h4 { font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
-.risk-card p { color: var(--text2); font-size: 0.9rem; }
+/* ── RISK CARDS ── */
+.risk-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+.risk-card { background: var(--bg-card-dark); border-radius: var(--radius-card); padding: 24px; }
+.risk-card h4 { font-size: 18px; font-weight: 500; color: #FFF; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.risk-card p { font-size: 16px; color: var(--text-body-dark); line-height: 24px; }
 
-/* Evolution */
-.evolution-timeline {
-  position: relative;
-  padding-left: 40px;
-}
-.evolution-timeline::before {
-  content: '';
-  position: absolute;
-  left: 15px;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: linear-gradient(180deg, var(--border), var(--accent), var(--accent2));
-}
-.evo-item {
-  position: relative;
-  margin-bottom: 48px;
-  padding-left: 24px;
-}
-.evo-item::before {
-  content: '';
-  position: absolute;
-  left: -29px;
-  top: 6px;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  border: 2px solid var(--accent);
-  background: var(--bg);
-}
-.evo-item:last-child::before { background: var(--green); border-color: var(--green); }
-.evo-gen {
-  font-size: 0.75rem;
-  color: var(--accent2);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 600;
-}
-.evo-title { font-size: 1.2rem; font-weight: 700; margin: 4px 0 8px; }
-.evo-desc { color: var(--text2); font-size: 0.9rem; }
-.evo-features {
-  list-style: none;
-  margin-top: 12px;
-}
-.evo-features li {
-  color: var(--text2);
-  font-size: 0.85rem;
-  padding: 4px 0;
-  padding-left: 20px;
-  position: relative;
-}
-.evo-features li::before {
-  content: '→';
-  position: absolute;
-  left: 0;
-  color: var(--text3);
-}
+/* ── NOT ITEMS ── */
+.not-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-top: 20px; }
+.not-item { display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: var(--bg-card-dark); border-radius: var(--radius-card); font-size: 16px; color: var(--text-body-dark); }
 
-/* CTA */
-.cta-section {
-  text-align: center;
-  padding: 120px 24px;
-  position: relative;
-}
-.cta-section::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: radial-gradient(circle at 50% 50%, rgba(99,102,241,0.08) 0%, transparent 60%);
-}
-.cta-quote {
-  font-size: clamp(1.3rem, 3vw, 2rem);
-  font-weight: 300;
-  font-style: italic;
-  max-width: 700px;
-  margin: 0 auto;
-  position: relative;
-  color: var(--text2);
-}
-.cta-quote em { color: var(--text); font-weight: 500; }
+/* ── PERFORMANCE CARDS ── */
+.perf-card { border: 1px solid var(--border-light); border-radius: var(--radius-card); padding: 28px; text-align: center; }
+.perf-card .value { font-size: 28px; font-weight: 700; color: var(--profit); margin-bottom: 4px; }
+.perf-card .label { font-size: 14px; color: var(--text-body); margin-bottom: 8px; }
+.perf-card .vs { font-size: 18px; font-weight: 600; color: var(--loss); }
+.perf-card .edge { font-size: 16px; font-weight: 600; color: var(--profit); margin-top: 8px; }
 
-/* Not list */
-.not-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 16px;
-  margin-top: 24px;
-}
-.not-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 18px;
-  background: rgba(239,68,68,0.05);
-  border: 1px solid rgba(239,68,68,0.1);
-  border-radius: 10px;
-  font-size: 0.9rem;
-  color: var(--text2);
-}
+/* ── FOOTER ── */
+.footer { background: var(--bg-black); border-radius: var(--radius-section) var(--radius-section) 0 0; margin: 0 16px; padding: 48px 24px; text-align: center; color: var(--text-tertiary-dark); font-size: 14px; }
+.footer a { color: var(--text-body-dark); text-decoration: none; transition: color 0.2s; }
+.footer a:hover { color: #FFF; }
+.footer-links { display: flex; justify-content: center; gap: 32px; margin-bottom: 24px; flex-wrap: wrap; }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .layer { grid-template-columns: 1fr; gap: 32px; }
-  .layer:nth-child(even) { direction: ltr; }
-  .hero-stats { gap: 24px; }
-}
-@media (max-width: 600px) {
-  body { overflow-x: hidden; }
-  .top-header { padding: 8px 12px !important; gap: 8px !important; }
-  .header-logo { width: 26px !important; height: 26px !important; }
-  .header-title { font-size: .9rem !important; }
-  .header-nav { font-size: .8rem !important; }
-  .header-btn { padding: 4px 10px !important; font-size: .75rem !important; }
-  .hero { padding: 60px 16px 40px; min-height: 70vh; }
-  .hero-content h1 { font-size: clamp(1.8rem, 5vw, 2.5rem); }
-  .hero-content p { font-size: .95rem; }
-  .hero-stats { flex-wrap: wrap; gap: 16px; justify-content: center; }
-  .hero-stat-value { font-size: 1.8rem; }
-  .hero-stat-label { font-size: .7rem; }
-  .hero-cta { flex-direction: column; gap: 10px; align-items: stretch; }
-  .hero-cta a { text-align: center; }
-  .container { padding: 0 12px; }
-  section { padding: 48px 0; }
-  .section-title { font-size: clamp(1.4rem, 4vw, 1.8rem); }
-  .section-subtitle { font-size: .9rem; }
-  .layer { gap: 24px; }
-  .layer-visual { padding: 24px 16px; }
-  .regime-grid { grid-template-columns: 1fr; gap: 10px; }
-  .regime-item { padding: 12px; }
-  .alloc-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; font-size: .75rem; }
-  .alloc-table th, .alloc-table td { padding: 8px 6px; white-space: nowrap; }
-  table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  th, td { padding: 8px 6px; font-size: .75rem; }
-  .risk-cards { grid-template-columns: 1fr; }
-  .evolution-grid { grid-template-columns: 1fr; }
-  .evolution-card { padding: 16px; }
-  .cta-section { padding: 48px 16px; }
-  .cta-section h2 { font-size: 1.4rem; }
-  .footer-links { flex-direction: column; gap: 16px; text-align: center; }
-}
-@media (max-width: 400px) {
-  .hero-stats { flex-direction: column; align-items: center; }
-  .hero { padding: 64px 12px 32px; }
-}
-
-/* Scroll animations */
-.fade-in {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
+/* ── SCROLL ANIM ── */
+.fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .fade-in.visible { opacity: 1; transform: none; }
+
+/* ── MOBILE ── */
+@media (max-width: 1023px) {
+  .dark-section { margin-left: 0; margin-right: 0; border-radius: 0; padding: 48px 20px; }
+  .footer { margin: 0; border-radius: 0; }
+}
+@media (max-width: 768px) {
+  .nav { height: var(--nav-height-mobile); top: 8px; left: 8px; right: 8px; padding: 0 12px; }
+  .nav-links a:not(.btn-blue) { display: none; }
+  .nav-links { gap: 8px; }
+  .hero { padding: 120px 16px 60px; min-height: auto; }
+  .hero h1 { font-size: 32px; line-height: 34px; }
+  .hero p { font-size: 16px; }
+  .hero-stats { gap: 20px; }
+  .hero-stat-value { font-size: 24px; }
+  .btn-blue-light { padding: 12px 40px; }
+  .grid-3, .grid-2, .layer { grid-template-columns: 1fr; }
+  .layer.reverse { direction: ltr; }
+  .light-section { padding: 60px 0; }
+  .light-section h2, .dark-section h2 { font-size: 28px; line-height: 32px; }
+  .dark-section { padding: 40px 16px; }
+  .comp-table { display: block; overflow-x: auto; }
+}
+@media (max-width: 480px) {
+  .hero-stats { flex-direction: column; gap: 12px; }
+  .nav-logo span { font-size: 14px; }
+}
+
+/* Regime dots */
+.regime-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; display: inline-block; }
+
+/* Breathing bars */
+.breathing-bar { height: 8px; border-radius: 4px; animation: breathe 4s ease-in-out infinite; }
+@keyframes breathe { 0%, 100% { width: 40%; } 50% { width: 90%; } }
+
+/* backtest table inside dark */
+.bt-table { width: 100%; border-collapse: collapse; font-size: 16px; }
+.bt-table th, .bt-table td { padding: 10px 16px; text-align: center; border-bottom: 1px solid var(--border-glass); }
+.bt-table th { color: var(--text-tertiary-dark); font-weight: 500; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+.bt-table td { color: var(--text-body-dark); }
+.bt-table td.green { color: var(--profit); font-weight: 600; }
 </style>
-<link rel="stylesheet" href="qb-theme.css?v=11">
 </head>
 <body>
 
-<!-- Top Header -->
-<header class="top-header" style="position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,15,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;gap:12px;">
-  <a href="./" style="display:flex;align-items:center;flex-shrink:0;"><svg class="header-logo" width="32" height="32" viewBox="0 0 48 48" fill="none">
-    <rect x="4" y="4" width="40" height="40" rx="4" stroke="#30363d" stroke-width="1" fill="rgba(22,27,34,.8)"/>
-    <line x1="4" y1="17.3" x2="44" y2="17.3" stroke="#30363d" stroke-width="0.7"/>
-    <line x1="4" y1="24" x2="44" y2="24" stroke="#30363d" stroke-width="0.7"/>
-    <line x1="4" y1="30.7" x2="44" y2="30.7" stroke="#30363d" stroke-width="0.7"/>
-    <line x1="17.3" y1="4" x2="17.3" y2="44" stroke="#30363d" stroke-width="0.7"/>
-    <line x1="24" y1="4" x2="24" y2="44" stroke="#30363d" stroke-width="0.7"/>
-    <line x1="30.7" y1="4" x2="30.7" y2="44" stroke="#30363d" stroke-width="0.7"/>
-    <circle cx="24" cy="24" r="6" stroke="#58a6ff" stroke-width="2" fill="none" opacity=".9">
-      <animate attributeName="r" values="6;9;6" dur="3s" repeatCount="indefinite"/>
-      <animate attributeName="opacity" values=".9;.3;.9" dur="3s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="24" cy="24" r="11" stroke="#3fb950" stroke-width="1.5" fill="none" opacity=".5">
-      <animate attributeName="r" values="11;14;11" dur="3s" repeatCount="indefinite" begin="0.5s"/>
-      <animate attributeName="opacity" values=".5;.15;.5" dur="3s" repeatCount="indefinite" begin="0.5s"/>
-    </circle>
-    <circle cx="24" cy="24" r="16" stroke="#d29922" stroke-width="1" fill="none" opacity=".3">
-      <animate attributeName="r" values="16;18;16" dur="3s" repeatCount="indefinite" begin="1s"/>
-      <animate attributeName="opacity" values=".3;.1;.3" dur="3s" repeatCount="indefinite" begin="1s"/>
-    </circle>
-    <circle cx="24" cy="24" r="3" fill="#58a6ff">
-      <animate attributeName="r" values="3;4;3" dur="3s" repeatCount="indefinite"/>
-    </circle>
-    <path d="M24 8l4 5h-8z" fill="#3fb950" opacity=".8">
-      <animate attributeName="opacity" values=".8;.3;.8" dur="3s" repeatCount="indefinite"/>
-    </path>
-    <path d="M24 40l4-5h-8z" fill="#f85149" opacity=".8">
-      <animate attributeName="opacity" values=".8;.3;.8" dur="3s" repeatCount="indefinite" begin="1.5s"/>
-    </path>
-  </svg></a>
-  <a href="./" class="header-title" style="font-size:1.15rem;font-weight:600;letter-spacing:-.02em;white-space:nowrap;text-decoration:none;color:inherit;">Adaptive Intelligence Trading</a>
-  <a href="./" class="header-nav" style="margin-left:auto;color:var(--accent2);text-decoration:none;font-size:.9rem;font-weight:500;padding:6px 12px;border-radius:6px;transition:color 0.2s;">Product Overview</a>
-  <a href="risk-profiles.html" class="header-nav" style="color:var(--text2);text-decoration:none;font-size:.9rem;font-weight:500;padding:6px 12px;border-radius:6px;transition:color 0.2s;">Risk Profiles</a>
-  <a href="pricing.html" target="_blank" class="header-nav" style="color:var(--text2);text-decoration:none;font-size:.9rem;font-weight:500;padding:6px 12px;border-radius:6px;transition:color 0.2s;">Pricing</a>
-  <a href="roadmap.html" class="header-nav" style="color:var(--text2);text-decoration:none;font-size:.9rem;font-weight:500;padding:6px 12px;border-radius:6px;transition:color 0.2s;">Roadmap</a>
-  <a class="header-btn" href="dashboard.html" target="_blank" style="padding:6px 16px;background:var(--gradient2);color:#fff;border-radius:6px;font-size:.85rem;font-weight:600;text-decoration:none;white-space:nowrap;">Live Dashboard</a>
-  </header>
+<!-- NAV -->
+<nav class="nav">
+  <a href="./" class="nav-logo">
+    <svg width="36" height="36" viewBox="0 0 48 48" fill="none">
+      <rect x="4" y="4" width="40" height="40" rx="4" stroke="#E5E7EB" stroke-width="1" fill="rgba(255,255,255,.9)"/>
+      <line x1="4" y1="17.3" x2="44" y2="17.3" stroke="#E5E7EB" stroke-width="0.7"/>
+      <line x1="4" y1="24" x2="44" y2="24" stroke="#E5E7EB" stroke-width="0.7"/>
+      <line x1="4" y1="30.7" x2="44" y2="30.7" stroke="#E5E7EB" stroke-width="0.7"/>
+      <line x1="17.3" y1="4" x2="17.3" y2="44" stroke="#E5E7EB" stroke-width="0.7"/>
+      <line x1="24" y1="4" x2="24" y2="44" stroke="#E5E7EB" stroke-width="0.7"/>
+      <line x1="30.7" y1="4" x2="30.7" y2="44" stroke="#E5E7EB" stroke-width="0.7"/>
+      <circle cx="24" cy="24" r="6" stroke="#2269FC" stroke-width="2" fill="none" opacity=".9">
+        <animate attributeName="r" values="6;9;6" dur="3s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values=".9;.3;.9" dur="3s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="24" cy="24" r="11" stroke="#00D68F" stroke-width="1.5" fill="none" opacity=".5">
+        <animate attributeName="r" values="11;14;11" dur="3s" repeatCount="indefinite" begin="0.5s"/>
+        <animate attributeName="opacity" values=".5;.15;.5" dur="3s" repeatCount="indefinite" begin="0.5s"/>
+      </circle>
+      <circle cx="24" cy="24" r="16" stroke="#FFAA00" stroke-width="1" fill="none" opacity=".3">
+        <animate attributeName="r" values="16;18;16" dur="3s" repeatCount="indefinite" begin="1s"/>
+        <animate attributeName="opacity" values=".3;.1;.3" dur="3s" repeatCount="indefinite" begin="1s"/>
+      </circle>
+      <circle cx="24" cy="24" r="3" fill="#2269FC">
+        <animate attributeName="r" values="3;4;3" dur="3s" repeatCount="indefinite"/>
+      </circle>
+      <path d="M24 8l4 5h-8z" fill="#00D68F" opacity=".8">
+        <animate attributeName="opacity" values=".8;.3;.8" dur="3s" repeatCount="indefinite"/>
+      </path>
+      <path d="M24 40l4-5h-8z" fill="#FF4D4F" opacity=".8">
+        <animate attributeName="opacity" values=".8;.3;.8" dur="3s" repeatCount="indefinite" begin="1.5s"/>
+      </path>
+    </svg>
+    <span>Adaptive Intelligence Trading</span>
+  </a>
+  <div class="nav-links">
+    <a href="./" class="active">Product Overview</a>
+    <a href="#risk-profiles">Risk Profiles</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="roadmap.html">Roadmap</a>
+    <a href="dashboardV12.html" class="btn-blue">Live Dashboard</a>
+  </div>
+</nav>
 
-<!-- Hero -->
+<!-- ═══════════════ 1. HERO (white) ═══════════════ -->
 <section class="hero">
-  <div class="hero-content">
-    <div class="hero-badge">Generation 6 — Full Lifecycle Autonomy</div>
-    <h1>From Coin Selection to Profit Extraction — Fully Autonomous</h1>
-    <p>Smart Entry picks the coin. Conviction-driven DCA tells you WHEN to buy. Regime-gated Smart Exit tells you WHEN to sell. The complete autonomous trading lifecycle — no guesswork, no emotion, no intervention.</p>
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="hero-stat-value">8</div>
-        <div class="hero-stat-label">Intelligence Signals</div>
+  <div class="pill">Generation 6 — Full Lifecycle Autonomy</div>
+  <h1>From Coin Selection to Profit Extraction — Fully Autonomous</h1>
+  <p>Smart Entry picks the coin. Conviction-driven DCA tells you WHEN to buy. Regime-gated Smart Exit tells you WHEN to sell. No guesswork, no emotion, no intervention.</p>
+  <a href="#get-started" class="btn-blue-light">Get Started</a>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-value">8</div><div class="hero-stat-label">Intelligence Signals</div></div>
+    <div class="hero-stat"><div class="hero-stat-value">30s</div><div class="hero-stat-label">Adaptation Cycle</div></div>
+    <div class="hero-stat"><div class="hero-stat-value">100%</div><div class="hero-stat-label">Win Rate (Med)</div></div>
+    <div class="hero-stat"><div class="hero-stat-value">0</div><div class="hero-stat-label">Daily Management</div></div>
+  </div>
+</section>
+
+<!-- ═══════════════ 2. PROBLEM (white) ═══════════════ -->
+<section class="light-section">
+  <div class="container">
+    <h2 class="fade-in">Most People DCA In and Hold to Dust</h2>
+    <p class="sub fade-in">They become the exit liquidity. No exit plan, no profit-taking strategy, no idea when to sell. They just buy, hope, and hold until it hurts.</p>
+    <div class="grid-3 fade-in">
+      <div class="card-light" style="padding:28px;">
+        <div style="font-size:2rem;margin-bottom:12px;">🎯</div>
+        <h3 style="font-size:20px;font-weight:500;margin-bottom:8px;">No Exit Strategy</h3>
+        <p style="font-size:16px;color:var(--text-body);line-height:24px;">Buy-and-hold investors have no plan for taking profits. They watch gains evaporate and become exit liquidity for smarter money.</p>
       </div>
-      <div class="hero-stat">
-        <div class="hero-stat-value">30s</div>
-        <div class="hero-stat-label">Adaptation Cycle</div>
+      <div class="card-light" style="padding:28px;">
+        <div style="font-size:2rem;margin-bottom:12px;">💸</div>
+        <h3 style="font-size:20px;font-weight:500;margin-bottom:8px;">Capital Trapped in Losers</h3>
+        <p style="font-size:16px;color:var(--text-body);line-height:24px;">Money sits idle in bleeding positions for months. No cycling, no compounding — just hoping the market eventually saves them.</p>
       </div>
-      <div class="hero-stat">
-        <div class="hero-stat-value">1–8</div>
-        <div class="hero-stat-label">Simultaneous Coins</div>
+      <div class="card-light" style="padding:28px;">
+        <div style="font-size:2rem;margin-bottom:12px;">😰</div>
+        <h3 style="font-size:20px;font-weight:500;margin-bottom:8px;">Emotional Roller Coaster</h3>
+        <p style="font-size:16px;color:var(--text-body);line-height:24px;">FOMO buying at tops, panic selling at bottoms. Human psychology is the enemy of consistent profits.</p>
       </div>
-      <div class="hero-stat">
-        <div class="hero-stat-value">0</div>
-        <div class="hero-stat-label">Daily Management</div>
-      </div>
+    </div>
+    <div class="fade-in" style="text-align:center;margin-top:40px;padding:28px;border:1px solid var(--loss);border-radius:var(--radius-card);max-width:620px;margin-left:auto;margin-right:auto;background:rgba(255,77,79,0.04);">
+      <h3 style="color:var(--loss);font-size:20px;font-weight:500;margin-bottom:8px;">The Hard Truth</h3>
+      <p style="color:var(--text-body);font-size:16px;">Over the last 12 months, buy-and-hold DCA returned <strong style="color:var(--loss);">-29.3% (BTC)</strong>, <strong style="color:var(--loss);">-27.3% (ETH)</strong>, and <strong style="color:var(--loss);">-52.2% (SOL)</strong>. Meanwhile, our system returned positive gains with 97.7% win rate.</p>
     </div>
   </div>
 </section>
 
-<!-- Problem -->
-<section class="problem-section">
+<!-- ═══════════════ 3. CORE VALUE PROP (dark rounded) ═══════════════ -->
+<div class="dark-section" style="margin-top:var(--section-gap);">
   <div class="container">
-    <div class="section-label">The Problem</div>
-    <h2 class="section-title fade-in">Most People DCA In and Hold to Dust</h2>
-    <p class="section-subtitle fade-in">They become the exit liquidity. They have no exit plan, no profit-taking strategy, and no idea when to sell. They just buy, hope, and hold until it hurts.</p>
-    <div class="problem-grid">
-      <div class="problem-card fade-in">
-        <div class="problem-icon">🎯</div>
-        <h3>No Exit Strategy</h3>
-        <p>Buy-and-hold DCA investors have no plan for taking profits. They watch gains evaporate and losses compound, becoming exit liquidity for smarter money.</p>
-      </div>
-      <div class="problem-card fade-in">
-        <div class="problem-icon">💸</div>
-        <h3>Capital Trapped in Losers</h3>
-        <p>Money sits idle in bleeding positions for months or years. No cycling, no compounding — just hoping the market eventually saves them.</p>
-      </div>
-      <div class="problem-card fade-in">
-        <div class="problem-icon">😰</div>
-        <h3>Emotional Roller Coaster</h3>
-        <p>FOMO buying at tops, panic selling at bottoms, or freezing up entirely. Human psychology is the enemy of consistent profits.</p>
-      </div>
-    </div>
-    <div style="text-align: center; margin-top: 48px; padding: 32px; background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); border-radius: 16px; max-width: 600px; margin-left: auto; margin-right: auto;">
-      <h3 style="color: var(--red); font-size: 1.1rem; font-weight: 600; margin-bottom: 12px;">The Hard Truth</h3>
-      <p style="color: var(--text2); font-size: 0.95rem;">Over the last 12 months, buy-and-hold DCA returned <strong style="color: var(--red);">-29.3% (BTC)</strong>, <strong style="color: var(--red);">-27.3% (ETH)</strong>, and <strong style="color: var(--red);">-52.2% (SOL)</strong>. Meanwhile, our system returned positive gains with 97.7% win rate.</p>
-    </div>
-  </div>
-</section>
-
-<!-- Core Value Prop -->
-<section style="background: linear-gradient(135deg, rgba(99,102,241,0.08) 0%, rgba(99,102,241,0.06) 100%); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-  <div class="container">
-    <div class="section-label">Core Value Proposition</div>
-    <h2 class="section-title fade-in">Most Tools Solve Half the Problem. We Solve Both.</h2>
-    <p class="section-subtitle fade-in">The dual-problem solution: "When to get in" AND "when to get out" — optimized through advanced market analysis and adaptive trading methods.</p>
-    
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 48px; align-items: center;">
-      <div class="fade-in">
-        <div style="background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); border-radius: 16px; padding: 32px; margin-bottom: 24px;">
-          <h3 style="color: var(--red); font-size: 1.3rem; font-weight: 700; margin-bottom: 16px; text-align: center;">❌ Most Trading Tools</h3>
-          <div style="display: flex; justify-content: space-between; margin-bottom: 24px;">
-            <div style="text-align: center; flex: 1;">
-              <div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; color: var(--text);">Entry Timing</div>
-              <div style="color: var(--green); font-size: 0.9rem;">✓ Solved</div>
-              <div style="color: var(--text3); font-size: 0.8rem; margin-top: 4px;">DCA, signals, indicators</div>
-            </div>
-            <div style="width: 1px; background: var(--border); margin: 0 16px;"></div>
-            <div style="text-align: center; flex: 1;">
-              <div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; color: var(--text);">Exit Strategy</div>
-              <div style="color: var(--red); font-size: 0.9rem;">❌ Missing</div>
-              <div style="color: var(--text3); font-size: 0.8rem; margin-top: 4px;">Hope, guesswork, emotion</div>
-            </div>
+    <h2 class="fade-in">Most Tools Solve Half the Problem. We Solve Both.</h2>
+    <p class="sub fade-in">The dual-problem solution: <strong>"When to get in"</strong> AND <strong>"when to get out"</strong> — optimized through advanced market analysis and adaptive trading methods.</p>
+    <div class="grid-2 fade-in" style="margin-top:32px;">
+      <div class="card-dark" style="padding:28px;">
+        <h3 style="color:var(--loss);font-size:20px;font-weight:500;margin-bottom:16px;text-align:center;">❌ Most Trading Tools</h3>
+        <div style="display:flex;gap:20px;margin-bottom:20px;">
+          <div style="flex:1;text-align:center;">
+            <div style="font-weight:500;margin-bottom:6px;">Entry Timing</div>
+            <div style="color:var(--profit);font-size:14px;">✓ Solved</div>
+            <div style="color:var(--text-tertiary-dark);font-size:14px;margin-top:4px;">DCA, signals, indicators</div>
           </div>
-          <div style="text-align: center; color: var(--red); font-size: 0.95rem; font-style: italic;">Result: You become the exit liquidity</div>
-        </div>
-      </div>
-      
-      <div class="fade-in">
-        <div style="background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.15); border-radius: 16px; padding: 32px;">
-          <h3 style="color: var(--green); font-size: 1.3rem; font-weight: 700; margin-bottom: 16px; text-align: center;">✅ Adaptive Intelligence</h3>
-          <div style="display: flex; justify-content: space-between; margin-bottom: 24px;">
-            <div style="text-align: center; flex: 1;">
-              <div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; color: var(--text);">Entry Timing</div>
-              <div style="color: var(--green); font-size: 0.9rem;">✓ Optimized</div>
-              <div style="color: var(--text3); font-size: 0.8rem; margin-top: 4px;">Smart Entry + Conviction DCA</div>
-            </div>
-            <div style="width: 1px; background: var(--border); margin: 0 16px;"></div>
-            <div style="text-align: center; flex: 1;">
-              <div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; color: var(--text);">Exit Strategy</div>
-              <div style="color: var(--green); font-size: 0.9rem;">✓ Systematic</div>
-              <div style="color: var(--text3); font-size: 0.8rem; margin-top: 4px;">Smart Exit: regime-gated</div>
-            </div>
+          <div style="width:1px;background:var(--border-glass);"></div>
+          <div style="flex:1;text-align:center;">
+            <div style="font-weight:500;margin-bottom:6px;">Exit Strategy</div>
+            <div style="color:var(--loss);font-size:14px;">❌ Missing</div>
+            <div style="color:var(--text-tertiary-dark);font-size:14px;margin-top:4px;">Hope, guesswork, emotion</div>
           </div>
-          <div style="text-align: center; color: var(--green); font-size: 0.95rem; font-weight: 600;">Result: <em>You ARE the exit strategy</em></div>
         </div>
+        <div style="text-align:center;color:var(--loss);font-size:14px;font-style:italic;">Result: You become the exit liquidity</div>
+      </div>
+      <div class="card-dark" style="padding:28px;">
+        <h3 style="color:var(--profit);font-size:20px;font-weight:500;margin-bottom:16px;text-align:center;">✅ Adaptive Intelligence</h3>
+        <div style="display:flex;gap:20px;margin-bottom:20px;">
+          <div style="flex:1;text-align:center;">
+            <div style="font-weight:500;margin-bottom:6px;">Entry Timing</div>
+            <div style="color:var(--profit);font-size:14px;">✓ Optimized</div>
+            <div style="color:var(--text-tertiary-dark);font-size:14px;margin-top:4px;">Smart Entry + Conviction DCA</div>
+          </div>
+          <div style="width:1px;background:var(--border-glass);"></div>
+          <div style="flex:1;text-align:center;">
+            <div style="font-weight:500;margin-bottom:6px;">Exit Strategy</div>
+            <div style="color:var(--profit);font-size:14px;">✓ Systematic</div>
+            <div style="color:var(--text-tertiary-dark);font-size:14px;margin-top:4px;">Smart Exit: regime-gated</div>
+          </div>
+        </div>
+        <div style="text-align:center;color:var(--profit);font-size:14px;font-weight:600;">Result: You ARE the exit strategy</div>
       </div>
     </div>
-    
-    <div style="text-align: center; margin-top: 40px; max-width: 700px; margin-left: auto; margin-right: auto;">
-      <div style="background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.2); border-radius: 12px; padding: 24px;">
-        <div style="color: var(--accent2); font-size: 1.1rem; font-weight: 600; margin-bottom: 8px;">🎯 The Complete Lifecycle Solution</div>
-        <div style="color: var(--text2); font-size: 1rem;">Smart Entry finds the coins. Conviction-driven DCA determines WHEN to accumulate. Macro Intelligence monitors 8 real-time signals. Smart Exit determines WHEN to take profits. Full lifecycle — fully autonomous.</div>
-      </div>
+    <div class="fade-in" style="text-align:center;margin-top:32px;padding:20px;background:var(--bg-card-dark);border-radius:var(--radius-card);">
+      <div style="color:var(--ait-blue);font-size:18px;font-weight:500;margin-bottom:6px;">🎯 The Complete Lifecycle Solution</div>
+      <div style="color:var(--text-body-dark);font-size:16px;">Smart Entry → Conviction DCA → Macro Intelligence → Smart Exit. Full lifecycle — fully autonomous.</div>
     </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 4. HOW IT WORKS (alternating) ═══════════════ -->
+<section class="light-section" style="padding-bottom:40px;">
+  <div class="container">
+    <h2 class="fade-in">Seven Layers Working as One</h2>
+    <p class="sub fade-in">The system operates on interconnected layers — from finding undervalued coins to extracting profits at exactly the right moment.</p>
   </div>
 </section>
 
-<!-- How It Works -->
-<section class="layers-section">
+<!-- Layer 1 - white -->
+<section class="light-section" style="padding-top:0;">
   <div class="container">
-    <div class="section-label">How It Works</div>
-    <h2 class="section-title fade-in">Seven Layers Working as One</h2>
-    <p class="section-subtitle fade-in">The system operates on interconnected layers that work together like a living organism — from finding undervalued coins to extracting profits at exactly the right moment.</p>
-
-    <!-- Layer 1: Smart Entry -->
     <div class="layer fade-in">
       <div>
-        <div class="layer-number">01</div>
-        <div class="layer-title">Smart Entry — Automated Coin Selection</div>
-        <div class="layer-question">"Which coins are undervalued RIGHT NOW?"</div>
-        <div class="layer-text">Every day at 6am, a three-tier scoring pipeline scans the entire market: <strong>Value Discovery (40%)</strong> finds coins trading far below their 12-month local top, <strong>Technical Readiness (30%)</strong> confirms momentum is building, and <strong>Strategy Validation (20%) + Risk (10%)</strong> ensures the coin is actually tradeable.</div>
-        <div class="layer-text">Sources include CoinGecko (fundamentals, ATH distance), Santiment (MVRV Z-Score, NUPL, Exchange Flows), Grok (sentiment analysis), and GitHub (developer activity). Uses 12-month local top instead of all-time high to account for circulating supply inflation.</div>
-        <div class="layer-text" style="color:var(--green);font-weight:600;">Backtested validation: this system would have caught SOL at $8, NEAR at $1.20 — six months before their ATH runs.</div>
+        <div class="layer-num" style="color:rgba(34,105,252,0.12);">01</div>
+        <div class="layer-title" style="color:var(--text-heading);">Smart Entry — Automated Coin Selection</div>
+        <div class="layer-q">"Which coins are undervalued RIGHT NOW?"</div>
+        <div style="font-size:16px;color:var(--text-body);line-height:24px;margin-bottom:12px;">Every day at 6am, a three-tier scoring pipeline scans the entire market: <strong style="color:var(--text-heading);">Value Discovery (40%)</strong> finds coins trading far below their 12-month local top, <strong style="color:var(--text-heading);">Technical Readiness (30%)</strong> confirms momentum, and <strong style="color:var(--text-heading);">Strategy Validation (20%) + Risk (10%)</strong> ensures tradeability.</div>
+        <div style="font-size:16px;color:var(--text-body);line-height:24px;margin-bottom:12px;">Sources: CoinGecko (fundamentals, ATH distance), Santiment (MVRV Z-Score, NUPL, Exchange Flows), Grok (sentiment analysis), and GitHub (developer activity).</div>
+        <div style="font-size:16px;color:var(--profit);font-weight:600;">Backtested: would have caught SOL at $8, NEAR at $1.20 — six months before ATH runs.</div>
       </div>
-      <div class="layer-visual">
-        <div style="display:flex; flex-direction:column; gap:16px;">
-          <div style="font-size:0.8rem;color:var(--text3);margin-bottom:4px;">THREE-TIER SCORING PIPELINE</div>
-          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-            <span style="background:rgba(99,102,241,0.15);color:var(--green);padding:8px 14px;border-radius:8px;font-size:0.85rem;font-weight:600;">🔍 Value Discovery 40%</span>
-            <span style="color:var(--text3)">→</span>
-            <span style="background:rgba(99,102,241,0.15);color:var(--accent2);padding:8px 14px;border-radius:8px;font-size:0.85rem;font-weight:600;">📊 Technical Readiness 30%</span>
-            <span style="color:var(--text3)">→</span>
-            <span style="background:rgba(245,158,11,0.15);color:var(--amber);padding:8px 14px;border-radius:8px;font-size:0.85rem;font-weight:600;">✅ Validation 20% + Risk 10%</span>
-          </div>
-          <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px;">
-            <div style="display:flex;align-items:center;gap:10px;font-size:0.85rem;"><span style="color:var(--green);">📈</span> CoinGecko — fundamentals, market cap, ATH distance</div>
-            <div style="display:flex;align-items:center;gap:10px;font-size:0.85rem;"><span style="color:var(--accent2);">⛓️</span> Santiment — MVRV Z-Score, NUPL, Exchange Flows</div>
-            <div style="display:flex;align-items:center;gap:10px;font-size:0.85rem;"><span style="color:var(--amber);">🤖</span> Grok — real-time sentiment analysis</div>
-            <div style="display:flex;align-items:center;gap:10px;font-size:0.85rem;"><span style="color:var(--green);">💻</span> GitHub — developer activity & commit frequency</div>
-          </div>
-          <div style="margin-top:12px;padding:12px 16px;background:rgba(99,102,241,0.08);border-radius:10px;border:1px solid rgba(99,102,241,0.15);">
-            <div style="font-size:0.8rem;color:var(--green);font-weight:600;">🎯 Smart Entry picks the coin, Fear & Greed tells you WHEN to buy</div>
-          </div>
+      <div class="card-light" style="padding:28px;">
+        <div style="font-size:14px;color:var(--text-body);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;">Three-Tier Scoring Pipeline</div>
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
+          <span style="background:var(--ait-blue-10);color:var(--profit);padding:8px 12px;border-radius:8px;font-size:14px;font-weight:500;">🔍 Value Discovery 40%</span>
+          <span style="color:var(--text-body);">→</span>
+          <span style="background:var(--ait-blue-10);color:var(--ait-blue);padding:8px 12px;border-radius:8px;font-size:14px;font-weight:500;">📊 Technical 30%</span>
+          <span style="color:var(--text-body);">→</span>
+          <span style="background:rgba(255,170,0,0.1);color:var(--warning);padding:8px 12px;border-radius:8px;font-size:14px;font-weight:500;">✅ Validation 30%</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text-body);"><span style="color:var(--profit);">📈</span> CoinGecko — fundamentals, market cap</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text-body);"><span style="color:var(--ait-blue);">⛓️</span> Santiment — MVRV, NUPL, Exchange Flows</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text-body);"><span style="color:var(--warning);">🤖</span> Grok — sentiment analysis</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text-body);"><span style="color:var(--profit);">💻</span> GitHub — developer activity</div>
         </div>
       </div>
     </div>
+  </div>
+</section>
 
-    <!-- Layer 2 -->
+<!-- Layer 2+3 - dark rounded -->
+<div class="dark-section" style="margin-top:0;">
+  <div class="container">
     <div class="layer fade-in">
       <div>
-        <div class="layer-number">02</div>
+        <div class="layer-num" style="color:rgba(255,255,255,0.08);">02</div>
         <div class="layer-title">Market Regime Detection</div>
-        <div class="layer-question">"What kind of market are we in right now?"</div>
-        <div class="layer-text">Every 30 seconds, the system analyzes recent price action across multiple indicators to classify the current market. This isn't just a label — it's the brain of the system. Every other decision flows from this classification.</div>
+        <div class="layer-q" style="color:var(--ait-blue);">"What kind of market are we in right now?"</div>
+        <div class="layer-text">Every 30 seconds, the system classifies the current market regime. This isn't just a label — it's the brain of the system. Every other decision flows from this classification.</div>
       </div>
       <div class="layer-visual">
-        <ul class="regime-list">
-          <li class="regime-item"><span class="regime-dot" style="background:#22c55e"></span><span class="regime-name">Trending</span><span class="regime-desc">Strong directional movement</span></li>
-          <li class="regime-item"><span class="regime-dot" style="background:#06b6d4"></span><span class="regime-name">Mild Trend</span><span class="regime-desc">Moderate directional bias</span></li>
-          <li class="regime-item"><span class="regime-dot" style="background:#8b5cf6"></span><span class="regime-name">Accumulation</span><span class="regime-desc">Consolidation before a move</span></li>
-          <li class="regime-item"><span class="regime-dot" style="background:#f59e0b"></span><span class="regime-name">Ranging</span><span class="regime-desc">Bouncing between levels</span></li>
-          <li class="regime-item"><span class="regime-dot" style="background:#f97316"></span><span class="regime-name">Choppy</span><span class="regime-desc">Erratic, unpredictable</span></li>
-          <li class="regime-item"><span class="regime-dot" style="background:#ef4444"></span><span class="regime-name">Extreme</span><span class="regime-desc">Dangerous — trading halted</span></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Layer 3: Macro Intelligence & Conviction DCA -->
-    <div class="layer fade-in">
-      <div>
-        <div class="layer-number">03</div>
-        <div class="layer-title">Macro Intelligence & Conviction-Driven DCA</div>
-        <div class="layer-question">"How much conviction should we have RIGHT NOW?"</div>
-        <div class="layer-text">A 4-layer conviction scorer — Macro (40pts), Regime (25pts), Momentum (25pts), Position (10pts) — continuously evaluates market conditions. The <strong>Fear & Greed Index is the dominant signal</strong> (15 of 40 macro points), because extreme fear = extreme opportunity.</div>
-        <div class="layer-text">High conviction (Extreme Fear + accumulation regime) = wider deviation, more patient, deeper grid — <em>"breathe in"</em>. Low conviction = tighter parameters, faster exits, shallower grid — <em>"breathe out"</em>. The system dynamically adjusts TP targets, deviation/spacing, SO sizing, max safety orders, and base order size.</div>
-        <div class="layer-text"><strong style="color:var(--green);">Backtested: +35% better Sharpe ratio, -32% lower drawdown</strong> vs standard DCA.</div>
-      </div>
-      <div class="layer-visual">
-        <div style="display:flex; flex-direction:column; gap:16px;">
-          <div style="font-size:0.8rem;color:var(--text3);margin-bottom:4px;">MACRO INTELLIGENCE DASHBOARD</div>
-          <div style="display:flex;flex-direction:column;gap:10px;">
-            <div style="display:flex;justify-content:space-between;font-size:0.85rem;padding:8px 12px;background:rgba(239,68,68,0.08);border-radius:8px;"><span>😱 Fear & Greed Index</span><span style="color:var(--red);font-weight:600;">Extreme Fear = BUY signal</span></div>
-            <div style="display:flex;justify-content:space-between;font-size:0.85rem;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;"><span>🪙 BTC Dominance</span><span style="color:var(--accent2);">Alt-season detector</span></div>
-            <div style="display:flex;justify-content:space-between;font-size:0.85rem;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;"><span>📈 BTC vs 200-Day SMA</span><span style="color:var(--green);">Bull/bear regime</span></div>
-            <div style="display:flex;justify-content:space-between;font-size:0.85rem;padding:8px 12px;background:rgba(245,158,11,0.08);border-radius:8px;"><span>🔄 Pi Cycle Top Detector</span><span style="color:var(--amber);">Cycle top warning</span></div>
-            <div style="display:flex;justify-content:space-between;font-size:0.85rem;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;"><span>💵 Stablecoin Supply Ratio</span><span style="color:var(--accent2);">Buying power gauge</span></div>
-          </div>
-          <div style="margin-top:8px;padding:12px 16px;background:rgba(99,102,241,0.08);border-radius:10px;font-size:0.8rem;color:var(--text2);">
-            <strong style="color:var(--accent2);">+ On-Chain:</strong> MVRV Z-Score, NUPL, Exchange Flows (Santiment) · Wyckoff structural analysis
-          </div>
-          <div style="margin-top:8px;padding:12px 16px;background:rgba(99,102,241,0.08);border-radius:10px;border:1px solid rgba(99,102,241,0.15);">
-            <div style="font-size:0.8rem;color:var(--green);font-weight:600;">🫁 "Breathing Accumulation" — the system breathes with the market</div>
-          </div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--border-glass);"><span class="regime-dot" style="background:#00D68F"></span><span style="font-weight:500;min-width:120px;">Trending</span><span style="color:var(--text-body-dark);font-size:14px;">Strong directional movement</span></div>
+          <div style="display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--border-glass);"><span class="regime-dot" style="background:#2269FC"></span><span style="font-weight:500;min-width:120px;">Mild Trend</span><span style="color:var(--text-body-dark);font-size:14px;">Moderate directional bias</span></div>
+          <div style="display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--border-glass);"><span class="regime-dot" style="background:#8b5cf6"></span><span style="font-weight:500;min-width:120px;">Accumulation</span><span style="color:var(--text-body-dark);font-size:14px;">Consolidation before a move</span></div>
+          <div style="display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--border-glass);"><span class="regime-dot" style="background:#FFAA00"></span><span style="font-weight:500;min-width:120px;">Ranging</span><span style="color:var(--text-body-dark);font-size:14px;">Bouncing between levels</span></div>
+          <div style="display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--border-glass);"><span class="regime-dot" style="background:#f97316"></span><span style="font-weight:500;min-width:120px;">Choppy</span><span style="color:var(--text-body-dark);font-size:14px;">Erratic, unpredictable</span></div>
+          <div style="display:flex;align-items:center;gap:12px;padding:8px 0;"><span class="regime-dot" style="background:#FF4D4F"></span><span style="font-weight:500;min-width:120px;">Extreme</span><span style="color:var(--text-body-dark);font-size:14px;">Dangerous — trading halted</span></div>
         </div>
       </div>
     </div>
 
-    <!-- Layer 4 -->
-    <div class="layer fade-in">
+    <div class="layer reverse fade-in">
       <div>
-        <div class="layer-number">04</div>
-        <div class="layer-title">Adaptive Parameters</div>
-        <div class="layer-question">"How should we trade in this environment?"</div>
-        <div class="layer-text">Based on the current regime and real-time volatility, the system dynamically adjusts take-profit targets and grid spacing. Think of it like breathing — the grid contracts in calm markets for quick, efficient cycles and expands in volatile markets for patient, larger captures.</div>
-        <div class="layer-text"><strong>Take Profit:</strong> 1.0% – 2.5% (adapts to conditions)<br><strong>Grid Spacing:</strong> 1.5% – 4.0% (always wider than TP)</div>
+        <div class="layer-num" style="color:rgba(255,255,255,0.08);">03</div>
+        <div class="layer-title">Macro Intelligence & Conviction DCA</div>
+        <div class="layer-q" style="color:var(--ait-blue);">"How much conviction should we have RIGHT NOW?"</div>
+        <div class="layer-text">A 4-layer conviction scorer — <strong>Macro (40pts)</strong>, <strong>Regime (25pts)</strong>, <strong>Momentum (25pts)</strong>, <strong>Position (10pts)</strong> — continuously evaluates conditions. The <strong>Fear & Greed Index is the dominant signal</strong>.</div>
+        <div class="layer-text">High conviction = wider deviation, deeper grid. Low conviction = tighter parameters, faster exits. <strong>Backtested: +35% better Sharpe ratio, -32% lower drawdown</strong> vs standard DCA.</div>
       </div>
       <div class="layer-visual">
-        <div class="breathing-demo">
-          <div class="breathing-label"><span>Calm Market</span><span>Volatile Market</span></div>
-          <div class="breathing-bar tp" style="animation-delay: 0s;"></div>
-          <div style="display:flex; justify-content:space-between; width:100%; font-size:0.8rem;">
-            <span style="color:var(--green)">Take Profit</span>
+        <div style="font-size:14px;color:var(--text-tertiary-dark);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;">Macro Intelligence</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;justify-content:space-between;font-size:14px;padding:8px 12px;background:rgba(255,77,79,0.1);border-radius:8px;"><span>😱 Fear & Greed Index</span><span style="color:var(--loss);font-weight:500;">Extreme Fear = BUY</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:14px;padding:8px 12px;background:rgba(34,105,252,0.1);border-radius:8px;"><span>🪙 BTC Dominance</span><span style="color:var(--ait-blue);">Alt-season detector</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:14px;padding:8px 12px;background:rgba(34,105,252,0.1);border-radius:8px;"><span>📈 BTC vs 200-Day SMA</span><span style="color:var(--profit);">Bull/bear regime</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:14px;padding:8px 12px;background:rgba(255,170,0,0.1);border-radius:8px;"><span>🔄 Pi Cycle Top</span><span style="color:var(--warning);">Cycle top warning</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:14px;padding:8px 12px;background:rgba(34,105,252,0.1);border-radius:8px;"><span>💵 Stablecoin Supply</span><span style="color:var(--ait-blue);">Buying power</span></div>
+        </div>
+        <div style="margin-top:12px;padding:10px 14px;background:rgba(34,105,252,0.08);border-radius:8px;font-size:14px;color:var(--text-body-dark);">
+          <strong style="color:var(--ait-blue);">+ On-Chain:</strong> MVRV Z-Score, NUPL, Exchange Flows, Wyckoff analysis
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Layer 4+5 - white -->
+<section class="light-section">
+  <div class="container">
+    <div class="layer fade-in">
+      <div>
+        <div class="layer-num" style="color:rgba(34,105,252,0.12);">04</div>
+        <div class="layer-title" style="color:var(--text-heading);">Adaptive Parameters</div>
+        <div class="layer-q">"How should we trade in this environment?"</div>
+        <div style="font-size:16px;color:var(--text-body);line-height:24px;margin-bottom:12px;">Based on the current regime and real-time volatility, the system dynamically adjusts take-profit targets and grid spacing. The grid contracts in calm markets for quick cycles and expands in volatile markets for larger captures.</div>
+        <div style="font-size:16px;color:var(--text-body);line-height:24px;"><strong style="color:var(--text-heading);">Take Profit:</strong> 1.0% – 2.5% &nbsp;·&nbsp; <strong style="color:var(--text-heading);">Grid Spacing:</strong> 1.5% – 4.0%</div>
+      </div>
+      <div class="card-light" style="padding:28px;display:flex;flex-direction:column;align-items:center;gap:16px;">
+        <div style="display:flex;justify-content:space-between;width:100%;font-size:14px;color:var(--text-body);"><span>Calm Market</span><span>Volatile Market</span></div>
+        <div class="breathing-bar" style="background:linear-gradient(90deg,var(--profit),var(--ait-blue));"></div>
+        <div style="font-size:14px;color:var(--profit);">Take Profit</div>
+        <div class="breathing-bar" style="background:linear-gradient(90deg,var(--ait-blue),#8b5cf6);animation-delay:0.2s;"></div>
+        <div style="font-size:14px;color:var(--ait-blue);">Grid Spacing</div>
+        <div style="text-align:center;font-size:14px;color:var(--text-body);margin-top:8px;">← Tighter (faster cycles) &nbsp;|&nbsp; Wider (bigger captures) →</div>
+      </div>
+    </div>
+
+    <div class="layer reverse fade-in">
+      <div>
+        <div class="layer-num" style="color:rgba(34,105,252,0.12);">05</div>
+        <div class="layer-title" style="color:var(--text-heading);">Intelligent Spot DCA with Scale-Out Exits</div>
+        <div class="layer-q">"You own the coins. Zero funding fees. Maximum profit extraction."</div>
+        <div style="font-size:16px;color:var(--text-body);line-height:24px;margin-bottom:12px;">Long-only spot DCA — you buy actual coins, not synthetic positions. No funding fees, no liquidation risk. <strong style="color:var(--text-heading);">Scale-out exits</strong> sell the largest lots first for ~5-8× more profit per cycle.</div>
+      </div>
+      <div class="card-light" style="padding:28px;">
+        <div style="margin-bottom:16px;">
+          <div style="font-size:14px;color:var(--text-body);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;">DCA Accumulation ▼</div>
+          <div style="display:flex;flex-direction:column;gap:4px;font-size:14px;color:var(--text-body);">
+            <div style="display:flex;justify-content:space-between;"><span>Base Order</span><span style="color:var(--profit);">$100.00</span></div>
+            <div style="display:flex;justify-content:space-between;"><span>SO1 — deviation 1</span><span style="color:var(--profit);">$97.50</span></div>
+            <div style="display:flex;justify-content:space-between;"><span>SO2 — deviation 2</span><span style="color:var(--profit);">$95.00</span></div>
+            <div style="display:flex;justify-content:space-between;"><span>SO3 — deviation 3</span><span style="color:var(--profit);">$92.50</span></div>
           </div>
-          <div class="breathing-bar dev" style="animation-delay: 0.2s;"></div>
-          <div style="display:flex; justify-content:space-between; width:100%; font-size:0.8rem;">
-            <span style="color:var(--accent2)">Grid Spacing</span>
-          </div>
-          <div style="margin-top:16px; text-align:center; color:var(--text3); font-size:0.8rem;">
-            ← Tighter (faster cycles) &nbsp;|&nbsp; Wider (bigger captures) →
+        </div>
+        <div style="text-align:center;font-size:18px;color:var(--text-body);margin-bottom:16px;">⟱ buy dips &nbsp;&nbsp; ⟰ sell peaks</div>
+        <div>
+          <div style="font-size:14px;color:var(--text-body);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;">Scale-Out Exits ▲ (largest first)</div>
+          <div style="display:flex;flex-direction:column;gap:4px;font-size:14px;color:var(--text-body);">
+            <div style="display:flex;justify-content:space-between;"><span>Sell SO3 first</span><span style="color:var(--ait-blue);">💰 biggest lot, cheapest buy</span></div>
+            <div style="display:flex;justify-content:space-between;"><span>Sell SO2 next</span><span style="color:var(--ait-blue);">💰 second largest</span></div>
+            <div style="display:flex;justify-content:space-between;"><span>Sell SO1</span><span style="color:var(--ait-blue);">💰 third</span></div>
+            <div style="display:flex;justify-content:space-between;"><span>Sell Base last</span><span style="color:var(--ait-blue);">💰 smallest lot</span></div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</section>
 
-    <!-- Layer 5 -->
+<!-- Layer 6+7+8 - dark rounded -->
+<div class="dark-section" style="margin-top:0;">
+  <div class="container">
     <div class="layer fade-in">
       <div>
-        <div class="layer-number">05</div>
-        <div class="layer-title">Intelligent Spot DCA with Scale-Out Exits</div>
-        <div class="layer-question">"You own the coins. Zero funding fees. Maximum profit extraction."</div>
-        <div class="layer-text">Long-only spot DCA — you buy and hold actual coins, never synthetic positions. No funding fees (the "hidden killer" that drains futures traders 0.01% every 8 hours), no liquidation risk, no margin calls. Your assets, your ownership.</div>
-        <div class="layer-text"><strong>Scale-out exits</strong> are the innovation: when price recovers, the system sells the largest lots first — the ones bought cheapest, at the deepest dip — extracting maximum profit per cycle. Instead of a single take-profit, each layer exits independently for ~5-8× more profit per cycle.</div>
-        <div class="layer-text"><strong>Regime-aware accumulation:</strong> In bearish markets, deviations widen to wait for bigger dips. In ranging markets, tighter deviations enable frequent cycling. <strong>Conviction modulation:</strong> when Fear & Greed hits extreme fear, the system widens deviation and accumulates more aggressively — buying when others panic.</div>
-      </div>
-      <div class="layer-visual">
-        <div style="display:flex; flex-direction:column; gap:16px;">
-          <div style="padding:16px;background:rgba(99,102,241,0.08);border-radius:10px;">
-            <div style="font-size:0.8rem;color:var(--text3);margin-bottom:10px;">DCA ACCUMULATION ▼</div>
-            <div style="display:flex;flex-direction:column;gap:6px;">
-              <div style="display:flex;justify-content:space-between;font-size:0.85rem;"><span>Base Order</span><span style="color:var(--green)">$100.00</span></div>
-              <div style="display:flex;justify-content:space-between;font-size:0.85rem;"><span>SO1 — deviation 1</span><span style="color:var(--green)">$97.50</span></div>
-              <div style="display:flex;justify-content:space-between;font-size:0.85rem;"><span>SO2 — deviation 2</span><span style="color:var(--green)">$95.00</span></div>
-              <div style="display:flex;justify-content:space-between;font-size:0.85rem;"><span>SO3 — deviation 3</span><span style="color:var(--green)">$92.50</span></div>
-            </div>
-          </div>
-          <div style="text-align:center;font-size:1.2rem;color:var(--text3);">⟱ buy dips &nbsp;&nbsp;&nbsp; ⟰ sell peaks</div>
-          <div style="padding:16px;background:rgba(99,102,241,0.08);border-radius:10px;">
-            <div style="font-size:0.8rem;color:var(--text3);margin-bottom:10px;">SCALE-OUT EXITS ▲ (largest lots first)</div>
-            <div style="display:flex;flex-direction:column;gap:6px;">
-              <div style="display:flex;justify-content:space-between;font-size:0.85rem;"><span>Sell SO3 first</span><span style="color:var(--accent)">💰 biggest lot, cheapest buy</span></div>
-              <div style="display:flex;justify-content:space-between;font-size:0.85rem;"><span>Sell SO2 next</span><span style="color:var(--accent)">💰 second largest</span></div>
-              <div style="display:flex;justify-content:space-between;font-size:0.85rem;"><span>Sell SO1</span><span style="color:var(--accent)">💰 third</span></div>
-              <div style="display:flex;justify-content:space-between;font-size:0.85rem;"><span>Sell Base last</span><span style="color:var(--accent)">💰 smallest lot</span></div>
-            </div>
-          </div>
-          <div style="margin-top:4px;padding:12px 16px;background:rgba(99,102,241,0.08);border-radius:10px;border:1px solid rgba(99,102,241,0.15);">
-            <div style="font-size:0.8rem;color:var(--green);font-weight:600;margin-bottom:4px;">🪙 Spot Ownership</div>
-            <div style="font-size:0.8rem;color:var(--text2);">No leverage. No margin. No funding fees. You own the actual coins — the safest way to trade crypto.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Layer 6 -->
-    <div class="layer fade-in">
-      <div>
-        <div class="layer-number">06</div>
+        <div class="layer-num" style="color:rgba(255,255,255,0.08);">06</div>
         <div class="layer-title">Risk Profiles & Capital Management</div>
-        <div class="layer-question">"Choose your risk. The system handles the rest."</div>
-        <div class="layer-text">Three risk profiles — Low, Medium, and High — let you control exactly where you sit on the risk-reward spectrum. Allocate capital across profiles like a portfolio: conservative, balanced, or aggressive. Each profile has its own accumulation depth, deviation strategy, and adaptive parameters.</div>
-        <div class="layer-text">The system continuously monitors capital utilization, maintains safety reserves, auto-skips unaffordable orders, and always prioritizes closing profitable positions. Built-in guardrails automatically de-risk when drawdowns hit thresholds.</div>
+        <div class="layer-q" style="color:var(--ait-blue);">"Choose your risk. The system handles the rest."</div>
+        <div class="layer-text">Three risk profiles — Low, Medium, High — let you control where you sit on the risk-reward spectrum. Each has its own accumulation depth, deviation strategy, and adaptive parameters. Built-in guardrails automatically de-risk when drawdowns hit thresholds.</div>
       </div>
       <div class="layer-visual">
-        <div style="display:flex; flex-direction:column; gap:16px;">
-          <div style="font-size:0.8rem;color:var(--text3);margin-bottom:4px;">RISK PROFILES</div>
-          <div style="display:flex;justify-content:space-between;font-size:0.85rem;padding:8px 0;border-bottom:1px solid var(--border);"><span style="font-weight:600;color:var(--green);">Low Risk</span><span style="color:var(--text2);">5 SOs · 3.0% Dev · Conservative</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:0.85rem;padding:8px 0;border-bottom:1px solid var(--border);"><span style="font-weight:600;color:var(--amber);">Medium Risk</span><span style="color:var(--text2);">8 SOs · 2.5% Dev · Balanced</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:0.85rem;padding:8px 0;border-bottom:1px solid var(--border);"><span style="font-weight:600;color:var(--red);">High Risk</span><span style="color:var(--text2);">12 SOs · 2.0% Dev · Aggressive</span></div>
-          <div style="margin-top:12px;display:flex;flex-direction:column;gap:10px;">
-            <div style="display:flex;align-items:center;gap:12px;"><span style="color:var(--green);font-size:1.1rem;">🛡️</span><span style="font-size:0.85rem;">10% capital safety reserve</span></div>
-            <div style="display:flex;align-items:center;gap:12px;"><span style="color:var(--green);font-size:1.1rem;">⚡</span><span style="font-size:0.85rem;">Auto-skips unaffordable orders</span></div>
-            <div style="display:flex;align-items:center;gap:12px;"><span style="color:var(--green);font-size:1.1rem;">🎯</span><span style="font-size:0.85rem;">Exit orders always take priority</span></div>
-            <div style="display:flex;align-items:center;gap:12px;"><span style="color:var(--green);font-size:1.1rem;">🔄</span><span style="font-size:0.85rem;">Auto-guardrails de-risk at drawdown thresholds</span></div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;justify-content:space-between;font-size:14px;padding:8px 0;border-bottom:1px solid var(--border-glass);"><span style="font-weight:500;color:var(--profit);">Low Risk</span><span style="color:var(--text-body-dark);">5 SOs · 3.0% Dev · Conservative</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:14px;padding:8px 0;border-bottom:1px solid var(--border-glass);"><span style="font-weight:500;color:var(--warning);">Medium Risk</span><span style="color:var(--text-body-dark);">8 SOs · 2.5% Dev · Balanced</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:14px;padding:8px 0;border-bottom:1px solid var(--border-glass);"><span style="font-weight:500;color:var(--loss);">High Risk</span><span style="color:var(--text-body-dark);">12 SOs · 2.0% Dev · Aggressive</span></div>
+          <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px;font-size:14px;">
+            <div style="display:flex;align-items:center;gap:8px;"><span>🛡️</span> 10% capital safety reserve</div>
+            <div style="display:flex;align-items:center;gap:8px;"><span>⚡</span> Auto-skips unaffordable orders</div>
+            <div style="display:flex;align-items:center;gap:8px;"><span>🎯</span> Exit orders always take priority</div>
+            <div style="display:flex;align-items:center;gap:8px;"><span>🔄</span> Auto-guardrails de-risk at thresholds</div>
           </div>
         </div>
       </div>
     </div>
-    <!-- Layer 7: Smart Exit -->
-    <div class="layer fade-in">
+
+    <div class="layer reverse fade-in">
       <div>
-        <div class="layer-number">07</div>
+        <div class="layer-num" style="color:rgba(255,255,255,0.08);">07</div>
         <div class="layer-title">Smart Exit — Regime-Gated Profit Taking</div>
-        <div class="layer-question">"Ride the bull, protect the bear."</div>
-        <div class="layer-text">A multi-signal exit scorer combines <strong>technical signals (80%)</strong> with <strong>position context (20%)</strong> to determine when to take profits. But here's the key: exits are <strong>regime-gated</strong>. In bull/trending markets, exit signals are suppressed (0.3× multiplier) so you ride the wave. In distribution/bearish markets, exits are amplified (1.4-1.8×) to protect capital.</div>
-        <div class="layer-text">Five action thresholds: <strong>HOLD → TIGHTEN → PARTIAL_EXIT → MAJOR_EXIT → FULL_EXIT</strong>. Three safeguards prevent premature exits: minimum 3-day deal age, minimum 3 completed deals, and underwater position guard.</div>
-        <div class="layer-text"><strong style="color:var(--green);">Backtested: +15% avg alpha in bear markets, -1.8% avg drag in bulls</strong> — it's insurance, not alpha generation. We ARE the exit strategy.</div>
+        <div class="layer-q" style="color:var(--ait-blue);">"Ride the bull, protect the bear."</div>
+        <div class="layer-text">A multi-signal exit scorer combines <strong>technical signals (80%)</strong> with <strong>position context (20%)</strong>. Exits are <strong>regime-gated</strong> — suppressed in bull markets (0.3×), amplified in bears (1.4-1.8×).</div>
+        <div class="layer-text"><strong>Backtested: +15% avg alpha in bear markets, -1.8% drag in bulls</strong> — insurance, not alpha.</div>
       </div>
       <div class="layer-visual">
-        <div style="display:flex; flex-direction:column; gap:16px;">
-          <div style="font-size:0.8rem;color:var(--text3);margin-bottom:4px;">REGIME-GATED EXIT THRESHOLDS</div>
-          <div style="display:flex;flex-direction:column;gap:8px;">
-            <div style="display:flex;justify-content:space-between;font-size:0.85rem;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;"><span style="font-weight:600;">HOLD</span><span style="color:var(--green);">Score &lt; 30 — Stay in position</span></div>
-            <div style="display:flex;justify-content:space-between;font-size:0.85rem;padding:8px 12px;background:rgba(245,158,11,0.08);border-radius:8px;"><span style="font-weight:600;">TIGHTEN</span><span style="color:var(--amber);">Score 30-50 — Tighten stop-loss</span></div>
-            <div style="display:flex;justify-content:space-between;font-size:0.85rem;padding:8px 12px;background:rgba(245,158,11,0.12);border-radius:8px;"><span style="font-weight:600;">PARTIAL_EXIT</span><span style="color:var(--amber);">Score 50-70 — Take partial profits</span></div>
-            <div style="display:flex;justify-content:space-between;font-size:0.85rem;padding:8px 12px;background:rgba(239,68,68,0.08);border-radius:8px;"><span style="font-weight:600;">MAJOR_EXIT</span><span style="color:var(--red);">Score 70-85 — Exit most of position</span></div>
-            <div style="display:flex;justify-content:space-between;font-size:0.85rem;padding:8px 12px;background:rgba(239,68,68,0.12);border-radius:8px;"><span style="font-weight:600;">FULL_EXIT</span><span style="color:var(--red);">Score 85+ — Complete position close</span></div>
-          </div>
-          <div style="margin-top:8px;padding:12px 16px;background:rgba(99,102,241,0.08);border-radius:10px;">
-            <div style="font-size:0.8rem;color:var(--text3);margin-bottom:6px;">REGIME MULTIPLIERS</div>
-            <div style="display:flex;justify-content:space-between;font-size:0.85rem;"><span>🐂 Bull/Trending</span><span style="color:var(--green);">0.3× — Suppress exits, ride the wave</span></div>
-            <div style="display:flex;justify-content:space-between;font-size:0.85rem;"><span>📊 Ranging</span><span>1.0× — Normal exit behavior</span></div>
-            <div style="display:flex;justify-content:space-between;font-size:0.85rem;"><span>🐻 Distribution/Bear</span><span style="color:var(--red);">1.4-1.8× — Amplified protection</span></div>
-          </div>
+        <div style="font-size:14px;color:var(--text-tertiary-dark);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;">Exit Thresholds</div>
+        <div style="display:flex;flex-direction:column;gap:6px;font-size:14px;">
+          <div style="display:flex;justify-content:space-between;padding:6px 10px;background:rgba(0,214,143,0.08);border-radius:6px;"><span style="font-weight:500;">HOLD</span><span style="color:var(--profit);">Score &lt; 30</span></div>
+          <div style="display:flex;justify-content:space-between;padding:6px 10px;background:rgba(255,170,0,0.08);border-radius:6px;"><span style="font-weight:500;">TIGHTEN</span><span style="color:var(--warning);">Score 30-50</span></div>
+          <div style="display:flex;justify-content:space-between;padding:6px 10px;background:rgba(255,170,0,0.12);border-radius:6px;"><span style="font-weight:500;">PARTIAL_EXIT</span><span style="color:var(--warning);">Score 50-70</span></div>
+          <div style="display:flex;justify-content:space-between;padding:6px 10px;background:rgba(255,77,79,0.08);border-radius:6px;"><span style="font-weight:500;">MAJOR_EXIT</span><span style="color:var(--loss);">Score 70-85</span></div>
+          <div style="display:flex;justify-content:space-between;padding:6px 10px;background:rgba(255,77,79,0.12);border-radius:6px;"><span style="font-weight:500;">FULL_EXIT</span><span style="color:var(--loss);">Score 85+</span></div>
+        </div>
+        <div style="margin-top:12px;padding:10px 14px;background:rgba(34,105,252,0.08);border-radius:8px;font-size:14px;">
+          <div style="display:flex;justify-content:space-between;"><span>🐂 Bull/Trending</span><span style="color:var(--profit);">0.3× suppress</span></div>
+          <div style="display:flex;justify-content:space-between;"><span>📊 Ranging</span><span>1.0× normal</span></div>
+          <div style="display:flex;justify-content:space-between;"><span>🐻 Bear</span><span style="color:var(--loss);">1.4-1.8× amplify</span></div>
         </div>
       </div>
     </div>
 
-    <!-- Layer 8: Portfolio Management -->
     <div class="layer fade-in">
       <div>
-        <div class="layer-number">08</div>
+        <div class="layer-num" style="color:rgba(255,255,255,0.08);">08</div>
         <div class="layer-title">Intelligent Portfolio Management</div>
-        <div class="layer-question">"Why trade one coin when the scanner finds eight?"</div>
-        <div class="layer-text">A two-tier scanner continuously evaluates the entire market to find optimal trading candidates. Capital is dynamically allocated across up to 8 simultaneous coins (scaling with your tier), each running independent DCA engines with full regime detection and conviction scoring.</div>
-        <div class="layer-text"><strong>Tier 1:</strong> Fast filters — ADX, ATR%, Hurst exponent, volume, and maturity checks eliminate 90% of candidates in seconds.<br><strong>Tier 2:</strong> Full backtests on shortlisted coins rank them by expected performance.</div>
-        <div class="layer-text">When a significantly better opportunity emerges (20%+ improvement threshold), the system gracefully winds down the weakest position and rotates capital into the new candidate — no abrupt exits, no churn.</div>
+        <div class="layer-q" style="color:var(--ait-blue);">"Why trade one coin when the scanner finds eight?"</div>
+        <div class="layer-text">A two-tier scanner evaluates the market to find optimal candidates. Capital is dynamically allocated across up to <strong>8 simultaneous coins</strong>. When a 20%+ better opportunity emerges, the system gracefully rotates capital.</div>
       </div>
       <div class="layer-visual">
-        <div style="display:flex; flex-direction:column; gap:16px;">
-          <div style="font-size:0.8rem;color:var(--text3);margin-bottom:4px;">PORTFOLIO PIPELINE</div>
-          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-            <span style="background:rgba(99,102,241,0.15);color:var(--accent2);padding:6px 12px;border-radius:8px;font-size:0.8rem;font-weight:600;">🔍 Scan</span>
-            <span style="color:var(--text3)">→</span>
-            <span style="background:rgba(99,102,241,0.15);color:var(--accent2);padding:6px 12px;border-radius:8px;font-size:0.8rem;font-weight:600;">⚡ Filter</span>
-            <span style="color:var(--text3)">→</span>
-            <span style="background:rgba(99,102,241,0.15);color:var(--accent2);padding:6px 12px;border-radius:8px;font-size:0.8rem;font-weight:600;">📊 Rank</span>
-            <span style="color:var(--text3)">→</span>
-            <span style="background:rgba(99,102,241,0.15);color:var(--green);padding:6px 12px;border-radius:8px;font-size:0.8rem;font-weight:600;">💰 Allocate</span>
-            <span style="color:var(--text3)">→</span>
-            <span style="background:rgba(99,102,241,0.15);color:var(--green);padding:6px 12px;border-radius:8px;font-size:0.8rem;font-weight:600;">📈 Trade</span>
-            <span style="color:var(--text3)">→</span>
-            <span style="background:rgba(245,158,11,0.15);color:var(--amber);padding:6px 12px;border-radius:8px;font-size:0.8rem;font-weight:600;">🔄 Rotate</span>
-          </div>
-          <div style="margin-top:12px;display:flex;flex-direction:column;gap:10px;">
-            <div style="display:flex;align-items:center;gap:12px;"><span style="color:var(--green);font-size:1.1rem;">🪙</span><span style="font-size:0.85rem;">1–8 coins simultaneously (scales with tier)</span></div>
-            <div style="display:flex;align-items:center;gap:12px;"><span style="color:var(--green);font-size:1.1rem;">⚖️</span><span style="font-size:0.85rem;">Score-proportional capital allocation</span></div>
-            <div style="display:flex;align-items:center;gap:12px;"><span style="color:var(--green);font-size:1.1rem;">🔄</span><span style="font-size:0.85rem;">Auto-rotation with 20% improvement threshold</span></div>
-            <div style="display:flex;align-items:center;gap:12px;"><span style="color:var(--green);font-size:1.1rem;">🛡️</span><span style="font-size:0.85rem;">Anti pump-and-dump maturity filters</span></div>
-            <div style="display:flex;align-items:center;gap:12px;"><span style="color:var(--green);font-size:1.1rem;">⏳</span><span style="font-size:0.85rem;">Graceful wind-down — no abrupt position closes</span></div>
-          </div>
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
+          <span style="background:rgba(34,105,252,0.15);color:var(--ait-blue);padding:6px 10px;border-radius:6px;font-size:14px;font-weight:500;">🔍 Scan</span>
+          <span style="color:var(--text-tertiary-dark);">→</span>
+          <span style="background:rgba(34,105,252,0.15);color:var(--ait-blue);padding:6px 10px;border-radius:6px;font-size:14px;font-weight:500;">⚡ Filter</span>
+          <span style="color:var(--text-tertiary-dark);">→</span>
+          <span style="background:rgba(34,105,252,0.15);color:var(--ait-blue);padding:6px 10px;border-radius:6px;font-size:14px;font-weight:500;">📊 Rank</span>
+          <span style="color:var(--text-tertiary-dark);">→</span>
+          <span style="background:rgba(0,214,143,0.15);color:var(--profit);padding:6px 10px;border-radius:6px;font-size:14px;font-weight:500;">💰 Trade</span>
+          <span style="color:var(--text-tertiary-dark);">→</span>
+          <span style="background:rgba(255,170,0,0.15);color:var(--warning);padding:6px 10px;border-radius:6px;font-size:14px;font-weight:500;">🔄 Rotate</span>
         </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- Full Lifecycle Flow -->
-<section style="background: linear-gradient(135deg, rgba(99,102,241,0.06) 0%, rgba(99,102,241,0.08) 100%); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-  <div class="container">
-    <div class="section-label">The Complete Lifecycle</div>
-    <h2 class="section-title fade-in">Entry → Accumulate → Compound → Exit → Rotate</h2>
-    <p class="section-subtitle fade-in">Generation 6 connects every phase into a single autonomous loop. No human intervention required at any step.</p>
-    <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-top:32px;">
-      <div class="fade-in" style="background:var(--card);border:1px solid rgba(99,102,241,0.3);border-radius:16px;padding:24px;text-align:center;flex:1;min-width:160px;">
-        <div style="font-size:2rem;margin-bottom:8px;">🔍</div>
-        <div style="font-weight:600;color:var(--green);margin-bottom:4px;">Smart Entry</div>
-        <div style="color:var(--text2);font-size:0.8rem;">Find undervalued coins with strong fundamentals</div>
-      </div>
-      <div style="color:var(--text3);display:flex;align-items:center;font-size:1.5rem;">→</div>
-      <div class="fade-in" style="background:var(--card);border:1px solid rgba(99,102,241,0.3);border-radius:16px;padding:24px;text-align:center;flex:1;min-width:160px;">
-        <div style="font-size:2rem;margin-bottom:8px;">🫁</div>
-        <div style="font-weight:600;color:var(--accent2);margin-bottom:4px;">Conviction DCA</div>
-        <div style="color:var(--text2);font-size:0.8rem;">Accumulate with Fear & Greed-driven conviction</div>
-      </div>
-      <div style="color:var(--text3);display:flex;align-items:center;font-size:1.5rem;">→</div>
-      <div class="fade-in" style="background:var(--card);border:1px solid rgba(99,102,241,0.3);border-radius:16px;padding:24px;text-align:center;flex:1;min-width:160px;">
-        <div style="font-size:2rem;margin-bottom:8px;">🔄</div>
-        <div style="font-weight:600;color:var(--green);margin-bottom:4px;">Compound</div>
-        <div style="color:var(--text2);font-size:0.8rem;">100% profit reinvestment every cycle</div>
-      </div>
-      <div style="color:var(--text3);display:flex;align-items:center;font-size:1.5rem;">→</div>
-      <div class="fade-in" style="background:var(--card);border:1px solid rgba(245,158,11,0.3);border-radius:16px;padding:24px;text-align:center;flex:1;min-width:160px;">
-        <div style="font-size:2rem;margin-bottom:8px;">🎯</div>
-        <div style="font-weight:600;color:var(--amber);margin-bottom:4px;">Smart Exit</div>
-        <div style="color:var(--text2);font-size:0.8rem;">Regime-gated profit extraction</div>
-      </div>
-      <div style="color:var(--text3);display:flex;align-items:center;font-size:1.5rem;">→</div>
-      <div class="fade-in" style="background:var(--card);border:1px solid rgba(99,102,241,0.3);border-radius:16px;padding:24px;text-align:center;flex:1;min-width:160px;">
-        <div style="font-size:2rem;margin-bottom:8px;">🔄</div>
-        <div style="font-weight:600;color:var(--accent2);margin-bottom:4px;">Rotate</div>
-        <div style="color:var(--text2);font-size:0.8rem;">Scanner-driven portfolio rotation</div>
-      </div>
-    </div>
-    <div style="text-align:center;margin-top:32px;padding:20px;background:rgba(99,102,241,0.08);border-radius:12px;border:1px solid rgba(99,102,241,0.2);">
-      <div style="color:var(--accent2);font-weight:600;font-size:1.1rem;">The system that breathes with the market — from first discovery to final profit extraction</div>
-    </div>
-  </div>
-</section>
-
-<!-- Comparison -->
-<section class="comparison-section">
-  <div class="container">
-    <div class="section-label">The Performance Edge</div>
-    <h2 class="section-title fade-in">vs Buy-and-Hold DCA</h2>
-    <p class="section-subtitle fade-in">Most investors solve only the "when to get in" problem with DCA, but have no "when to get out" strategy. They become the exit liquidity. We solve both problems.</p>
-    
-    <!-- Performance Stats -->
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin: 48px 0;">
-      <div class="fade-in" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center;">
-        <div style="font-size: 1.5rem; font-weight: 700; color: var(--green); margin-bottom: 8px;">ETH +31.3%</div>
-        <div style="color: var(--text2); font-size: 0.9rem; margin-bottom: 4px;">Our Bot (100% Compounded)</div>
-        <div style="color: var(--text3); font-size: 0.75rem; margin-bottom: 8px;">Each deal's profit → next deal's capital</div>
-        <div style="color: var(--red); font-size: 1.2rem; font-weight: 600;">vs -27.3% Buy & Hold</div>
-        <div style="color: var(--green); font-size: 1.1rem; font-weight: 600; margin-top: 8px;">+58.6% Advantage</div>
-      </div>
-      <div class="fade-in" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center;">
-        <div style="font-size: 1.5rem; font-weight: 700; color: var(--green); margin-bottom: 8px;">SOL +36.2%</div>
-        <div style="color: var(--text2); font-size: 0.9rem; margin-bottom: 4px;">Our Bot (100% Compounded)</div>
-        <div style="color: var(--text3); font-size: 0.75rem; margin-bottom: 8px;">Each deal's profit → next deal's capital</div>
-        <div style="color: var(--red); font-size: 1.2rem; font-weight: 600;">vs -52.2% Buy & Hold</div>
-        <div style="color: var(--green); font-size: 1.1rem; font-weight: 600; margin-top: 8px;">+88.4% Advantage</div>
-      </div>
-      <div class="fade-in" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center;">
-        <div style="font-size: 1.5rem; font-weight: 700; color: var(--green); margin-bottom: 8px;">AVAX +77.9%</div>
-        <div style="color: var(--text2); font-size: 0.9rem; margin-bottom: 4px;">Our Bot (100% Compounded)</div>
-        <div style="color: var(--text3); font-size: 0.75rem; margin-bottom: 8px;">Each deal's profit → next deal's capital</div>
-        <div style="color: var(--red); font-size: 1.2rem; font-weight: 600;">vs +54.1% Buy & Hold</div>
-        <div style="color: var(--green); font-size: 1.1rem; font-weight: 600; margin-top: 8px;">+23.8% Advantage</div>
-      </div>
-    </div>
-
-    <table class="comparison-table fade-in">
-      <thead>
-        <tr><th>Strategy</th><th>Buy & Hold DCA</th><th>Adaptive Intelligence Trading</th></tr>
-      </thead>
-      <tbody>
-        <tr><td><strong>Coin Selection</strong></td><td>Manual research, Reddit tips, FOMO</td><td>Smart Entry: 3-tier scoring with on-chain data daily</td></tr>
-        <tr><td><strong>Entry Problem</strong></td><td>Fixed DCA — no market awareness</td><td>Conviction-driven DCA: Fear & Greed modulated timing</td></tr>
-        <tr><td><strong>Exit Problem</strong></td><td>None — hope and pray for recovery</td><td>Smart Exit: regime-gated profit extraction</td></tr>
-        <tr><td>Complete Solution</td><td>❌ Half-solved (entry only)</td><td>✅ Both problems optimized</td></tr>
-        <tr><td>Market Awareness</td><td>Blind — same approach for all conditions</td><td>Six regime states with tailored strategies</td></tr>
-        <tr><td>When Markets Drop</td><td>Become exit liquidity for others</td><td>Smart DCA down, then exit at profit</td></tr>
-        <tr><td>Capital Efficiency</td><td>Money trapped in losing positions</td><td>Continuous cycling and compounding</td></tr>
-        <tr><td>Dangerous Conditions</td><td>Keep buying into the void</td><td>Pause automatically, preserve capital</td></tr>
-        <tr><td>Direction Coverage</td><td>Long-only — pray for up-only</td><td>Regime-adaptive — buys smart, exits smarter</td></tr>
-        <tr><td>Risk Management</td><td>Hope and prayers</td><td>Conviction-driven capital protection with auto-reserves</td></tr>
-        <tr><td>Daily Management</td><td>Emotional decision-making</td><td>Zero — fully automated</td></tr>
-      </tbody>
-    </table>
-    
-    <div style="margin-top: 48px; text-align: center; max-width: 700px; margin-left: auto; margin-right: auto;">
-      <h3 style="font-size: 1.3rem; font-weight: 600; margin-bottom: 16px; color: var(--text);">The Compounding Edge</h3>
-      <p style="color: var(--text2); font-size: 1rem; margin-bottom: 16px;">Every completed deal's profit feeds into the next cycle. While buy-and-hold investors watch their portfolios bleed, our system turns volatility into compounding gains.</p>
-      <div style="background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.2); border-radius: 12px; padding: 24px; font-size: 0.95rem; color: var(--text2); display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;">
-        <div style="text-align: center;"><strong style="color: var(--green); font-size: 1.1rem;">97.7%</strong><br><span style="font-size: 0.8rem;">win rate across 527 deals</span></div>
-        <div style="text-align: center;"><strong style="color: var(--green); font-size: 1.1rem;">100%</strong><br><span style="font-size: 0.8rem;">win rate · Medium profile</span></div>
-        <div style="text-align: center;"><strong style="color: var(--accent2); font-size: 1.1rem;">BTC · ETH · SOL</strong><br><span style="font-size: 0.8rem;">backtested across 12 months</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Hands Off -->
-<section>
-  <div class="container">
-    <div class="section-label">Passive Income</div>
-    <h2 class="section-title fade-in">Set It Up. Let It Run.</h2>
-    <p class="section-subtitle fade-in">Once deployed, the system requires zero daily management.</p>
-    <div class="checklist">
-      <div class="check-item fade-in"><span class="check-icon">✅</span> No chart watching</div>
-      <div class="check-item fade-in"><span class="check-icon">✅</span> No parameter tweaking</div>
-      <div class="check-item fade-in"><span class="check-icon">✅</span> No panic during market drops</div>
-      <div class="check-item fade-in"><span class="check-icon">✅</span> No FOMO during market pumps</div>
-      <div class="check-item fade-in"><span class="check-icon">✅</span> No technical analysis required</div>
-      <div class="check-item fade-in"><span class="check-icon">✅</span> No staying up late watching candles</div>
-    </div>
-  </div>
-</section>
-
-<!-- How Returns Work -->
-<section style="background: #0d0d15;">
-  <div class="container">
-    <div class="section-label">The Compounding Edge</div>
-    <h2 class="section-title fade-in">We ARE the Exit Strategy</h2>
-    <p class="section-subtitle fade-in">While buy-and-hold investors become exit liquidity, we systematically extract profits and compound them into bigger positions.</p>
-    
-    <div style="text-align: center; margin-bottom: 48px; padding: 24px; background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.15); border-radius: 16px; max-width: 700px; margin-left: auto; margin-right: auto;">
-      <h3 style="color: var(--green); font-size: 1.2rem; font-weight: 600; margin-bottom: 8px;">🚀 The Power of Compounding</h3>
-      <p style="color: var(--text2); font-size: 1rem;">Every completed deal's profit feeds into the next cycle. A $1,000 starting balance becomes $1,020 after deal #1, then $1,041 after deal #2, and so on. Small gains compound into substantial returns.</p>
-    </div>
-
-    <div style="display:flex; gap:20px; flex-wrap:wrap; justify-content:center; margin-top:32px;">
-      <div class="fade-in" style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;text-align:center;flex:1;min-width:180px;">
-        <div style="font-size:2rem;margin-bottom:8px;">1️⃣</div>
-        <div style="font-weight:600;margin-bottom:4px;">Open</div>
-        <div style="color:var(--text2);font-size:0.85rem;">Enter position with all available capital</div>
-      </div>
-      <div class="fade-in" style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;text-align:center;flex:1;min-width:180px;">
-        <div style="font-size:2rem;margin-bottom:8px;">2️⃣</div>
-        <div style="font-weight:600;margin-bottom:4px;">Adapt</div>
-        <div style="color:var(--text2);font-size:0.85rem;">Smart exits adjust to market conditions</div>
-      </div>
-      <div class="fade-in" style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;text-align:center;flex:1;min-width:180px;">
-        <div style="font-size:2rem;margin-bottom:8px;">3️⃣</div>
-        <div style="font-weight:600;margin-bottom:4px;">Average</div>
-        <div style="color:var(--text2);font-size:0.85rem;">DCA down smartly, exit when profitable</div>
-      </div>
-      <div class="fade-in" style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;text-align:center;flex:1;min-width:180px;">
-        <div style="font-size:2rem;margin-bottom:8px;">4️⃣</div>
-        <div style="font-weight:600;margin-bottom:4px;">Profit</div>
-        <div style="color:var(--text2);font-size:0.85rem;">Close at profit, extract gains</div>
-      </div>
-      <div class="fade-in" style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;text-align:center;flex:1;min-width:180px;">
-        <div style="font-size:2rem;margin-bottom:8px;">🔄</div>
-        <div style="font-weight:600;margin-bottom:4px;">Compound</div>
-        <div style="color:var(--text2);font-size:0.85rem;"><strong style="color:var(--green);">Larger capital</strong> into next deal</div>
-      </div>
-    </div>
-
-    <div style="margin-top: 48px; text-align: center;">
-      <h3 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 16px;">Buy & Hold vs Smart Exits</h3>
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 600px; margin: 0 auto;">
-        <div style="background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); border-radius: 12px; padding: 20px;">
-          <div style="font-size: 1.1rem; font-weight: 600; color: var(--red); margin-bottom: 8px;">❌ Buy & Hold</div>
-          <div style="color: var(--text3); font-size: 0.9rem;">Capital trapped in losers. No compounding. No exit plan. Become exit liquidity.</div>
-        </div>
-        <div style="background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.15); border-radius: 12px; padding: 20px;">
-          <div style="font-size: 1.1rem; font-weight: 600; color: var(--green); margin-bottom: 8px;">✅ Smart Exits</div>
-          <div style="color: var(--text3); font-size: 0.9rem;">Continuous cycling. Profits compound. Systematic edge. <strong style="color: var(--green);">You ARE the exit strategy.</strong></div>
+        <div style="display:flex;flex-direction:column;gap:8px;font-size:14px;">
+          <div style="display:flex;align-items:center;gap:8px;"><span>🪙</span> 1–8 coins simultaneously</div>
+          <div style="display:flex;align-items:center;gap:8px;"><span>⚖️</span> Score-proportional allocation</div>
+          <div style="display:flex;align-items:center;gap:8px;"><span>🔄</span> Auto-rotation (20% threshold)</div>
+          <div style="display:flex;align-items:center;gap:8px;"><span>🛡️</span> Anti pump-and-dump filters</div>
+          <div style="display:flex;align-items:center;gap:8px;"><span>⏳</span> Graceful wind-down</div>
         </div>
       </div>
     </div>
   </div>
+</div>
+
+<!-- ═══════════════ 5. RISK PROFILES (dark rounded) ═══════════════ -->
+<div id="risk-profiles" class="dark-section" style="margin-top:var(--section-gap);">
+  <div class="container">
+    <h2 class="fade-in">Pick Your Risk Profile. That's It.</h2>
+    <p class="sub fade-in">You don't need to understand trading. Just choose how aggressive you want to be — the system handles everything else. <strong>100% win rate across all profiles and coins.</strong></p>
+
+    <div class="grid-3 fade-in" style="margin-bottom:40px;">
+      <div class="risk-profile-card">
+        <div style="font-size:14px;color:var(--profit);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">🛡️ Low Risk</div>
+        <h3 style="color:var(--profit);">Conservative</h3>
+        <p>Steady gains, minimal risk. Like a savings account on steroids. The system takes smaller, safer positions and exits quickly.</p>
+        <div class="stat">
+          <strong>ETH +260%</strong> · <strong>SOL +324%</strong> · <strong>BTC +233%</strong>
+        </div>
+      </div>
+      <div class="risk-profile-card" style="border:1px solid var(--ait-blue);">
+        <div style="font-size:14px;color:var(--ait-blue);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">⚖️ Medium Risk — Recommended</div>
+        <h3 style="color:var(--ait-blue);">Balanced</h3>
+        <p>The sweet spot for most people. Best risk-adjusted returns with a balanced approach to accumulation and exits.</p>
+        <div class="stat">
+          <strong>ETH +261%</strong> · <strong>SOL +377%</strong> · <strong>BTC +185%</strong><br>
+          <span style="color:var(--profit);font-size:16px;font-weight:600;margin-top:4px;display:inline-block;">100% win rate</span>
+        </div>
+      </div>
+      <div class="risk-profile-card">
+        <div style="font-size:14px;color:var(--warning);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">🔥 High Risk</div>
+        <h3 style="color:var(--warning);">Aggressive</h3>
+        <p>Maximum gains, more volatility. Deeper grids, wider positions. For those who want the biggest possible returns.</p>
+        <div class="stat">
+          <strong>ETH +299%</strong> · <strong>SOL +614%</strong> · <strong>BTC +463%</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="fade-in" style="margin-bottom:32px;">
+      <h3 style="font-size:20px;font-weight:500;margin-bottom:16px;text-align:center;">V12e Backtest Results</h3>
+      <table class="bt-table">
+        <thead><tr><th></th><th>Low</th><th>Medium</th><th>High</th></tr></thead>
+        <tbody>
+          <tr><td style="font-weight:500;">ETH</td><td class="green">+260%</td><td class="green">+261%</td><td class="green">+299%</td></tr>
+          <tr><td style="font-weight:500;">SOL</td><td class="green">+324%</td><td class="green">+377%</td><td class="green">+614%</td></tr>
+          <tr><td style="font-weight:500;">BTC</td><td class="green">+233%</td><td class="green">+185%</td><td class="green">+463%</td></tr>
+          <tr><td style="font-weight:500;">Win Rate</td><td class="green">100%</td><td class="green">100%</td><td class="green">100%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fade-in" style="text-align:center;padding:20px;background:var(--bg-card-dark);border-radius:var(--radius-card);">
+      <div style="font-size:16px;color:var(--text-body-dark);">Auto-guardrails de-risk automatically: <strong>Medium→Low at 30% drawdown</strong>, <strong>High→Medium at 50%</strong>. You just pick a profile — the system protects you.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 6. PERFORMANCE / COMPARISON (white) ═══════════════ -->
+<section class="light-section">
+  <div class="container">
+    <h2 class="fade-in">vs Buy-and-Hold DCA</h2>
+    <p class="sub fade-in">Most investors solve only "when to get in" — they have no "when to get out." They become the exit liquidity.</p>
+
+    <div class="grid-3 fade-in" style="margin-bottom:48px;">
+      <div class="perf-card">
+        <div class="value">ETH +31.3%</div>
+        <div class="label">Our Bot (Compounded)</div>
+        <div class="vs">vs -27.3% Buy & Hold</div>
+        <div class="edge">+58.6% Advantage</div>
+      </div>
+      <div class="perf-card">
+        <div class="value">SOL +36.2%</div>
+        <div class="label">Our Bot (Compounded)</div>
+        <div class="vs">vs -52.2% Buy & Hold</div>
+        <div class="edge">+88.4% Advantage</div>
+      </div>
+      <div class="perf-card">
+        <div class="value">AVAX +77.9%</div>
+        <div class="label">Our Bot (Compounded)</div>
+        <div class="vs">vs +54.1% Buy & Hold</div>
+        <div class="edge">+23.8% Advantage</div>
+      </div>
+    </div>
+
+    <div class="fade-in" style="overflow-x:auto;">
+      <table class="comp-table">
+        <thead><tr><th>Strategy</th><th>Buy & Hold DCA</th><th>Adaptive Intelligence</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Coin Selection</strong></td><td>Manual research, Reddit, FOMO</td><td>Smart Entry: 3-tier scoring daily</td></tr>
+          <tr><td><strong>Entry</strong></td><td>Fixed DCA — no market awareness</td><td>Conviction-driven, Fear & Greed modulated</td></tr>
+          <tr><td><strong>Exit</strong></td><td>None — hope and pray</td><td>Regime-gated profit extraction</td></tr>
+          <tr><td>Market Awareness</td><td>Blind — same for all conditions</td><td>Six regime states, tailored strategies</td></tr>
+          <tr><td>Capital Efficiency</td><td>Trapped in losers</td><td>Continuous cycling + compounding</td></tr>
+          <tr><td>Risk Management</td><td>Hope and prayers</td><td>Conviction-driven auto-protection</td></tr>
+          <tr><td>Daily Management</td><td>Emotional decisions</td><td>Zero — fully automated</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fade-in" style="text-align:center;margin-top:40px;padding:24px;border:1px solid var(--border-light);border-radius:var(--radius-card);display:flex;justify-content:center;gap:40px;flex-wrap:wrap;">
+      <div style="text-align:center;"><strong style="color:var(--profit);font-size:20px;">97.7%</strong><br><span style="font-size:14px;color:var(--text-body);">win rate · 527 deals</span></div>
+      <div style="text-align:center;"><strong style="color:var(--profit);font-size:20px;">100%</strong><br><span style="font-size:14px;color:var(--text-body);">win rate · Medium profile</span></div>
+      <div style="text-align:center;"><strong style="color:var(--ait-blue);font-size:20px;">BTC · ETH · SOL</strong><br><span style="font-size:14px;color:var(--text-body);">backtested 12 months</span></div>
+    </div>
+  </div>
 </section>
 
-<!-- Risk -->
-<section>
+<!-- ═══════════════ 7. GET STARTED (dark rounded) ═══════════════ -->
+<div id="get-started" class="dark-section" style="margin-top:var(--section-gap);">
   <div class="container">
-    <div class="section-label">Risk Management</div>
-    <h2 class="section-title fade-in">Built-In Protections</h2>
-    <p class="section-subtitle fade-in">Multiple layers of safety ensure capital preservation comes first.</p>
-    <div class="risk-grid">
-      <div class="risk-card fade-in">
+    <h2 class="fade-in" style="text-align:center;">Get Started in 3 Simple Steps</h2>
+    <p class="sub fade-in" style="text-align:center;margin-left:auto;margin-right:auto;">No trading knowledge needed. Your crypto stays in YOUR exchange account — you maintain full custody at all times.</p>
+
+    <div class="grid-3 fade-in">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Deposit</h3>
+        <p>Deposit crypto (USDT/USDC) into any compatible DEX or CEX — Hyperliquid, Aster, and more.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Connect</h3>
+        <p>Provide your API key — <strong style="color:var(--profit);">read/trade only, no withdrawal access</strong>. We can never move your funds out.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Launch</h3>
+        <p>Start AIT from your custom dashboard. Pick your risk profile and go. The system handles everything from there.</p>
+      </div>
+    </div>
+
+    <div class="fade-in" style="text-align:center;margin-top:32px;padding:20px;background:var(--bg-card-dark);border-radius:var(--radius-card);">
+      <div style="font-size:16px;color:var(--text-body-dark);">🔒 <strong>Full Custody</strong> — API keys are read/trade only. Your crypto never leaves your exchange account. You can revoke access at any time.</div>
+    </div>
+
+    <div style="text-align:center;margin-top:32px;">
+      <a href="dashboardV12.html" class="btn-blue-light">Launch Dashboard</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 8. PASSIVE INCOME (white) ═══════════════ -->
+<section class="light-section">
+  <div class="container">
+    <h2 class="fade-in">Set It Up. Let It Run.</h2>
+    <p class="sub fade-in">Once deployed, the system requires zero daily management.</p>
+    <div class="check-grid">
+      <div class="check-item fade-in"><span style="color:var(--profit);font-size:18px;">✅</span> No chart watching</div>
+      <div class="check-item fade-in"><span style="color:var(--profit);font-size:18px;">✅</span> No parameter tweaking</div>
+      <div class="check-item fade-in"><span style="color:var(--profit);font-size:18px;">✅</span> No panic during drops</div>
+      <div class="check-item fade-in"><span style="color:var(--profit);font-size:18px;">✅</span> No FOMO during pumps</div>
+      <div class="check-item fade-in"><span style="color:var(--profit);font-size:18px;">✅</span> No technical analysis</div>
+      <div class="check-item fade-in"><span style="color:var(--profit);font-size:18px;">✅</span> No late-night candle watching</div>
+    </div>
+
+    <div class="fade-in" style="margin-top:48px;text-align:center;">
+      <h3 style="font-size:24px;font-weight:500;margin-bottom:16px;">The Compounding Edge</h3>
+      <p style="color:var(--text-body);font-size:16px;max-width:620px;margin:0 auto 24px;">Every completed deal's profit feeds into the next cycle. A $1,000 starting balance becomes $1,020 after deal #1, then $1,041 after deal #2. Small gains compound into substantial returns.</p>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;">
+        <div class="card-light" style="flex:1;min-width:140px;text-align:center;padding:20px;">
+          <div style="font-size:24px;margin-bottom:6px;">🔍</div>
+          <div style="font-weight:500;font-size:16px;color:var(--profit);margin-bottom:4px;">Smart Entry</div>
+          <div style="font-size:14px;color:var(--text-body);">Find coins</div>
+        </div>
+        <div class="card-light" style="flex:1;min-width:140px;text-align:center;padding:20px;">
+          <div style="font-size:24px;margin-bottom:6px;">🫁</div>
+          <div style="font-weight:500;font-size:16px;color:var(--ait-blue);margin-bottom:4px;">Accumulate</div>
+          <div style="font-size:14px;color:var(--text-body);">Conviction DCA</div>
+        </div>
+        <div class="card-light" style="flex:1;min-width:140px;text-align:center;padding:20px;">
+          <div style="font-size:24px;margin-bottom:6px;">🔄</div>
+          <div style="font-weight:500;font-size:16px;color:var(--profit);margin-bottom:4px;">Compound</div>
+          <div style="font-size:14px;color:var(--text-body);">100% reinvest</div>
+        </div>
+        <div class="card-light" style="flex:1;min-width:140px;text-align:center;padding:20px;">
+          <div style="font-size:24px;margin-bottom:6px;">🎯</div>
+          <div style="font-weight:500;font-size:16px;color:var(--warning);margin-bottom:4px;">Smart Exit</div>
+          <div style="font-size:14px;color:var(--text-body);">Regime-gated</div>
+        </div>
+        <div class="card-light" style="flex:1;min-width:140px;text-align:center;padding:20px;">
+          <div style="font-size:24px;margin-bottom:6px;">📈</div>
+          <div style="font-weight:500;font-size:16px;color:var(--ait-blue);margin-bottom:4px;">Rotate</div>
+          <div style="font-size:14px;color:var(--text-body);">Best opportunities</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 9. RISK MANAGEMENT (dark rounded) ═══════════════ -->
+<div class="dark-section" style="margin-top:var(--section-gap);">
+  <div class="container">
+    <h2 class="fade-in">Built-In Protections</h2>
+    <p class="sub fade-in">Multiple layers of safety ensure capital preservation comes first.</p>
+    <div class="risk-grid fade-in">
+      <div class="risk-card">
         <h4>🚨 Regime Kill Switch</h4>
-        <p>Extreme market conditions automatically halt all trading. No manual panic button needed.</p>
+        <p>Extreme conditions automatically halt all trading. No manual panic button needed.</p>
       </div>
-      <div class="risk-card fade-in">
+      <div class="risk-card">
         <h4>📊 Max Drawdown Limit</h4>
         <p>Configurable hard limit on total losses. The system stops before it crosses the line.</p>
       </div>
-      <div class="risk-card fade-in">
+      <div class="risk-card">
         <h4>🛡️ Capital Reserve</h4>
-        <p>10-30% of capital held in reserve depending on risk profile. Never fully exposed.</p>
+        <p>10-30% held in reserve depending on profile. Never fully exposed.</p>
       </div>
-      <div class="risk-card fade-in">
+      <div class="risk-card">
         <h4>⚖️ Spot Ownership</h4>
-        <p>You own the actual coins — no leverage, no liquidation risk, no funding fees. Your assets, your keys.</p>
+        <p>You own actual coins — no leverage, no liquidation, no funding fees.</p>
       </div>
-      <div class="risk-card fade-in">
+      <div class="risk-card">
         <h4>🎯 Smart Priorities</h4>
-        <p>Exit orders always take precedence. The system will free capital to ensure profits can be captured.</p>
+        <p>Exit orders always take precedence. Profits are always captured first.</p>
       </div>
-      <div class="risk-card fade-in">
+      <div class="risk-card">
         <h4>📋 Full Transparency</h4>
-        <p>Every decision is logged and explainable. Not a black box — you can see exactly why each trade happened.</p>
+        <p>Every decision logged and explainable. Not a black box.</p>
       </div>
     </div>
-    <div style="margin-top:48px;">
-      <h3 style="font-size:1.2rem;font-weight:600;margin-bottom:16px;">What This Is NOT</h3>
+    <div class="fade-in" style="margin-top:40px;">
+      <h3 style="font-size:20px;font-weight:500;margin-bottom:16px;">What This Is NOT</h3>
       <div class="not-grid">
         <div class="not-item">❌ Not a "get rich quick" scheme</div>
         <div class="not-item">❌ Not leverage gambling</div>
@@ -1078,123 +815,92 @@ section { padding: 100px 0; }
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- Evolution -->
-<section style="background: #0d0d15;">
+<!-- ═══════════════ 10. EVOLUTION (white) ═══════════════ -->
+<section class="light-section">
   <div class="container">
-    <div class="section-label">The Evolution</div>
-    <h2 class="section-title fade-in">From Static Automation to Adaptive Intelligence</h2>
-    <p class="section-subtitle fade-in">Five generations of evolution, each reducing human oversight while improving capital efficiency.</p>
-    <div class="evolution-timeline">
-      <div class="evo-item fade-in">
-        <div class="evo-gen">Generation 1</div>
-        <div class="evo-title">Fixed-Parameter Grid Bots</div>
-        <div class="evo-desc">The early days of automated trading. Hardcoded everything.</div>
-        <ul class="evo-features">
-          <li>Static lot sizes, grid steps, and take profits</li>
-          <li>Required manual adjustment for each instrument</li>
-          <li>No awareness of market conditions</li>
-          <li>Constant human monitoring required</li>
-        </ul>
+    <h2 class="fade-in">From Static Automation to Adaptive Intelligence</h2>
+    <p class="sub fade-in">Six generations of evolution, each reducing human oversight while improving capital efficiency.</p>
+    <div style="position:relative;padding-left:40px;">
+      <div style="position:absolute;left:15px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--border-light),var(--ait-blue),var(--profit));"></div>
+
+      <div class="fade-in" style="position:relative;margin-bottom:40px;padding-left:24px;">
+        <div style="position:absolute;left:-29px;top:6px;width:14px;height:14px;border-radius:50%;border:2px solid var(--border-light);background:var(--bg-white);"></div>
+        <div style="font-size:12px;color:var(--ait-blue);text-transform:uppercase;letter-spacing:1px;font-weight:600;">Generation 1</div>
+        <div style="font-size:20px;font-weight:500;margin:4px 0 8px;">Fixed-Parameter Grid Bots</div>
+        <div style="color:var(--text-body);font-size:16px;">Static lot sizes, hardcoded everything. Constant human monitoring required.</div>
       </div>
-      <div class="evo-item fade-in">
-        <div class="evo-gen">Generation 2</div>
-        <div class="evo-title">Regime-Aware Allocation</div>
-        <div class="evo-desc">Added a brain — the system could detect what was happening.</div>
-        <ul class="evo-features">
-          <li>Market condition detection across six regimes</li>
-          <li>Dynamic capital allocation based on market regime</li>
-          <li>Automatic pause in extreme conditions</li>
-          <li>Reduced but not eliminated monitoring</li>
-        </ul>
+
+      <div class="fade-in" style="position:relative;margin-bottom:40px;padding-left:24px;">
+        <div style="position:absolute;left:-29px;top:6px;width:14px;height:14px;border-radius:50%;border:2px solid var(--border-light);background:var(--bg-white);"></div>
+        <div style="font-size:12px;color:var(--ait-blue);text-transform:uppercase;letter-spacing:1px;font-weight:600;">Generation 2</div>
+        <div style="font-size:20px;font-weight:500;margin:4px 0 8px;">Regime-Aware Allocation</div>
+        <div style="color:var(--text-body);font-size:16px;">Market condition detection across six regimes. Dynamic capital allocation. Auto-pause in extreme conditions.</div>
       </div>
-      <div class="evo-item fade-in">
-        <div class="evo-gen">Generation 3</div>
-        <div class="evo-title">The Breathing Grid</div>
-        <div class="evo-desc">Full adaptation. The system breathes with the market.</div>
-        <ul class="evo-features">
-          <li>Dynamic TP, deviation, and allocation — all adaptive</li>
-          <li>Volatility-responsive grid spacing</li>
-          <li>Conviction scoring — F&amp;G and macro indicators modulate all parameters</li>
-          <li>Capital-aware intelligent order management</li>
-          <li>Self-optimizing for current conditions</li>
-          <li>Zero daily management required</li>
-        </ul>
+
+      <div class="fade-in" style="position:relative;margin-bottom:40px;padding-left:24px;">
+        <div style="position:absolute;left:-29px;top:6px;width:14px;height:14px;border-radius:50%;border:2px solid var(--ait-blue);background:var(--bg-white);"></div>
+        <div style="font-size:12px;color:var(--ait-blue);text-transform:uppercase;letter-spacing:1px;font-weight:600;">Generation 3</div>
+        <div style="font-size:20px;font-weight:500;margin:4px 0 8px;">The Breathing Grid</div>
+        <div style="color:var(--text-body);font-size:16px;">Full adaptation — dynamic TP, deviation, conviction scoring. F&G and macro indicators modulate all parameters. Zero daily management.</div>
       </div>
-      <div class="evo-item fade-in">
-        <div class="evo-gen">Generation 4</div>
-        <div class="evo-title">Multi-Asset Portfolio</div>
-        <div class="evo-desc">From single-coin to intelligent portfolio. Dynamic coin selection, diversification, and auto-rotation.</div>
-        <ul class="evo-features">
-          <li>Two-tier scanner: fast filters + full backtests to find optimal coins</li>
-          <li>2–3 coins trading simultaneously with independent DCA engines</li>
-          <li>Score-proportional capital allocation across the portfolio</li>
-          <li>Automatic rotation when better opportunities emerge</li>
-          <li>Graceful wind-down of departing positions</li>
-          <li>Anti-churn 20% improvement threshold</li>
-          <li>Anti pump-and-dump maturity filters (age, volume, price stability)</li>
-        </ul>
+
+      <div class="fade-in" style="position:relative;margin-bottom:40px;padding-left:24px;">
+        <div style="position:absolute;left:-29px;top:6px;width:14px;height:14px;border-radius:50%;border:2px solid var(--ait-blue);background:var(--bg-white);"></div>
+        <div style="font-size:12px;color:var(--ait-blue);text-transform:uppercase;letter-spacing:1px;font-weight:600;">Generation 4</div>
+        <div style="font-size:20px;font-weight:500;margin:4px 0 8px;">Multi-Asset Portfolio</div>
+        <div style="color:var(--text-body);font-size:16px;">Two-tier scanner, up to 8 simultaneous coins, score-proportional allocation, auto-rotation with graceful wind-down.</div>
       </div>
-      <div class="evo-item fade-in">
-        <div class="evo-gen">Generation 5</div>
-        <div class="evo-title">Risk Profiles & Tier-Based Scaling</div>
-        <div class="evo-desc">Portfolio theory meets grid trading. Choose your risk, scale your edge.</div>
-        <ul class="evo-features">
-          <li>Three risk profiles: Low (5 SOs, conservative), Medium (8 SOs, balanced), High (12 SOs, aggressive) — allocate capital across them like a portfolio</li>
-          <li>Tier-based coin scaling: Starter trades 1 coin, Whale trades up to 8 simultaneously</li>
-          <li>Each coin × each profile = independent trading engine with its own parameters</li>
-          <li>Auto-guardrails: Medium→Low at 30% drawdown, High→Medium at 50%</li>
-          <li>Profile-specific adaptive params: deeper grids, tighter TPs, and wider deviations at higher risk</li>
-          <li>$3K minimum per coin floor ensures grid depth is never compromised</li>
-          <li>Presets (Conservative, Balanced, Aggressive) or fully custom allocation splits</li>
-        </ul>
+
+      <div class="fade-in" style="position:relative;margin-bottom:40px;padding-left:24px;">
+        <div style="position:absolute;left:-29px;top:6px;width:14px;height:14px;border-radius:50%;border:2px solid var(--ait-blue);background:var(--bg-white);"></div>
+        <div style="font-size:12px;color:var(--ait-blue);text-transform:uppercase;letter-spacing:1px;font-weight:600;">Generation 5</div>
+        <div style="font-size:20px;font-weight:500;margin:4px 0 8px;">Risk Profiles & Tier-Based Scaling</div>
+        <div style="color:var(--text-body);font-size:16px;">Three risk profiles (Low/Medium/High), tier-based coin scaling, auto-guardrails, profile-specific adaptive parameters.</div>
       </div>
-      <div class="evo-item fade-in">
-        <div class="evo-gen">Generation 6 — Current</div>
-        <div class="evo-title">The Intelligence Layer — Full Lifecycle Autonomy</div>
-        <div class="evo-desc">From coin selection to profit extraction — the complete autonomous trading lifecycle.</div>
-        <ul class="evo-features">
-          <li>Smart Entry: 3-tier scoring pipeline finds undervalued coins BEFORE they pump (CoinGecko, Santiment, Grok, GitHub)</li>
-          <li>Smart Exit: regime-gated profit taking — ride the bull, protect the bear (+15% alpha in bears, -1.8% drag in bulls)</li>
-          <li>Conviction-Driven DCA: Fear & Greed + macro intelligence modulates accumulation (+35% Sharpe, -32% drawdown)</li>
-          <li>Macro Intelligence: 8 real-time indicators including F&G, BTC Dominance, Pi Cycle, MVRV Z-Score, NUPL</li>
-          <li>Spot DCA Strategy: Spot DCA with scale-out exits: zero funding fees, you own the coins, ~5-8× more profit per cycle vs perpetual futures</li>
-          <li>Full lifecycle: Entry → Accumulate → Compound → Exit → Rotate — zero human intervention</li>
-          <li>Wyckoff structural analysis for accumulation/distribution detection</li>
-        </ul>
+
+      <div class="fade-in" style="position:relative;margin-bottom:0;padding-left:24px;">
+        <div style="position:absolute;left:-29px;top:6px;width:14px;height:14px;border-radius:50%;border:2px solid var(--profit);background:var(--profit);"></div>
+        <div style="font-size:12px;color:var(--profit);text-transform:uppercase;letter-spacing:1px;font-weight:600;">Generation 6 — Current</div>
+        <div style="font-size:20px;font-weight:500;margin:4px 0 8px;">Full Lifecycle Autonomy</div>
+        <div style="color:var(--text-body);font-size:16px;">Smart Entry + Conviction DCA + 8 real-time signals + Smart Exit + Wyckoff lifecycle + Spot ownership. From coin selection to profit extraction — fully autonomous. <strong style="color:var(--profit);">SOL +614%, ETH +261%, 100% win rate.</strong></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta-section">
+<!-- ═══════════════ 11. CTA (white) ═══════════════ -->
+<section class="light-section" style="text-align:center;padding:100px 24px;">
   <div class="container">
-    <div class="cta-quote fade-in">
-      "Set it up. Let it run. Check in when you want to — <em>not because you have to.</em>"
-      <div style="margin-top:32px; font-size:0.9rem; color:var(--text3); font-style:normal;">
-        The future of passive income through intelligent automation.
+    <div class="fade-in" style="max-width:700px;margin:0 auto;">
+      <p style="font-size:24px;font-weight:400;line-height:36px;color:var(--text-body);font-style:italic;">"Set it up. Let it run. Check in when you want to — <em style="color:var(--text-heading);font-weight:500;">not because you have to.</em>"</p>
+      <div style="margin-top:32px;">
+        <a href="#get-started" class="btn-blue-light">Get Started</a>
+        <div style="margin-top:12px;">
+          <a href="pricing.html" class="btn-blue-outline">View Pricing</a>
+        </div>
       </div>
+      <div style="margin-top:24px;font-size:14px;color:var(--text-body);">The future of passive income through intelligent automation.</div>
     </div>
   </div>
 </section>
 
-<footer style="text-align:center; padding:48px 24px; color:var(--text3); font-size:0.8rem; border-top:1px solid var(--border); background:#0d0d15;">
-  <div style="display:flex; justify-content:center; gap:32px; margin-bottom:24px; flex-wrap:wrap;">
-    <a href="./" style="color:var(--text2); text-decoration:none; transition:color 0.2s;">Product Overview</a>
-    <a href="risk-profiles.html" style="color:var(--text2); text-decoration:none; transition:color 0.2s;">Risk Profiles</a>
-    <a href="pricing.html" style="color:var(--text2); text-decoration:none; transition:color 0.2s;">Pricing</a>
-    <a href="roadmap.html" style="color:var(--text2); text-decoration:none; transition:color 0.2s;">Roadmap</a>
-    <a href="dashboard.html" style="color:var(--text2); text-decoration:none; transition:color 0.2s;">Live Dashboard</a>
+<!-- ═══════════════ 11. FOOTER (dark) ═══════════════ -->
+<footer class="footer">
+  <div class="footer-links">
+    <a href="./">Product Overview</a>
+    <a href="risk-profiles.html">Risk Profiles</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="roadmap.html">Roadmap</a>
+    <a href="dashboardV12.html">Live Dashboard</a>
   </div>
   <div>© 2026 Halo Effects · Adaptive Intelligence Trading</div>
 </footer>
 
 <script>
-// Scroll animations
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 </script>
