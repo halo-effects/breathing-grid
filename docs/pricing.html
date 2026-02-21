@@ -241,7 +241,7 @@ body {
 }
 @media (max-width: 768px) {
   .nav { height: var(--nav-height-mobile); top: 8px; left: 8px; right: 8px; padding: 0 12px; }
-  .nav-links a:not(.btn-blue) { display: none; }
+  /* removed: old mobile nav hide — hamburger handles this now */
   .nav-links { gap: 8px; }
   .hero { padding: 120px 16px 60px; min-height: auto; }
   .hero h1 { font-size: 32px; line-height: 34px; }
@@ -316,6 +316,7 @@ body {
   <button class="nav-toggle" aria-label="Menu">☰</button>
   <div class="nav-links">
     <a href="./">Product Overview</a>
+    <a href="wyckoff-lifecycle.html">Wyckoff Lifecycle</a>
     <a href="pricing.html" class="active">Pricing</a>
     <a href="dashboardV12.html" class="btn-blue">Live Dashboard</a>
   </div>
