@@ -777,6 +777,8 @@ document.querySelectorAll('.faq-question').forEach(q => {
     });
   }
 })();
+// Safety fallback: force all fade-in elements visible after 3s
+setTimeout(() => { document.querySelectorAll('.fade-in:not(.visible)').forEach(el => el.classList.add('visible')); }, 3000);
 </script>
 </body>
 </html>
