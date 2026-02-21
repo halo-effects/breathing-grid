@@ -4,32 +4,37 @@
   "profile": "high",
   "exchange": "aster",
   "capital": 325.0,
-  "equity": 325.53,
-  "cash": 309.29,
-  "pnl_pct": 0.16,
+  "equity": 309.3,
+  "cash": 293.21,
+  "pnl_pct": -4.83,
   "coins": {
     "ETH/USDT": {
       "state": "ACCUMULATING",
       "side": "long",
       "layers": 1,
-      "avg_entry": 1978.97,
-      "current_price": 1980.96,
-      "unrealized_pnl": 0.02,
-      "next_so_price": 1947.3065,
-      "next_tp_price": 1994.8018,
-      "invested": 16.23,
+      "avg_entry": 1985.22,
+      "current_price": 1986.61,
+      "unrealized_pnl": 0.01,
+      "next_so_price": 1953.4565,
+      "next_tp_price": 2001.1018,
+      "invested": 16.08,
       "realized_pnl": 0,
       "conviction": 62.1,
-      "conviction_band": "moderate"
+      "conviction_band": "moderate",
+      "lifecycle_phase": "DCA",
+      "exit_lots_remaining": 0,
+      "spring_deployed": 0.0,
+      "lifecycle_unrealized": 0.0,
+      "lifecycle_pnl": 0.0
     }
   },
-  "deals_completed": 5,
-  "win_rate": 80.0,
-  "total_realized_pnl": 0.54,
-  "max_drawdown_pct": 3.95,
+  "deals_completed": 0,
+  "win_rate": 0.0,
+  "total_realized_pnl": 0,
+  "max_drawdown_pct": 4.83,
   "regime": "RANGING",
   "trend_direction": "bullish",
-  "last_update": "2026-02-21T16:26:36+00:00",
+  "last_update": "2026-02-21T17:27:04+00:00",
   "uptime_hours": 0.0,
   "halted": false,
   "symbols": [
@@ -45,16 +50,16 @@
       "value": 8,
       "classification": "Extreme Fear"
     },
-    "btc_dominance": 56.47,
+    "btc_dominance": 56.49,
     "btc_sma": {
-      "price": 68162.0,
-      "sma200": 99179.23,
+      "price": 68225.84,
+      "sma200": 99179.55,
       "above_sma200": false,
-      "distance_pct": -31.27
+      "distance_pct": -31.21
     },
     "pi_cycle": {
-      "ma_111": 87352.45,
-      "ma_350x2": 199378.88,
+      "ma_111": 87352.99,
+      "ma_350x2": 199379.22,
       "cross_imminent": false,
       "topped": false,
       "gap_pct": -56.19
@@ -63,8 +68,13 @@
       "ssr": 5.19,
       "zone": "normal"
     },
-    "_timestamp": 1771691188.4727051
+    "_timestamp": 1771694818.0939124
   },
+  "lifecycle_enabled": true,
+  "lifecycle_phases": {
+    "ETH/USDT": "DCA"
+  },
+  "lifecycle_total_pnl": 0.0,
   "controls": {
     "paused_coins": [],
     "account_paused": false,
