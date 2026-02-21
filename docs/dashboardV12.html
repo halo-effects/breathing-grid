@@ -429,49 +429,19 @@ tr:hover td{background:rgba(99,102,241,.04)}
   <div class="scard sc-roi"><div class="sc-label" data-tip="Average daily return on investment">Avg Daily ROI</div><div class="sc-value" id="vROI">--</div><div class="sc-sub" id="vROISub">--</div></div>
 </div>
 
-<!-- 3. RISK PROFILE & REGIME -->
-<div class="section">
-  <h2>Risk Profile &amp; Market Conditions</h2>
-  <div class="risk-grid" id="riskGrid"></div>
-</div>
-
-<!-- 4. PORTFOLIO ALLOCATION -->
+<!-- 3. PORTFOLIO ALLOCATION -->
 <div class="alloc-section">
   <h2>Portfolio Allocation</h2>
   <div class="alloc-inner" id="allocInner"></div>
 </div>
 
-<!-- 5. POSITIONS -->
+<!-- 4. POSITIONS -->
 <div class="section" id="positionsSection">
   <h2>Positions</h2>
   <div class="positions-grid" id="positionsGrid"></div>
 </div>
 
-<!-- 6. ADAPTIVE INTELLIGENCE (Per-Coin) -->
-<div class="ai-panel">
-  <h2>Adaptive Intelligence</h2>
-  <div class="ai-coins-grid" id="aiGrid"></div>
-</div>
-
-<!-- PER-COIN CARDS removed -->
-
-<!-- COMPOUNDING TRACKER -->
-<div class="section" id="compoundSection">
-  <h2>Compounding Tracker</h2>
-  <div class="comp-cards" id="compCards"></div>
-  <div class="comp-progress"><div class="comp-progress-bar"><div class="comp-progress-fill" id="compFill" style="width:0%"></div></div><div class="comp-progress-labels"><span id="compStart">$0</span><span id="compTarget">Target: $0</span></div></div>
-  <div class="proj-cards" id="projCards"></div>
-</div>
-
-<!-- MACRO INDICATORS -->
-<div class="section">
-  <h2>Macro Indicators</h2>
-  <div class="macro-grid" id="macroGrid"></div>
-</div>
-
-<!-- CAPITAL UTILIZATION removed -->
-
-<!-- EQUITY + CAP CHARTS -->
+<!-- 5. EQUITY + CAP CHARTS -->
 <div class="charts-row">
   <div class="chart-box">
     <h3>Equity Over Time</h3>
@@ -486,19 +456,15 @@ tr:hover td{background:rgba(99,102,241,.04)}
   </div>
 </div>
 
-<!-- LIVE OPPORTUNITY DASHBOARD -->
-<div class="flow-section">
-  <h2 style="text-align:center;font-size:1.15rem;color:var(--text);margin-bottom:4px">&#x1F4CA; Live Opportunity Dashboard</h2>
-  <div class="flow-sub" style="text-align:center">Each coin progresses independently through Wyckoff-inspired market cycle phases</div>
-  <table class="opp-table" id="oppTable">
-    <thead><tr><th>COIN</th><th>PHASE</th><th>SIGNAL</th><th>OPPORTUNITY</th></tr></thead>
-    <tbody id="oppBody"></tbody>
-  </table>
+<!-- 6. COMPOUNDING TRACKER -->
+<div class="section" id="compoundSection">
+  <h2>Compounding Tracker</h2>
+  <div class="comp-cards" id="compCards"></div>
+  <div class="comp-progress"><div class="comp-progress-bar"><div class="comp-progress-fill" id="compFill" style="width:0%"></div></div><div class="comp-progress-labels"><span id="compStart">$0</span><span id="compTarget">Target: $0</span></div></div>
+  <div class="proj-cards" id="projCards"></div>
 </div>
 
-<!-- SYSTEM FEATURES removed -->
-
-<!-- TRADE LOG -->
+<!-- 7. TRADE LOG -->
 <div class="trade-section">
   <h2>Trade Log <span id="tradeCount" style="font-size:.8rem;color:var(--text3);font-weight:400"></span></h2>
   <div class="pag-bar" id="pagBar" style="display:none">
@@ -516,6 +482,34 @@ tr:hover td{background:rgba(99,102,241,.04)}
     <table><thead><tr><th>Time</th><th>Symbol</th><th>Side</th><th>Qty</th><th>Price</th><th>PnL</th><th>Return %</th><th>Duration</th><th>Regime</th><th>Phase</th></tr></thead><tbody id="tradeBody"></tbody></table>
   </div>
   <div class="trade-empty" id="tradeEmpty"><div class="ei">&#x1F4CA;</div>No trades yet &mdash; bot is accumulating positions</div>
+</div>
+
+<!-- 8. LIVE OPPORTUNITY DASHBOARD -->
+<div class="flow-section">
+  <h2 style="text-align:center;font-size:1.15rem;color:var(--text);margin-bottom:4px">&#x1F4CA; Live Opportunity Dashboard</h2>
+  <div class="flow-sub" style="text-align:center">Each coin progresses independently through Wyckoff-inspired market cycle phases</div>
+  <table class="opp-table" id="oppTable">
+    <thead><tr><th>COIN</th><th>PHASE</th><th>SIGNAL</th><th>OPPORTUNITY</th></tr></thead>
+    <tbody id="oppBody"></tbody>
+  </table>
+</div>
+
+<!-- 9. ADAPTIVE INTELLIGENCE (Per-Coin) -->
+<div class="ai-panel">
+  <h2>Adaptive Intelligence</h2>
+  <div class="ai-coins-grid" id="aiGrid"></div>
+</div>
+
+<!-- 10. RISK PROFILE & REGIME -->
+<div class="section">
+  <h2>Risk Profile &amp; Market Conditions</h2>
+  <div class="risk-grid" id="riskGrid"></div>
+</div>
+
+<!-- 11. MACRO INDICATORS -->
+<div class="section">
+  <h2>Macro Indicators</h2>
+  <div class="macro-grid" id="macroGrid"></div>
 </div>
 
 <!-- BOTTOM STATS BAR -->
