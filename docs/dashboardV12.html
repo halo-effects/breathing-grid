@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AIT V12e Lifecycle Engine — Paper Trading</title>
+<title>AIT V12e Lifecycle Engine — Paper Trading Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
   --bg:#0a0a0f;--card:#12121a;--border:#1e1e2e;
@@ -17,191 +18,315 @@
   --phase-dca:#4A90D9;--phase-exit:#F5A623;--phase-markdown:#D0021B;
   --phase-spring:#7ED321;--phase-markup:#F8E71C;
 }
-body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh;padding:20px;line-height:1.5}
+body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,-apple-system,sans-serif;min-height:100vh;line-height:1.5}
+.wrap{max-width:1400px;margin:0 auto;padding:16px 20px}
 
-/* Header */
-.header{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;background:var(--card);border:1px solid var(--border);border-radius:16px;margin-bottom:20px}
-.header h1{font-size:1.3rem;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.header-right{display:flex;align-items:center;gap:16px;font-size:.8rem;color:var(--text2)}
-.status-dot{width:10px;height:10px;border-radius:50%;display:inline-block}
-.status-dot.running{background:var(--green);box-shadow:0 0 8px var(--green)}
+/* ── Header ── */
+.header{display:flex;align-items:flex-start;justify-content:space-between;padding:20px 24px;background:var(--card);border:1px solid var(--border);border-radius:16px;margin-bottom:12px}
+.header-left h1{font-size:1.4rem;font-weight:700;display:flex;align-items:center;gap:8px}
+.header-left h1 .bolt{font-size:1.2rem}
+.header-left h1 span{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.header-sub{font-size:.78rem;color:var(--text3);margin-top:2px}
+.header-right{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.header-status{display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:500}
+.status-dot{width:10px;height:10px;border-radius:50%;display:inline-block;flex-shrink:0}
+.status-dot.running{background:var(--green);box-shadow:0 0 8px var(--green);animation:pulse 2s infinite}
 .status-dot.stopped{background:var(--red);box-shadow:0 0 8px var(--red)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.header-time{font-size:.72rem;color:var(--text3)}
 
-/* Summary cards */
-.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:20px}
+/* Info pills */
+.info-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:.7rem;font-weight:500;padding:5px 12px;border-radius:20px;background:rgba(99,102,241,.08);color:var(--accent2);border:1px solid rgba(99,102,241,.15)}
+.pill .pill-label{color:var(--text3);font-weight:400}
+
+/* ── Summary Cards ── */
+.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px}
 .summary-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;position:relative;overflow:hidden}
 .summary-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:14px 14px 0 0}
 .summary-card.equity::before{background:linear-gradient(90deg,var(--accent),var(--accent2))}
-.summary-card.pnl::before{background:var(--green)}
-.summary-card.cash::before{background:var(--amber)}
-.sc-label{font-size:.7rem;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
-.sc-value{font-size:1.8rem;font-weight:700}
-.sc-sub{font-size:.75rem;color:var(--text2);margin-top:4px}
+.summary-card.pnl-card::before{background:var(--green)}
+.summary-card.dd-card::before{background:var(--amber)}
+.summary-card.wr-card::before{background:var(--accent2)}
+.sc-label{font-size:.68rem;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.sc-value{font-size:1.7rem;font-weight:700}
+.sc-sub{font-size:.73rem;color:var(--text2);margin-top:4px}
 
-/* Coin cards */
-.coins-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px;margin-bottom:20px}
+/* ── Coin Cards ── */
+.coins-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:16px;margin-bottom:16px}
 .coin-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;transition:border-color .2s}
 .coin-card:hover{border-color:var(--accent)}
-.coin-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-.coin-symbol{font-size:1.1rem;font-weight:700;display:flex;align-items:center;gap:10px}
-.coin-icon{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:#fff}
+
+.coin-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.coin-id{display:flex;align-items:center;gap:10px}
+.coin-icon{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;color:#fff;flex-shrink:0}
 .coin-icon.eth{background:linear-gradient(135deg,#627eea,#8b9ff0)}
 .coin-icon.sol{background:linear-gradient(135deg,#9945ff,#14f195)}
 .coin-icon.btc{background:linear-gradient(135deg,#f7931a,#ffb74d)}
+.coin-name{font-weight:700;font-size:1.05rem}
+.coin-sym{font-size:.7rem;color:var(--text3);font-weight:400}
 
-/* Phase badge */
-.phase-badge{display:inline-flex;align-items:center;gap:5px;font-size:.7rem;font-weight:700;padding:4px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:.5px}
+.phase-badge{display:inline-flex;align-items:center;gap:5px;font-size:.68rem;font-weight:700;padding:4px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:.5px}
 .phase-DCA{background:rgba(74,144,217,.15);color:var(--phase-dca);border:1px solid rgba(74,144,217,.3)}
 .phase-EXIT{background:rgba(245,166,35,.15);color:var(--phase-exit);border:1px solid rgba(245,166,35,.3)}
 .phase-MARKDOWN{background:rgba(208,2,27,.15);color:var(--phase-markdown);border:1px solid rgba(208,2,27,.3)}
 .phase-SPRING{background:rgba(126,211,33,.15);color:var(--phase-spring);border:1px solid rgba(126,211,33,.3)}
 .phase-MARKUP{background:rgba(248,231,28,.15);color:var(--phase-markup);border:1px solid rgba(248,231,28,.3)}
-
-.phase-dot{width:8px;height:8px;border-radius:50%}
+.phase-dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex-shrink:0}
 .phase-dot.DCA{background:var(--phase-dca)}
 .phase-dot.EXIT{background:var(--phase-exit)}
 .phase-dot.MARKDOWN{background:var(--phase-markdown)}
 .phase-dot.SPRING{background:var(--phase-spring)}
 .phase-dot.MARKUP{background:var(--phase-markup)}
+.phase-dot.pulse{animation:phasePulse 1.5s infinite}
+@keyframes phasePulse{0%,100%{box-shadow:0 0 0 0 currentColor}50%{box-shadow:0 0 0 4px transparent}}
 
-/* Coin stats grid */
-.coin-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
-.coin-stat{padding:8px 0}
-.coin-stat-label{font-size:.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:.5px}
-.coin-stat-value{font-size:.95rem;font-weight:600;margin-top:2px}
+/* Price row */
+.price-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;flex-wrap:wrap;gap:8px}
+.price-main{font-size:1.5rem;font-weight:700}
+.pnl-pills{display:flex;gap:10px}
+.pnl-pill{font-size:.75rem;display:flex;flex-direction:column;align-items:flex-end}
+.pnl-pill .pnl-label{font-size:.6rem;color:var(--text3);text-transform:uppercase;letter-spacing:.5px}
+.pnl-pill .pnl-val{font-weight:600}
 
-/* Lifecycle metrics */
-.lifecycle-metrics{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
-.lm-item{display:flex;align-items:center;gap:4px;font-size:.68rem;color:var(--text2);background:rgba(255,255,255,.03);padding:3px 8px;border-radius:6px}
-.lm-count{font-weight:700;color:var(--text)}
+/* Daily score gauge */
+.score-section{margin-bottom:14px}
+.score-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+.score-title{font-size:.7rem;color:var(--text2);font-weight:500}
+.score-val{font-size:.75rem;font-weight:600}
+.score-bar{height:8px;border-radius:4px;background:var(--border);overflow:hidden;position:relative}
+.score-fill{height:100%;border-radius:4px;transition:width .5s ease}
+.score-threshold{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--text);opacity:.5;border-radius:1px}
+.score-note{font-size:.6rem;color:var(--text3);margin-top:3px;display:flex;justify-content:space-between}
 
-/* PnL breakdown */
-.pnl-breakdown{display:flex;gap:12px;margin-top:10px;flex-wrap:wrap}
-.pnl-item{font-size:.7rem;color:var(--text2)}
-.pnl-item span{font-weight:600}
+/* Active position info */
+.position-box{padding:12px;border-radius:10px;margin-bottom:12px;border:1px solid}
+.position-box.dca{background:rgba(74,144,217,.06);border-color:rgba(74,144,217,.15)}
+.position-box.exit{background:rgba(245,166,35,.06);border-color:rgba(245,166,35,.15)}
+.position-box.markdown{background:rgba(208,2,27,.06);border-color:rgba(208,2,27,.15)}
+.position-box.spring{background:rgba(126,211,33,.06);border-color:rgba(126,211,33,.15)}
+.position-box.markup{background:rgba(248,231,28,.06);border-color:rgba(248,231,28,.15)}
+.position-title{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.position-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+.position-stat{font-size:.7rem;color:var(--text2)}
+.position-stat strong{color:var(--text);font-weight:600}
 
-/* Deal info */
-.deal-info{margin-top:12px;padding:10px;background:rgba(74,144,217,.06);border:1px solid rgba(74,144,217,.15);border-radius:10px}
-.deal-info-title{font-size:.7rem;color:var(--phase-dca);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
-.deal-info-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
-.deal-info-stat{font-size:.7rem;color:var(--text2)}
-.deal-info-stat strong{color:var(--text);font-weight:600}
+/* Lifecycle history */
+.lc-history{display:flex;flex-wrap:wrap;gap:6px;padding-top:10px;border-top:1px solid var(--border);margin-bottom:8px}
+.lc-badge{display:inline-flex;align-items:center;gap:4px;font-size:.65rem;color:var(--text2);background:rgba(255,255,255,.03);padding:3px 8px;border-radius:6px}
+.lc-badge .lc-count{font-weight:700;color:var(--text)}
+.lc-pnls{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px}
+.lc-pnl{font-size:.68rem;color:var(--text2)}
+.lc-pnl span{font-weight:600}
 
-/* Chart section */
-.chart-section{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:20px}
+/* Regime & Trend */
+.regime-row{display:flex;gap:12px;font-size:.72rem;color:var(--text2)}
+.regime-row .tag{padding:2px 8px;border-radius:4px;background:rgba(99,102,241,.08);color:var(--accent2);font-weight:500}
+
+/* ── Wyckoff Phase Flow ── */
+.flow-section{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;margin-bottom:16px}
+.flow-section h2{font-size:1rem;font-weight:600;color:var(--text2);margin-bottom:6px}
+.flow-section .flow-subtitle{font-size:.75rem;color:var(--text3);margin-bottom:20px}
+.flow-track{display:flex;align-items:flex-start;justify-content:center;gap:0;flex-wrap:wrap}
+.flow-step{display:flex;flex-direction:column;align-items:center;text-align:center;min-width:120px;flex:1;position:relative}
+.flow-node{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;border:2px solid;opacity:.4;transition:all .3s;position:relative;z-index:1}
+.flow-node.active{opacity:1;transform:scale(1.15);box-shadow:0 0 20px rgba(255,255,255,.1)}
+.flow-node.DCA{border-color:var(--phase-dca);color:var(--phase-dca);background:rgba(74,144,217,.1)}
+.flow-node.EXIT{border-color:var(--phase-exit);color:var(--phase-exit);background:rgba(245,166,35,.1)}
+.flow-node.MARKDOWN{border-color:var(--phase-markdown);color:var(--phase-markdown);background:rgba(208,2,27,.1)}
+.flow-node.SPRING{border-color:var(--phase-spring);color:var(--phase-spring);background:rgba(126,211,33,.1)}
+.flow-node.MARKUP{border-color:var(--phase-markup);color:var(--phase-markup);background:rgba(248,231,28,.1)}
+.flow-label{font-size:.72rem;font-weight:600;margin-top:8px;color:var(--text2)}
+.flow-desc{font-size:.62rem;color:var(--text3);margin-top:3px;max-width:130px;line-height:1.3}
+.flow-arrow{font-size:1rem;color:var(--text3);align-self:center;margin:0 -4px;padding-top:0;opacity:.4;flex-shrink:0}
+.flow-coins{display:flex;gap:3px;margin-top:6px;justify-content:center;flex-wrap:wrap}
+.flow-coin-dot{width:18px;height:18px;border-radius:50%;font-size:.5rem;font-weight:700;color:#fff;display:flex;align-items:center;justify-content:center}
+.flow-coin-dot.eth{background:#627eea}.flow-coin-dot.sol{background:#9945ff}.flow-coin-dot.btc{background:#f7931a}
+
+/* Tooltip */
+[data-tip]{position:relative;cursor:help;border-bottom:1px dotted var(--text3)}
+[data-tip]:hover::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:#1e1e2e;color:var(--text);font-size:.68rem;padding:6px 10px;border-radius:6px;white-space:nowrap;z-index:10;border:1px solid var(--border);font-weight:400;pointer-events:none;max-width:250px;white-space:normal;text-align:center;line-height:1.3}
+
+/* ── Chart ── */
+.chart-section{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:16px}
 .chart-section h2{font-size:1rem;font-weight:600;margin-bottom:16px;color:var(--text2)}
 .chart-wrap{position:relative;height:300px}
 
-/* Trade log */
-.trade-section{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:20px}
+/* ── Trade Log ── */
+.trade-section{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:16px}
 .trade-section h2{font-size:1rem;font-weight:600;margin-bottom:16px;color:var(--text2)}
-table{width:100%;border-collapse:collapse;font-size:.78rem}
-th{text-align:left;color:var(--text3);font-weight:500;padding:10px 8px;border-bottom:1px solid var(--border);font-size:.68rem;text-transform:uppercase;letter-spacing:.5px}
+.trade-empty{text-align:center;color:var(--text3);padding:32px;font-size:.85rem}
+.trade-empty .empty-icon{font-size:2rem;margin-bottom:8px}
+.table-scroll{overflow-x:auto;max-height:500px;overflow-y:auto}
+table{width:100%;border-collapse:collapse;font-size:.76rem}
+th{text-align:left;color:var(--text3);font-weight:500;padding:10px 8px;border-bottom:1px solid var(--border);font-size:.66rem;text-transform:uppercase;letter-spacing:.5px;position:sticky;top:0;background:var(--card);z-index:1}
 td{padding:9px 8px;border-bottom:1px solid rgba(30,30,46,.5)}
 tr:hover td{background:rgba(99,102,241,.04)}
 .pnl-pos{color:var(--green);font-weight:600}
 .pnl-neg{color:var(--red);font-weight:600}
 
-/* Footer */
-.footer{text-align:center;padding:16px;font-size:.72rem;color:var(--text3)}
+/* ── Footer ── */
+.footer{text-align:center;padding:20px 16px;font-size:.72rem;color:var(--text3);border-top:1px solid var(--border);margin-top:8px}
+.footer a{color:var(--accent2);text-decoration:none}
+.footer a:hover{text-decoration:underline}
 
-/* Responsive */
+/* ── Responsive ── */
+@media(max-width:1024px){
+  .summary{grid-template-columns:repeat(2,1fr)}
+}
 @media(max-width:768px){
-  body{padding:10px}
+  .wrap{padding:10px 12px}
   .header{flex-direction:column;gap:10px;padding:14px;text-align:center}
-  .header h1{font-size:1.1rem}
+  .header-right{align-items:center}
   .summary{grid-template-columns:1fr 1fr}
   .coins-grid{grid-template-columns:1fr}
   .chart-wrap{height:220px}
-  .coin-stats{grid-template-columns:1fr}
-  .deal-info-grid{grid-template-columns:1fr}
+  .position-grid{grid-template-columns:1fr 1fr}
+  .flow-track{gap:4px}
+  .flow-step{min-width:80px}
+  .flow-node{width:40px;height:40px;font-size:.6rem}
+  .flow-arrow{font-size:.8rem}
   table{display:block;overflow-x:auto}
+  .info-pills{justify-content:center}
 }
 @media(max-width:480px){
   .summary{grid-template-columns:1fr}
-  .header h1{font-size:.95rem}
+  .flow-track{flex-direction:column;align-items:center}
+  .flow-arrow{transform:rotate(90deg)}
+  .price-row{flex-direction:column;align-items:flex-start}
+  .pnl-pills{flex-direction:row}
 }
 </style>
 </head>
 <body>
+<div class="wrap">
 
+<!-- Header -->
 <div class="header">
-  <h1>⚡ AIT V12e Lifecycle Engine — Paper Trading</h1>
+  <div class="header-left">
+    <h1><span class="bolt">⚡</span> <span>AIT V12e Lifecycle Engine</span></h1>
+    <div class="header-sub">Paper Trading Dashboard</div>
+  </div>
   <div class="header-right">
-    <span id="updateTime">--</span>
-    <span><span id="statusDot" class="status-dot stopped"></span> <span id="statusLabel">Loading...</span></span>
+    <div class="header-status">
+      <span id="statusDot" class="status-dot stopped"></span>
+      <span id="statusLabel">Loading…</span>
+    </div>
+    <div class="header-time" id="updateTime">--</div>
   </div>
 </div>
 
-<div class="summary" id="summaryCards">
+<!-- Info pills -->
+<div class="info-pills" id="infoPills"></div>
+
+<!-- Summary cards -->
+<div class="summary">
   <div class="summary-card equity">
     <div class="sc-label">Total Equity</div>
     <div class="sc-value" id="totalEquity">--</div>
     <div class="sc-sub" id="equitySub">--</div>
   </div>
-  <div class="summary-card pnl">
+  <div class="summary-card pnl-card">
     <div class="sc-label">Total PnL</div>
     <div class="sc-value" id="totalPnl">--</div>
     <div class="sc-sub" id="pnlSub">--</div>
   </div>
-  <div class="summary-card cash">
-    <div class="sc-label">Cash Available</div>
-    <div class="sc-value" id="totalCash">--</div>
-    <div class="sc-sub" id="cashSub">--</div>
+  <div class="summary-card dd-card">
+    <div class="sc-label" data-tip="Largest peak-to-trough equity decline — measures worst-case risk">Max Drawdown</div>
+    <div class="sc-value" id="maxDD">--</div>
+    <div class="sc-sub" id="ddSub">--</div>
+  </div>
+  <div class="summary-card wr-card">
+    <div class="sc-label" data-tip="Percentage of completed trades that were profitable">Win Rate</div>
+    <div class="sc-value" id="winRate">--</div>
+    <div class="sc-sub" id="wrSub">--</div>
   </div>
 </div>
 
+<!-- Coin cards -->
 <div class="coins-grid" id="coinsGrid"></div>
 
+<!-- Wyckoff Phase Flow -->
+<div class="flow-section">
+  <h2>🔄 Market Cycle Phases</h2>
+  <div class="flow-subtitle">How the engine adapts to changing market conditions — each coin progresses independently through these phases.</div>
+  <div class="flow-track" id="flowTrack"></div>
+</div>
+
+<!-- Equity Chart -->
 <div class="chart-section">
   <h2>📈 Equity Over Time</h2>
   <div class="chart-wrap"><canvas id="equityChart"></canvas></div>
 </div>
 
+<!-- Trade Log -->
 <div class="trade-section">
   <h2>📋 Trade Log <span id="tradeCount" style="font-size:.8rem;color:var(--text3);font-weight:400"></span></h2>
-  <div style="overflow-x:auto">
+  <div class="table-scroll">
     <table>
-      <thead><tr><th>Time</th><th>Symbol</th><th>Side</th><th>Qty</th><th>Price</th><th>PnL</th><th>Phase</th></tr></thead>
-      <tbody id="tradeBody"><tr><td colspan="7" style="text-align:center;color:var(--text3);padding:24px">No trades yet</td></tr></tbody>
+      <thead><tr><th>Time</th><th>Symbol</th><th>Side</th><th>Qty</th><th>Price</th><th>PnL</th><th>Return %</th><th>Duration</th><th>Regime</th><th>Phase</th></tr></thead>
+      <tbody id="tradeBody"></tbody>
     </table>
+  </div>
+  <div class="trade-empty" id="tradeEmpty">
+    <div class="empty-icon">📊</div>
+    No trades yet — bot is accumulating positions
   </div>
 </div>
 
-<div class="footer">Auto-refreshes every 60s · Next refresh in <span id="countdown">60</span>s · AIT V12e Dashboard v1.0</div>
+<!-- Footer -->
+<div class="footer">
+  Powered by <strong>AIT V12e</strong> · Adaptive Intelligence Trading ·
+  <a href="index.html">Product Page</a><br>
+  Auto-refreshes every 60s · Next refresh in <span id="countdown">60</span>s · Dashboard v2.0
+</div>
+
+</div><!-- /wrap -->
 
 <script>
-// ═══════════════════════════════════════════
-// CONFIG — change data URLs here
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
+// CONFIG
+// ═══════════════════════════════════════════════════════
 const CONFIG = {
-  // For local development / direct file serving:
   statusUrl: 'data/v12e/status.json',
   tradesUrl: 'data/v12e/trades.csv',
-  refreshInterval: 60, // seconds
+  refreshInterval: 60,
 };
 
-// If running from file:// or localhost with relative paths to trading dir:
-// CONFIG.statusUrl = '../trading/spot/paper/v12e/status.json';
-// CONFIG.tradesUrl = '../trading/spot/paper/v12e/trades.csv';
-
-// ═══════════════════════════════════════════
-
+// ═══════════════════════════════════════════════════════
+// HELPERS
+// ═══════════════════════════════════════════════════════
 const $ = id => document.getElementById(id);
 const fmt = (n, d=2) => n == null ? '--' : Number(n).toFixed(d);
 const fmtUsd = (n, d=2) => n == null ? '--' : '$' + Number(n).toLocaleString('en-US', {minimumFractionDigits:d, maximumFractionDigits:d});
 const pctColor = v => v > 0 ? 'var(--green)' : v < 0 ? 'var(--red)' : 'var(--text)';
+const priceDec = p => p > 1000 ? 2 : p > 1 ? 4 : 6;
 
-const PHASE_COLORS = {DCA:'#4A90D9',EXIT:'#F5A623',MARKDOWN:'#D0021B',SPRING:'#7ED321',MARKUP:'#F8E71C'};
-
-const COIN_META = {
-  'ETH/USDT': {icon:'eth',label:'ETH',name:'Ethereum'},
-  'SOL/USDT': {icon:'sol',label:'SOL',name:'Solana'},
-  'BTC/USDT': {icon:'btc',label:'BTC',name:'Bitcoin'},
+// Coin metadata — maps by base symbol so both USDT and USDC work
+const COIN_META_BASE = {
+  ETH: {icon:'eth', label:'ETH', name:'Ethereum'},
+  SOL: {icon:'sol', label:'SOL', name:'Solana'},
+  BTC: {icon:'btc', label:'BTC', name:'Bitcoin'},
 };
+function coinMeta(sym) {
+  const base = sym.split('/')[0];
+  return COIN_META_BASE[base] || {icon:'btc', label:base, name:base};
+}
+
+const PHASE_DESCS = {
+  DCA:      'Accumulating position via grid',
+  EXIT:     'Distribution detected — unwinding',
+  MARKDOWN: 'Riding shorts down',
+  SPRING:   'Bottom detected — deploying reserves',
+  MARKUP:   'Trending up — max position',
+};
+const PHASE_ORDER = ['DCA','EXIT','MARKDOWN','SPRING','MARKUP'];
 
 let statusData = null, tradesData = [], equityChart = null, countdownVal = CONFIG.refreshInterval;
 
+// ═══════════════════════════════════════════════════════
+// FETCH
+// ═══════════════════════════════════════════════════════
 function parseCSV(text) {
   const lines = text.trim().split('\n');
   if (lines.length < 2) return [];
@@ -217,43 +342,62 @@ function parseCSV(text) {
 async function fetchData() {
   try {
     const r = await fetch(CONFIG.statusUrl + '?t=' + Date.now());
-    if (r.ok) { statusData = await r.json(); renderStatus(); }
+    if (r.ok) { statusData = await r.json(); render(); }
   } catch(e) { console.warn('status fetch failed', e); }
 
   try {
     const r = await fetch(CONFIG.tradesUrl + '?t=' + Date.now());
     if (r.ok) { tradesData = parseCSV(await r.text()); renderTrades(); renderEquityChart(); }
-  } catch(e) { /* trades.csv may not exist yet */ }
+  } catch(e) { /* trades.csv may not exist */ }
 }
 
-function renderStatus() {
+// ═══════════════════════════════════════════════════════
+// RENDER
+// ═══════════════════════════════════════════════════════
+function render() {
   const s = statusData;
   if (!s) return;
 
-  // Header status
+  // Header
   const dot = $('statusDot');
   dot.className = 'status-dot ' + (s.running ? 'running' : 'stopped');
-  $('statusLabel').textContent = s.running ? 'Running' : 'Stopped';
-  $('updateTime').textContent = s.last_update ? new Date(s.last_update).toLocaleString() : (s.timestamp || '--');
+  $('statusLabel').textContent = s.running ? (s.halted ? 'Halted' : 'Running') : 'Stopped';
+  $('updateTime').textContent = s.last_update ? new Date(s.last_update).toLocaleString() : '--';
 
-  // Summary cards
+  // Info pills
+  $('infoPills').innerHTML = [
+    pill('Exchange', s.exchange || '--'),
+    pill('Profile', s.profile || '--'),
+    pill('Timeframe', s.timeframe || '--'),
+    pill('Uptime', s.uptime_hours != null ? fmt(s.uptime_hours,1) + 'h' : '--'),
+    pill('Mode', s.mode || '--'),
+  ].join('');
+
+  // Summary
   $('totalEquity').textContent = fmtUsd(s.equity);
-  $('equitySub').textContent = `Capital: ${fmtUsd(s.capital)} · Max DD: ${fmt(s.max_drawdown_pct || s.max_dd || 0, 2)}%`;
-  
+  $('equitySub').textContent = `Starting capital: ${fmtUsd(s.capital)}`;
+
   const pnlPct = s.pnl_pct || 0;
-  const pnlUsd = s.equity - s.capital;
-  $('totalPnl').innerHTML = `<span style="color:${pctColor(pnlPct)}">${pnlPct >= 0 ? '+' : ''}${fmt(pnlPct)}%</span>`;
-  $('pnlSub').innerHTML = `<span style="color:${pctColor(pnlUsd)}">${pnlUsd >= 0 ? '+' : ''}${fmtUsd(pnlUsd)}</span> · ${s.deals_completed || 0} deals completed`;
+  const pnlUsd = (s.equity||0) - (s.capital||0);
+  $('totalPnl').innerHTML = `<span style="color:${pctColor(pnlPct)}">${pnlPct>=0?'+':''}${fmt(pnlPct)}%</span>`;
+  $('pnlSub').innerHTML = `<span style="color:${pctColor(pnlUsd)}">${pnlUsd>=0?'+':''}${fmtUsd(pnlUsd)}</span> realized: ${fmtUsd(s.total_realized_pnl||0)}`;
 
-  $('totalCash').textContent = fmtUsd(s.cash);
-  const invested = s.equity - s.cash;
-  const utilPct = s.equity > 0 ? (invested / s.equity * 100) : 0;
-  $('cashSub').textContent = `Invested: ${fmtUsd(invested)} · Util: ${fmt(utilPct, 1)}%`;
+  const dd = s.max_drawdown_pct || 0;
+  $('maxDD').innerHTML = `<span style="color:${dd > 5 ? 'var(--red)' : dd > 2 ? 'var(--amber)' : 'var(--green)'}">${fmt(dd)}%</span>`;
+  $('ddSub').textContent = dd < 1 ? 'Excellent — minimal risk' : dd < 5 ? 'Moderate drawdown' : 'Elevated — monitor closely';
 
-  // Coin cards
+  $('winRate').textContent = fmt(s.win_rate || 0, 1) + '%';
+  $('wrSub').textContent = `${s.deals_completed || 0} deals completed`;
+
   renderCoinCards();
+  renderFlowDiagram();
 }
 
+function pill(label, value) {
+  return `<span class="pill"><span class="pill-label">${label}:</span> ${value}</span>`;
+}
+
+// ── Coin Cards ──
 function renderCoinCards() {
   const s = statusData;
   const symbols = s.symbols || Object.keys(s.coins || {});
@@ -262,81 +406,184 @@ function renderCoinCards() {
   symbols.forEach(sym => {
     const coin = (s.coins || {})[sym] || {};
     const lc = (s.lifecycle || {})[sym] || {};
-    const meta = COIN_META[sym] || {icon:'btc', label: sym.split('/')[0], name: sym};
-    const phase = lc.phase || coin.state || 'DCA';
+    const meta = coinMeta(sym);
+    const phase = lc.phase || 'DCA';
     const metrics = lc.metrics || {};
+    const pd = priceDec(coin.current_price || 0);
 
-    html += `<div class="coin-card">
-      <div class="coin-header">
-        <div class="coin-symbol">
-          <div class="coin-icon ${meta.icon}">${meta.label}</div>
-          <div>
-            <div>${meta.name}</div>
-            <div style="font-size:.7rem;color:var(--text3);font-weight:400">${sym}</div>
-          </div>
-        </div>
-        <span class="phase-badge phase-${phase}"><span class="phase-dot ${phase}"></span>${phase}</span>
+    html += `<div class="coin-card">`;
+
+    // Header
+    html += `<div class="coin-header">
+      <div class="coin-id">
+        <div class="coin-icon ${meta.icon}">${meta.label}</div>
+        <div><div class="coin-name">${meta.name}</div><div class="coin-sym">${sym}</div></div>
       </div>
-
-      <div class="coin-stats">
-        <div class="coin-stat">
-          <div class="coin-stat-label">Current Price</div>
-          <div class="coin-stat-value">${fmtUsd(coin.current_price, coin.current_price > 1000 ? 2 : 4)}</div>
-        </div>
-        <div class="coin-stat">
-          <div class="coin-stat-label">Unrealized PnL</div>
-          <div class="coin-stat-value" style="color:${pctColor(coin.unrealized_pnl || 0)}">${fmtUsd(coin.unrealized_pnl || 0)}</div>
-        </div>
-        <div class="coin-stat">
-          <div class="coin-stat-label">Daily Score</div>
-          <div class="coin-stat-value">${fmt(lc.daily_score || 0, 1)}</div>
-        </div>
-        <div class="coin-stat">
-          <div class="coin-stat-label">Invested</div>
-          <div class="coin-stat-value">${fmtUsd(coin.invested || 0)}</div>
-        </div>
-      </div>`;
-
-    // Active deal info (DCA phase)
-    if ((phase === 'DCA' || coin.state === 'ACCUMULATING') && coin.layers > 0) {
-      html += `<div class="deal-info">
-        <div class="deal-info-title">Active DCA Deal</div>
-        <div class="deal-info-grid">
-          <div class="deal-info-stat">Layers: <strong>${coin.layers}</strong></div>
-          <div class="deal-info-stat">Avg Entry: <strong>${fmtUsd(coin.avg_entry, coin.avg_entry > 1000 ? 2 : 4)}</strong></div>
-          <div class="deal-info-stat">Next SO: <strong>${fmtUsd(coin.next_so_price, coin.next_so_price > 1000 ? 2 : 4)}</strong></div>
-        </div>
-      </div>`;
-    }
-
-    // Lifecycle metrics
-    html += `<div class="lifecycle-metrics">
-      <div class="lm-item"><span class="phase-dot EXIT" style="width:6px;height:6px"></span>Exit <span class="lm-count">${metrics.exit_phases || 0}</span></div>
-      <div class="lm-item"><span class="phase-dot SPRING" style="width:6px;height:6px"></span>Spring <span class="lm-count">${metrics.spring_phases || 0}</span></div>
-      <div class="lm-item"><span class="phase-dot MARKDOWN" style="width:6px;height:6px"></span>Markdown <span class="lm-count">${metrics.markdown_phases || 0}</span></div>
-      <div class="lm-item"><span class="phase-dot MARKUP" style="width:6px;height:6px"></span>Markup <span class="lm-count">${metrics.markup_phases || 0}</span></div>
+      <span class="phase-badge phase-${phase}"><span class="phase-dot ${phase} pulse" style="color:var(--phase-${phase.toLowerCase()})"></span>${phase}</span>
     </div>`;
 
-    // PnL breakdown
-    html += `<div class="pnl-breakdown">
-      <div class="pnl-item">Short PnL: <span style="color:${pctColor(metrics.short_pnl || 0)}">${fmtUsd(metrics.short_pnl || 0)}</span></div>
-      <div class="pnl-item">Spring PnL: <span style="color:${pctColor(metrics.spring_pnl || 0)}">${fmtUsd(metrics.spring_pnl || 0)}</span></div>
-      <div class="pnl-item">Markup PnL: <span style="color:${pctColor(metrics.markup_pnl || 0)}">${fmtUsd(metrics.markup_pnl || 0)}</span></div>
+    // Price & PnL row
+    html += `<div class="price-row">
+      <div class="price-main">${fmtUsd(coin.current_price, pd)}</div>
+      <div class="pnl-pills">
+        <div class="pnl-pill"><span class="pnl-label">Unrealized</span><span class="pnl-val" style="color:${pctColor(coin.unrealized_pnl||0)}">${fmtUsd(coin.unrealized_pnl||0)}</span></div>
+        <div class="pnl-pill"><span class="pnl-label">Realized</span><span class="pnl-val" style="color:${pctColor(coin.realized_pnl||0)}">${fmtUsd(coin.realized_pnl||0)}</span></div>
+      </div>
     </div>`;
 
-    html += '</div>';
+    // Daily Score Gauge
+    const score = lc.daily_score || 0;
+    const scoreColor = score < 25 ? 'var(--green)' : score < 50 ? 'var(--amber)' : score < 75 ? '#f97316' : 'var(--red)';
+    html += `<div class="score-section">
+      <div class="score-header">
+        <span class="score-title" data-tip="A composite score (0–100) measuring distribution signals. When it crosses 50, the engine begins exiting the position.">Daily Score</span>
+        <span class="score-val" style="color:${scoreColor}">${fmt(score,1)} / 100</span>
+      </div>
+      <div class="score-bar">
+        <div class="score-fill" style="width:${Math.min(score,100)}%;background:${scoreColor}"></div>
+        <div class="score-threshold" style="left:50%" title="EXIT threshold: 50"></div>
+      </div>
+      <div class="score-note"><span>Safe zone</span><span>EXIT threshold: 50 →</span></div>
+    </div>`;
+
+    // Phase-specific position info
+    html += renderPositionBox(phase, coin, lc, pd);
+
+    // Lifecycle history
+    html += `<div class="lc-history">
+      <div class="lc-badge"><span class="phase-dot EXIT" style="width:6px;height:6px"></span>Exits <span class="lc-count">${metrics.exit_phases||0}</span></div>
+      <div class="lc-badge"><span class="phase-dot MARKDOWN" style="width:6px;height:6px"></span>Markdowns <span class="lc-count">${metrics.markdown_phases||0}</span></div>
+      <div class="lc-badge"><span class="phase-dot SPRING" style="width:6px;height:6px"></span>Springs <span class="lc-count">${metrics.spring_phases||0}</span></div>
+      <div class="lc-badge"><span class="phase-dot MARKUP" style="width:6px;height:6px"></span>Markups <span class="lc-count">${metrics.markup_phases||0}</span></div>
+    </div>`;
+
+    // Lifecycle PnLs
+    html += `<div class="lc-pnls">
+      <div class="lc-pnl">Short PnL: <span style="color:${pctColor(metrics.short_pnl||0)}">${fmtUsd(metrics.short_pnl||0)}</span></div>
+      <div class="lc-pnl">Spring PnL: <span style="color:${pctColor(metrics.spring_pnl||0)}">${fmtUsd(metrics.spring_pnl||0)}</span></div>
+      <div class="lc-pnl">Markup PnL: <span style="color:${pctColor(metrics.markup_pnl||0)}">${fmtUsd(metrics.markup_pnl||0)}</span></div>
+    </div>`;
+
+    // Regime & Trend
+    const regime = s.regime || '--';
+    const trend = s.trend_direction || '--';
+    const trendArrow = trend === 'bullish' ? '▲' : trend === 'bearish' ? '▼' : '—';
+    const trendColor = trend === 'bullish' ? 'var(--green)' : trend === 'bearish' ? 'var(--red)' : 'var(--text2)';
+    html += `<div class="regime-row">
+      <span data-tip="The detected market structure phase (Accumulation, Distribution, Markup, or Markdown)">Regime: <span class="tag">${regime}</span></span>
+      <span>Trend: <span style="color:${trendColor};font-weight:600">${trendArrow} ${trend}</span></span>
+    </div>`;
+
+    html += `</div>`;
   });
 
   $('coinsGrid').innerHTML = html || '<div style="color:var(--text3);text-align:center;padding:40px">No coin data available</div>';
 }
 
+function renderPositionBox(phase, coin, lc, pd) {
+  const p = phase.toUpperCase();
+  if (p === 'DCA' && coin.layers > 0) {
+    return `<div class="position-box dca">
+      <div class="position-title" style="color:var(--phase-dca)">Active DCA Position</div>
+      <div class="position-grid">
+        <div class="position-stat" data-tip="Number of safety orders filled">Layers: <strong>${coin.layers}</strong></div>
+        <div class="position-stat">Avg Entry: <strong>${fmtUsd(coin.avg_entry, pd)}</strong></div>
+        <div class="position-stat" data-tip="Price at which the next safety order will trigger">Next SO: <strong>${fmtUsd(coin.next_so_price, pd)}</strong></div>
+        <div class="position-stat" data-tip="Take-profit target price">Next TP: <strong>${fmtUsd(coin.next_tp_price, pd)}</strong></div>
+        <div class="position-stat">Invested: <strong>${fmtUsd(coin.invested)}</strong></div>
+      </div>
+    </div>`;
+  }
+  if (p === 'EXIT') {
+    return `<div class="position-box exit">
+      <div class="position-title" style="color:var(--phase-exit)">Exiting Position</div>
+      <div class="position-grid">
+        <div class="position-stat">Exit Price: <strong>${fmtUsd(lc.exit_price, pd)}</strong></div>
+        <div class="position-stat" data-tip="Remaining lots to sell during the exit phase">Lots Remaining: <strong>${lc.exit_lots_remaining || 0}</strong></div>
+        <div class="position-stat">Invested: <strong>${fmtUsd(coin.invested)}</strong></div>
+      </div>
+    </div>`;
+  }
+  if (p === 'MARKDOWN') {
+    return `<div class="position-box markdown">
+      <div class="position-title" style="color:var(--phase-markdown)">Markdown — Shorting</div>
+      <div class="position-grid">
+        <div class="position-stat">Short Active: <strong>${lc.short_active ? 'Yes ⬇' : 'No'}</strong></div>
+        <div class="position-stat">Short PnL: <strong style="color:${pctColor(lc.metrics?.short_pnl||0)}">${fmtUsd(lc.metrics?.short_pnl||0)}</strong></div>
+      </div>
+    </div>`;
+  }
+  if (p === 'SPRING') {
+    return `<div class="position-box spring">
+      <div class="position-title" style="color:var(--phase-spring)">Spring — Deploying Reserves</div>
+      <div class="position-grid">
+        <div class="position-stat" data-tip="Spring intensity level (1=cautious, 3=aggressive)">Spring Tier: <strong>${lc.spring_tier || 0} / 3</strong></div>
+        <div class="position-stat">Capital Deployed: <strong>${fmtUsd(lc.spring_deployed)}</strong></div>
+        <div class="position-stat">Spring PnL: <strong style="color:${pctColor(lc.metrics?.spring_pnl||0)}">${fmtUsd(lc.metrics?.spring_pnl||0)}</strong></div>
+      </div>
+    </div>`;
+  }
+  if (p === 'MARKUP') {
+    return `<div class="position-box markup">
+      <div class="position-title" style="color:var(--phase-markup)">Markup — Trending Up</div>
+      <div class="position-grid">
+        <div class="position-stat">Markup Qty: <strong>${lc.markup_qty || 0}</strong></div>
+        <div class="position-stat">Markup PnL: <strong style="color:${pctColor(lc.metrics?.markup_pnl||0)}">${fmtUsd(lc.metrics?.markup_pnl||0)}</strong></div>
+        <div class="position-stat">Avg Entry: <strong>${fmtUsd(coin.avg_entry, pd)}</strong></div>
+      </div>
+    </div>`;
+  }
+  // Fallback: no position box if no layers
+  return '';
+}
+
+// ── Wyckoff Flow Diagram ──
+function renderFlowDiagram() {
+  const s = statusData;
+  const symbols = s.symbols || Object.keys(s.coins || {});
+
+  // Collect which coins are in which phase
+  const phaseCoins = {};
+  PHASE_ORDER.forEach(p => phaseCoins[p] = []);
+  symbols.forEach(sym => {
+    const phase = ((s.lifecycle||{})[sym]||{}).phase || 'DCA';
+    if (phaseCoins[phase]) phaseCoins[phase].push(sym);
+  });
+
+  let html = '';
+  PHASE_ORDER.forEach((phase, i) => {
+    const active = phaseCoins[phase].length > 0;
+
+    if (i > 0) html += `<div class="flow-arrow">→</div>`;
+
+    html += `<div class="flow-step">
+      <div class="flow-node ${phase} ${active ? 'active' : ''}">${phase}</div>
+      <div class="flow-label">${phase === 'DCA' ? 'Accumulate' : phase === 'EXIT' ? 'Distribute' : phase === 'MARKDOWN' ? 'Short' : phase === 'SPRING' ? 'Bounce' : 'Rally'}</div>
+      <div class="flow-desc">${PHASE_DESCS[phase]}</div>
+      <div class="flow-coins">${phaseCoins[phase].map(sym => {
+        const m = coinMeta(sym);
+        return `<div class="flow-coin-dot ${m.icon}" title="${sym}">${m.label[0]}</div>`;
+      }).join('')}</div>
+    </div>`;
+  });
+
+  // Loop-back hint
+  html += `<div class="flow-arrow" style="opacity:.25">↩</div>`;
+
+  $('flowTrack').innerHTML = html;
+}
+
+// ── Trades ──
 function renderTrades() {
   const tbody = $('tradeBody');
+  const empty = $('tradeEmpty');
   if (!tradesData.length) {
-    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--text3);padding:24px">No trades yet</td></tr>';
+    tbody.innerHTML = '';
+    empty.style.display = 'block';
     $('tradeCount').textContent = '';
     return;
   }
+  empty.style.display = 'none';
   const recent = tradesData.slice(-50).reverse();
   $('tradeCount').textContent = `(${tradesData.length} total)`;
   tbody.innerHTML = recent.map(t => {
@@ -348,41 +595,48 @@ function renderTrades() {
     const qty = t.qty || t.Qty || t.quantity || '--';
     const price = t.price || t.Price || '--';
     const phase = t.phase || t.Phase || '--';
+    const regime = t.regime || t.Regime || '--';
+    const retPct = t.return_pct || t.ReturnPct || '--';
+    const dur = t.duration || t.Duration || '--';
     return `<tr>
-      <td>${time ? new Date(time).toLocaleString() : time}</td>
+      <td>${time !== '--' ? new Date(time).toLocaleString() : '--'}</td>
       <td><strong>${sym}</strong></td>
       <td>${side}</td>
       <td>${qty}</td>
-      <td>${isNaN(price) ? price : fmtUsd(parseFloat(price), 2)}</td>
-      <td class="${pnlClass}">${pnl !== 0 ? (pnl > 0 ? '+' : '') + fmtUsd(pnl) : '--'}</td>
-      <td>${phase !== '--' ? `<span class="phase-badge phase-${phase}" style="font-size:.6rem;padding:2px 8px">${phase}</span>` : '--'}</td>
+      <td>${isNaN(price) ? price : fmtUsd(parseFloat(price),2)}</td>
+      <td class="${pnlClass}">${pnl !== 0 ? (pnl>0?'+':'') + fmtUsd(pnl) : '--'}</td>
+      <td>${retPct !== '--' ? retPct + '%' : '--'}</td>
+      <td>${dur}</td>
+      <td>${regime !== '--' ? regime : '--'}</td>
+      <td>${phase !== '--' ? `<span class="phase-badge phase-${phase}" style="font-size:.58rem;padding:2px 8px">${phase}</span>` : '--'}</td>
     </tr>`;
   }).join('');
 }
 
+// ── Equity Chart ──
 function renderEquityChart() {
-  if (!tradesData.length) return;
-  
-  // Build equity timeline from trades
-  const capital = statusData?.capital || 10000;
-  let equity = capital;
-  const points = [{x: tradesData[0]?.timestamp ? new Date(tradesData[0].timestamp) : new Date(), y: capital}];
-  
-  tradesData.forEach(t => {
-    const pnl = parseFloat(t.pnl || t.PnL || 0);
-    if (pnl) {
-      equity += pnl;
-      const time = t.timestamp || t.time;
-      if (time) points.push({x: new Date(time), y: equity});
-    }
-  });
-
-  // Add current equity
-  if (statusData) {
-    points.push({x: new Date(), y: statusData.equity});
-  }
-
   const ctx = $('equityChart').getContext('2d');
+  const capital = statusData?.capital || 10000;
+
+  // Build equity from trades
+  let equity = capital;
+  const points = [];
+  if (tradesData.length) {
+    const t0 = tradesData[0]?.timestamp || tradesData[0]?.time;
+    if (t0) points.push({x: new Date(t0), y: capital});
+    tradesData.forEach(t => {
+      const pnl = parseFloat(t.pnl || t.PnL || 0);
+      if (pnl) {
+        equity += pnl;
+        const time = t.timestamp || t.time;
+        if (time) points.push({x: new Date(time), y: equity});
+      }
+    });
+  }
+  // Always add current point
+  if (statusData) points.push({x: new Date(), y: statusData.equity || capital});
+  if (points.length < 2) points.unshift({x: new Date(Date.now() - 3600000), y: capital});
+
   if (equityChart) equityChart.destroy();
 
   const gradient = ctx.createLinearGradient(0, 0, 0, 300);
@@ -392,21 +646,33 @@ function renderEquityChart() {
   equityChart = new Chart(ctx, {
     type: 'line',
     data: {
-      datasets: [{
-        label: 'Equity',
-        data: points,
-        borderColor: '#6366f1',
-        backgroundColor: gradient,
-        borderWidth: 2,
-        fill: true,
-        tension: 0.3,
-        pointRadius: 0,
-        pointHitRadius: 10,
-      }]
+      datasets: [
+        {
+          label: 'Equity',
+          data: points,
+          borderColor: '#6366f1',
+          backgroundColor: gradient,
+          borderWidth: 2,
+          fill: true,
+          tension: 0.3,
+          pointRadius: 0,
+          pointHitRadius: 10,
+        },
+        {
+          label: 'Starting Capital',
+          data: points.map(p => ({x: p.x, y: capital})),
+          borderColor: 'rgba(148,163,184,.3)',
+          borderWidth: 1,
+          borderDash: [6, 4],
+          pointRadius: 0,
+          fill: false,
+        }
+      ]
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      interaction: {intersect: false, mode: 'index'},
       plugins: {
         legend: {display: false},
         tooltip: {
@@ -415,9 +681,7 @@ function renderEquityChart() {
           borderWidth: 1,
           titleColor: '#94a3b8',
           bodyColor: '#e2e8f0',
-          callbacks: {
-            label: ctx => '$' + ctx.parsed.y.toFixed(2)
-          }
+          callbacks: { label: c => c.dataset.label + ': $' + c.parsed.y.toFixed(2) }
         }
       },
       scales: {
@@ -435,17 +699,15 @@ function renderEquityChart() {
   });
 }
 
-// Countdown & refresh
-let timer = setInterval(() => {
+// ── Countdown & Refresh ──
+setInterval(() => {
   countdownVal--;
   $('countdown').textContent = countdownVal;
-  if (countdownVal <= 0) {
-    countdownVal = CONFIG.refreshInterval;
-    fetchData();
-  }
+  if (countdownVal <= 0) { countdownVal = CONFIG.refreshInterval; fetchData(); }
 }, 1000);
 
-// Initial load
+// Show empty state initially
+renderTrades();
 fetchData();
 </script>
 </body>
