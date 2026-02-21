@@ -204,6 +204,15 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,-apple
 /* ── Wyckoff Phase Flow ── */
 .flow-section{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;margin-bottom:16px}
 .flow-section h2{font-size:1rem;font-weight:600;color:var(--text2);margin-bottom:4px}
+.opp-table{width:100%;border-collapse:collapse;margin-top:16px}
+.opp-table thead th{font-size:.7rem;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:1px;padding:10px 16px;text-align:left;border-bottom:1px solid var(--border)}
+.opp-table tbody td{padding:14px 16px;border-bottom:1px solid rgba(30,30,46,.5);font-size:.95rem}
+.opp-table tbody tr:last-child td{border-bottom:none}
+.opp-table .coin-name{font-weight:700;color:var(--text);font-size:1rem}
+.opp-table .phase-pill{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;font-weight:600;padding:4px 12px;border-radius:12px}
+.opp-table .phase-pill .pd{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.opp-table .signal-text{color:var(--text2);font-size:.9rem}
+.opp-table .opp-text{font-weight:600;font-size:.9rem}
 .flow-sub{font-size:.75rem;color:var(--text3);margin-bottom:20px}
 .flow-track{display:flex;align-items:flex-start;justify-content:center;gap:0;flex-wrap:wrap}
 .flow-step{display:flex;flex-direction:column;align-items:center;text-align:center;min-width:120px;flex:1;position:relative}
@@ -477,11 +486,14 @@ tr:hover td{background:rgba(99,102,241,.04)}
   </div>
 </div>
 
-<!-- WYCKOFF PHASE FLOW -->
+<!-- LIVE OPPORTUNITY DASHBOARD -->
 <div class="flow-section">
-  <h2>Market Cycle Phases</h2>
-  <div class="flow-sub">The engine adapts to changing market conditions &mdash; each coin progresses independently through these Wyckoff-inspired phases.</div>
-  <div class="flow-track" id="flowTrack"></div>
+  <h2 style="text-align:center;font-size:1.15rem;color:var(--text);margin-bottom:4px">&#x1F4CA; Live Opportunity Dashboard</h2>
+  <div class="flow-sub" style="text-align:center">Each coin progresses independently through Wyckoff-inspired market cycle phases</div>
+  <table class="opp-table" id="oppTable">
+    <thead><tr><th>COIN</th><th>PHASE</th><th>SIGNAL</th><th>OPPORTUNITY</th></tr></thead>
+    <tbody id="oppBody"></tbody>
+  </table>
 </div>
 
 <!-- SYSTEM FEATURES removed -->
@@ -1001,21 +1013,54 @@ function renderCapDonut(){
   ctx.fillText(fmt(utilPct,0)+'%',cx2,cy2);
 }
 
-// WYCKOFF FLOW DIAGRAM
+// LIVE OPPORTUNITY TABLE
 function renderFlowDiagram(){
   var syms=S.symbols||Object.keys(S.coins||{});
-  var pc={};PHASES.forEach(function(p){pc[p]=[]});
-  syms.forEach(function(sym){var ph=((S.lifecycle||{})[sym]||{}).phase||'DCA';if(pc[ph])pc[ph].push(sym)});
+  var phaseColors={DCA:'var(--phase-dca)',EXIT:'var(--phase-exit)',MARKDOWN:'var(--phase-markdown)',SPRING:'var(--phase-spring)',MARKUP:'var(--phase-markup)'};
+  var oppMap={
+    SPRING:{text:'Best entry \u2014 buying bottom',color:'var(--green)'},
+    DCA:{text:'Good \u2014 accumulating',color:'var(--accent2)'},
+    MARKUP:{text:'Moderate \u2014 trend running',color:'var(--amber)'},
+    EXIT:{text:'Wait \u2014 distribution',color:'var(--red)'},
+    MARKDOWN:{text:'Wait \u2014 shorting down',color:'var(--red)'}
+  };
 
   var h='';
-  PHASES.forEach(function(phase,i){
-    var active=pc[phase].length>0;
-    if(i>0)h+='<div class="flow-arrow">&rarr;</div>';
-    var names={DCA:'Accumulate',EXIT:'Distribute',MARKDOWN:'Short',SPRING:'Bounce',MARKUP:'Rally'};
-    h+='<div class="flow-step"><div class="flow-node '+phase+' '+(active?'active':'')+'">'+phase+'</div><div class="flow-label">'+names[phase]+'</div><div class="flow-desc">'+PHASE_DESC[phase]+'</div><div class="flow-coins">'+pc[phase].map(function(s){var m=cm(s);return '<div class="fc-dot '+m.icon+'" title="'+s+'">'+m.label[0]+'</div>'}).join('')+'</div></div>';
+  syms.forEach(function(sym){
+    var c=(S.coins||{})[sym]||{};
+    var lc=(S.lifecycle||{})[sym]||{};
+    var m=cm(sym);
+    var phase=lc.phase||'DCA';
+    var score=lc.score!=null?lc.score:'--';
+    var cfgi=c.cfgi!=null?c.cfgi:null;
+    var regime=S.regime||'--';
+
+    // Build signal description
+    var signal='';
+    if(phase==='SPRING'){
+      var discount=lc.spring_discount||'--';
+      signal=discount+'% below exit price';
+    }else if(phase==='DCA'){
+      signal=regime!=='--'?regime:'Accumulating';
+      if(cfgi!=null)signal+=', F&G '+Math.round(cfgi);
+    }else if(phase==='MARKUP'){
+      signal='Breakout confirmed';
+    }else if(phase==='EXIT'){
+      signal='F&G '+(cfgi!=null?Math.round(cfgi):'--')+', score '+score;
+    }else if(phase==='MARKDOWN'){
+      signal='Riding shorts down';
+    }
+
+    var opp=oppMap[phase]||{text:'--',color:'var(--text3)'};
+
+    h+='<tr>';
+    h+='<td class="coin-name">'+m.label+'</td>';
+    h+='<td><span class="phase-pill"><span class="pd" style="background:'+phaseColors[phase]+'"></span>'+phase+'</span></td>';
+    h+='<td class="signal-text">'+signal+'</td>';
+    h+='<td class="opp-text" style="color:'+opp.color+'">'+opp.text+'</td>';
+    h+='</tr>';
   });
-  h+='<div class="flow-arrow" style="opacity:.2">&#x21A9;</div>';
-  $('flowTrack').innerHTML=h;
+  $('oppBody').innerHTML=h||'<tr><td colspan="4" style="text-align:center;color:var(--text3);padding:30px">No coin data</td></tr>';
 }
 
 // TRADES
