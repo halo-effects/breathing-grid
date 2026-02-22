@@ -774,6 +774,19 @@ class LifecycleTrader:
 
     # ── Deal management ────────────────────────────────────────────────
 
+    def _current_equity_for_sizing(self, prices: Optional[Dict[str, float]] = None) -> float:
+        """Get current equity for compounding-based position sizing.
+        
+        V12e PARAM SYNC: Use current equity (not initial_capital) at cycle start
+        for base order sizing. This implements compounding — winning cycles deploy
+        more capital, losing cycles deploy less. Only called at deal OPEN (not mid-deal).
+        """
+        if prices:
+            return self._equity(prices)
+        # Fallback: estimate from cash + deployed capital
+        deployed = sum(d.capital_deployed for d in self.deals.values())
+        return self.cash + deployed
+
     def _open_deal(self, symbol: str, price: float, ts: str, regime: str, tp_pct: float):
         # Check manual controls
         if self._manually_paused or symbol in self._paused_coins:
@@ -784,17 +797,19 @@ class LifecycleTrader:
             quote = symbol.split('/')[1]
             available_balance = self._get_balance(quote)
             reserve = available_balance * 0.1
+            # V12e PARAM SYNC: compound from current equity, not initial_capital
+            current_equity = available_balance  # In live mode, exchange balance IS our equity proxy
             if self.smart_allocation and self._coin_phases:
                 # V12f: phase-weighted allocation
                 allocations = compute_phase_allocations(
-                    self.initial_capital, self._coin_phases, self.profile.base_order_pct)
-                coin_budget = allocations.get(symbol, self.initial_capital * self.profile.base_order_pct)
+                    current_equity, self._coin_phases, self.profile.base_order_pct)
+                coin_budget = allocations.get(symbol, current_equity * self.profile.base_order_pct)
                 per_coin = min(coin_budget, available_balance - reserve)
                 self._coin_allocations = allocations
             else:
                 # V12e: equal split
                 per_coin = (available_balance - reserve) / max(1, self.max_coins - len(self.deals))
-            base_cost = min(self.initial_capital * self.profile.base_order_pct, per_coin)
+            base_cost = min(current_equity * self.profile.base_order_pct, per_coin)
             if base_cost < 5.0 or base_cost > available_balance:
                 logger.info("Skipping deal for %s: insufficient balance ($%.2f)", symbol, available_balance)
                 return
@@ -840,18 +855,20 @@ class LifecycleTrader:
             )
         else:
             # PAPER mode
+            # V12e PARAM SYNC: compound from current equity, not initial_capital
+            current_equity = self._current_equity_for_sizing({symbol: price})
             if self.smart_allocation and self._coin_phases:
                 # V12f: phase-weighted allocation
                 allocations = compute_phase_allocations(
-                    self.initial_capital, self._coin_phases, self.profile.base_order_pct)
-                coin_budget = allocations.get(symbol, self.initial_capital * self.profile.base_order_pct)
-                base_cost = self.initial_capital * self.profile.base_order_pct
+                    current_equity, self._coin_phases, self.profile.base_order_pct)
+                coin_budget = allocations.get(symbol, current_equity * self.profile.base_order_pct)
+                base_cost = current_equity * self.profile.base_order_pct
                 base_cost = min(base_cost, coin_budget, self.cash * 0.9)
                 self._coin_allocations = allocations
             else:
                 # V12e: equal split
                 available = self.cash * 0.9 / max(1, self.max_coins - len(self.deals))
-                base_cost = self.initial_capital * self.profile.base_order_pct
+                base_cost = current_equity * self.profile.base_order_pct
                 base_cost = min(base_cost, available)
             if base_cost < 5.0 or base_cost > self.cash:
                 return
@@ -905,7 +922,9 @@ class LifecycleTrader:
         trigger = self._so_trigger_price(base_price, next_so, dev_pct * spacing_mult)
 
         if current_price <= trigger:
-            base_cost = self.initial_capital * self.profile.base_order_pct
+            # V12e PARAM SYNC: use deal's base lot cost as reference for SO scaling
+            # (compounding is applied at deal open; mid-deal SOs scale from that base)
+            base_cost = deal.lots[0].cost_usd if deal.lots else self.initial_capital * self.profile.base_order_pct
             so_cost = self._so_cost(base_cost, next_so)
 
             if self.live:

@@ -180,13 +180,14 @@ class LifecycleConfig:
     funding_rate_daily: float = 0.0003
 
     # Spring
+    # V12e PARAM SYNC: updated to match backtest parameters (2025-02-22)
     spring_tier1_discount: float = 25.0
-    spring_tier2_discount: float = 35.0
-    spring_tier3_discount: float = 45.0
+    spring_tier2_discount: float = 28.0   # was 35% — synced with backtest
+    spring_tier3_discount: float = 35.0   # was 45% — synced with backtest
     spring_tier1_deploy: float = 0.25
     spring_tier2_deploy: float = 0.55
     spring_tier3_deploy: float = 0.75
-    spring_tp_pct: float = 10.0
+    spring_tp_pct: float = 15.0           # was 10% — synced with backtest
     spring_false_drop_pct: float = 15.0
     spring_recovery_pct: float = 20.0
     spring_timeout_days: int = 60
