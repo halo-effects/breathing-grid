@@ -700,6 +700,38 @@ class LifecycleTrader:
             logger.error("Failed to fetch candles for %s: %s", symbol, e)
             return None
 
+    def _fetch_candles_from_db(self, symbol: str, limit: int = 2400, as_ms: bool = False) -> Optional[pd.DataFrame]:
+        """Fetch historical candles from local candle DB for conductor warmup.
+        Falls back to CCXT if DB unavailable. Needs 1200+ 1h candles for 50+ daily bars.
+        If as_ms=True, keeps timestamp as integer ms (needed for conductor.prepare())."""
+        try:
+            import sqlite3
+            db_path = self.paper_dir / "candles.db"
+            if not db_path.exists():
+                # Try shared collector DB
+                db_path = Path(__file__).parent / "data" / "candles.db"
+            if not db_path.exists():
+                logger.debug("No candle DB found for conductor warmup, using CCXT")
+                return None
+            conn = sqlite3.connect(str(db_path))
+            rows = conn.execute(
+                "SELECT timestamp, open, high, low, close, volume FROM candles "
+                "WHERE symbol=? AND timeframe=? ORDER BY timestamp DESC LIMIT ?",
+                (symbol, "1h", limit)
+            ).fetchall()
+            conn.close()
+            if not rows or len(rows) < 200:
+                logger.debug("Candle DB has only %d rows for %s, using CCXT", len(rows) if rows else 0, symbol)
+                return None
+            df = pd.DataFrame(rows[::-1], columns=["timestamp", "open", "high", "low", "close", "volume"])
+            if not as_ms:
+                df["timestamp"] = pd.to_datetime(df["timestamp"], unit="ms")
+            logger.info("Loaded %d candles from DB for %s conductor warmup", len(df), symbol)
+            return df
+        except Exception as e:
+            logger.warning("Candle DB read failed for %s: %s", symbol, e)
+            return None
+
     def _get_current_price(self, symbol: str) -> Optional[float]:
         try:
             ticker = self.client.fetch_ticker(symbol)
@@ -1190,6 +1222,17 @@ class LifecycleTrader:
             self._lifecycle_engines[symbol] = engine
             logger.info("🔄 Lifecycle engine created for %s (profile=%s, ATH=$%.0f)",
                         symbol, profile, config.ath)
+
+            # Warm up conductor with historical candles from DB (need 1200+ for 50+ daily bars)
+            try:
+                hist_df = self._fetch_candles_from_db(symbol, limit=2400, as_ms=True)
+                if hist_df is not None and len(hist_df) > 200:
+                    engine.feed_candles_1h(hist_df)
+                    logger.info("🔥 Conductor warmup for %s: %d candles → %s",
+                                symbol, len(hist_df),
+                                "ready" if engine._conductor._daily_ready else "needs more data")
+            except Exception as e:
+                logger.warning("Conductor warmup failed for %s: %s", symbol, e)
 
     def _init_lifecycle_for_symbol(self, symbol: str):
         """Initialize lifecycle engine + cold-start phase for a single newly-added coin."""
@@ -2368,8 +2411,11 @@ class LifecycleTrader:
                     high = float(df["high"].iloc[-1])
                     low = float(df["low"].iloc[-1])
                     
-                    # Feed candles for conductor scoring
-                    engine.feed_candles_1h(df)
+                    # Feed candles for conductor scoring (needs timestamp as ms int)
+                    conductor_df = df.copy()
+                    if pd.api.types.is_datetime64_any_dtype(conductor_df["timestamp"]):
+                        conductor_df["timestamp"] = conductor_df["timestamp"].astype(np.int64) // 10**6
+                    engine.feed_candles_1h(conductor_df)
                     
                     # Get CFGI score
                     cfgi = self._poll_cfgi(symbol)
