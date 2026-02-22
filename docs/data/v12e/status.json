@@ -4,17 +4,17 @@
   "profile": "medium",
   "exchange": "hyperliquid",
   "capital": 10000.0,
-  "equity": 10006.33,
+  "equity": 9998.38,
   "cash": 8015.17,
-  "pnl_pct": 0.06,
+  "pnl_pct": -0.02,
   "coins": {
     "ETH/USDC": {
       "state": "ACCUMULATING",
       "side": "long",
       "layers": 1,
       "avg_entry": 1990.9,
-      "current_price": 1979.8,
-      "unrealized_pnl": -2.23,
+      "current_price": 1971.6,
+      "unrealized_pnl": -3.87,
       "next_so_price": 1931.173,
       "next_tp_price": 2010.809,
       "invested": 400.0,
@@ -25,9 +25,9 @@
       "side": "long",
       "layers": 2,
       "avg_entry": 85.4248,
-      "current_price": 85.21,
-      "unrealized_pnl": -3.01,
-      "next_so_price": 81.8247,
+      "current_price": 84.816,
+      "unrealized_pnl": -8.55,
+      "next_so_price": 79.3137,
       "next_tp_price": 85.7038,
       "invested": 1200.0,
       "realized_pnl": 0
@@ -37,9 +37,9 @@
       "side": "long",
       "layers": 1,
       "avg_entry": 68545.0,
-      "current_price": 68169.0,
-      "unrealized_pnl": -2.19,
-      "next_so_price": 66488.65,
+      "current_price": 68036.0,
+      "unrealized_pnl": -2.97,
+      "next_so_price": 67174.1,
       "next_tp_price": 69230.45,
       "invested": 400.0,
       "realized_pnl": 0
@@ -51,8 +51,8 @@
   "max_drawdown_pct": 0.2,
   "regime": "BREAKOUT_WARNING",
   "trend_direction": "bullish",
-  "last_update": "2026-02-22T11:52:18+00:00",
-  "uptime_hours": 11.0,
+  "last_update": "2026-02-22T12:35:40+00:00",
+  "uptime_hours": 0.0,
   "halted": false,
   "symbols": [
     "ETH/USDC",
@@ -77,5 +77,8 @@
   "rebalance_cooldown_remaining": 0.0,
   "next_rebalance_available": "Now",
   "idle_capital_pct": 80.0,
-  "best_opportunity": null
+  "best_opportunity": null,
+  "smart_allocation": false,
+  "coin_phases": {},
+  "coin_allocations": {}
 }
