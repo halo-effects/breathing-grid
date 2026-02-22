@@ -560,7 +560,7 @@ tr:hover td{background:rgba(99,102,241,.04)}
     </div>
   </div>
   <div class="tbl-scroll">
-    <table><thead><tr><th>Time</th><th>Symbol</th><th>Side</th><th>Qty</th><th>Price</th><th>PnL</th><th>Return %</th><th>Duration</th><th>Regime</th><th>Phase</th></tr></thead><tbody id="tradeBody"></tbody></table>
+    <table><thead><tr><th>Closed</th><th>Symbol</th><th>Layers</th><th>Invested</th><th>PnL</th><th>Return %</th><th>Duration</th><th>Regime</th></tr></thead><tbody id="tradeBody"></tbody></table>
   </div>
   <div class="trade-empty" id="tradeEmpty"><div class="ei">&#x1F4CA;</div>No trades yet &mdash; bot is accumulating positions</div>
 </div>
@@ -1257,15 +1257,15 @@ function renderTrades(){
   $('tradeBody').innerHTML=page.map(function(t){
     var pnl=parseFloat(t.pnl||t.PnL||0);
     var cls=pnl>0?'pnl-pos':pnl<0?'pnl-neg':'';
-    var time=t.timestamp||t.time||t.Time||'--';
+    var time=t.close_time||t.timestamp||t.time||t.Time||'--';
     var sym=t.symbol||t.Symbol||'--';
-    var side=t.side||t.Side||t.action||'--';
-    var qty=t.qty||t.Qty||t.quantity||'--';
-    var price=t.price||t.Price||'--';
+    var side=t.side||t.Side||t.action||(parseFloat(t.layers||0)>0?'SELL':'--');
+    var qty=t.qty||t.Qty||t.quantity||t.layers||'--';
+    var price=t.price||t.Price||(parseFloat(t.invested||0)>0&&parseFloat(t.layers||0)>0?(parseFloat(t.invested)/parseFloat(t.layers)).toFixed(2):'--');
     var phase=t.phase||t.Phase||'--';
     var regime=t.regime||t.Regime||'--';
     var ret=t.return_pct||t.ReturnPct||'--';
-    var dur=t.duration||t.Duration||'--';
+    var dur=t.duration_h||t.duration||t.Duration||'--';
     return '<tr><td>'+(time!=='--'?new Date(time).toLocaleString():'--')+'</td><td><strong>'+sym+'</strong></td><td>'+side+'</td><td>'+qty+'</td><td>'+(isNaN(price)?price:fUsd(parseFloat(price),2))+'</td><td class="'+cls+'">'+(pnl!==0?(pnl>0?'+':'')+fUsd(pnl):'--')+'</td><td>'+(ret!=='--'?ret+'%':'--')+'</td><td>'+dur+'</td><td>'+(regime!=='--'?'<span class="regime-badge '+(REGIME_CLS[regime]||'')+'">'+regime+'</span>':'--')+'</td><td>'+(phase!=='--'?'<span class="pb pb-'+phase+'" style="font-size:.56rem;padding:2px 8px">'+phase+'</span>':'--')+'</td></tr>';
   }).join('');
 }
