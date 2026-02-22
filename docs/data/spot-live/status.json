@@ -1,22 +1,22 @@
 {
   "running": true,
   "mode": "live",
-  "profile": "high",
+  "profile": "medium",
   "exchange": "aster",
   "capital": 325.0,
-  "equity": 325.29,
+  "equity": 325.16,
   "cash": 309.36,
-  "pnl_pct": 0.09,
+  "pnl_pct": 0.05,
   "coins": {
     "ETH/USDT": {
       "state": "ACCUMULATING",
       "side": "long",
       "layers": 1,
       "avg_entry": 1985.22,
-      "current_price": 1965.87,
-      "unrealized_pnl": -0.16,
-      "next_so_price": 1940.7511,
-      "next_tp_price": 2001.1018,
+      "current_price": 1950.09,
+      "unrealized_pnl": -0.28,
+      "next_so_price": 1901.8408,
+      "next_tp_price": 2005.0722,
       "invested": 16.08,
       "realized_pnl": 0,
       "lifecycle_phase": "DCA"
@@ -26,15 +26,15 @@
   "win_rate": 0.0,
   "total_realized_pnl": 0,
   "max_drawdown_pct": 4.83,
-  "regime": "RANGING",
+  "regime": "EXTREME",
   "trend_direction": "bearish",
-  "last_update": "2026-02-22T12:44:18+00:00",
+  "last_update": "2026-02-22T13:40:45+00:00",
   "uptime_hours": 0.0,
   "halted": false,
   "symbols": [
     "ETH/USDT"
   ],
-  "timeframe": "1h",
+  "timeframe": "15m",
   "paused_coins": [],
   "account_paused": false,
   "conviction_overrides": {},
@@ -53,28 +53,25 @@
   "next_rebalance_available": "Now",
   "idle_capital_pct": 95.1,
   "best_opportunity": null,
+  "lifecycle_enabled": true,
   "smart_allocation": false,
   "coin_phases": {
-    "ASTER/USDT": "DCA",
-    "ETH/USDT": "DCA"
+    "ETH/USDT": "DCA",
+    "ASTER/USDT": "DCA"
   },
   "coin_allocations": {},
   "pipeline_enabled": false,
   "lifecycle": {
     "ETH/USDT": {
       "phase": "DCA",
-      "score": 0.0,
-      "daily_score": 0.0,
+      "score": 0,
       "short_active": false,
       "metrics": {
         "exit_phases": 0,
         "markdown_phases": 0,
         "spring_phases": 0,
         "markup_phases": 0
-      },
-      "short_pnl": 0.0,
-      "spring_pnl": 0.0,
-      "markup_pnl": 0.0
+      }
     }
   }
 }
