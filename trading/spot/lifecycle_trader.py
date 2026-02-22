@@ -301,6 +301,8 @@ class LifecycleTrader:
         self._best_opportunity = None
 
         # V12f: phase-weighted capital allocation
+        self._coin_cfgi: Dict[str, float] = {}  # latest CFGI per coin
+        self._fear_greed_index: Optional[float] = None  # BTC CFGI as market-wide FGI
         self._coin_phases: Dict[str, str] = {s: "DCA" for s in (symbols or [])}
         self._coin_allocations: Dict[str, float] = {}  # computed per-coin budgets
 
@@ -1184,7 +1186,9 @@ class LifecycleTrader:
                 today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
                 for entry in reversed(data):
                     if entry.get("date", "") <= today:
-                        return float(entry.get("value", 50))
+                        val = float(entry.get("value", 50))
+                        self._coin_cfgi[symbol] = val
+                        return val
             # Fallback: try BTC market-wide
             btc_cache = Path(__file__).parent / "data" / "cfgi_cache" / "BTC_cfgi_daily.json"
             if btc_cache.exists():
@@ -1192,7 +1196,10 @@ class LifecycleTrader:
                 today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
                 for entry in reversed(data):
                     if entry.get("date", "") <= today:
-                        return float(entry.get("value", 50))
+                        val = float(entry.get("value", 50))
+                        self._fear_greed_index = val
+                        self._coin_cfgi[symbol] = val
+                        return val
         except Exception as e:
             logger.debug("CFGI poll failed for %s: %s", symbol, e)
         return 50.0  # neutral default
@@ -2179,6 +2186,10 @@ class LifecycleTrader:
                 coin_info["lifecycle_phase"] = self._coin_phases.get(sym, "DCA")
             if self.smart_allocation:
                 coin_info["allocation"] = round(self._coin_allocations.get(sym, 0), 2)
+            # CFGI per coin (dashboard reads c.cfgi)
+            cfgi_val = self._coin_cfgi.get(sym)
+            if cfgi_val is not None:
+                coin_info["cfgi"] = round(cfgi_val, 1)
             coins[sym] = coin_info
 
         n_completed = len(self.completed_deals)
@@ -2234,6 +2245,7 @@ class LifecycleTrader:
             "best_opportunity": self._best_opportunity,
             "idle_capital_pct": self._idle_capital_pct,
             "best_opportunity": self._best_opportunity,
+            "fear_greed_index": self._fear_greed_index,
             "lifecycle_enabled": self.lifecycle_enabled,
             "smart_allocation": self.smart_allocation,
             "coin_phases": self._coin_phases if (self.lifecycle_enabled or self.smart_allocation) else {},
@@ -2371,6 +2383,19 @@ class LifecycleTrader:
         prices: Dict[str, float] = {}
         regime_info: Dict[str, Tuple[str, bool]] = {}
 
+        # Poll BTC CFGI as market-wide fear & greed index
+        try:
+            btc_cache = Path(__file__).parent / "data" / "cfgi_cache" / "BTC_cfgi_daily.json"
+            if btc_cache.exists():
+                data = json.loads(btc_cache.read_text(encoding="utf-8"))
+                today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+                for entry in reversed(data):
+                    if entry.get("date", "") <= today:
+                        self._fear_greed_index = float(entry.get("value", 50))
+                        break
+        except Exception:
+            pass
+
         for symbol in self.symbols:
             # Fetch candles and compute regime
             df = self._fetch_candles(symbol)
@@ -2396,6 +2421,9 @@ class LifecycleTrader:
 
             tp_pct = self._adaptive_tp(regime, atr_pct_val)
             dev_pct = self._adaptive_deviation(regime, atr_pct_val, tp_pct)
+
+            # Poll CFGI for all symbols (dashboard needs it)
+            self._poll_cfgi(symbol)
 
             logger.debug("%s: $%.4f | regime=%s | ATR%%=%.2f | TP=%.2f%% | Dev=%.2f%%",
                          symbol, price, regime, atr_pct_val, tp_pct, dev_pct)
