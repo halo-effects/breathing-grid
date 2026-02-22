@@ -4,7 +4,7 @@
   "profile": "medium",
   "exchange": "aster",
   "capital": 325.0,
-  "equity": 325.34,
+  "equity": 325.31,
   "cash": 309.36,
   "pnl_pct": 0.1,
   "coins": {
@@ -13,9 +13,9 @@
       "side": "long",
       "layers": 1,
       "avg_entry": 1985.22,
-      "current_price": 1972.61,
-      "unrealized_pnl": -0.1,
-      "next_so_price": 1926.1597,
+      "current_price": 1968.78,
+      "unrealized_pnl": -0.13,
+      "next_so_price": 1929.6338,
       "next_tp_price": 2005.0722,
       "invested": 16.08,
       "realized_pnl": 0
@@ -25,10 +25,10 @@
   "win_rate": 0.0,
   "total_realized_pnl": 0,
   "max_drawdown_pct": 4.83,
-  "regime": "ACCUMULATION",
+  "regime": "RANGING",
   "trend_direction": "bearish",
-  "last_update": "2026-02-22T03:07:45+00:00",
-  "uptime_hours": 0.3,
+  "last_update": "2026-02-22T03:22:51+00:00",
+  "uptime_hours": 0.5,
   "halted": false,
   "symbols": [
     "ETH/USDT"
