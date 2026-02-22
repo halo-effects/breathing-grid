@@ -285,7 +285,7 @@ const zones=[
   {x1:0,x2:.19,col:COL.dca,label:'DCA',sub:'Accumulation',desc:'Buy the dips, sell the recoveries'},
   {x1:.19,x2:.39,col:COL.markup,label:'MARKUP',sub:'Uptrend',desc:'Ride the trend upward'},
   {x1:.39,x2:.59,col:COL.exit,label:'EXIT',sub:'Distribution',desc:'Take profits, move to cash'},
-  {x1:.59,x2:.76,col:COL.markdown,label:'MARKDOWN',sub:'Decline',desc:'Capital rotates to better opportunities'},
+  {x1:.59,x2:.76,col:COL.markdown,label:'MARKDOWN',sub:'Decline',desc:'Fresh capital allocated to better opportunities'},
   {x1:.76,x2:.87,col:COL.spring,label:'SPRING',sub:'Capitulation',desc:'Buy the discount — tiered entry'},
   {x1:.87,x2:1,col:COL.dca,label:'DCA',sub:'Re-accumulate',desc:'Cycle repeats'}
 ];
@@ -430,7 +430,7 @@ connector(exX,exY,.48,.10,COL.exit);
 
 // ROTATE — line drops through middle (~.44-.70), put label in upper open space
 const rotX=tx(.68),rotY=ty(.08);
-callout(rotX,rotY,'🔄 ROTATE CAPITAL','→ Coins in DCA or Spring',COL.markdown);
+callout(rotX,rotY,'🔄 DEPLOY CAPITAL','→ Coins in Spring or Markup',COL.markdown);
 // Curved arrow icon below label
 (function(){
   const cx=rotX,cy=rotY+38;
@@ -508,17 +508,17 @@ connector(spX,spY,.81,.88,COL.spring);
 
 <!-- REBALANCING AGGRESSIVENESS -->
 <div class="dark-section">
-  <h2 style="font-size:36px; font-weight:500; color:#FFF; text-align:center; margin-bottom:8px;">Rebalancing Aggressiveness</h2>
-  <p style="text-align:center; color:var(--text-body-dark); font-size:16px; margin-bottom:40px;">Controls exit speed and capital redeployment pace. Entry conviction is always high — the slider only affects how fast you rotate out.</p>
+  <h2 style="font-size:36px; font-weight:500; color:#FFF; text-align:center; margin-bottom:8px;">Deployment Speed</h2>
+  <p style="text-align:center; color:var(--text-body-dark); font-size:16px; margin-bottom:40px;">Controls how quickly fresh capital flows to the best opportunities. Entry conviction is always high — the slider only affects deployment pace.</p>
 
   <div style="max-width:800px; margin:0 auto;">
     <table class="profile-table" style="margin-bottom:32px;">
       <thead><tr><th>Parameter</th><th>Conservative</th><th>Balanced</th><th>Aggressive</th></tr></thead>
       <tbody>
-        <tr><td style="font-weight:600;">Rebalance Cooldown</td><td>12 hours</td><td>4 hours</td><td>1 hour</td></tr>
-        <tr><td style="font-weight:600;">Exit Lot Sizing</td><td>25% per step</td><td>50% per step</td><td>75% per step</td></tr>
-        <tr><td style="font-weight:600;">Max Rebalances/Day</td><td>2</td><td>6</td><td>12</td></tr>
-        <tr><td style="font-weight:600;">MARKDOWN Exit</td><td>Wait for confirmation</td><td>Moderate</td><td>Early exit on weakness</td></tr>
+        <tr><td style="font-weight:600;">Phase Weight: SPRING</td><td>3×</td><td>3×</td><td>3×</td></tr>
+        <tr><td style="font-weight:600;">Phase Weight: MARKUP</td><td>2×</td><td>2×</td><td>2×</td></tr>
+        <tr><td style="font-weight:600;">Deployment Pace</td><td>Gradual</td><td>Responsive</td><td>Rapid</td></tr>
+        <tr><td style="font-weight:600;">Idle Capital Tolerance</td><td>High — patient</td><td>Moderate</td><td>Low — deploy fast</td></tr>
       </tbody>
     </table>
 
@@ -528,12 +528,12 @@ connector(spX,spY,.81,.88,COL.spring);
         <div style="font-size:14px; color:var(--text-body-dark);"><strong style="color:#FFF;">Entry Conviction:</strong> 70+ required</div>
         <div style="font-size:14px; color:var(--text-body-dark);"><strong style="color:#FFF;">Phase Confirmation:</strong> 2+ signals</div>
       </div>
-      <p style="font-size:13px; color:var(--text-tertiary-dark); margin-top:12px;">Entry quality never degrades. Aggressiveness only affects how quickly capital leaves positions, not where it enters.</p>
+      <p style="font-size:13px; color:var(--text-tertiary-dark); margin-top:12px;">Entry quality never degrades. Deployment speed only affects how quickly idle capital flows to new opportunities, not where it enters.</p>
     </div>
 
     <div style="background:var(--bg-card-dark); border-radius:10px; padding:24px; margin-bottom:32px;">
       <h3 style="font-size:18px; font-weight:600; color:#FFF; margin-bottom:12px;">Interaction with Risk Profiles</h3>
-      <p style="font-size:14px; color:var(--text-body-dark); line-height:1.6; margin-bottom:16px;"><strong style="color:#FFF;">Risk profile</strong> controls <em>how much</em> risk per position (SO depth, position sizing). <strong style="color:#FFF;">Aggressiveness</strong> controls <em>how fast</em> capital moves between positions. They are orthogonal.</p>
+      <p style="font-size:14px; color:var(--text-body-dark); line-height:1.6; margin-bottom:16px;"><strong style="color:#FFF;">Risk profile</strong> controls <em>how much</em> risk per position (SO depth, position sizing). <strong style="color:#FFF;">Deployment speed</strong> controls <em>how fast</em> idle capital flows to new opportunities. They are orthogonal.</p>
       <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px; text-align:center;">
         <div style="padding:16px; background:rgba(255,255,255,0.05); border-radius:8px;">
           <div style="font-size:13px; color:var(--text-tertiary-dark); margin-bottom:4px;">Default</div>
@@ -548,16 +548,16 @@ connector(spX,spY,.81,.88,COL.spring);
           <div style="font-size:15px; color:var(--warning); font-weight:600;">High → Aggressive</div>
         </div>
       </div>
-      <p style="font-size:13px; color:var(--text-tertiary-dark); margin-top:12px; text-align:center;">Users can override defaults at any time. Changes take effect on the next rebalancing cycle.</p>
+      <p style="font-size:13px; color:var(--text-tertiary-dark); margin-top:12px; text-align:center;">Users can override defaults at any time. Changes take effect on the next capital deployment.</p>
     </div>
 
     <div style="background:var(--bg-card-dark); border-radius:10px; padding:24px;">
       <h3 style="font-size:18px; font-weight:600; color:#FFF; margin-bottom:12px;">MARKDOWN Phase Behavior</h3>
-      <p style="font-size:14px; color:var(--text-body-dark); line-height:1.6;">During MARKDOWN, the bot rotates capital to coins in DCA or Spring phases. Aggressiveness controls how quickly this rotation happens:</p>
+      <p style="font-size:14px; color:var(--text-body-dark); line-height:1.6;">During MARKDOWN, the coin receives minimal new capital (0.5× weight). Fresh capital flows to coins in Spring or Markup phases instead. Active positions always complete their full lifecycle:</p>
       <ul style="margin-top:12px; padding-left:20px;">
-        <li style="font-size:14px; color:var(--text-body-dark); margin-bottom:8px;"><strong style="color:var(--profit);">Conservative:</strong> Waits for full markdown confirmation before rotating. May catch a surprise Spring entry on the current coin.</li>
-        <li style="font-size:14px; color:var(--text-body-dark); margin-bottom:8px;"><strong style="color:var(--ait-blue);">Balanced:</strong> Moderate exit timing. Balances opportunity cost against premature exits.</li>
-        <li style="font-size:14px; color:var(--text-body-dark);"><strong style="color:var(--warning);">Aggressive:</strong> Exits early on weakening signals. May miss a Spring but redeploys capital faster elsewhere.</li>
+        <li style="font-size:14px; color:var(--text-body-dark); margin-bottom:8px;"><strong style="color:var(--profit);">Conservative:</strong> Patient deployment — capital may sit idle waiting for high-confidence Spring entries.</li>
+        <li style="font-size:14px; color:var(--text-body-dark); margin-bottom:8px;"><strong style="color:var(--ait-blue);">Balanced:</strong> Responsive deployment — good balance between idle capital and opportunity capture.</li>
+        <li style="font-size:14px; color:var(--text-body-dark);"><strong style="color:var(--warning);">Aggressive:</strong> Rapid deployment — capital rarely sits idle, flows quickly to best-scoring coins.</li>
       </ul>
     </div>
   </div>
