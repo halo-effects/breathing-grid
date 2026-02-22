@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<title>Product Overview — Adaptive Intelligence Trading</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+/* Force light mode — prevent Android/iOS dark mode from inverting */
+:root { color-scheme: light only; }
+@media (prefers-color-scheme: dark) {
+  body { background: #FFFFFF !important; color: #03071C !important; }
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --ait-blue: #2269FC;
+  --ait-blue-hover: #1B56D4;
+  --ait-blue-light-end: #D7F5FF;
+  --ait-blue-10: rgba(34, 105, 252, 0.1);
+  --bg-white: #FFFFFF;
+  --bg-black: #000000;
+  --bg-void: #010414;
+  --bg-card-dark: #1A1D2C;
+  --bg-charcoal: #191919;
+  --bg-slate: #2F2F2F;
+  --text-heading: #03071C;
+  --text-body: rgba(3, 7, 28, 0.5);
+  --text-heading-dark: #FFFFFF;
+  --text-body-dark: rgba(255, 255, 255, 0.5);
+  --text-tertiary-dark: rgba(255, 255, 255, 0.3);
+  --text-subtle-dark: rgba(255, 255, 255, 0.2);
+  --border-light: #E5E7EB;
+  --border-glass: rgba(255, 255, 255, 0.2);
+  --grad-cta-dark: linear-gradient(90deg, #223576, #1A285A 40%, #121C3E 50%, #0A1025 60%, #000001 80%, #000);
+  --grad-cta-light: linear-gradient(270deg, #D7F5FF, #2269FC 55%);
+  --profit: #00D68F;
+  --loss: #FF4D4F;
+  --warning: #FFAA00;
+  --font: 'Poppins', sans-serif;
+  --radius-card: 10px;
+  --radius-section: 24px;
+  --radius-pill: 25px;
+  --radius-badge: 140px;
+  --section-gap: 80px;
+  --nav-height-desktop: 100px;
+  --nav-height-mobile: 75px;
+}
+body {
+  background: var(--bg-white);
+  color: var(--text-heading);
+  font-family: var(--font);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+.nav {
+  position: fixed; top: 16px; left: 16px; right: 16px; z-index: 100;
+  height: var(--nav-height-desktop);
+  background: var(--bg-white);
+  border-radius: var(--radius-pill);
+  display: flex; align-items: center;
+  padding: 0 24px;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+}
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-heading); flex-shrink: 0; }
+.nav-logo span { font-size: 18px; font-weight: 600; white-space: nowrap; }
+.nav-links { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+.nav-links a {
+  font-size: 18px; font-weight: 500; color: #000; text-decoration: none;
+  padding: 6px 14px; border-radius: 8px; transition: all 0.2s; white-space: nowrap;
+}
+.nav-links a.btn-blue { color: #FFF !important; }
+.nav-links a:hover { text-decoration: underline; }
+.nav-links a.active { color: var(--ait-blue); }
+.btn-blue {
+  background: var(--grad-cta-dark); color: #FFF; border: none; border-radius: var(--radius-pill);
+  padding: 8px 16px; font-size: 18px; font-weight: 600; font-family: var(--font);
+  cursor: pointer; text-decoration: none; display: inline-block; transition: transform 0.3s;
+}
+.btn-blue:hover { transform: translateY(-2px); }
+.btn-blue-light {
+  background: var(--grad-cta-light); color: #FFF; border: none; border-radius: var(--radius-pill);
+  padding: 12px 80px; font-size: 18px; font-weight: 600; font-family: var(--font);
+  cursor: pointer; text-decoration: none; display: inline-block; transition: transform 0.3s;
+}
+.btn-blue-light:hover { transform: translateY(-2px); }
+.btn-blue-outline {
+  background: transparent; color: var(--ait-blue); border: 1px solid var(--ait-blue);
+  border-radius: var(--radius-pill); padding: 8px 20px; font-size: 16px; font-weight: 500;
+  font-family: var(--font); cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.2s;
+}
+.btn-blue-outline:hover { background: var(--ait-blue); color: #FFF; }
+
+/* ── CONTAINER ── */
+.container { max-width: 1140px; margin: 0 auto; padding: 0 24px; background: inherit; }
+
+/* ── DARK SECTION ── */
+.dark-section {
+  background: var(--bg-black); border-radius: var(--radius-section);
+  padding: 64px 48px; color: var(--text-heading-dark);
+  margin-left: 16px; margin-right: 16px;
+}
+.dark-section h2 { font-size: 36px; font-weight: 500; line-height: 40px; color: #FFF; margin-bottom: 16px; }
+.dark-section .sub { font-size: 16px; font-weight: 400; line-height: 24px; color: var(--text-body-dark); margin-bottom: 40px; max-width: 700px; }
+.dark-section .sub strong { color: #FFF; }
+.card-dark { background: var(--bg-card-dark); border-radius: var(--radius-card); padding: 24px; }
+
+/* ── LIGHT SECTION ── */
+.light-section { padding: 100px 0; background: #FFFFFF; color: #03071C; }
+.light-section h2 { font-size: 36px; font-weight: 500; line-height: 40px; color: var(--text-heading); margin-bottom: 16px; }
+.light-section .sub { font-size: 18px; font-weight: 400; line-height: 28px; color: var(--text-body); margin-bottom: 40px; max-width: 700px; }
+.card-light { background: transparent; border: 1px solid var(--border-light); border-radius: var(--radius-card); padding: 20px; }
+
+.pill { background: var(--bg-charcoal); border-radius: var(--radius-badge); padding: 8px 16px; color: #FFF; font-size: 14px; display: inline-block; margin-bottom: 16px; }
+
+/* ── HERO ── */
+.hero { background: #FFFFFF;
+  min-height: auto; display: flex; flex-direction: column; justify-content: center;
+  align-items: center; text-align: center; padding: 180px 24px 60px;
+}
+.hero h1 {
+  font-size: 48px; font-weight: 600; line-height: 48px; color: var(--text-heading);
+  margin-bottom: 20px; max-width: 800px;
+}
+.hero p { font-size: 20px; font-weight: 400; line-height: 28px; color: var(--text-heading); max-width: 620px; margin-bottom: 40px; }
+.hero-stats { display: flex; gap: 48px; justify-content: center; flex-wrap: wrap; margin-top: 48px; }
+.hero-stat { text-align: center; }
+.hero-stat-value { font-size: 32px; font-weight: 700; color: var(--profit); }
+.hero-stat-label { font-size: 14px; color: var(--text-body); text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* ── GRIDS ── */
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+
+/* ── LAYER (how it works) ── */
+.layer { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-bottom: 60px; }
+.layer.reverse { direction: rtl; }
+.layer.reverse > * { direction: ltr; }
+.layer-num { font-size: 64px; font-weight: 700; color: rgba(34,105,252,0.12); line-height: 1; margin-bottom: 4px; }
+.layer-title { font-size: 24px; font-weight: 500; line-height: 32px; margin-bottom: 8px; }
+.layer-q { font-size: 16px; color: var(--ait-blue); font-style: italic; margin-bottom: 12px; }
+.layer-text { font-size: 16px; color: var(--text-body-dark); line-height: 24px; margin-bottom: 12px; }
+.layer-text strong { color: #FFF; }
+.layer-visual { background: var(--bg-card-dark); border-radius: var(--radius-card); padding: 28px; }
+
+/* ── RISK PROFILE CARDS ── */
+.risk-profile-card { background: var(--bg-card-dark); border-radius: var(--radius-card); padding: 28px; display: flex; flex-direction: column; }
+.risk-profile-card h3 { font-size: 24px; font-weight: 500; margin-bottom: 8px; }
+.risk-profile-card p { font-size: 16px; color: var(--text-body-dark); line-height: 24px; }
+.risk-profile-card .stat { font-size: 14px; color: var(--text-tertiary-dark); margin-top: auto; padding-top: 16px; }
+.risk-profile-card .stat strong { color: var(--profit); }
+
+/* ── GET STARTED STEPS ── */
+.step-card { background: var(--bg-card-dark); border-radius: var(--radius-card); padding: 32px; text-align: center; }
+.step-num { font-size: 36px; font-weight: 700; color: var(--ait-blue); margin-bottom: 12px; }
+.step-card h3 { font-size: 24px; font-weight: 500; color: #FFF; margin-bottom: 8px; }
+.step-card p { font-size: 16px; color: var(--text-body-dark); line-height: 24px; }
+
+/* ── COMPARISON TABLE ── */
+.comp-table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: var(--radius-card); overflow: hidden; border: 1px solid var(--border-light); }
+.comp-table th, .comp-table td { padding: 14px 20px; text-align: left; border-bottom: 1px solid var(--border-light); font-size: 16px; }
+.comp-table th { font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-body); }
+.comp-table tr:last-child td { border-bottom: none; }
+.comp-table td:last-child { color: var(--profit); font-weight: 500; }
+
+/* ── CHECKLIST ── */
+.check-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+.check-item { display: flex; align-items: center; gap: 12px; padding: 16px; border: 1px solid var(--border-light); border-radius: var(--radius-card); font-size: 16px; color: var(--text-heading); }
+
+/* ── RISK CARDS ── */
+.risk-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+.risk-card { background: var(--bg-card-dark); border-radius: var(--radius-card); padding: 24px; }
+.risk-card h4 { font-size: 18px; font-weight: 500; color: #FFF; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.risk-card p { font-size: 16px; color: var(--text-body-dark); line-height: 24px; }
+
+/* ── NOT ITEMS ── */
+.not-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-top: 20px; }
+.not-item { display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: var(--bg-card-dark); border-radius: var(--radius-card); font-size: 16px; color: var(--text-body-dark); }
+
+/* ── PERFORMANCE CARDS ── */
+.perf-card { border: 1px solid var(--border-light); border-radius: var(--radius-card); padding: 28px; text-align: center; }
+.perf-card .value { font-size: 28px; font-weight: 700; color: var(--profit); margin-bottom: 4px; }
+.perf-card .label { font-size: 14px; color: var(--text-body); margin-bottom: 8px; }
+.perf-card .vs { font-size: 18px; font-weight: 600; color: var(--loss); }
+.perf-card .edge { font-size: 16px; font-weight: 600; color: var(--profit); margin-top: 8px; }
+
+/* ── FOOTER ── */
+.footer { background: var(--bg-black); border-radius: var(--radius-section) var(--radius-section) 0 0; margin: 0 16px; padding: 48px 24px; text-align: center; color: var(--text-tertiary-dark); font-size: 14px; }
+.footer a { color: var(--text-body-dark); text-decoration: none; transition: color 0.2s; }
+.footer a:hover { color: #FFF; }
+.footer-links { display: flex; justify-content: center; gap: 32px; margin-bottom: 24px; flex-wrap: wrap; }
+
+/* ── SCROLL ANIM ── */
+.fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-in.visible { opacity: 1; transform: none; }
+
+/* ── MOBILE ── */
+@media (max-width: 1023px) {
+  .dark-section { margin-left: 0; margin-right: 0; border-radius: 0; padding: 48px 20px; }
+  .footer { margin: 0; border-radius: 0; }
+}
+@media (max-width: 1024px) {
+  .layers-grid { grid-template-columns: repeat(2, 1fr) !important; } .layers-grid > div { overflow: hidden; }
+}
+@media (max-width: 768px) {
+  .nav { height: var(--nav-height-mobile); top: 8px; left: 8px; right: 8px; padding: 0 12px; }
+  /* removed: old mobile nav hide — hamburger handles this now */
+  .nav-links { gap: 8px; }
+  .hero { background: #FFFFFF; padding: 120px 16px 60px; min-height: auto; }
+  .hero h1 { font-size: 32px; line-height: 34px; }
+  .hero p { font-size: 16px; }
+  .hero-stats { gap: 20px; }
+  .hero-stat-value { font-size: 24px; }
+  .btn-blue-light { padding: 12px 40px; }
+  .grid-3, .grid-2, .layer, .layers-grid { grid-template-columns: 1fr !important; }
+  .layer.reverse { direction: ltr; }
+  .light-section { padding: 60px 0; }
+  .light-section h2, .dark-section h2 { font-size: 28px; line-height: 32px; }
+  .dark-section { padding: 40px 16px; }
+  .comp-table { display: block; overflow-x: auto; }
+}
+@media (max-width: 480px) {
+  .hero-stats { flex-direction: column; gap: 12px; }
+  .nav-logo span { font-size: 14px; }
+}
+
+/* Regime dots */
+.regime-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; display: inline-block; }
+
+/* Breathing bars */
+.breathing-bar { height: 8px; border-radius: 4px; animation: breathe 4s ease-in-out infinite; }
+@keyframes breathe { 0%, 100% { width: 40%; } 50% { width: 90%; } }
+
+/* backtest table inside dark */
+.bt-table { width: 100%; border-collapse: collapse; font-size: 16px; }
+.bt-table th, .bt-table td { padding: 10px 16px; text-align: center; border-bottom: 1px solid var(--border-glass); }
+.bt-table th { color: var(--text-tertiary-dark); font-weight: 500; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+.bt-table td { color: var(--text-body-dark); }
+.bt-table td.green { color: var(--profit); font-weight: 600; }
+
+/* ── HAMBURGER MENU ── */
+.nav-toggle { display: none; background: none; border: none; font-size: 28px; cursor: pointer; color: var(--text-heading, #000); padding: 8px; line-height: 1; }
+@media (max-width: 768px) {
+  .nav-toggle { display: block; margin-left: auto; }
+  .nav-links { display: none; position: absolute; top: calc(100% + 8px); left: 0; right: 0; background: #FFF; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); flex-direction: column; padding: 16px; gap: 4px; }
+  .nav-links.open { display: flex; }
+  .nav-links a { font-size: 16px; padding: 12px 16px; border-radius: 10px; text-align: center; }
+  .nav-links a:hover { background: rgba(34,105,252,0.06); text-decoration: none; }
+  .nav-links a.btn-blue { margin-top: 8px; padding: 14px; text-align: center; width: 100%; border-radius: 25px; }
+}
+
+
+/* Mobile table fixes */
+@media (max-width: 768px) {
+  .bt-table { font-size: 14px; }
+  .bt-table th, .bt-table td { padding: 8px 6px; }
+  .bt-table th { font-size: 11px; letter-spacing: 0.5px; }
+  .comp-table th, .comp-table td { padding: 10px 8px; font-size: 13px; }
+  .comp-table th { font-size: 11px; letter-spacing: 0.5px; }
+  .comp-table td:first-child { font-size: 12px; min-width: 80px; }
+}
+@media (max-width: 420px) {
+  .bt-table { font-size: 13px; }
+  .bt-table th, .bt-table td { padding: 8px 4px; }
+  .comp-table th, .comp-table td { padding: 8px 6px; font-size: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="./" class="nav-logo">
+    <svg width="36" height="36" viewBox="0 0 48 48" fill="none">
+      <rect x="4" y="4" width="40" height="40" rx="4" stroke="#E5E7EB" stroke-width="1" fill="rgba(255,255,255,.9)"/>
+      <line x1="4" y1="17.3" x2="44" y2="17.3" stroke="#E5E7EB" stroke-width="0.7"/>
+      <line x1="4" y1="24" x2="44" y2="24" stroke="#E5E7EB" stroke-width="0.7"/>
+      <line x1="4" y1="30.7" x2="44" y2="30.7" stroke="#E5E7EB" stroke-width="0.7"/>
+      <line x1="17.3" y1="4" x2="17.3" y2="44" stroke="#E5E7EB" stroke-width="0.7"/>
+      <line x1="24" y1="4" x2="24" y2="44" stroke="#E5E7EB" stroke-width="0.7"/>
+      <line x1="30.7" y1="4" x2="30.7" y2="44" stroke="#E5E7EB" stroke-width="0.7"/>
+      <circle cx="24" cy="24" r="6" stroke="#2269FC" stroke-width="2" fill="none" opacity=".9">
+        <animate attributeName="r" values="6;9;6" dur="3s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values=".9;.3;.9" dur="3s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="24" cy="24" r="11" stroke="#00D68F" stroke-width="1.5" fill="none" opacity=".5">
+        <animate attributeName="r" values="11;14;11" dur="3s" repeatCount="indefinite" begin="0.5s"/>
+        <animate attributeName="opacity" values=".5;.15;.5" dur="3s" repeatCount="indefinite" begin="0.5s"/>
+      </circle>
+      <circle cx="24" cy="24" r="16" stroke="#FFAA00" stroke-width="1" fill="none" opacity=".3">
+        <animate attributeName="r" values="16;18;16" dur="3s" repeatCount="indefinite" begin="1s"/>
+        <animate attributeName="opacity" values=".3;.1;.3" dur="3s" repeatCount="indefinite" begin="1s"/>
+      </circle>
+      <circle cx="24" cy="24" r="3" fill="#2269FC">
+        <animate attributeName="r" values="3;4;3" dur="3s" repeatCount="indefinite"/>
+      </circle>
+      <path d="M24 8l4 5h-8z" fill="#00D68F" opacity=".8">
+        <animate attributeName="opacity" values=".8;.3;.8" dur="3s" repeatCount="indefinite"/>
+      </path>
+      <path d="M24 40l4-5h-8z" fill="#FF4D4F" opacity=".8">
+        <animate attributeName="opacity" values=".8;.3;.8" dur="3s" repeatCount="indefinite" begin="1.5s"/>
+      </path>
+    </svg>
+    <span>Adaptive Intelligence Trading</span>
+  </a>
+  <button class="nav-toggle" aria-label="Menu">☰</button>
+  <div class="nav-links">
+    <a href="./" class="active">Product Overview</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="dashboardV12.html" class="btn-blue">Live Dashboard</a>
+  </div>
+</nav>
+
+<!-- ═══════════════ 1. HERO (white) ═══════════════ -->
+<section class="hero">
+  <h1>From Coin Selection to Profit Extraction — Fully Autonomous</h1>
+  <p>Smart Entry picks the coin. Conviction-driven DCA tells you WHEN to buy. Regime-gated Smart Exit tells you WHEN to sell. No guesswork, no emotion, no intervention.</p>
+  <a href="#get-started" class="btn-blue-light">Get Started</a>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-value">8</div><div class="hero-stat-label">Intelligence Signals</div></div>
+    <div class="hero-stat"><div class="hero-stat-value">30s</div><div class="hero-stat-label">Adaptation Cycle</div></div>
+    <div class="hero-stat"><div class="hero-stat-value">100%</div><div class="hero-stat-label">Win Rate (Med)</div></div>
+    <div class="hero-stat"><div class="hero-stat-value">0</div><div class="hero-stat-label">Daily Management</div></div>
+  </div>
+</section>
+
+<!-- ═══════════════ 2. PROBLEM (white) ═══════════════ -->
+<section class="light-section">
+  <div class="container">
+    <h2 class="fade-in">Most People DCA In and Hold to Dust</h2>
+    <p class="sub fade-in">They become the exit liquidity. No exit plan, no profit-taking strategy, no idea when to sell. They just buy, hope, and hold until it hurts.</p>
+    <div class="grid-3 fade-in">
+      <div class="card-light" style="padding:28px;">
+        <div style="font-size:2rem;margin-bottom:12px;">🎯</div>
+        <h3 style="font-size:20px;font-weight:500;margin-bottom:8px;">No Exit Strategy</h3>
+        <p style="font-size:16px;color:var(--text-body);line-height:24px;">Buy-and-hold investors have no plan for taking profits. They watch gains evaporate and become exit liquidity for smarter money.</p>
+      </div>
+      <div class="card-light" style="padding:28px;">
+        <div style="font-size:2rem;margin-bottom:12px;">💸</div>
+        <h3 style="font-size:20px;font-weight:500;margin-bottom:8px;">Capital Trapped in Losers</h3>
+        <p style="font-size:16px;color:var(--text-body);line-height:24px;">Money sits idle in bleeding positions for months. No cycling, no compounding — just hoping the market eventually saves them.</p>
+      </div>
+      <div class="card-light" style="padding:28px;">
+        <div style="font-size:2rem;margin-bottom:12px;">😰</div>
+        <h3 style="font-size:20px;font-weight:500;margin-bottom:8px;">Emotional Roller Coaster</h3>
+        <p style="font-size:16px;color:var(--text-body);line-height:24px;">FOMO buying at tops, panic selling at bottoms. Human psychology is the enemy of consistent profits.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 3. CORE VALUE PROP (dark rounded) ═══════════════ -->
+<div class="dark-section" style="margin-top:var(--section-gap);">
+  <div class="container">
+    <h2 class="fade-in">Most Tools Solve Half the Problem. We Solve Both.</h2>
+    <p class="sub fade-in">Every trading tool helps you get in. Almost none help you get out. That's the gap where most people lose money.</p>
+
+    <div class="fade-in" style="display:flex;gap:24px;margin-top:40px;flex-wrap:wrap;">
+      <!-- Others -->
+      <div style="flex:1;min-width:280px;background:var(--bg-card-dark);border-radius:var(--radius-card);padding:32px;">
+        <div style="font-size:14px;color:var(--text-tertiary-dark);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;">Most Trading Tools</div>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div>
+            <div style="font-size:16px;font-weight:500;margin-bottom:4px;">Entry Timing</div>
+            <div style="font-size:14px;color:var(--text-body-dark);">Solved — DCA, signals, indicators. Every tool does this.</div>
+          </div>
+          <div style="height:1px;background:var(--border-glass);"></div>
+          <div>
+            <div style="font-size:16px;font-weight:500;margin-bottom:4px;">Exit Strategy</div>
+            <div style="font-size:14px;color:var(--text-body-dark);">Missing — hope, guesswork, emotion. This is where investors fail.</div>
+          </div>
+          <div style="height:1px;background:var(--border-glass);"></div>
+          <div style="font-size:14px;color:var(--text-tertiary-dark);font-style:italic;">You become the exit liquidity.</div>
+        </div>
+      </div>
+
+      <!-- AIT -->
+      <div style="flex:1;min-width:280px;background:var(--bg-card-dark);border:1px solid var(--ait-blue);border-radius:var(--radius-card);padding:32px;">
+        <div style="font-size:14px;color:var(--ait-blue);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;">Adaptive Intelligence</div>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div>
+            <div style="font-size:16px;font-weight:500;margin-bottom:4px;">Entry Timing</div>
+            <div style="font-size:14px;color:var(--text-body-dark);">Optimized — Smart Entry scores every coin daily. Conviction DCA sizes positions intelligently.</div>
+          </div>
+          <div style="height:1px;background:var(--border-glass);"></div>
+          <div>
+            <div style="font-size:16px;font-weight:500;margin-bottom:4px;">Exit Strategy</div>
+            <div style="font-size:14px;color:var(--text-body-dark);">Systematic — regime-gated Smart Exit takes profits in bulls and protects capital in bears.</div>
+          </div>
+          <div style="height:1px;background:var(--border-glass);"></div>
+          <div style="font-size:14px;color:var(--ait-blue);font-weight:500;">You ARE the exit strategy.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fade-in" style="text-align:center;margin-top:32px;">
+      <div style="font-size:16px;color:var(--text-body-dark);">Smart Entry → Conviction DCA → Macro Intelligence → Smart Exit. <strong style="color:#FFF;">Full lifecycle — fully autonomous.</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 4. HOW IT WORKS — 8 LAYERS ═══════════════ -->
+<div class="dark-section" style="margin-top:var(--section-gap);">
+  <div class="container">
+    <h2 class="fade-in" style="text-align:center;">Eight Layers Working as One</h2>
+    <p class="sub fade-in" style="text-align:center;margin-left:auto;margin-right:auto;">From finding undervalued coins to extracting profits at exactly the right moment — every layer works together so you don't have to.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;" class="layers-grid fade-in">
+
+      <div style="background:var(--bg-card-dark);border-radius:var(--radius-card);padding:28px;">
+        <div style="font-size:42px;font-weight:700;color:rgba(255,255,255,0.05);line-height:1;margin-bottom:10px;">01</div>
+        <h3 style="font-size:18px;font-weight:600;margin-bottom:6px;">Smart Entry</h3>
+        <p style="font-size:14px;color:var(--ait-blue);font-weight:500;margin-bottom:10px;">Finds the right coins at the right time.</p>
+        <p style="font-size:14px;color:var(--text-body-dark);line-height:1.6;">Scans the entire market daily and scores every coin across value, momentum, and risk. You get the best opportunities — automatically.</p>
+      </div>
+
+      <div style="background:var(--bg-card-dark);border-radius:var(--radius-card);padding:28px;">
+        <div style="font-size:42px;font-weight:700;color:rgba(255,255,255,0.05);line-height:1;margin-bottom:10px;">02</div>
+        <h3 style="font-size:18px;font-weight:600;margin-bottom:6px;">Regime Detection</h3>
+        <p style="font-size:14px;color:var(--ait-blue);font-weight:500;margin-bottom:10px;">Knows what kind of market we're in — every 30 seconds.</p>
+        <p style="font-size:14px;color:var(--text-body-dark);line-height:1.6;">Classifies the market into six states. Every decision adapts in real time. In dangerous conditions, trading halts automatically.</p>
+      </div>
+
+      <div style="background:var(--bg-card-dark);border-radius:var(--radius-card);padding:28px;">
+        <div style="font-size:42px;font-weight:700;color:rgba(255,255,255,0.05);line-height:1;margin-bottom:10px;">03</div>
+        <h3 style="font-size:18px;font-weight:600;margin-bottom:6px;">Macro Intelligence</h3>
+        <p style="font-size:14px;color:var(--ait-blue);font-weight:500;margin-bottom:10px;">Reads the room before placing a trade.</p>
+        <p style="font-size:14px;color:var(--text-body-dark);line-height:1.6;">Fear & Greed, on-chain flows, BTC dominance, cycle indicators — eight signals combine into a single conviction score that drives every decision.</p>
+      </div>
+
+      <div style="background:var(--bg-card-dark);border-radius:var(--radius-card);padding:28px;">
+        <div style="font-size:42px;font-weight:700;color:rgba(255,255,255,0.05);line-height:1;margin-bottom:10px;">04</div>
+        <h3 style="font-size:18px;font-weight:600;margin-bottom:6px;">Adaptive Parameters</h3>
+        <p style="font-size:14px;color:var(--ait-blue);font-weight:500;margin-bottom:10px;">Self-tuning for current conditions.</p>
+        <p style="font-size:14px;color:var(--text-body-dark);line-height:1.6;">Targets and spacing adjust dynamically based on real-time volatility. Calm markets get quick cycles. Volatile markets get wider nets for bigger captures.</p>
+      </div>
+
+      <div style="background:var(--bg-card-dark);border-radius:var(--radius-card);padding:28px;">
+        <div style="font-size:42px;font-weight:700;color:rgba(255,255,255,0.05);line-height:1;margin-bottom:10px;">05</div>
+        <h3 style="font-size:18px;font-weight:600;margin-bottom:6px;">Spot DCA &amp; Scale-Out</h3>
+        <p style="font-size:14px;color:var(--ait-blue);font-weight:500;margin-bottom:10px;">You own real coins. No leverage. No liquidation risk.</p>
+        <p style="font-size:14px;color:var(--text-body-dark);line-height:1.6;">Buys the dips in layers, sells the biggest lots first on recovery — 5-8× more profit per cycle. Zero funding fees because you hold actual coins.</p>
+      </div>
+
+      <div style="background:var(--bg-card-dark);border-radius:var(--radius-card);padding:28px;">
+        <div style="font-size:42px;font-weight:700;color:rgba(255,255,255,0.05);line-height:1;margin-bottom:10px;">06</div>
+        <h3 style="font-size:18px;font-weight:600;margin-bottom:6px;">Risk Profiles</h3>
+        <p style="font-size:14px;color:var(--ait-blue);font-weight:500;margin-bottom:10px;">Pick your comfort level. That's it.</p>
+        <p style="font-size:14px;color:var(--text-body-dark);line-height:1.6;">Three profiles — Conservative, Balanced, Aggressive. Built-in guardrails automatically reduce risk if drawdowns hit your threshold. No manual intervention needed.</p>
+      </div>
+
+      <div style="background:var(--bg-card-dark);border-radius:var(--radius-card);padding:28px;">
+        <div style="font-size:42px;font-weight:700;color:rgba(255,255,255,0.05);line-height:1;margin-bottom:10px;">07</div>
+        <h3 style="font-size:18px;font-weight:600;margin-bottom:6px;">Smart Exit</h3>
+        <p style="font-size:14px;color:var(--ait-blue);font-weight:500;margin-bottom:10px;">Knows when to take profits — and when to hold.</p>
+        <p style="font-size:14px;color:var(--text-body-dark);line-height:1.6;">Exits are suppressed in bull markets to let profits run, amplified in bears to protect capital. You ride the upside and exit before the crash — systematically.</p>
+      </div>
+
+      <div style="background:var(--bg-card-dark);border-radius:var(--radius-card);padding:28px;">
+        <div style="font-size:42px;font-weight:700;color:rgba(255,255,255,0.05);line-height:1;margin-bottom:10px;">08</div>
+        <h3 style="font-size:18px;font-weight:600;margin-bottom:6px;">Portfolio Management</h3>
+        <p style="font-size:14px;color:var(--ait-blue);font-weight:500;margin-bottom:10px;">Up to 8 coins at once — always the best ones.</p>
+        <p style="font-size:14px;color:var(--text-body-dark);line-height:1.6;">Capital spreads across top-scoring coins and rebalances automatically. You control the rotation speed — from patient to aggressive — while entry quality stays consistently high.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 5. RISK PROFILES (dark rounded) ═══════════════ -->
+<div id="risk-profiles" class="dark-section" style="margin-top:var(--section-gap);">
+  <div class="container">
+    <h2 class="fade-in">Pick Your Risk Profile. That's It.</h2>
+    <p class="sub fade-in">You don't need to understand trading. Just choose how aggressive you want to be — the system handles everything else. <strong>100% win rate across all profiles and coins.</strong></p>
+
+    <div class="grid-3 fade-in" style="margin-bottom:40px;">
+      <div class="risk-profile-card">
+        <div style="font-size:14px;color:var(--profit);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">🛡️ Low Risk</div>
+        <h3 style="color:var(--profit);">Conservative</h3>
+        <p>Steady gains, minimal risk. Like a savings account on steroids. The system takes smaller, safer positions and exits quickly.</p>
+      </div>
+      <div class="risk-profile-card" style="border:1px solid var(--ait-blue);">
+        <div style="font-size:14px;color:var(--ait-blue);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">⚖️ Medium Risk — Recommended</div>
+        <h3 style="color:var(--ait-blue);">Balanced</h3>
+        <p>The sweet spot for most people. Best risk-adjusted returns with a balanced approach to accumulation and exits.</p>
+      </div>
+      <div class="risk-profile-card">
+        <div style="font-size:14px;color:var(--warning);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">🔥 High Risk</div>
+        <h3 style="color:var(--warning);">Aggressive</h3>
+        <p>Maximum gains, more volatility. Deeper grids, wider positions. For those who want the biggest possible returns.</p>
+      </div>
+    </div>
+
+    <div class="fade-in" style="margin-bottom:32px;">
+      <h3 style="font-size:20px;font-weight:500;margin-bottom:4px;text-align:center;">Backtest Results</h3>
+      <div style="font-size:14px;color:var(--text-tertiary-dark);text-align:center;margin-bottom:16px;">Oct 2020 → Feb 2026 · $10,000 starting capital · 1h candles</div>
+      <table class="bt-table">
+        <thead><tr><th></th><th>Low</th><th>Medium</th><th>High</th></tr></thead>
+        <tbody>
+          <tr><td style="font-weight:500;">ETH</td><td class="green">+325%</td><td class="green">+539%</td><td class="green">+1,116%</td></tr>
+          <tr><td style="font-weight:500;">SOL</td><td class="green">+15,145%</td><td class="green">+27,461%</td><td class="green">+49,690%</td></tr>
+          <tr><td style="font-weight:500;">BTC</td><td class="green">+166%</td><td class="green">+120%</td><td class="green">+299%</td></tr>
+          <tr><td style="font-weight:500;">Win Rate</td><td class="green">100%</td><td class="green">100%</td><td class="green">100%</td></tr>
+        </tbody>
+      </table>
+
+    <div class="fade-in" style="text-align:center;padding:20px;background:var(--bg-card-dark);border-radius:var(--radius-card);">
+      <div style="font-size:16px;color:var(--text-body-dark);">Auto-guardrails de-risk automatically: <strong>Medium→Low at 30% drawdown</strong>, <strong>High→Medium at 50%</strong>. You just pick a profile — the system protects you.</div>
+    
+
+    <!-- Rebalancing Aggressiveness -->
+    <div class="fade-in" style="margin-top:40px;">
+      <h3 style="font-size:24px;font-weight:500;text-align:center;margin-bottom:8px;">Rebalancing Speed</h3>
+      <p style="text-align:center;color:var(--text-body-dark);font-size:16px;margin-bottom:24px;max-width:600px;margin-left:auto;margin-right:auto;">Control how quickly capital rotates between coins. Entry quality is always high — the slider only controls exit speed and redeployment pace.</p>
+      <div style="display:flex;gap:20px;flex-wrap:wrap;">
+        <div style="flex:1;min-width:220px;background:var(--bg-card-dark);border-radius:var(--radius-card);padding:24px;">
+          <div style="font-size:14px;color:var(--profit);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">🕒 Conservative</div>
+          <div style="font-size:16px;font-weight:500;margin-bottom:6px;">Slow &amp; Steady</div>
+          <p style="font-size:14px;color:var(--text-body-dark);line-height:1.6;">Patient exits, fewer trades, lower fees. Capital may sit between rotations. <em>Default for Low risk.</em></p>
+        </div>
+        <div style="flex:1;min-width:220px;background:var(--bg-card-dark);border:1px solid var(--ait-blue);border-radius:var(--radius-card);padding:24px;">
+          <div style="font-size:14px;color:var(--ait-blue);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">⚖️ Balanced</div>
+          <div style="font-size:16px;font-weight:500;margin-bottom:6px;">Responsive</div>
+          <p style="font-size:14px;color:var(--text-body-dark);line-height:1.6;">Steady rotation pace. Good trade-off between opportunity cost and overtrading. <em>Default for Medium risk.</em></p>
+        </div>
+        <div style="flex:1;min-width:220px;background:var(--bg-card-dark);border-radius:var(--radius-card);padding:24px;">
+          <div style="font-size:14px;color:var(--warning);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">⚡ Aggressive</div>
+          <div style="font-size:16px;font-weight:500;margin-bottom:6px;">Fast Rotation</div>
+          <p style="font-size:14px;color:var(--text-body-dark);line-height:1.6;">Quick exits, rapid redeployment. More trades, but capital is rarely idle. <em>Default for High risk.</em></p>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:16px;padding:16px;background:var(--bg-card-dark);border-radius:var(--radius-card);">
+        <div style="font-size:14px;color:var(--text-body-dark);">🔒 Entry quality never changes — every coin must pass high conviction + full phase confirmation regardless of your rebalancing speed.</div>
+      </div>
+    </div>
+</div>
+  </div>
+</div>
+
+<!-- ═══════════════ 6. PERFORMANCE / COMPARISON (white) ═══════════════ -->
+<section class="light-section">
+  <div class="container">
+    <h2 class="fade-in">Buy & Hold Has a Problem Nobody Talks About.</h2>
+    <p class="sub fade-in">It’s not the returns — it’s what happens between them. In the 2022 crash, crypto dropped 77–96%. Most investors held, watched their portfolio bleed for two years, and many panic sold at the bottom.</p>
+
+    <!-- Three contrast cards -->
+    <div class="grid-3 fade-in" style="margin-bottom:48px;">
+      <div class="perf-card" style="text-align:center;padding:32px 24px;">
+        <div style="font-size:14px;font-weight:600;color:var(--text-heading);margin-bottom:8px;">Buy & Hold</div>
+        <div style="font-size:36px;font-weight:700;color:var(--text-heading);margin-bottom:4px;">100%</div>
+        <div style="font-size:14px;color:var(--text-body);margin-bottom:16px;">of your capital exposed, always</div>
+        <div style="font-size:13px;color:var(--text-body);line-height:20px;">Every dollar rides every crash. No exit strategy. You need the market to recover — and the patience to wait years.</div>
+      </div>
+      <div class="perf-card" style="text-align:center;padding:32px 24px;">
+        <div style="font-size:14px;font-weight:600;color:var(--text-heading);margin-bottom:8px;">The 2022 Reality</div>
+        <div style="font-size:36px;font-weight:700;color:var(--text-heading);margin-bottom:4px;">2+ years</div>
+        <div style="font-size:14px;color:var(--text-body);margin-bottom:16px;">underwater before recovery</div>
+        <div style="font-size:13px;color:var(--text-body);line-height:20px;">BTC: $69K → $15.5K. ETH: $4,878 → $880. SOL: $260 → $8. Most holders couldn’t stomach it.</div>
+      </div>
+      <div class="perf-card" style="text-align:center;padding:32px 24px;border:2px solid var(--ait-blue);">
+        <div style="font-size:14px;font-weight:600;color:var(--ait-blue);margin-bottom:8px;">Adaptive Intelligence</div>
+        <div style="font-size:36px;font-weight:700;color:var(--ait-blue);margin-bottom:4px;">In cash</div>
+        <div style="font-size:14px;color:var(--text-body);margin-bottom:16px;">during downturns, automatically</div>
+        <div style="font-size:13px;color:var(--text-body);line-height:20px;">The bot detects unfavorable conditions, exits to cash, and waits. Your capital is protected while others bleed. It buys back in when conditions improve.</div>
+      </div>
+    </div>
+
+    <!-- Strategy comparison table -->
+    <div class="fade-in">
+      <table class="comp-table">
+        <thead><tr><th></th><th>Buy & Hold</th><th>Adaptive Intelligence</th></tr></thead>
+        <tbody>
+          <tr><td><strong>During a crash</strong></td><td>Fully exposed — ride it out</td><td style="color:var(--ait-blue);font-weight:600;">Exits to cash automatically</td></tr>
+          <tr><td><strong>Capital at risk</strong></td><td>100%, always</td><td>Only what’s in active deals</td></tr>
+          <tr><td><strong>Recovery plan</strong></td><td>Wait for the market</td><td>Buys back in at the bottom</td></tr>
+          <tr><td><strong>Win rate</strong></td><td>Depends on when you sell</td><td style="color:var(--ait-blue);font-weight:600;">100% on completed cycles</td></tr>
+          <tr><td><strong>Your involvement</strong></td><td>Emotional decisions for years</td><td>None — fully automated</td></tr>
+          <tr><td><strong>Profit-taking</strong></td><td>No plan — hope it goes up</td><td>Automatic at peaks, in stages</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fade-in" style="text-align:center;margin-top:40px;padding:24px;border:1px solid var(--border-light);border-radius:var(--radius-card);display:flex;justify-content:center;gap:40px;flex-wrap:wrap;">
+      <div style="text-align:center;"><strong style="color:var(--ait-blue);font-size:20px;">100%</strong><br><span style="font-size:14px;color:var(--text-body);">win rate · all risk levels</span></div>
+      <div style="text-align:center;"><strong style="color:var(--ait-blue);font-size:20px;">Cash during crashes</strong><br><span style="font-size:14px;color:var(--text-body);">capital protected automatically</span></div>
+      <div style="text-align:center;"><strong style="color:var(--ait-blue);font-size:20px;">BTC · ETH · SOL</strong><br><span style="font-size:14px;color:var(--text-body);">backtested Oct 2020 → Feb 2026</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 7. GET STARTED (dark rounded) ═══════════════ -->
+<div id="get-started" class="dark-section" style="margin-top:var(--section-gap);">
+  <div class="container">
+    <h2 class="fade-in" style="text-align:center;">Get Started in 3 Simple Steps</h2>
+    <p class="sub fade-in" style="text-align:center;margin-left:auto;margin-right:auto;">No trading knowledge needed. Your crypto stays in YOUR exchange account — you maintain full custody at all times.</p>
+
+    <div class="grid-3 fade-in">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Deposit</h3>
+        <p>Deposit crypto (USDT/USDC) into any compatible DEX or CEX — Hyperliquid, Aster, and more.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Connect</h3>
+        <p>Provide your API key — <strong style="color:var(--profit);">read/trade only, no withdrawal access</strong>. We can never move your funds out.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Launch</h3>
+        <p>Start AIT from your custom dashboard. Pick your risk profile and go. The system handles everything from there.</p>
+      </div>
+    </div>
+
+    <div class="fade-in" style="text-align:center;margin-top:32px;padding:20px;background:var(--bg-card-dark);border-radius:var(--radius-card);">
+      <div style="font-size:16px;color:var(--text-body-dark);">🔒 <strong>Full Custody</strong> — API keys are read/trade only. Your crypto never leaves your exchange account. You can revoke access at any time.</div>
+    </div>
+
+    <div style="text-align:center;margin-top:32px;">
+      <a href="dashboardV12.html" class="btn-blue-light">Launch Dashboard</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 7b. COMPATIBLE EXCHANGES (white) ═══════════════ -->
+<section class="light-section" style="padding-bottom:40px;">
+  <div class="container">
+    <h2 class="fade-in" style="text-align:center;">Compatible With All Major Exchanges</h2>
+    <p class="sub fade-in" style="text-align:center;margin-left:auto;margin-right:auto;">AIT connects to any order-book exchange via a universal API layer. Your crypto, your exchange, your choice.</p>
+
+    <div class="fade-in" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px;max-width:900px;margin:0 auto;">
+
+      <div style="background:var(--bg-charcoal);border-radius:var(--radius-card);padding:24px 16px;text-align:center;">
+        <div style="font-size:24px;margin-bottom:8px;">🟡</div>
+        <div style="font-size:15px;font-weight:600;color:#FFF;">Binance</div>
+        <div style="font-size:12px;color:var(--text-body-dark);margin-top:4px;">CEX · #1 Volume</div>
+      </div>
+
+      <div style="background:var(--bg-charcoal);border-radius:var(--radius-card);padding:24px 16px;text-align:center;">
+        <div style="font-size:24px;margin-bottom:8px;">🔵</div>
+        <div style="font-size:15px;font-weight:600;color:#FFF;">Coinbase</div>
+        <div style="font-size:12px;color:var(--text-body-dark);margin-top:4px;">CEX · US Regulated</div>
+      </div>
+
+      <div style="background:var(--bg-charcoal);border-radius:var(--radius-card);padding:24px 16px;text-align:center;">
+        <div style="font-size:24px;margin-bottom:8px;">🟠</div>
+        <div style="font-size:15px;font-weight:600;color:#FFF;">Bybit</div>
+        <div style="font-size:12px;color:var(--text-body-dark);margin-top:4px;">CEX · #3 Volume</div>
+      </div>
+
+      <div style="background:var(--bg-charcoal);border-radius:var(--radius-card);padding:24px 16px;text-align:center;">
+        <div style="font-size:24px;margin-bottom:8px;">⚪</div>
+        <div style="font-size:15px;font-weight:600;color:#FFF;">OKX</div>
+        <div style="font-size:12px;color:var(--text-body-dark);margin-top:4px;">CEX · Global Top 5</div>
+      </div>
+
+      <div style="background:var(--bg-charcoal);border-radius:var(--radius-card);padding:24px 16px;text-align:center;">
+        <div style="font-size:24px;margin-bottom:8px;">🟣</div>
+        <div style="font-size:15px;font-weight:600;color:#FFF;">Kraken</div>
+        <div style="font-size:12px;color:var(--text-body-dark);margin-top:4px;">CEX · Est. 2011</div>
+      </div>
+
+      <div style="background:var(--bg-charcoal);border-radius:var(--radius-card);padding:24px 16px;text-align:center;">
+        <div style="font-size:24px;margin-bottom:8px;">🟢</div>
+        <div style="font-size:15px;font-weight:600;color:#FFF;">KuCoin</div>
+        <div style="font-size:12px;color:var(--text-body-dark);margin-top:4px;">CEX · Wide Selection</div>
+      </div>
+
+      <div style="background:var(--bg-charcoal);border-radius:var(--radius-card);padding:24px 16px;text-align:center;">
+        <div style="font-size:24px;margin-bottom:8px;">🔷</div>
+        <div style="font-size:15px;font-weight:600;color:#FFF;">Gate.io</div>
+        <div style="font-size:12px;color:var(--text-body-dark);margin-top:4px;">CEX · 1,700+ Coins</div>
+      </div>
+
+      <div style="background:var(--bg-charcoal);border-radius:var(--radius-card);padding:24px 16px;text-align:center;">
+        <div style="font-size:24px;margin-bottom:8px;">🔶</div>
+        <div style="font-size:15px;font-weight:600;color:#FFF;">Bitget</div>
+        <div style="font-size:12px;color:var(--text-body-dark);margin-top:4px;">CEX · Fast Growing</div>
+      </div>
+
+      <div style="background:var(--bg-charcoal);border-radius:var(--radius-card);padding:24px 16px;text-align:center;">
+        <div style="font-size:24px;margin-bottom:8px;">🌐</div>
+        <div style="font-size:15px;font-weight:600;color:#FFF;">MEXC</div>
+        <div style="font-size:12px;color:var(--text-body-dark);margin-top:4px;">CEX · No KYC Option</div>
+      </div>
+
+      <div style="background:var(--bg-charcoal);border-radius:var(--radius-card);padding:24px 16px;text-align:center;">
+        <div style="font-size:24px;margin-bottom:8px;">🔹</div>
+        <div style="font-size:15px;font-weight:600;color:#FFF;">HTX</div>
+        <div style="font-size:12px;color:var(--text-body-dark);margin-top:4px;">CEX · Est. 2013</div>
+      </div>
+
+      <div style="background:var(--bg-charcoal);border-radius:var(--radius-card);padding:24px 16px;text-align:center;">
+        <div style="font-size:24px;margin-bottom:8px;">💚</div>
+        <div style="font-size:15px;font-weight:600;color:#FFF;">Hyperliquid</div>
+        <div style="font-size:12px;color:var(--text-body-dark);margin-top:4px;">DEX · On-Chain</div>
+      </div>
+
+      <div style="background:var(--bg-charcoal);border-radius:var(--radius-card);padding:24px 16px;text-align:center;">
+        <div style="font-size:24px;margin-bottom:8px;">⭐</div>
+        <div style="font-size:15px;font-weight:600;color:#FFF;">Aster DEX</div>
+        <div style="font-size:12px;color:var(--text-body-dark);margin-top:4px;">DEX · On-Chain</div>
+      </div>
+
+      <div style="background:var(--bg-charcoal);border-radius:var(--radius-card);padding:24px 16px;text-align:center;">
+        <div style="font-size:24px;margin-bottom:8px;">🪐</div>
+        <div style="font-size:15px;font-weight:600;color:#FFF;">dYdX</div>
+        <div style="font-size:12px;color:var(--text-body-dark);margin-top:4px;">DEX · Cosmos L1</div>
+      </div>
+
+    </div>
+
+    <div class="fade-in" style="display:flex;gap:24px;max-width:900px;margin:40px auto 0;flex-wrap:wrap;">
+      <div style="flex:1;min-width:280px;background:var(--bg-charcoal);border-radius:var(--radius-card);padding:24px;">
+        <div style="font-size:20px;margin-bottom:8px;">🏦</div>
+        <div style="font-size:16px;font-weight:600;color:#FFF;margin-bottom:8px;">CEX — Zero Wallet Setup</div>
+        <div style="font-size:14px;color:var(--text-body-dark);line-height:1.6;">Sign up, deposit, generate an API key — done. No MetaMask, no seed phrases, no Web3 wallet. Works like any online account. <strong style="color:var(--profit);">Perfect for beginners.</strong></div>
+      </div>
+      <div style="flex:1;min-width:280px;background:var(--bg-charcoal);border-radius:var(--radius-card);padding:24px;">
+        <div style="font-size:20px;margin-bottom:8px;">🔗</div>
+        <div style="font-size:16px;font-weight:600;color:#FFF;margin-bottom:8px;">DEX — True Self-Custody</div>
+        <div style="font-size:14px;color:var(--text-body-dark);line-height:1.6;">Connect your Web3 wallet for fully decentralized trading. Your keys, your coins, no middleman. <strong style="color:var(--ait-blue);">Maximum sovereignty.</strong></div>
+      </div>
+    </div>
+
+    <div class="fade-in" style="text-align:center;margin-top:24px;">
+      <p style="font-size:14px;color:var(--text-body);">Powered by CCXT universal API · 100+ exchanges supported · Order-book platforms only</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 8. PASSIVE INCOME (white) ═══════════════ -->
+<section class="light-section">
+  <div class="container">
+    <h2 class="fade-in">Set It Up. Let It Run.</h2>
+    <p class="sub fade-in">Once deployed, the system requires zero daily management.</p>
+    <div class="check-grid">
+      <div class="check-item fade-in"><span style="color:var(--profit);font-size:18px;">✅</span> No chart watching</div>
+      <div class="check-item fade-in"><span style="color:var(--profit);font-size:18px;">✅</span> No parameter tweaking</div>
+      <div class="check-item fade-in"><span style="color:var(--profit);font-size:18px;">✅</span> No panic during drops</div>
+      <div class="check-item fade-in"><span style="color:var(--profit);font-size:18px;">✅</span> No FOMO during pumps</div>
+      <div class="check-item fade-in"><span style="color:var(--profit);font-size:18px;">✅</span> No technical analysis</div>
+      <div class="check-item fade-in"><span style="color:var(--profit);font-size:18px;">✅</span> No late-night candle watching</div>
+    </div>
+
+    <div class="fade-in" style="margin-top:48px;text-align:center;">
+      <h3 style="font-size:24px;font-weight:500;margin-bottom:16px;">The Compounding Edge</h3>
+      <p style="color:var(--text-body);font-size:16px;max-width:620px;margin:0 auto 24px;">Every completed deal's profit feeds into the next cycle. A $1,000 starting balance becomes $1,020 after deal #1, then $1,041 after deal #2. Small gains compound into substantial returns.</p>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;">
+        <div class="card-light" style="flex:1;min-width:140px;text-align:center;padding:20px;">
+          <div style="font-size:24px;margin-bottom:6px;">🔍</div>
+          <div style="font-weight:500;font-size:16px;color:var(--profit);margin-bottom:4px;">Smart Entry</div>
+          <div style="font-size:14px;color:var(--text-body);">Find coins</div>
+        </div>
+        <div class="card-light" style="flex:1;min-width:140px;text-align:center;padding:20px;">
+          <div style="font-size:24px;margin-bottom:6px;">🫁</div>
+          <div style="font-weight:500;font-size:16px;color:var(--ait-blue);margin-bottom:4px;">Accumulate</div>
+          <div style="font-size:14px;color:var(--text-body);">Conviction DCA</div>
+        </div>
+        <div class="card-light" style="flex:1;min-width:140px;text-align:center;padding:20px;">
+          <div style="font-size:24px;margin-bottom:6px;">🔄</div>
+          <div style="font-weight:500;font-size:16px;color:var(--profit);margin-bottom:4px;">Compound</div>
+          <div style="font-size:14px;color:var(--text-body);">100% reinvest</div>
+        </div>
+        <div class="card-light" style="flex:1;min-width:140px;text-align:center;padding:20px;">
+          <div style="font-size:24px;margin-bottom:6px;">🎯</div>
+          <div style="font-weight:500;font-size:16px;color:var(--warning);margin-bottom:4px;">Smart Exit</div>
+          <div style="font-size:14px;color:var(--text-body);">Regime-gated</div>
+        </div>
+        <div class="card-light" style="flex:1;min-width:140px;text-align:center;padding:20px;">
+          <div style="font-size:24px;margin-bottom:6px;">📈</div>
+          <div style="font-weight:500;font-size:16px;color:var(--ait-blue);margin-bottom:4px;">Rotate</div>
+          <div style="font-size:14px;color:var(--text-body);">Best opportunities</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 9. RISK MANAGEMENT (dark rounded) ═══════════════ -->
+<div class="dark-section" style="margin-top:var(--section-gap);">
+  <div class="container">
+    <h2 class="fade-in">Built-In Protections</h2>
+    <p class="sub fade-in">Multiple layers of safety ensure capital preservation comes first.</p>
+    <div class="risk-grid fade-in">
+      <div class="risk-card">
+        <h4>🚨 Regime Kill Switch</h4>
+        <p>Extreme conditions automatically halt all trading. No manual panic button needed.</p>
+      </div>
+      <div class="risk-card">
+        <h4>📊 Max Drawdown Limit</h4>
+        <p>Configurable hard limit on total losses. The system stops before it crosses the line.</p>
+      </div>
+      <div class="risk-card">
+        <h4>🛡️ Capital Reserve</h4>
+        <p>10-30% held in reserve depending on profile. Never fully exposed.</p>
+      </div>
+      <div class="risk-card">
+        <h4>⚖️ Spot Ownership</h4>
+        <p>You own actual coins — no leverage, no liquidation, no funding fees.</p>
+      </div>
+      <div class="risk-card">
+        <h4>🎯 Smart Priorities</h4>
+        <p>Exit orders always take precedence. Profits are always captured first.</p>
+      </div>
+      <div class="risk-card">
+        <h4>📋 Full Transparency</h4>
+        <p>Every decision logged and explainable. Not a black box.</p>
+      </div>
+    </div>
+    <div class="fade-in" style="margin-top:40px;">
+      <h3 style="font-size:20px;font-weight:500;margin-bottom:16px;">What This Is NOT</h3>
+      <div class="not-grid">
+        <div class="not-item">❌ Not a "get rich quick" scheme</div>
+        <div class="not-item">❌ Not leverage gambling</div>
+        <div class="not-item">❌ Not prediction-based</div>
+        <div class="not-item">❌ Not a black box</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 10. EVOLUTION (white) ═══════════════ -->
+<section class="light-section">
+  <div class="container">
+    <h2 class="fade-in">From Static Automation to Adaptive Intelligence</h2>
+    <p class="sub fade-in">Six generations of evolution, each reducing human oversight while improving capital efficiency.</p>
+    <div style="position:relative;padding-left:40px;">
+      <div style="position:absolute;left:15px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--border-light),var(--ait-blue),var(--profit));"></div>
+
+      <div class="fade-in" style="position:relative;margin-bottom:40px;padding-left:24px;">
+        <div style="position:absolute;left:-29px;top:6px;width:14px;height:14px;border-radius:50%;border:2px solid var(--border-light);background:var(--bg-white);"></div>
+        <div style="font-size:12px;color:var(--ait-blue);text-transform:uppercase;letter-spacing:1px;font-weight:600;">Generation 1</div>
+        <div style="font-size:20px;font-weight:500;margin:4px 0 8px;">Fixed-Parameter Grid Bots</div>
+        <div style="color:var(--text-body);font-size:16px;">Static lot sizes, hardcoded everything. Constant human monitoring required.</div>
+      </div>
+
+      <div class="fade-in" style="position:relative;margin-bottom:40px;padding-left:24px;">
+        <div style="position:absolute;left:-29px;top:6px;width:14px;height:14px;border-radius:50%;border:2px solid var(--border-light);background:var(--bg-white);"></div>
+        <div style="font-size:12px;color:var(--ait-blue);text-transform:uppercase;letter-spacing:1px;font-weight:600;">Generation 2</div>
+        <div style="font-size:20px;font-weight:500;margin:4px 0 8px;">Regime-Aware Allocation</div>
+        <div style="color:var(--text-body);font-size:16px;">Market condition detection across six regimes. Dynamic capital allocation. Auto-pause in extreme conditions.</div>
+      </div>
+
+      <div class="fade-in" style="position:relative;margin-bottom:40px;padding-left:24px;">
+        <div style="position:absolute;left:-29px;top:6px;width:14px;height:14px;border-radius:50%;border:2px solid var(--ait-blue);background:var(--bg-white);"></div>
+        <div style="font-size:12px;color:var(--ait-blue);text-transform:uppercase;letter-spacing:1px;font-weight:600;">Generation 3</div>
+        <div style="font-size:20px;font-weight:500;margin:4px 0 8px;">The Breathing Grid</div>
+        <div style="color:var(--text-body);font-size:16px;">Full adaptation — dynamic TP, deviation, conviction scoring. F&G and macro indicators modulate all parameters. Zero daily management.</div>
+      </div>
+
+      <div class="fade-in" style="position:relative;margin-bottom:40px;padding-left:24px;">
+        <div style="position:absolute;left:-29px;top:6px;width:14px;height:14px;border-radius:50%;border:2px solid var(--ait-blue);background:var(--bg-white);"></div>
+        <div style="font-size:12px;color:var(--ait-blue);text-transform:uppercase;letter-spacing:1px;font-weight:600;">Generation 4</div>
+        <div style="font-size:20px;font-weight:500;margin:4px 0 8px;">Multi-Asset Portfolio</div>
+        <div style="color:var(--text-body);font-size:16px;">Two-tier scanner, up to 8 simultaneous coins, score-proportional allocation, auto-rotation with graceful wind-down.</div>
+      </div>
+
+      <div class="fade-in" style="position:relative;margin-bottom:40px;padding-left:24px;">
+        <div style="position:absolute;left:-29px;top:6px;width:14px;height:14px;border-radius:50%;border:2px solid var(--ait-blue);background:var(--bg-white);"></div>
+        <div style="font-size:12px;color:var(--ait-blue);text-transform:uppercase;letter-spacing:1px;font-weight:600;">Generation 5</div>
+        <div style="font-size:20px;font-weight:500;margin:4px 0 8px;">Risk Profiles & Tier-Based Scaling</div>
+        <div style="color:var(--text-body);font-size:16px;">Three risk profiles (Low/Medium/High), tier-based coin scaling, auto-guardrails, profile-specific adaptive parameters.</div>
+      </div>
+
+      <div class="fade-in" style="position:relative;margin-bottom:0;padding-left:24px;">
+        <div style="position:absolute;left:-29px;top:6px;width:14px;height:14px;border-radius:50%;border:2px solid var(--profit);background:var(--profit);"></div>
+        <div style="font-size:12px;color:var(--profit);text-transform:uppercase;letter-spacing:1px;font-weight:600;">Generation 6 — Current</div>
+        <div style="font-size:20px;font-weight:500;margin:4px 0 8px;">Full Lifecycle Autonomy</div>
+        <div style="color:var(--text-body);font-size:16px;">Smart Entry + Conviction DCA + 8 real-time signals + Smart Exit + Wyckoff lifecycle + Spot ownership. From coin selection to profit extraction — fully autonomous.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 11. CTA (white) ═══════════════ -->
+<section class="light-section" style="text-align:center;padding:100px 24px;">
+  <div class="container">
+    <div class="fade-in" style="max-width:700px;margin:0 auto;">
+      <p style="font-size:24px;font-weight:400;line-height:36px;color:var(--text-body);font-style:italic;">"Set it up. Let it run. Check in when you want to — <em style="color:var(--text-heading);font-weight:500;">not because you have to.</em>"</p>
+      <div style="margin-top:32px;">
+        <a href="#get-started" class="btn-blue-light">Get Started</a>
+        <div style="margin-top:12px;">
+          <a href="pricing.html" class="btn-blue-outline">View Pricing</a>
+        </div>
+      </div>
+      <div style="margin-top:24px;font-size:14px;color:var(--text-body);">The future of passive income through intelligent automation.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 11. FOOTER (dark) ═══════════════ -->
+<footer class="footer">
+  <div class="footer-links">
+    <a href="./">Product Overview</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="dashboardV12.html">Live Dashboard</a>
+  </div>
+  <div>© 2026 Halo Effects · Adaptive Intelligence Trading</div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+<script>
+(function(){
+  var btn = document.querySelector('.nav-toggle');
+  var links = document.querySelector('.nav-links');
+  if(btn && links){
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      links.classList.toggle('open');
+      btn.textContent = links.classList.contains('open') ? '\u2715' : '\u2630';
+    });
+    document.addEventListener('click', function(e){
+      if(!e.target.closest('.nav')){ links.classList.remove('open'); btn.textContent = '\u2630'; }
+    });
+  }
+})();
+// Safety fallback: force all fade-in elements visible after 3s
+setTimeout(() => { document.querySelectorAll('.fade-in:not(.visible)').forEach(el => el.classList.add('visible')); }, 3000);
+</script>
+</body>
+</html>
