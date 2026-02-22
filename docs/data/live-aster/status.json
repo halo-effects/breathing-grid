@@ -27,8 +27,8 @@
   "max_drawdown_pct": 4.83,
   "regime": "MILD_TREND",
   "trend_direction": "bullish",
-  "last_update": "2026-02-22T09:55:04+00:00",
-  "uptime_hours": 7.0,
+  "last_update": "2026-02-22T10:10:09+00:00",
+  "uptime_hours": 7.3,
   "halted": false,
   "symbols": [
     "ETH/USDT"
