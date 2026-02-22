@@ -757,12 +757,12 @@ function renderCapitalManagement(){
 }
 
 async function fetchData(){
-  try{var r=await fetch(CONFIG.statusUrl+'?t='+Date.now());if(r.ok){S=await r.json();render()}}catch(e){console.warn('status fetch',e)}
-  try{var r2=await fetch(CONFIG.tradesUrl+'?t='+Date.now());if(r2.ok){trades=parseCSV(await r2.text());renderTrades();renderEquityChart()}}catch(e){}
-  // Fetch scanner data for opportunity table
+  // Fetch scanner data FIRST so renderFlowDiagram has it
   if(CONFIG.scannerUrl){
     try{var r3=await fetch(CONFIG.scannerUrl+'?t='+Date.now());if(r3.ok){scannerData=await r3.json()}}catch(e){console.warn('scanner fetch',e)}
   }
+  try{var r=await fetch(CONFIG.statusUrl+'?t='+Date.now());if(r.ok){S=await r.json();render()}}catch(e){console.warn('status fetch',e)}
+  try{var r2=await fetch(CONFIG.tradesUrl+'?t='+Date.now());if(r2.ok){trades=parseCSV(await r2.text());renderTrades();renderEquityChart()}}catch(e){}
 }
 
 // RENDER MAIN
@@ -1240,8 +1240,8 @@ function renderFlowDiagram(){
     var lc=(S.lifecycle||{})[sym]||{};
     var m=cm(sym);
     var isActive=activeSyms.indexOf(sym)!==-1;
-    var phase=lc.phase||'--';
-    var score=lc.score!=null?lc.score:'--';
+    var phase=lc.phase||c.lifecycle_phase||'--';
+    var score=lc.score!=null?lc.score:(c.conviction!=null?c.conviction:'--');
     var cfgi=c.cfgi!=null?c.cfgi:null;
     var regime=S.regime||'--';
 
@@ -1264,6 +1264,7 @@ function renderFlowDiagram(){
       signal=discount+'% below exit price';
     }else if(phase==='DCA'){
       signal=regime!=='--'?regime:'Accumulating';
+      if(c.conviction!=null)signal+=', Conviction '+Math.round(c.conviction);
       if(cfgi!=null)signal+=', F&G '+Math.round(cfgi);
     }else if(phase==='MARKUP'){
       signal='Breakout confirmed';
