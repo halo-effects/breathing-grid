@@ -17,18 +17,25 @@
 - **Dashboard sync**: Windows Scheduled Task `AIT_DashboardSync` runs every 2 min, pushes status.json/trades.csv to `docs/data/` via `trading/sync_dashboard.ps1`
 - GitHub Pages config: Deploy from branch `main`, folder `/docs`
 
-## Aster Trading Bot (HYPEUSDT)
-- **Live since 2026-02-13** on Aster DEX (Binance-compatible futures API)
-- Dual-tracking bidirectional DCA: simultaneous LONG + SHORT virtual deals
-- Net position mode (Aster doesn't support hedge mode) — opposing positions offset on exchange
-- Capital: ~$332 USDT (was $292, +$40 deposit 2026-02-14), no leverage (1x)
-- Params: TP=1.5%, Deviation=2.5%, MaxSO=8, SO_mult=2.0, 5m timeframe, base_order=4%
-- Regime-based allocation: TRENDING=75/25 long/short, CHOPPY/RANGING=50/50, etc.
-- EXTREME regime = 0/0 (halt trading)
-- Files: `trading/aster_trader.py` (live), `trading/martingale_engine.py` (backtest)
-- Runs as Windows Scheduled Tasks: `AsterTradingBot`, `AsterDashboard`
-- **Restart procedure**: Stop-Process by PID first, THEN Start-ScheduledTask (task restart alone won't kill python)
-- Dashboard: `trading/live/dashboard.html` (auto-refresh, shows both sides)
+## Current Live Bots
+
+### Aster Spot Live (ASTER/USDT) — V12e
+- **Live** on Aster DEX, Medium profile, 1h timeframe, lifecycle enabled
+- Task: `AsterSpotLive` (needs admin update from 15m → 1h; currently started manually)
+- Files: `trading/spot/lifecycle_trader.py` (class: `LifecycleTrader`), `trading/spot/run_live.py`
+- State/status: `trading/spot/live/aster/`
+- Dashboard: `docs/data/live-aster/` → private `d-474521b7c3545633.html`
+
+### V12e Paper (Hyperliquid — ETH/SOL/BTC USDC)
+- Hyperliquid, Medium profile, 1h timeframe, pipeline enabled
+- Task: `SpotPaperHyperliquid`
+- Coins: ETH/USDC, SOL/USDC, BTC/USDC
+- State/status: `trading/spot/paper/hyperliquid/`
+- Dashboard: `docs/data/v12e/` → public `dashboardV12.html`
+
+### Legacy: Aster Futures Bot (DEPRECATED)
+- Was HYPE/USDT dual-tracking bidirectional DCA on Aster futures
+- Task `AsterTradingBot` is **Disabled** — superseded by spot V12e
 
 ### Key Technical Lessons
 - reduceOnly orders fail in net position mode when opposing side has larger position — don't use reduceOnly
@@ -69,13 +76,10 @@
 - **100% win rate** on all profitable combos — scale-out exits work
 - Parameter optimization sweeps in `trading/spot/backtest_results/optimization/`
 
-### Spot Paper Bots — Live since 2026-02-17
-- `trading/spot/spot_trader.py` — SpotPaperTrader (CCXT, virtual positions, Telegram alerts)
-- `trading/spot/run_paper.py` — CLI entry (--exchange, --profile, --capital, --symbol, --timeframe)
-- Output: `trading/spot/paper/aster/` and `trading/spot/paper/hyperliquid/` (separate dirs)
-- **Aster instance**: ETH/USDT Medium 15m, $10K virtual, Scheduled Task `SpotPaperAster`
-- **Hyperliquid instance**: HYPE/USDC Medium 15m, $10K virtual, Scheduled Task `SpotPaperHyperliquid`
-- Both trigger at system startup, battery settings fixed
+### Spot Paper Bots — Evolution
+- Originally launched 2026-02-17 as v11 (ETH/USDT 15m Aster, HYPE/USDC 15m Hyperliquid)
+- **Current**: V12e paper on Hyperliquid (ETH/SOL/BTC USDC, 1h, pipeline enabled) — see "Current Live Bots" above
+- Old tasks `SpotPaperAster` and `SpotPaperHyperliquid` still exist but are from v11 era
 
 ### WhiteHatFX History
 - Brett previously traded MT4 Martingale (WhiteHatFX v2) on FTMO 100k prop firms: BTC, currencies, gold, US30
@@ -93,12 +97,11 @@
 - Rotation threshold: 20% improvement required
 - Output: `trading/live/scanner_t1.json`, `scanner_t2.json`, `scanner_recommendation.json`
 
-### Risk Profile System — Spec'd 2026-02-16
+### Risk Profile System — Spec'd 2026-02-16, Updated 2026-02-22
 - Spec: `projects/ait-product/risk-profiles-spec.md`
-- 3 profiles: Low (current/1×), Medium (2-3×), High (5-10× leverage)
-- Users allocate % of capital across profiles (default 100% Low)
-- Auto-guardrails: Medium→Low at 30% DD, High→Medium at 50% DD
-- Virtual sub-accounts, shared exchange account
+- 3 profiles (all spot, no leverage): Low (5 SOs, 3% BO, 2 coins), Medium (8 SOs, 4% BO, 3 coins), High (12 SOs, 5% BO, 5 coins)
+- Halt thresholds: Low 15% DD, Medium 25% DD, High 35% DD
+- Auto-guardrails: Medium→Low at 30% DD, High→Medium at 50% DD (spec claim — auto-downgrade not yet implemented in code)
 - Competitive differentiator: portfolio theory for bot trading
 
 ### Multi-Coin Portfolio Manager — Built 2026-02-15

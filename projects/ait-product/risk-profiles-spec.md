@@ -53,13 +53,15 @@ The AIT Risk Profile System applies **modern portfolio theory to algorithmic tra
 
 | Parameter | Value | Rationale |
 |-----------|-------|-----------|
-| **Leverage** | 1× | No amplification of losses |
-| **Max Safety Orders** | 8 | Limited Martingale exposure |
+| **Leverage** | 1× (spot) | No amplification of losses |
+| **Max Safety Orders** | 5 | Limited Martingale exposure |
 | **SO Volume Multiplier** | 2.0× | Conservative progression |
-| **Base Order %** | 4% | Moderate position sizing |
+| **Base Order %** | 3% | Moderate position sizing |
 | **Capital Reserve** | 10% | Substantial buffer for volatility |
-| **TP Range** | 0.6–2.5% | Patient profit-taking |
-| **Deviation Range** | 1.2–4.0% | Wider tolerance for price swings |
+| **TP Range** | 1.5–2.5% | Patient profit-taking |
+| **Deviation Range** | 3.0–4.0% | Wider tolerance for price swings |
+| **Max Drawdown** | 15% | Halt threshold |
+| **Max Coins** | 2 | Focused allocation |
 | **EXTREME Regime** | Halt (0/0) | Complete preservation mode |
 | **Max Directional Bias** | 75/25 | Moderate trend following |
 
@@ -83,13 +85,15 @@ The AIT Risk Profile System applies **modern portfolio theory to algorithmic tra
 
 | Parameter | Value | Rationale |
 |-----------|-------|-----------|
-| **Leverage** | 2–3× | Moderate position amplification |
-| **Max Safety Orders** | 12 | Extended Martingale depth |
-| **SO Volume Multiplier** | 2.5× | Aggressive averaging down |
-| **Base Order %** | 6% | Larger initial positions |
-| **Capital Reserve** | 5% | Reduced buffer for higher utilization |
-| **TP Range** | 0.4–2.0% | Faster profit realization |
-| **Deviation Range** | 0.8–3.0% | Tighter price tolerance |
+| **Leverage** | 1× (spot) | Spot-only, no leverage |
+| **Max Safety Orders** | 8 | Extended Martingale depth |
+| **SO Volume Multiplier** | 2.0× | Moderate averaging down |
+| **Base Order %** | 4% | Balanced position sizing |
+| **Capital Reserve** | 10% | Standard buffer |
+| **TP Range** | 1.0–2.0% | Balanced profit realization |
+| **Deviation Range** | 2.0–3.0% | Moderate price tolerance |
+| **Max Drawdown** | 25% | Halt threshold |
+| **Max Coins** | 3 | Diversified allocation |
 | **EXTREME Regime** | Reduce (20/20) | Limited activity in chaos |
 | **Max Directional Bias** | 85/15 | Strong trend following |
 
@@ -113,13 +117,15 @@ The AIT Risk Profile System applies **modern portfolio theory to algorithmic tra
 
 | Parameter | Value | Rationale |
 |-----------|-------|-----------|
-| **Leverage** | 5–10× | Significant position amplification |
-| **Max Safety Orders** | 16 | Deep Martingale progression |
-| **SO Volume Multiplier** | 3.0× | Highly aggressive averaging |
-| **Base Order %** | 8% | Large initial positions |
-| **Capital Reserve** | 2% | Minimal buffer, max utilization |
-| **TP Range** | 0.2–1.5% | Rapid profit-taking |
-| **Deviation Range** | 0.5–2.0% | Tight price tolerance |
+| **Leverage** | 1× (spot) | Spot-only, no leverage |
+| **Max Safety Orders** | 12 | Deep Martingale progression |
+| **SO Volume Multiplier** | 2.0× | Aggressive averaging |
+| **Base Order %** | 5% | Larger initial positions |
+| **Capital Reserve** | 10% | Standard buffer |
+| **TP Range** | 0.8–1.5% | Rapid profit-taking |
+| **Deviation Range** | 1.5–2.5% | Tighter price tolerance |
+| **Max Drawdown** | 35% | Halt threshold |
+| **Max Coins** | 5 | Maximum diversification |
 | **EXTREME Regime** | Continue (40/40) | Opportunistic in volatility |
 | **Max Directional Bias** | 95/5 | Maximum trend conviction |
 

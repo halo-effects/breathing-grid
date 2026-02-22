@@ -60,8 +60,8 @@ def send_telegram(msg: str):
 # ── Constants from backtest engine ─────────────────────────────────────────
 
 EXCHANGE_FEES = {
-    "aster":       {"maker": 0.0001, "taker": 0.00035},
-    "hyperliquid": {"maker": 0.0004, "taker": 0.0007},
+    "aster":       {"maker": 0.0,    "taker": 0.0004},
+    "hyperliquid": {"maker": 0.0002, "taker": 0.0005},
 }
 
 REGIME_TP_MULT = {
