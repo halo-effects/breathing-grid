@@ -1306,8 +1306,9 @@ function renderBottomBar(){
   var tpTrades=trades.filter(function(t){return parseFloat(t.pnl||0)!==0});
   var avgP=tpTrades.length?tpTrades.reduce(function(a,t){return a+parseFloat(t.pnl||0)},0)/tpTrades.length:0;
   $('bAvgProfit').innerHTML='<span style="color:'+pC(avgP)+'">'+fUsd(avgP)+'</span>';
-  var durs=trades.map(function(t){return t.duration||t.Duration}).filter(Boolean);
-  $('bAvgDur').textContent=durs.length?durs[Math.floor(durs.length/2)]:'--';
+  var durs=trades.map(function(t){return parseFloat(t.duration_h||t.duration||t.Duration||0)}).filter(function(v){return v>0});
+  var avgDur=durs.length?durs.reduce(function(a,b){return a+b},0)/durs.length:0;
+  $('bAvgDur').textContent=durs.length?fmt(avgDur,1)+'h':'--';
   $('bUptime').textContent=S.uptime_hours!=null?fmt(S.uptime_hours,1)+'h':'--';
   var dd=S.max_drawdown_pct||0;
   var ddCol=dd>25?'var(--red)':dd>10?'var(--amber)':'var(--green)';
