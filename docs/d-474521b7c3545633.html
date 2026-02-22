@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AIT Live Trading — Private Dashboard</title>
+<title>AIT Live Trading — Paper Trading Dashboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
@@ -454,7 +454,7 @@ tr:hover td{background:rgba(99,102,241,.04)}
       <h1>Adaptive Intelligence Trading</h1>
     </div>
   </div>
-  <div class="header-right"><span style="background:#ef4444;color:white;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;letter-spacing:0.5px;">PRIVATE</span>
+  <div class="header-right">
     <div class="header-meta">
       <span class="header-badge" id="hdrRegime">--</span>
       <span class="header-badge" id="hdrTrend">--</span>
@@ -489,12 +489,6 @@ tr:hover td{background:rgba(99,102,241,.04)}
     <!-- Row 1: Controls -->
     <div class="cm-controls">
       <div class="cm-control">
-        <div class="cm-toggle" id="cmAutoRotation">
-          <div class="cmt-dot" id="cmAutoRotationDot"></div>
-          <span class="cmt-label" id="cmAutoRotationLabel">Auto-Rotation OFF</span>
-        </div>
-      </div>
-      <div class="cm-control">
         <div class="cm-speed-selector" id="cmSpeedSelector">
           <div class="cmss-option cmss-conservative" id="cmssConservative">Conservative</div>
           <div class="cmss-option cmss-balanced" id="cmssBalanced">Balanced</div>
@@ -510,23 +504,12 @@ tr:hover td{background:rgba(99,102,241,.04)}
         <div class="cmsc-value" id="cmIdleCapital">--</div>
         <div class="cmsc-bar" id="cmIdleBar"></div>
       </div>
-      <div class="cm-status-card">
-        <div class="cmsc-label">Rebalances Today</div>
-        <div class="cmsc-value" id="cmRebalancesToday">-- / --</div>
-      </div>
-      <div class="cm-status-card">
-        <div class="cmsc-label">Next Available</div>
-        <div class="cmsc-value" id="cmNextAvailable">--</div>
-      </div>
-      <div class="cm-status-card">
-        <div class="cmsc-label">Cooldown</div>
-        <div class="cmsc-value" id="cmCooldown">--</div>
-      </div>
     </div>
-    
-    <!-- Row 3: Opportunity (conditional) -->
-    <div class="cm-opportunity" id="cmOpportunity" style="display:none">
-      <div class="cmo-text" id="cmOpportunityText">--</div>
+
+    <!-- Row 3: Phase Allocation Priority -->
+    <div class="cm-phase-priority" id="cmPhasePriority">
+      <div class="cmsc-label" style="margin-bottom:8px;">Allocation Priority</div>
+      <div id="cmPhaseWeights" style="display:flex;gap:8px;flex-wrap:wrap;"></div>
     </div>
   </div>
 </div>
@@ -622,7 +605,7 @@ tr:hover td{background:rgba(99,102,241,.04)}
 
 <!-- FOOTER -->
 <div class="footer">
-  Powered by <strong>AIT Live</strong> &middot; Adaptive Intelligence Trading &middot;
+  Powered by <strong>AIT V12e</strong> &middot; Adaptive Intelligence Trading &middot;
   <a href="index.html">Product Page</a><br>
   Auto-refreshes every 60s &middot; Next refresh in <span id="countdown">60</span>s &middot; Dashboard v3.0
 </div>
@@ -672,20 +655,8 @@ function renderCapitalManagement(){
   var cmSection = $('capitalManagementSection');
   if(cmSection) cmSection.style.display = 'block';
   
-  // Auto-rotation toggle
-  var autoRot = S.auto_rotation != null ? S.auto_rotation : true;
-  var autoRotDot = $('cmAutoRotationDot');
-  var autoRotLabel = $('cmAutoRotationLabel');
-  var autoRotToggle = $('cmAutoRotation');
-  
-  if(autoRotDot && autoRotLabel && autoRotToggle) {
-    autoRotDot.className = 'cmt-dot ' + (autoRot ? 'on' : 'off');
-    autoRotLabel.textContent = autoRot ? 'Auto-Rotation ON' : 'Auto-Rotation OFF';
-    autoRotToggle.className = 'cm-toggle ' + (autoRot ? 'active' : '');
-  }
-  
   // Speed selector
-  var mode = (S.rebalancing_mode || 'balanced').toLowerCase();
+  var mode = (S.deployment_speed || S.rebalancing_mode || 'balanced').toLowerCase();
   ['conservative', 'balanced', 'aggressive'].forEach(function(m) {
     var el = $('cmss' + m.charAt(0).toUpperCase() + m.slice(1));
     if(el) {
@@ -708,51 +679,25 @@ function renderCapitalManagement(){
     idleBar.innerHTML = '<div class="cmsc-bar-fill ' + barClass + '" style="width:' + barLevel + '%"></div>';
   }
   
-  // Rebalances Today
-  var resToday = $('cmRebalancesToday');
-  if(resToday) {
-    var todayCount = S.rebalances_today || 0;
-    var maxRebalances = {conservative: 2, balanced: 6, aggressive: 12}[mode] || 6;
-    resToday.textContent = todayCount + ' / ' + maxRebalances;
-    resToday.style.color = todayCount >= maxRebalances ? 'var(--red)' : 'var(--text)';
-  }
-  
-  // Next Available
-  var nextAvail = $('cmNextAvailable');
-  if(nextAvail) {
-    var nextText = S.next_rebalance_available || 'Now';
-    nextAvail.textContent = nextText;
-    nextAvail.style.color = nextText === 'Now' ? 'var(--green)' : 'var(--text)';
-  }
-  
-  // Cooldown
-  var cooldown = $('cmCooldown');
-  if(cooldown) {
-    var cooldownRemaining = S.rebalance_cooldown_remaining || 0;
-    if(cooldownRemaining > 0) {
-      var hours = Math.floor(cooldownRemaining);
-      var mins = Math.floor((cooldownRemaining - hours) * 60);
-      cooldown.textContent = hours > 0 ? hours + 'h ' + mins + 'm' : mins + 'm';
-      cooldown.style.color = 'var(--amber)';
-    } else {
-      cooldown.textContent = 'Ready';
-      cooldown.style.color = 'var(--green)';
-    }
-  }
-  
-  // Opportunity row
-  var oppDiv = $('cmOpportunity');
-  var oppText = $('cmOpportunityText');
-  var opp = S.best_opportunity;
-  
-  if(opp && opp.symbol && oppDiv && oppText) {
-    oppDiv.style.display = 'block';
-    oppText.innerHTML = 'Rotation Opportunity: <span style="color:var(--accent2);font-weight:700">' + 
-                       opp.symbol + '</span> <span style="color:var(--text3)">(score: ' + 
-                       opp.score.toFixed(1) + ')</span> — ' + 
-                       '<span style="color:var(--text2)">' + opp.vs_worst + '</span>';
-  } else if(oppDiv) {
-    oppDiv.style.display = 'none';
+  // Phase Allocation Priority
+  var phaseWeightsEl = $('cmPhaseWeights');
+  if(phaseWeightsEl) {
+    var weights = [
+      {phase:'SPRING',w:'3×',col:'var(--green)'},
+      {phase:'MARKUP',w:'2×',col:'var(--accent2)'},
+      {phase:'DCA',w:'1×',col:'var(--blue)'},
+      {phase:'EXIT',w:'0.5×',col:'var(--amber)'},
+      {phase:'MARKDOWN',w:'0.5×',col:'var(--red)'}
+    ];
+    var coins = S.coins || [];
+    var html = '';
+    weights.forEach(function(pw) {
+      var matching = coins.filter(function(c){ return (c.phase||'').toUpperCase() === pw.phase; }).map(function(c){ return c.symbol; });
+      html += '<div style="background:rgba(255,255,255,0.05);border-radius:8px;padding:8px 12px;min-width:100px;">' +
+              '<div style="font-size:12px;color:' + pw.col + ';font-weight:600;">' + pw.phase + ' ' + pw.w + '</div>' +
+              '<div style="font-size:11px;color:var(--text3);margin-top:2px;">' + (matching.length ? matching.join(', ') : '—') + '</div></div>';
+    });
+    phaseWeightsEl.innerHTML = html;
   }
 }
 
