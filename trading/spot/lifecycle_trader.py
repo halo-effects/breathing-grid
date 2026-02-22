@@ -22,7 +22,7 @@ import numpy as np
 import requests
 
 from .exchange_client import SpotExchangeClient
-from .exchange_adapter import create_adapter
+from .exchange_adapter import create_adapter, EXCHANGE_REGISTRY
 from .capital_allocator import compute_phase_allocations, route_freed_capital
 from .lifecycle_engine import LifecycleEngine, LifecycleConfig, LifecyclePhase, ShortPosition
 from .phase_classifier import classify_phase
@@ -39,9 +39,9 @@ LIVE_BASE.mkdir(exist_ok=True)
 
 # ── Telegram ───────────────────────────────────────────────────────────────
 
-TG_TOKEN = "8528958079:AAF90HSJ5Ck1urUydzS5CUvyf2EEeB7LUwc"
-TG_CHAT_ID = "5221941584"
-TG_ENABLED = True
+TG_TOKEN = os.environ.get("AIT_TG_TOKEN", "")
+TG_CHAT_ID = os.environ.get("AIT_TG_CHAT_ID", "")
+TG_ENABLED = bool(TG_TOKEN and TG_CHAT_ID)
 
 
 def send_telegram(msg: str):
@@ -59,10 +59,10 @@ def send_telegram(msg: str):
 
 # ── Constants from backtest engine ─────────────────────────────────────────
 
-EXCHANGE_FEES = {
-    "aster":       {"maker": 0.0,    "taker": 0.0004},
-    "hyperliquid": {"maker": 0.0002, "taker": 0.0005},
-}
+def _get_exchange_fees(exchange: str) -> dict:
+    """Get fees from exchange_adapter registry (single source of truth)."""
+    reg = EXCHANGE_REGISTRY.get(exchange, EXCHANGE_REGISTRY.get("aster", {}))
+    return {"maker": reg.get("maker_fee", 0.0), "taker": reg.get("taker_fee", 0.0004)}
 
 REGIME_TP_MULT = {
     "ACCUMULATION": 0.85, "CHOPPY": 0.90, "RANGING": 0.85,
@@ -261,7 +261,7 @@ class LifecycleTrader:
         self.max_coins = max_coins or self.profile.max_coins
         self.symbols = symbols or DEFAULT_SYMBOLS.get(self.exchange_name, ["ETH/USDT"])
 
-        fees = EXCHANGE_FEES.get(self.exchange_name, EXCHANGE_FEES["aster"])
+        fees = _get_exchange_fees(self.exchange_name)
         self.taker_fee = fees["taker"]
         self.maker_fee = fees["maker"]
 
