@@ -1257,6 +1257,7 @@ function renderTrades(){
   $('tradeBody').innerHTML=page.map(function(t){
     var pnl=parseFloat(t.pnl||t.PnL||0);
     var cls=pnl>0?'pnl-pos':pnl<0?'pnl-neg':'';
+<<<<<<< HEAD
     var time=t.close_time||t.timestamp||t.time||t.Time||'--';
     var sym=t.symbol||t.Symbol||'--';
     var side=t.side||t.Side||t.action||(parseFloat(t.layers||0)>0?'SELL':'--');
@@ -1267,6 +1268,17 @@ function renderTrades(){
     var ret=t.return_pct||t.ReturnPct||'--';
     var dur=t.duration_h||t.duration||t.Duration||'--';
     return '<tr><td>'+(time!=='--'?new Date(time).toLocaleString():'--')+'</td><td><strong>'+sym+'</strong></td><td>'+side+'</td><td>'+qty+'</td><td>'+(isNaN(price)?price:fUsd(parseFloat(price),2))+'</td><td class="'+cls+'">'+(pnl!==0?(pnl>0?'+':'')+fUsd(pnl):'--')+'</td><td>'+(ret!=='--'?ret+'%':'--')+'</td><td>'+dur+'</td><td>'+(regime!=='--'?'<span class="regime-badge '+(REGIME_CLS[regime]||'')+'">'+regime+'</span>':'--')+'</td><td>'+(phase!=='--'?'<span class="pb pb-'+phase+'" style="font-size:.56rem;padding:2px 8px">'+phase+'</span>':'--')+'</td></tr>';
+=======
+    var time=t.close_time||t.timestamp||t.time||'--';
+    var sym=t.symbol||t.Symbol||'--';
+    var layers=t.layers||'--';
+    var invested=parseFloat(t.invested||0);
+    var regime=t.regime||t.Regime||'--';
+    var ret=t.return_pct||t.ReturnPct||'--';
+    var dur=t.duration_h||t.duration||'--';
+    if(dur!=='--')dur=parseFloat(dur).toFixed(1)+'h';
+    return '<tr><td>'+(time!=='--'?new Date(time).toLocaleString():'--')+'</td><td><strong>'+sym+'</strong></td><td>'+layers+'</td><td>'+(invested>0?fUsd(invested):'--')+'</td><td class="'+cls+'">'+(pnl!==0?(pnl>0?'+':'')+fUsd(pnl):'--')+'</td><td>'+(ret!=='--'?ret+'%':'--')+'</td><td>'+dur+'</td><td>'+(regime!=='--'?'<span class="regime-badge '+(REGIME_CLS[regime]||'')+'">'+regime+'</span>':'--')+'</td></tr>';
+>>>>>>> 34e71cef (fix: trade log columns now match trades.csv schema)
   }).join('');
 }
 
