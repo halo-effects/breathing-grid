@@ -14,7 +14,7 @@
   "max_drawdown_pct": 4.96,
   "regime": "EXTREME",
   "trend_direction": "bearish",
-  "last_update": "2026-02-22T14:12:32+00:00",
+  "last_update": "2026-02-22T14:14:32+00:00",
   "uptime_hours": 0.0,
   "halted": false,
   "symbols": [
@@ -49,8 +49,8 @@
   "lifecycle": {
     "ASTER/USDT": {
       "phase": "DCA",
-      "score": 0.0,
-      "daily_score": 0.0,
+      "score": 41.7,
+      "daily_score": 41.7,
       "short_active": false,
       "metrics": {
         "exit_phases": 0,

@@ -4,17 +4,17 @@
   "profile": "medium",
   "exchange": "hyperliquid",
   "capital": 10000.0,
-  "equity": 9976.6,
+  "equity": 9978.09,
   "cash": 8015.17,
-  "pnl_pct": -0.23,
+  "pnl_pct": -0.22,
   "coins": {
     "ETH/USDC": {
       "state": "ACCUMULATING",
       "side": "long",
       "layers": 1,
       "avg_entry": 1990.9,
-      "current_price": 1949.8,
-      "unrealized_pnl": -8.25,
+      "current_price": 1950.9,
+      "unrealized_pnl": -8.03,
       "next_so_price": 1907.2822,
       "next_tp_price": 2010.809,
       "invested": 400.0,
@@ -26,8 +26,8 @@
       "side": "long",
       "layers": 2,
       "avg_entry": 85.4248,
-      "current_price": 83.766,
-      "unrealized_pnl": -23.29,
+      "current_price": 83.839,
+      "unrealized_pnl": -22.26,
       "next_so_price": 81.4351,
       "next_tp_price": 85.7038,
       "invested": 1200.0,
@@ -39,8 +39,8 @@
       "side": "long",
       "layers": 1,
       "avg_entry": 68545.0,
-      "current_price": 67580.0,
-      "unrealized_pnl": -5.63,
+      "current_price": 67621.0,
+      "unrealized_pnl": -5.39,
       "next_so_price": 66505.7863,
       "next_tp_price": 69230.45,
       "invested": 400.0,
@@ -54,7 +54,7 @@
   "max_drawdown_pct": 0.39,
   "regime": "BREAKOUT_WARNING",
   "trend_direction": "bearish",
-  "last_update": "2026-02-22T14:09:59+00:00",
+  "last_update": "2026-02-22T14:14:56+00:00",
   "uptime_hours": 0.0,
   "halted": false,
   "symbols": [
@@ -93,8 +93,8 @@
   "lifecycle": {
     "ETH/USDC": {
       "phase": "DCA",
-      "score": 0.0,
-      "daily_score": 0.0,
+      "score": 25.0,
+      "daily_score": 25.0,
       "short_active": false,
       "metrics": {
         "exit_phases": 0,
@@ -108,8 +108,8 @@
     },
     "SOL/USDC": {
       "phase": "DCA",
-      "score": 0.0,
-      "daily_score": 0.0,
+      "score": 25.0,
+      "daily_score": 25.0,
       "short_active": false,
       "metrics": {
         "exit_phases": 0,
@@ -123,8 +123,8 @@
     },
     "BTC/USDC": {
       "phase": "DCA",
-      "score": 0.0,
-      "daily_score": 0.0,
+      "score": 25.0,
+      "daily_score": 25.0,
       "short_active": false,
       "metrics": {
         "exit_phases": 0,
