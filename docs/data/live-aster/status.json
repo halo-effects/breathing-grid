@@ -1,85 +1,55 @@
 {
   "running": true,
   "mode": "live",
-  "profile": "high",
+  "profile": "medium",
   "exchange": "aster",
   "capital": 325.0,
-  "equity": 325.4,
+  "equity": 325.41,
   "cash": 309.36,
-  "pnl_pct": 0.12,
+  "pnl_pct": 0.13,
   "coins": {
     "ETH/USDT": {
       "state": "ACCUMULATING",
       "side": "long",
       "layers": 1,
       "avg_entry": 1985.22,
-      "current_price": 1980.06,
-      "unrealized_pnl": -0.04,
-      "next_so_price": 1951.4713,
-      "next_tp_price": 2001.1018,
+      "current_price": 1981.05,
+      "unrealized_pnl": -0.03,
+      "next_so_price": 1945.5156,
+      "next_tp_price": 2005.0722,
       "invested": 16.08,
-      "realized_pnl": 0,
-      "conviction": 60.5,
-      "conviction_band": "moderate",
-      "lifecycle_phase": "DCA",
-      "exit_lots_remaining": 0,
-      "spring_deployed": 0.0,
-      "lifecycle_unrealized": 0.0,
-      "lifecycle_pnl": 0.0
+      "realized_pnl": 0
     }
   },
   "deals_completed": 0,
   "win_rate": 0.0,
   "total_realized_pnl": 0,
   "max_drawdown_pct": 4.83,
-  "regime": "ACCUMULATION",
+  "regime": "RANGING",
   "trend_direction": "bullish",
-  "last_update": "2026-02-22T11:35:01+00:00",
-  "uptime_hours": 18.1,
+  "last_update": "2026-02-22T11:40:40+00:00",
+  "uptime_hours": 8.8,
   "halted": false,
   "symbols": [
     "ETH/USDT"
   ],
-  "timeframe": "1h",
+  "timeframe": "15m",
   "paused_coins": [],
   "account_paused": false,
   "conviction_overrides": {},
   "max_so_adjustments": {},
-  "macro": {
-    "fear_greed": {
-      "value": 9,
-      "classification": "Extreme Fear"
-    },
-    "btc_dominance": 56.58,
-    "btc_sma": {
-      "price": 68229.07,
-      "sma200": 98944.48,
-      "above_sma200": false,
-      "distance_pct": -31.04
-    },
-    "pi_cycle": {
-      "ma_111": 87005.32,
-      "ma_350x2": 199306.41,
-      "cross_imminent": false,
-      "topped": false,
-      "gap_pct": -56.35
-    },
-    "ssr": {
-      "ssr": 5.19,
-      "zone": "normal"
-    },
-    "_timestamp": 1771760098.6939552
-  },
-  "lifecycle_enabled": true,
-  "lifecycle_phases": {
-    "ETH/USDT": "DCA"
-  },
-  "lifecycle_total_pnl": 0.0,
   "controls": {
     "paused_coins": [],
     "account_paused": false,
     "conviction_overrides": {},
     "max_so_adjustments": {},
     "skip_next_so": []
-  }
+  },
+  "rebalancing_mode": "balanced",
+  "auto_rotation": true,
+  "rebalances_today": 0,
+  "rebalance_cooldown_remaining": 0.0,
+  "next_rebalance_available": "Now",
+  "idle_capital_pct": 95.1,
+  "best_opportunity": null
 }
