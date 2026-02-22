@@ -1,75 +1,36 @@
 {
   "running": true,
-  "mode": "paper",
   "profile": "medium",
   "exchange": "hyperliquid",
   "capital": 10000.0,
-  "equity": 9990.11,
+  "equity": 9999.25,
   "cash": 9600.0,
-  "pnl_pct": -0.1,
+  "pnl_pct": -0.01,
   "coins": {
     "HYPE/USDC": {
       "state": "ACCUMULATING",
       "side": "long",
       "layers": 1,
       "avg_entry": 29.645,
-      "current_price": 28.932,
-      "unrealized_pnl": -9.61,
+      "current_price": 29.61,
+      "unrealized_pnl": -0.47,
       "next_so_price": 28.7631,
-      "next_tp_price": 29.9414,
+      "next_tp_price": 30.0138,
       "invested": 400.0,
-      "realized_pnl": 0,
-      "cfgi": 48.5
+      "realized_pnl": 0
     }
   },
   "deals_completed": 0,
   "win_rate": 0.0,
   "total_realized_pnl": 0,
-  "max_drawdown_pct": 0.1,
+  "max_drawdown_pct": 0.01,
   "regime": "ACCUMULATION",
   "trend_direction": "bearish",
-  "last_update": "2026-02-22T18:05:09+00:00",
-  "uptime_hours": 1.3,
+  "last_update": "2026-02-17T19:48:40+00:00",
+  "uptime_hours": 0.5,
   "halted": false,
   "symbols": [
     "HYPE/USDC"
   ],
-  "timeframe": "15m",
-  "paused_coins": [],
-  "account_paused": false,
-  "conviction_overrides": {},
-  "max_so_adjustments": {},
-  "controls": {
-    "paused_coins": [],
-    "account_paused": false,
-    "conviction_overrides": {},
-    "max_so_adjustments": {},
-    "skip_next_so": []
-  },
-  "rebalancing_mode": "balanced",
-  "auto_rotation": true,
-  "rebalances_today": 0,
-  "rebalance_cooldown_remaining": 0.0,
-  "next_rebalance_available": "Now",
-  "idle_capital_pct": 96.0,
-  "best_opportunity": null,
-  "fear_greed_index": 48.5,
-  "lifecycle_enabled": false,
-  "smart_allocation": false,
-  "coin_phases": {},
-  "coin_allocations": {},
-  "pipeline_enabled": false,
-  "lifecycle": {
-    "HYPE/USDC": {
-      "phase": "DCA",
-      "score": 0,
-      "short_active": false,
-      "metrics": {
-        "exit_phases": 0,
-        "markdown_phases": 0,
-        "spring_phases": 0,
-        "markup_phases": 0
-      }
-    }
-  }
+  "timeframe": "15m"
 }
