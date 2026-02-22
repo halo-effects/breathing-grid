@@ -355,6 +355,61 @@ tr:hover td{background:rgba(99,102,241,.04)}
   .risk-grid{grid-template-columns:1fr}
   .positions-grid{grid-template-columns:1fr}
 }
+
+/* ── Capital Management Cockpit ── */
+.cm-section{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;margin-bottom:16px}
+.cm-section h2{font-size:1rem;font-weight:600;color:var(--text2);margin-bottom:20px;display:flex;align-items:center;gap:8px}
+.cm-panel{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:10px;padding:20px}
+
+/* Controls Row */
+.cm-controls{display:flex;gap:32px;align-items:center;margin-bottom:24px;flex-wrap:wrap;justify-content:center}
+.cm-control{flex:1;min-width:240px;max-width:400px}
+
+/* Auto-Rotation Toggle */
+.cm-toggle{display:flex;align-items:center;gap:12px;padding:14px 20px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;transition:all .3s;cursor:default}
+.cmt-dot{width:14px;height:14px;border-radius:50%;transition:all .3s;flex-shrink:0}
+.cmt-dot.on{background:var(--green);box-shadow:0 0 8px rgba(34,197,94,.4)}
+.cmt-dot.off{background:var(--text3)}
+.cmt-label{font-size:.85rem;font-weight:600;transition:color .3s}
+.cm-toggle.active{border-color:rgba(34,197,94,.4);background:rgba(34,197,94,.06)}
+.cm-toggle.active .cmt-label{color:var(--green)}
+
+/* Speed Selector */
+.cm-speed-selector{display:flex;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:rgba(255,255,255,.04)}
+.cmss-option{flex:1;padding:12px 16px;font-size:.75rem;font-weight:600;text-align:center;cursor:default;transition:all .3s;text-transform:uppercase;letter-spacing:.8px;border-right:1px solid var(--border)}
+.cmss-option:last-child{border-right:none}
+.cmss-conservative.active{background:rgba(34,197,94,.12);color:var(--green);border-color:rgba(34,197,94,.2)}
+.cmss-balanced.active{background:rgba(99,102,241,.12);color:var(--accent2);border-color:rgba(99,102,241,.2)}
+.cmss-aggressive.active{background:rgba(245,158,11,.12);color:var(--amber);border-color:rgba(245,158,11,.2)}
+
+/* Status Cards */
+.cm-status-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px}
+.cm-status-card{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center;transition:border-color .3s}
+.cmsc-label{font-size:.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px}
+.cmsc-value{font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:6px}
+.cmsc-bar{height:6px;border-radius:3px;background:var(--border);overflow:hidden;position:relative}
+.cmsc-bar-fill{height:100%;border-radius:3px;transition:width .5s}
+.cmsc-bar-fill.low{background:var(--green)}
+.cmsc-bar-fill.moderate{background:var(--amber)}
+.cmsc-bar-fill.high{background:var(--red)}
+
+/* Opportunity Row */
+.cm-opportunity{padding:16px;background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.15);border-radius:8px;text-align:center}
+.cmo-text{font-size:.85rem;font-weight:500;color:var(--text);line-height:1.4}
+
+/* Mobile responsive */
+@media(max-width:768px){
+  .cm-controls{flex-direction:column;gap:16px}
+  .cm-status-cards{grid-template-columns:1fr 1fr}
+  .cm-control{min-width:200px;max-width:none}
+}
+@media(max-width:480px){
+  .cm-status-cards{grid-template-columns:1fr}
+  .cm-speed-selector{flex-direction:column}
+  .cmss-option{border-right:none;border-bottom:1px solid var(--border)}
+  .cmss-option:last-child{border-bottom:none}
+}
+
 </style>
 </head>
 <body>
@@ -426,6 +481,56 @@ tr:hover td{background:rgba(99,102,241,.04)}
 <div class="alloc-section">
   <h2>Portfolio Allocation</h2>
   <div class="alloc-inner" id="allocInner"></div>
+
+<!-- 3.5. CAPITAL MANAGEMENT COCKPIT -->
+<div class="cm-section" id="capitalManagementSection">
+  <h2>💰 Capital Management</h2>
+  <div class="cm-panel" id="capitalManagementPanel">
+    <!-- Row 1: Controls -->
+    <div class="cm-controls">
+      <div class="cm-control">
+        <div class="cm-toggle" id="cmAutoRotation">
+          <div class="cmt-dot" id="cmAutoRotationDot"></div>
+          <span class="cmt-label" id="cmAutoRotationLabel">Auto-Rotation OFF</span>
+        </div>
+      </div>
+      <div class="cm-control">
+        <div class="cm-speed-selector" id="cmSpeedSelector">
+          <div class="cmss-option cmss-conservative" id="cmssConservative">Conservative</div>
+          <div class="cmss-option cmss-balanced" id="cmssBalanced">Balanced</div>
+          <div class="cmss-option cmss-aggressive" id="cmssAggressive">Aggressive</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Row 2: Status Cards -->
+    <div class="cm-status-cards">
+      <div class="cm-status-card">
+        <div class="cmsc-label">Idle Capital</div>
+        <div class="cmsc-value" id="cmIdleCapital">--</div>
+        <div class="cmsc-bar" id="cmIdleBar"></div>
+      </div>
+      <div class="cm-status-card">
+        <div class="cmsc-label">Rebalances Today</div>
+        <div class="cmsc-value" id="cmRebalancesToday">-- / --</div>
+      </div>
+      <div class="cm-status-card">
+        <div class="cmsc-label">Next Available</div>
+        <div class="cmsc-value" id="cmNextAvailable">--</div>
+      </div>
+      <div class="cm-status-card">
+        <div class="cmsc-label">Cooldown</div>
+        <div class="cmsc-value" id="cmCooldown">--</div>
+      </div>
+    </div>
+    
+    <!-- Row 3: Opportunity (conditional) -->
+    <div class="cm-opportunity" id="cmOpportunity" style="display:none">
+      <div class="cmo-text" id="cmOpportunityText">--</div>
+    </div>
+  </div>
+</div>
+
 </div>
 
 <!-- 4. POSITIONS -->
@@ -529,7 +634,8 @@ tr:hover td{background:rgba(99,102,241,.04)}
 var CONFIG = {
   statusUrl: 'data/live-aster/status.json',
   tradesUrl: 'data/live-aster/trades.csv',
-  refreshInterval: 60
+  refreshInterval: 60,
+  scannerUrl: 'data/scanner_t1.json'
 };
 
 // HELPERS
@@ -553,13 +659,110 @@ var PHASE_DESC = {
 var PHASES = ['DCA','EXIT','MARKDOWN','SPRING','MARKUP'];
 var REGIME_CLS = {ACCUMULATION:'rb-ACCUMULATION',ACC:'rb-ACC',TRENDING:'rb-TRENDING',TREND:'rb-TREND',RANGING:'rb-RANGING',EXTREME:'rb-EXTREME',CRASH:'rb-CRASH',CHOPPY:'rb-CHOPPY',DISTRIBUTION:'rb-DISTRIBUTION'};
 
-var S=null, trades=[], eqChart=null, countdownVal=CONFIG.refreshInterval, tradePage=0;
+var S=null, trades=[], eqChart=null, countdownVal=CONFIG.refreshInterval, tradePage=0, scannerData=null;
 
 function parseCSV(t){var l=t.trim().split('\n');if(l.length<2)return[];var h=l[0].split(',').map(function(x){return x.trim()});return l.slice(1).map(function(r){var v=r.split(',');var o={};h.forEach(function(k,i){o[k]=v[i]?v[i].trim():''});return o})}
+
+
+// CAPITAL MANAGEMENT COCKPIT
+function renderCapitalManagement(){
+  if(!S) return;
+  
+  // Show section even without V12f data (use defaults)
+  var cmSection = $('capitalManagementSection');
+  if(cmSection) cmSection.style.display = 'block';
+  
+  // Auto-rotation toggle
+  var autoRot = S.auto_rotation != null ? S.auto_rotation : true;
+  var autoRotDot = $('cmAutoRotationDot');
+  var autoRotLabel = $('cmAutoRotationLabel');
+  var autoRotToggle = $('cmAutoRotation');
+  
+  if(autoRotDot && autoRotLabel && autoRotToggle) {
+    autoRotDot.className = 'cmt-dot ' + (autoRot ? 'on' : 'off');
+    autoRotLabel.textContent = autoRot ? 'Auto-Rotation ON' : 'Auto-Rotation OFF';
+    autoRotToggle.className = 'cm-toggle ' + (autoRot ? 'active' : '');
+  }
+  
+  // Speed selector
+  var mode = (S.rebalancing_mode || 'balanced').toLowerCase();
+  ['conservative', 'balanced', 'aggressive'].forEach(function(m) {
+    var el = $('cmss' + m.charAt(0).toUpperCase() + m.slice(1));
+    if(el) {
+      el.className = 'cmss-option cmss-' + m + (mode === m ? ' active' : '');
+    }
+  });
+  
+  // Status cards
+  // Idle Capital
+  var idleCapital = $('cmIdleCapital');
+  var idleBar = $('cmIdleBar');
+  var idlePct = S.idle_capital_pct || 0;
+  if(idleCapital) {
+    idleCapital.textContent = idlePct.toFixed(1) + '%';
+    idleCapital.style.color = idlePct > 25 ? 'var(--red)' : idlePct > 15 ? 'var(--amber)' : 'var(--green)';
+  }
+  if(idleBar) {
+    var barLevel = Math.min(idlePct / 30 * 100, 100); // 30% = full bar
+    var barClass = idlePct > 25 ? 'high' : idlePct > 15 ? 'moderate' : 'low';
+    idleBar.innerHTML = '<div class="cmsc-bar-fill ' + barClass + '" style="width:' + barLevel + '%"></div>';
+  }
+  
+  // Rebalances Today
+  var resToday = $('cmRebalancesToday');
+  if(resToday) {
+    var todayCount = S.rebalances_today || 0;
+    var maxRebalances = {conservative: 2, balanced: 6, aggressive: 12}[mode] || 6;
+    resToday.textContent = todayCount + ' / ' + maxRebalances;
+    resToday.style.color = todayCount >= maxRebalances ? 'var(--red)' : 'var(--text)';
+  }
+  
+  // Next Available
+  var nextAvail = $('cmNextAvailable');
+  if(nextAvail) {
+    var nextText = S.next_rebalance_available || 'Now';
+    nextAvail.textContent = nextText;
+    nextAvail.style.color = nextText === 'Now' ? 'var(--green)' : 'var(--text)';
+  }
+  
+  // Cooldown
+  var cooldown = $('cmCooldown');
+  if(cooldown) {
+    var cooldownRemaining = S.rebalance_cooldown_remaining || 0;
+    if(cooldownRemaining > 0) {
+      var hours = Math.floor(cooldownRemaining);
+      var mins = Math.floor((cooldownRemaining - hours) * 60);
+      cooldown.textContent = hours > 0 ? hours + 'h ' + mins + 'm' : mins + 'm';
+      cooldown.style.color = 'var(--amber)';
+    } else {
+      cooldown.textContent = 'Ready';
+      cooldown.style.color = 'var(--green)';
+    }
+  }
+  
+  // Opportunity row
+  var oppDiv = $('cmOpportunity');
+  var oppText = $('cmOpportunityText');
+  var opp = S.best_opportunity;
+  
+  if(opp && opp.symbol && oppDiv && oppText) {
+    oppDiv.style.display = 'block';
+    oppText.innerHTML = 'Rotation Opportunity: <span style="color:var(--accent2);font-weight:700">' + 
+                       opp.symbol + '</span> <span style="color:var(--text3)">(score: ' + 
+                       opp.score.toFixed(1) + ')</span> — ' + 
+                       '<span style="color:var(--text2)">' + opp.vs_worst + '</span>';
+  } else if(oppDiv) {
+    oppDiv.style.display = 'none';
+  }
+}
 
 async function fetchData(){
   try{var r=await fetch(CONFIG.statusUrl+'?t='+Date.now());if(r.ok){S=await r.json();render()}}catch(e){console.warn('status fetch',e)}
   try{var r2=await fetch(CONFIG.tradesUrl+'?t='+Date.now());if(r2.ok){trades=parseCSV(await r2.text());renderTrades();renderEquityChart()}}catch(e){}
+  // Fetch scanner data for opportunity table
+  if(CONFIG.scannerUrl){
+    try{var r3=await fetch(CONFIG.scannerUrl+'?t='+Date.now());if(r3.ok){scannerData=await r3.json()}}catch(e){console.warn('scanner fetch',e)}
+  }
 }
 
 // RENDER MAIN
@@ -592,7 +795,7 @@ function render(){
   $('hdrCoins').textContent=syms.join(', ')+' \u00B7 '+(S.timeframe||'1h');
 
   // Stats row — each wrapped so one failure doesn't kill the rest
-  var fns=[renderStats,renderRiskProfile,renderPortfolioAlloc,renderPositions,renderAIPanel,renderCoinCards,renderCompounding,renderMacro,renderCapDonut,renderFlowDiagram,renderBottomBar];
+  var fns=[renderStats,renderRiskProfile,renderPortfolioAlloc,renderCapitalManagement,renderPositions,renderAIPanel,renderCoinCards,renderCompounding,renderMacro,renderCapDonut,renderFlowDiagram,renderBottomBar];
   fns.forEach(function(fn){try{fn()}catch(e){console.warn(fn.name,e)}});
 }
 
@@ -1009,7 +1212,19 @@ function renderCapDonut(){
 
 // LIVE OPPORTUNITY TABLE
 function renderFlowDiagram(){
-  var syms=S.symbols||Object.keys(S.coins||{});
+  // Show ALL certified coins from scanner, not just active positions
+  var activeSyms=S.symbols||Object.keys(S.coins||{});
+  var allSyms=[];
+  // Start with active coins
+  activeSyms.forEach(function(s){ allSyms.push(s) });
+  // Add scanner-certified coins
+  if(scannerData && scannerData.candidates){
+    scannerData.candidates.forEach(function(c){
+      var sym=c.symbol;
+      if(allSyms.indexOf(sym)===-1) allSyms.push(sym);
+    });
+  }
+  var syms=allSyms.length>0?allSyms:activeSyms;
   var phaseColors={DCA:'var(--phase-dca)',EXIT:'var(--phase-exit)',MARKDOWN:'var(--phase-markdown)',SPRING:'var(--phase-spring)',MARKUP:'var(--phase-markup)'};
   var oppMap={
     SPRING:{text:'Best entry \u2014 buying bottom',color:'var(--green)'},
@@ -1024,14 +1239,27 @@ function renderFlowDiagram(){
     var c=(S.coins||{})[sym]||{};
     var lc=(S.lifecycle||{})[sym]||{};
     var m=cm(sym);
-    var phase=lc.phase||'DCA';
+    var isActive=activeSyms.indexOf(sym)!==-1;
+    var phase=lc.phase||'--';
     var score=lc.score!=null?lc.score:'--';
     var cfgi=c.cfgi!=null?c.cfgi:null;
     var regime=S.regime||'--';
 
+    // Scanner score for this coin
+    var scanScore='--';
+    if(scannerData && scannerData.candidates){
+      scannerData.candidates.forEach(function(sc){
+        if(sc.symbol===sym) scanScore=sc.total_score;
+      });
+    }
+
     // Build signal description
     var signal='';
-    if(phase==='SPRING'){
+    if(!isActive){
+      // Scanner-only coin — show scanner score
+      signal='Scanner score: '+(scanScore!=='--'?scanScore.toFixed(0):'--');
+      phase='--';
+    }else if(phase==='SPRING'){
       var discount=lc.spring_discount||'--';
       signal=discount+'% below exit price';
     }else if(phase==='DCA'){
@@ -1045,11 +1273,18 @@ function renderFlowDiagram(){
       signal='Riding shorts down';
     }
 
-    var opp=oppMap[phase]||{text:'--',color:'var(--text3)'};
+    var opp;
+    if(!isActive){
+      opp={text:'Certified — available',color:'var(--text2)'};
+    }else{
+      opp=oppMap[phase]||{text:'--',color:'var(--text3)'};
+    }
 
-    h+='<tr>';
-    h+='<td class="coin-name">'+m.label+'</td>';
-    h+='<td><span class="phase-pill"><span class="pd" style="background:'+phaseColors[phase]+'"></span>'+phase+'</span></td>';
+    var phaseHtml=phase==='--'?'<span style="color:var(--text3)">Monitoring</span>':'<span class="phase-pill"><span class="pd" style="background:'+phaseColors[phase]+'"></span>'+phase+'</span>';
+
+    h+='<tr'+(isActive?' style="background:rgba(99,102,241,.06)"':'')+'>'; 
+    h+='<td class="coin-name">'+m.label+(isActive?' <span style="font-size:.55rem;color:var(--accent2);vertical-align:middle">ACTIVE</span>':'')+'</td>';
+    h+='<td>'+phaseHtml+'</td>';
     h+='<td class="signal-text">'+signal+'</td>';
     h+='<td class="opp-text" style="color:'+opp.color+'">'+opp.text+'</td>';
     h+='</tr>';
