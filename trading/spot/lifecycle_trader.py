@@ -1177,29 +1177,39 @@ class LifecycleTrader:
     # ── CFGI Polling ──────────────────────────────────────────────
 
     def _poll_cfgi(self, symbol: str) -> float:
-        """Get CFGI score for a symbol. Uses cached daily data."""
+        """Get CFGI score for a symbol. Uses cached daily data.
+        Cache format: {date_str: value} dict OR [{date, value}] list."""
+        def _read_cfgi_cache(path, today):
+            data = json.loads(path.read_text(encoding="utf-8"))
+            if isinstance(data, dict):
+                # {date: value} format
+                for date_str in sorted(data.keys(), reverse=True):
+                    if date_str <= today:
+                        return float(data[date_str])
+            elif isinstance(data, list):
+                # [{date, value}] format
+                for entry in reversed(data):
+                    if entry.get("date", "") <= today:
+                        return float(entry.get("value", 50))
+            return None
+
         try:
             token = symbol.split("/")[0].upper()
+            today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
             cache_path = Path(__file__).parent / "data" / "cfgi_cache" / f"{token}_cfgi_daily.json"
             if cache_path.exists():
-                data = json.loads(cache_path.read_text(encoding="utf-8"))
-                today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-                for entry in reversed(data):
-                    if entry.get("date", "") <= today:
-                        val = float(entry.get("value", 50))
-                        self._coin_cfgi[symbol] = val
-                        return val
-            # Fallback: try BTC market-wide
+                val = _read_cfgi_cache(cache_path, today)
+                if val is not None:
+                    self._coin_cfgi[symbol] = val
+                    return val
+            # Fallback: BTC market-wide
             btc_cache = Path(__file__).parent / "data" / "cfgi_cache" / "BTC_cfgi_daily.json"
             if btc_cache.exists():
-                data = json.loads(btc_cache.read_text(encoding="utf-8"))
-                today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-                for entry in reversed(data):
-                    if entry.get("date", "") <= today:
-                        val = float(entry.get("value", 50))
-                        self._fear_greed_index = val
-                        self._coin_cfgi[symbol] = val
-                        return val
+                val = _read_cfgi_cache(btc_cache, today)
+                if val is not None:
+                    self._fear_greed_index = val
+                    self._coin_cfgi[symbol] = val
+                    return val
         except Exception as e:
             logger.debug("CFGI poll failed for %s: %s", symbol, e)
         return 50.0  # neutral default
@@ -2389,10 +2399,16 @@ class LifecycleTrader:
             if btc_cache.exists():
                 data = json.loads(btc_cache.read_text(encoding="utf-8"))
                 today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-                for entry in reversed(data):
-                    if entry.get("date", "") <= today:
-                        self._fear_greed_index = float(entry.get("value", 50))
-                        break
+                if isinstance(data, dict):
+                    for date_str in sorted(data.keys(), reverse=True):
+                        if date_str <= today:
+                            self._fear_greed_index = float(data[date_str])
+                            break
+                elif isinstance(data, list):
+                    for entry in reversed(data):
+                        if entry.get("date", "") <= today:
+                            self._fear_greed_index = float(entry.get("value", 50))
+                            break
         except Exception:
             pass
 
