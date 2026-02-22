@@ -13,9 +13,9 @@
       "side": "long",
       "layers": 1,
       "avg_entry": 1985.22,
-      "current_price": 1981.45,
+      "current_price": 1981.23,
       "unrealized_pnl": -0.03,
-      "next_so_price": 1940.5526,
+      "next_so_price": 1925.6634,
       "next_tp_price": 2005.0722,
       "invested": 16.08,
       "realized_pnl": 0
@@ -25,10 +25,10 @@
   "win_rate": 0.0,
   "total_realized_pnl": 0,
   "max_drawdown_pct": 4.83,
-  "regime": "DISTRIBUTION",
+  "regime": "EXTREME",
   "trend_direction": "bullish",
-  "last_update": "2026-02-22T11:10:28+00:00",
-  "uptime_hours": 8.3,
+  "last_update": "2026-02-22T11:25:34+00:00",
+  "uptime_hours": 8.6,
   "halted": false,
   "symbols": [
     "ETH/USDT"
