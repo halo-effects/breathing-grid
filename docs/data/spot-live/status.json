@@ -4,22 +4,23 @@
   "profile": "medium",
   "exchange": "aster",
   "capital": 325.0,
-  "equity": 309.37,
+  "equity": 309.39,
   "cash": 296.36,
-  "pnl_pct": -4.81,
+  "pnl_pct": -4.8,
   "coins": {
     "ASTER/USDT": {
       "state": "ACCUMULATING",
       "side": "long",
       "layers": 1,
       "avg_entry": 0.696,
-      "current_price": 0.6962,
-      "unrealized_pnl": 0.0,
+      "current_price": 0.6976,
+      "unrealized_pnl": 0.03,
       "next_so_price": 0.6667,
       "next_tp_price": 0.7082,
       "invested": 13.0,
       "realized_pnl": 0,
-      "lifecycle_phase": "DCA"
+      "lifecycle_phase": "DCA",
+      "cfgi": 48.5
     }
   },
   "deals_completed": 0,
@@ -28,7 +29,7 @@
   "max_drawdown_pct": 4.96,
   "regime": "TRENDING",
   "trend_direction": "bearish",
-  "last_update": "2026-02-22T14:27:59+00:00",
+  "last_update": "2026-02-22T14:30:18+00:00",
   "uptime_hours": 0.0,
   "halted": false,
   "symbols": [
@@ -53,7 +54,7 @@
   "next_rebalance_available": "Now",
   "idle_capital_pct": 95.8,
   "best_opportunity": null,
-  "fear_greed_index": null,
+  "fear_greed_index": 48.5,
   "lifecycle_enabled": true,
   "smart_allocation": false,
   "coin_phases": {

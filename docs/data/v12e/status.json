@@ -4,7 +4,7 @@
   "profile": "medium",
   "exchange": "hyperliquid",
   "capital": 10000.0,
-  "equity": 9976.69,
+  "equity": 9977.16,
   "cash": 8015.17,
   "pnl_pct": -0.23,
   "coins": {
@@ -13,26 +13,28 @@
       "side": "long",
       "layers": 1,
       "avg_entry": 1990.9,
-      "current_price": 1949.0,
-      "unrealized_pnl": -8.41,
+      "current_price": 1949.7,
+      "unrealized_pnl": -8.27,
       "next_so_price": 1907.2822,
       "next_tp_price": 2010.809,
       "invested": 400.0,
       "realized_pnl": 0,
-      "lifecycle_phase": "DCA"
+      "lifecycle_phase": "DCA",
+      "cfgi": 41.5
     },
     "SOL/USDC": {
       "state": "ACCUMULATING",
       "side": "long",
       "layers": 2,
       "avg_entry": 85.4248,
-      "current_price": 83.777,
-      "unrealized_pnl": -23.13,
+      "current_price": 83.8,
+      "unrealized_pnl": -22.81,
       "next_so_price": 81.4351,
       "next_tp_price": 85.7038,
       "invested": 1200.0,
       "realized_pnl": 0,
-      "lifecycle_phase": "DCA"
+      "lifecycle_phase": "DCA",
+      "cfgi": 40.0
     },
     "BTC/USDC": {
       "state": "ACCUMULATING",
@@ -45,7 +47,8 @@
       "next_tp_price": 69230.45,
       "invested": 400.0,
       "realized_pnl": 0,
-      "lifecycle_phase": "DCA"
+      "lifecycle_phase": "DCA",
+      "cfgi": 48.5
     }
   },
   "deals_completed": 4,
@@ -54,7 +57,7 @@
   "max_drawdown_pct": 0.39,
   "regime": "BREAKOUT_WARNING",
   "trend_direction": "bearish",
-  "last_update": "2026-02-22T14:28:09+00:00",
+  "last_update": "2026-02-22T14:30:28+00:00",
   "uptime_hours": 0.0,
   "halted": false,
   "symbols": [
@@ -81,7 +84,7 @@
   "next_rebalance_available": "Now",
   "idle_capital_pct": 80.0,
   "best_opportunity": null,
-  "fear_greed_index": null,
+  "fear_greed_index": 48.5,
   "lifecycle_enabled": true,
   "smart_allocation": false,
   "coin_phases": {
