@@ -7,7 +7,7 @@ import os
 # Add workspace root to path for relative imports
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
-from trading.spot.spot_trader import SpotPaperTrader, DEFAULT_SYMBOLS
+from trading.spot.lifecycle_trader import LifecycleTrader as SpotPaperTrader, DEFAULT_SYMBOLS
 
 
 def main():

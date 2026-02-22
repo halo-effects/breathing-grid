@@ -11,7 +11,7 @@ import os
 # Add workspace root to path for relative imports
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
-from trading.spot.spot_trader import SpotPaperTrader, DEFAULT_SYMBOLS
+from trading.spot.lifecycle_trader import LifecycleTrader, DEFAULT_SYMBOLS
 
 
 def main():
@@ -40,7 +40,7 @@ def main():
     else:
         symbols = [s.strip() for s in args.symbol.split(",")]
 
-    trader = SpotPaperTrader(
+    trader = LifecycleTrader(
         exchange=args.exchange,
         profile=args.profile,
         capital=args.capital,
@@ -66,9 +66,13 @@ def main():
         print("Run with --confirm to proceed, or --test to verify connectivity first.")
         sys.exit(1)
 
+    # Enable lifecycle phases (Wyckoff DCA/EXIT/MARKDOWN/SPRING/MARKUP + shorts)
+    trader.enable_lifecycle(args.profile)
+
     print(f"🔴 STARTING LIVE TRADER on {args.exchange}")
     print(f"   Symbols: {', '.join(symbols)}")
     print(f"   Profile: {args.profile}, Capital ref: ${args.capital:.0f}")
+    print(f"   Lifecycle: ENABLED")
     print(f"   Output dir: {trader.paper_dir}")
     print()
     trader.run()
