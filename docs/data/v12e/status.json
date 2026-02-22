@@ -4,54 +4,57 @@
   "profile": "medium",
   "exchange": "hyperliquid",
   "capital": 10000.0,
-  "equity": 9998.38,
+  "equity": 9990.39,
   "cash": 8015.17,
-  "pnl_pct": -0.02,
+  "pnl_pct": -0.1,
   "coins": {
     "ETH/USDC": {
       "state": "ACCUMULATING",
       "side": "long",
       "layers": 1,
       "avg_entry": 1990.9,
-      "current_price": 1971.6,
-      "unrealized_pnl": -3.87,
-      "next_so_price": 1931.173,
+      "current_price": 1963.2,
+      "unrealized_pnl": -5.56,
+      "next_so_price": 1907.2822,
       "next_tp_price": 2010.809,
       "invested": 400.0,
-      "realized_pnl": 0
+      "realized_pnl": 0,
+      "lifecycle_phase": "DCA"
     },
     "SOL/USDC": {
       "state": "ACCUMULATING",
       "side": "long",
       "layers": 2,
       "avg_entry": 85.4248,
-      "current_price": 84.816,
-      "unrealized_pnl": -8.55,
+      "current_price": 84.421,
+      "unrealized_pnl": -14.09,
       "next_so_price": 79.3137,
-      "next_tp_price": 85.7038,
+      "next_tp_price": 85.7403,
       "invested": 1200.0,
-      "realized_pnl": 0
+      "realized_pnl": 0,
+      "lifecycle_phase": "DCA"
     },
     "BTC/USDC": {
       "state": "ACCUMULATING",
       "side": "long",
       "layers": 1,
       "avg_entry": 68545.0,
-      "current_price": 68036.0,
-      "unrealized_pnl": -2.97,
-      "next_so_price": 67174.1,
+      "current_price": 67906.0,
+      "unrealized_pnl": -3.73,
+      "next_so_price": 66625.74,
       "next_tp_price": 69230.45,
       "invested": 400.0,
-      "realized_pnl": 0
+      "realized_pnl": 0,
+      "lifecycle_phase": "DCA"
     }
   },
   "deals_completed": 4,
   "win_rate": 100.0,
   "total_realized_pnl": 15.17,
-  "max_drawdown_pct": 0.2,
+  "max_drawdown_pct": 0.26,
   "regime": "BREAKOUT_WARNING",
-  "trend_direction": "bullish",
-  "last_update": "2026-02-22T12:35:40+00:00",
+  "trend_direction": "bearish",
+  "last_update": "2026-02-22T12:40:34+00:00",
   "uptime_hours": 0.0,
   "halted": false,
   "symbols": [
@@ -79,6 +82,58 @@
   "idle_capital_pct": 80.0,
   "best_opportunity": null,
   "smart_allocation": false,
-  "coin_phases": {},
-  "coin_allocations": {}
+  "coin_phases": {
+    "ETH/USDC": "DCA",
+    "SOL/USDC": "DCA",
+    "BTC/USDC": "DCA"
+  },
+  "coin_allocations": {},
+  "pipeline_enabled": true,
+  "lifecycle": {
+    "ETH/USDC": {
+      "phase": "DCA",
+      "score": 0.0,
+      "daily_score": 0.0,
+      "short_active": false,
+      "metrics": {
+        "exit_phases": 0,
+        "markdown_phases": 0,
+        "spring_phases": 0,
+        "markup_phases": 0
+      },
+      "short_pnl": 0.0,
+      "spring_pnl": 0.0,
+      "markup_pnl": 0.0
+    },
+    "SOL/USDC": {
+      "phase": "DCA",
+      "score": 0.0,
+      "daily_score": 0.0,
+      "short_active": false,
+      "metrics": {
+        "exit_phases": 0,
+        "markdown_phases": 0,
+        "spring_phases": 0,
+        "markup_phases": 0
+      },
+      "short_pnl": 0.0,
+      "spring_pnl": 0.0,
+      "markup_pnl": 0.0
+    },
+    "BTC/USDC": {
+      "phase": "DCA",
+      "score": 0.0,
+      "daily_score": 0.0,
+      "short_active": false,
+      "metrics": {
+        "exit_phases": 0,
+        "markdown_phases": 0,
+        "spring_phases": 0,
+        "markup_phases": 0
+      },
+      "short_pnl": 0.0,
+      "spring_pnl": 0.0,
+      "markup_pnl": 0.0
+    }
+  }
 }
