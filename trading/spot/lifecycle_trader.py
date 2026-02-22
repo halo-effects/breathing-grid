@@ -484,6 +484,19 @@ class LifecycleTrader:
                 logger.warning("Limit sell amount %.8f below min %.8f for %s", amount, min_amount, symbol)
                 return None
 
+            # In live mode, cap sell amount to actual balance to avoid "insufficient balance"
+            if self.live:
+                base = symbol.split("/")[0]
+                bal = self.client.exchange.fetch_balance({"type": "spot"})
+                available = float(bal.get(base, {}).get("free", 0) or 0)
+                if available > 0 and amount > available:
+                    logger.warning("Capping sell qty from %.8f to available %.8f for %s",
+                                   amount, available, symbol)
+                    amount = available
+                    if amount < min_amount:
+                        logger.warning("Available balance %.8f below min %.8f for %s", amount, min_amount, symbol)
+                        return None
+
             logger.info("📋 LIVE LIMIT SELL %s: amount=%.8f @ $%.6f", symbol, amount, price)
             order = self.client.create_limit_sell(symbol, amount, price)
             order_id = order.get('id')
